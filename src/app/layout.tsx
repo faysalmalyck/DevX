@@ -8,7 +8,6 @@ import Aoscompo from "@/utils/aos";
 import NextTopLoader from "nextjs-toploader";
 import { AuthDialogProvider } from "./context/AuthDialogContext";
 import { SessionProvider } from "./context/SessionContext";
-import IntroAnimation from "@/components/Common/IntroAnimation";
 
 const rota = localFont({
   src: "./fonts/Rota-Medium.otf",
@@ -88,7 +87,7 @@ export default function RootLayout({
               enableColorScheme
               disableTransitionOnChange
             >
-              <IntroAnimation />
+
               <Aoscompo>
                 <Header />
                 {children}
