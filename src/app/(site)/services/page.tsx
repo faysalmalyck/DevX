@@ -1,12 +1,11 @@
 import React from "react";
 import HeroSub from "@/components/SharedComponent/HeroSub";
-import FeaturesSection from "@/components/Feature";
 import { Metadata } from "next";
-import Services from "./services";
-import ContactForm from "@/components/Contact/Form";
+import Development from "@/components/Home/Develeopment/development";
+
 export const metadata: Metadata = {
     title: "Services",
-    description: "Explore Vertex digital solution services across web, SaaS, AI, cloud, and product engineering.",
+    description: "Explore DevX digital solution services across web, SaaS, AI, cloud, and product engineering.",
 };
 
 const page = () => {
@@ -17,15 +16,13 @@ const page = () => {
   return (
     <>
       <HeroSub
-        title="Our Services"
-        description="Discover a wealth of insightful materials meticulously crafted to provide you with a comprehensive understanding of the latest trends."
-        breadcrumbLinks={breadcrumbLinks}
-      />      
-      <Services />
+  title="Our|Services"
+  description="Empowering businesses with innovative digital solutions that accelerate growth, enhance efficiency, and create lasting competitive advantage."
+  breadcrumbLinks={breadcrumbLinks}
+/> 
       
       <div className="py-12 ">
-        <FeaturesSection />
-        <ContactForm />
+        <Development />
       
       </div>
     </>

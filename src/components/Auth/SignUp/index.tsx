@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import SocialSignUp from "../SocialSignUp";
 import Logo from "@/components/Layout/Header/Logo"
 import { useContext, useState, type FormEvent } from "react";
@@ -18,7 +18,7 @@ const SignUp = ({signUpOpen}: SignUpProps) => {
     e.preventDefault();
 
     setLoading(true);
-    toast.success("Registration is disabled for now");
+    toast.success("Thanks for signing up — we’ll be in touch soon.");
     setLoading(false);
     setTimeout(() => {
       signUpOpen?.(false);
@@ -33,6 +33,7 @@ const SignUp = ({signUpOpen}: SignUpProps) => {
 
   return (
     <>
+      <Toaster position="top-center" />
       <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
         <Logo />
       </div>

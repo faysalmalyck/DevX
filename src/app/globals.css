@@ -3,6 +3,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --font-sans: var(--font-rota), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   --spacing-6xl: 75rem;
   --container-screen-2xl: 83.75rem;
 
@@ -49,8 +51,8 @@
   --color-accent: #f5c542;
   --color-aqua: #22d3ee;
   --color-section: #f7f5ff;
-  --color-darkmode: #070a12;
-  --color-darklight: #101827;
+  --color-darkmode: #181d2b;
+  --color-darklight: #181d2b;
   --color-dark_border: rgba(255, 255, 255, 0.12);
   --color-Sky-blue-mist: #22d3ee;
 
@@ -90,7 +92,8 @@ html.dark {
 }
 
 body {
-  @apply overflow-x-hidden bg-white text-midnight_text antialiased dark:bg-darkmode dark:text-white;
+  @apply font-sans overflow-x-hidden bg-white text-midnight_text antialiased dark:bg-darkmode dark:text-white;
+
   background-image:
     radial-gradient(circle at top, rgba(139, 92, 246, 0.1), transparent 34rem),
     linear-gradient(135deg, rgba(34, 211, 238, 0.06), transparent 26rem);
@@ -118,7 +121,7 @@ body {
     background:
       radial-gradient(circle at top, rgba(139, 92, 246, 0.22), transparent 35%),
       radial-gradient(circle at 88% 8%, rgba(34, 211, 238, 0.14), transparent 24rem),
-      linear-gradient(180deg, #070a12 0%, #101827 100%);
+      linear-gradient(180deg, #181d2b 0%, #181d2b 100%);
   }
 
   .glass-card {
@@ -158,6 +161,7 @@ body {
     animation: reveal-up 0.75s ease both;
   }
 
+<<<<<<< HEAD
   .intro-mark {
     animation: intro-mark-pop 0.8s cubic-bezier(0.2, 0.9, 0.2, 1) both;
   }
@@ -307,6 +311,43 @@ body {
       rgba(255, 255, 255, 0.08),
       transparent
     );
+=======
+  /* Hero Animations - Slow & Smooth */
+  .animate-fade-up {
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-right {
+    animation: fadeInRight 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Stagger Delays (Spaced out further) */
+  .delay-100 { animation-delay: 200ms; }
+  .delay-200 { animation-delay: 400ms; }
+  .delay-300 { animation-delay: 600ms; }
+  .delay-400 { animation-delay: 800ms; }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+>>>>>>> 872113e (Refine navigation and update website content)
   }
 }
 

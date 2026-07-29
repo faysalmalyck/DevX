@@ -1,5 +1,5 @@
 {
-    "name": "vertex_project",
+    "name": "DevX_project",
     "version": "1.0.1",
     "private": true,
     "scripts": {
@@ -12,26 +12,46 @@
     "dependencies": {
         "@iconify/icons-ion": "^1.2.10",
         "@iconify/react": "^5.0.1",
+<<<<<<< HEAD
         "@lottiefiles/dotlottie-react": "^0.19.9",
+=======
+        "@prisma/adapter-pg": "^7.8.0",
+        "@prisma/client": "^7.8.0",
+        "aos": "^2.3.4",
+>>>>>>> 872113e (Refine navigation and update website content)
         "axios": "^1.7.2",
+        "bcrypt": "^6.0.0",
         "date-fns": "^3.4.0",
+        "framer-motion": "^12.42.2",
         "gray-matter": "^4.0.3",
+        "jose": "^6.2.3",
         "lucide-react": "^1.23.0",
         "next": "^16.2.10",
         "next-auth": "^4.24.11",
         "next-themes": "^0.3.0",
         "nextjs-toploader": "^3.7.15",
+        "pg": "^8.22.0",
+        "prisma": "^7.8.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-fast-marquee": "^1.6.5",
         "react-hot-toast": "^2.4.1",
+        "react-icons": "^5.7.0",
+        "react-parallax-tilt": "^1.7.333",
         "react-slick": "^0.30.2",
         "remark": "^15.0.1",
         "remark-html": "^16.0.1",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "zod": "^4.4.3"
     },
     "devDependencies": {
         "@netlify/plugin-nextjs": "^5.15.12",
         "@tailwindcss/postcss": "^4.0.0",
+<<<<<<< HEAD
+=======
+        "@types/aos": "^3.0.7",
+        "@types/bcrypt": "^6.0.0",
+>>>>>>> 872113e (Refine navigation and update website content)
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",

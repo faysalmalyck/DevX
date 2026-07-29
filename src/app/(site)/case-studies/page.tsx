@@ -1,0 +1,62 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import CtaSection from '@/components/Home/ReadytoContact/Ready';
+import { caseStudiesData as caseStudies } from '@/data/case-studies';
+
+export default function CaseStudy() {
+  return (
+    <section className="mt-32 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
+      {/* Header Container */}
+      <div className="max-w-2xl mx-auto text-center pt-8 pb-4 mb-2">
+        <h2 className="text-3xl md:text-7xl tracking-tight text-gray-900 dark:text-white leading-tight ">
+          Case{' '}
+          <span className="text-blue-600 dark:text-blue-600">Studies</span>{' '}
+        </h2>
+        <p  className="mt-4 text-gray-600 dark:text-white text-lg leading-relaxed">
+          Explore how we've helped startups enterprises and growing businesses solve complex challenges through innovative engineering scalable architecture and user-focused digital products. 
+        </p>
+      </div>
+
+       {/* Grid Container */}
+<div className="relative">
+      <div className="grid grid-cols-1 py-2 md:grid-cols-2 gap-4 relative z-10">
+        {caseStudies.map((study) => (
+          <Link
+            key={study.id}
+            href={`/case-studies/${study.slug}`}
+            className="group relative bg-gray-100/80 dark:bg-[#252d41] rounded-lg border border-gray-200/80 dark:border-slate-700/80 py-20 px-14 md:py-16 md:px-12 min-h-[350px] shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl transition-all duration-200 ease-in-out flex flex-col justify-between hover:scale-[0.99] hover:opacity-60"
+          >
+            <div>
+              <div className="mb-8 h-10 relative w-48 dark:brightness-100 brightness-0">
+                <Image
+                  src={study.logo}
+                  alt={study.alt}
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
+              <h3 className="text-xl md:text-2xl text-gray-900 dark:text-white mb-8 font-semibold">
+                {study.title}
+              </h3>
+            </div>
+
+            <div className="flex items-center gap-2 text-gray-900 dark:text-white font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mt-auto">
+              <span>Read case study</span>
+              <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+        {/* Decorative Background Glows */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
+      </div>
+
+      
+      <CtaSection />
+    </section>
+  );
+}

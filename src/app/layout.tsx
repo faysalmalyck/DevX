@@ -1,50 +1,59 @@
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import { ThemeProvider } from "next-themes";
-import ScrollToTop from '@/components/ScrollToTop';
 import Aoscompo from "@/utils/aos";
 import NextTopLoader from 'nextjs-toploader';
 import { AuthDialogProvider } from "./context/AuthDialogContext";
+<<<<<<< HEAD
 import IntroAnimation from "@/components/Common/IntroAnimation";
 const inter = Inter({ subsets: ["latin"] });
+=======
+import { SessionProvider } from "./context/SessionContext";
+import localFont from "next/font/local";
+
+const rota = localFont({
+  src: "./fonts/Rota-Medium.otf",
+  variable: "--font-rota",
+  display: "swap",
+});
+>>>>>>> 872113e (Refine navigation and update website content)
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vertexinnovation.vercel.app"),
-  applicationName: "Vertex",
+  metadataBase: new URL("https://DevXinnovation.vercel.app"),
+  applicationName: "DevX",
   title: {
-    default: "Vertex | Digital Solutions Agency",
-    template: "%s | Vertex",
+    default: "DevX | Digital Solutions Agency",
+    template: "%s | DevX",
   },
   description:
-    "Vertex is a premium digital solutions agency building modern websites, SaaS platforms, AI integrations, and scalable software products.",
+    "DevX is a premium digital solutions agency building modern websites, SaaS platforms, AI integrations, and scalable software products.",
   icons: {
     icon: "/icon.png",
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Vertex | Digital Solutions Agency",
+    title: "DevX | Digital Solutions Agency",
     description:
       "Premium digital solutions agency for modern software, SaaS, AI, and cloud delivery.",
-    siteName: "Vertex",
+    siteName: "DevX",
     images: [
       {
-        url: "/images/brand/vertex-preview.png",
+        url: "/images/brand/DevX-preview.png",
         width: 1536,
         height: 1024,
-        alt: "Vertex logo",
+        alt: "DevX logo",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vertex | Digital Solutions Agency",
+    title: "DevX | Digital Solutions Agency",
     description:
       "Premium digital solutions agency for modern software, SaaS, AI, and cloud delivery.",
-    images: ["/images/brand/vertex-mark.png"],
+    images: ["/images/brand/DevX-mark.png"],
   },
 };
 
@@ -54,6 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+<<<<<<< HEAD
     <html lang="en" className="bg-white dark:bg-darkmode" suppressHydrationWarning>
       <head>
         <script
@@ -90,8 +100,28 @@ export default function RootLayout({
           </Aoscompo>
           <ScrollToTop />
         </ThemeProvider>
+=======
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${rota.variable} font-sans`}>
+      <NextTopLoader />
+      <SessionProvider>
+        <AuthDialogProvider>
+          <ThemeProvider
+            attribute="class"
+            enableSystem={true}
+            defaultTheme="system"
+          >
+            <Aoscompo>
+              <Header />
+              {children}
+              <Footer />
+            </Aoscompo>
+          </ThemeProvider>
+>>>>>>> 872113e (Refine navigation and update website content)
         </AuthDialogProvider>
+      </SessionProvider>
       </body>
     </html>
   );
 }
+

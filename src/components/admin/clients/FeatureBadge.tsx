@@ -1,0 +1,1 @@
+export default function FeatureBadge({ featured }: { featured: boolean }) { return featured ? <span className="rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-bold text-amber-600 dark:text-amber-400">Featured</span> : <span className="text-xs text-slate-400">—</span>; }

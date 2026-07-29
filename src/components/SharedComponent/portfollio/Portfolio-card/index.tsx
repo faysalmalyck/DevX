@@ -84,7 +84,7 @@ const PortfolioCard = () => {
                     rel="noopener noreferrer"
                     className="group block"
                   >
-                    <article className="relative h-[460px] overflow-hidden rounded-[28px] bg-[#070A12] shadow-[0_18px_50px_rgba(15,23,42,0.18)] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_90px_rgba(139,92,246,0.28)]">
+                    <article className="relative h-[460px] overflow-hidden rounded-[28px] bg-[#181d2b] shadow-[0_18px_50px_rgba(15,23,42,0.18)] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_90px_rgba(139,92,246,0.28)]">
                       <Image
                         src={item.image}
                         alt={item.alt}
@@ -93,7 +93,7 @@ const PortfolioCard = () => {
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#070A12]/95 via-[#070A12]/55 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#181d2b]/95 via-[#181d2b]/55 to-transparent" />
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/24 via-transparent to-Sky-blue-mist/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                       <div className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-Sky-blue-mist group-hover:text-white">

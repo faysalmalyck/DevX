@@ -90,9 +90,9 @@ const Signin = ({ signInOpen }: SignInProps) => {
         Forget Password?
       </Link>
       <p className="text-body-secondary text-base">
-        Not a member yet?{" "}
-        <Link href="/" className="text-primary hover:underline">
-          Sign Up
+        Need to talk about a project?{" "}
+        <Link href="/contact" className="text-primary hover:underline">
+          Contact us
         </Link>
       </p>
     </>

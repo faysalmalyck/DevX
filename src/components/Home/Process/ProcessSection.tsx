@@ -1,0 +1,105 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
+export default function ProcessSection() {
+  const steps = [
+    {
+      id: 1,
+      title: '1. Project Idea',
+      description: 'Lorem ipsum dolor sit amet consectoli tur adipiscing elit',
+      highlightText: 'semper dalar.',
+      imageOn: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d39915cf0790ed9fbf7_image-project-idea-on-process-dev-template.png',
+      imageOff: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d39bd42a5cfbb15f394_image-project-idea-off-process-dev-template.png',
+      offsetClass: 'mt-0',
+    },
+    {
+      id: 2,
+      title: '2. Development & Execution',
+      description: 'Vitae sapien pellentesque habitant morbi tristique senectus et',
+      highlightText: 'faucibus aolm.',
+      imageOn: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d3980cd776c6b6f3c42_image-development-process-on-process-dev-template.png',
+      imageOff: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d396c2cfbf5517c75c0_image-development-process-off-process-dev-template.png',
+      offsetClass: 'lg:mt-20',
+    },
+    {
+      id: 3,
+      title: '3. Launch & Scale',
+      description: 'Eu sem integer vitae justo eget magnalom fermentum sulputate odio',
+      highlightText: 'ut enim.',
+      imageOn: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d391b1e6a5f330f2b86_image-launch-and-scale-on-process-dev-template.png',
+      imageOff: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d3971fa70018f90f67b_image-launch-and-scale-off-process-dev-template.png',
+      offsetClass: 'lg:mt-40',
+    },
+  ];
+
+  return (
+    <section className="relative w-full py-10 sm:py-16 px-4 md:px-8 dark:bg-[#181d2b] overflow-hidden transition-colors duration-200">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="max-w-4xl mx-auto text-center pt-2 sm:pt-8 pb-6 sm:pb-12 mb-6 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
+            We have a simple, yet{' '}
+            <span className="text-blue-600 dark:text-blue-400">bulletproof</span> and{' '}
+            <span className="text-blue-600 dark:text-blue-400">effective</span> process.
+          </h2>
+        </div>
+
+        <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-3 items-start relative z-10">
+            {steps.map((step) => (
+              <div key={step.id} className={`${step.offsetClass} w-full flex justify-center`}>
+                <div className="group relative bg-[#243042] rounded-xl border border-slate-700 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[450px] w-full max-w-sm">
+
+                  <div className="relative h-[220px] sm:h-[280px] w-full bg-slate-800 overflow-hidden">
+                    <Image
+                      src={step.imageOn}
+                      alt={`${step.title} Active`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 386px"
+                      className="object-cover opacity-100 group-hover:opacity-0 transition-opacity duration-500"
+                      priority
+                    />
+                    <Image
+                      src={step.imageOff}
+                      alt={`${step.title} Inactive`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 386px"
+                      className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#243042] to-transparent pointer-events-none" />
+                  </div>
+
+                  <div className="p-5 sm:p-6 py-4 flex-1 flex flex-col justify-center">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {step.description}{' '}
+                      <span className="whitespace-nowrap">{step.highlightText}</span>
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
+        </div>
+
+        {/* Action Button */}
+        <div className="mt-8 sm:mt-12 py-6 sm:py-12 md:py-20 flex justify-center">
+          <Link
+            href="/contact"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center rounded-full bg-blue-600 px-6 sm:px-10 py-3.5 sm:py-5 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+          >
+            Contact us
+          </Link>
+        </div>
+
+        <div className="my-6 sm:my-12 h-px w-full bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-60" />
+      </div>
+    </section>
+  );
+}

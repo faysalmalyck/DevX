@@ -3,7 +3,7 @@
 const portfolioItems = [
   { slug: "project-alpha", title: "Project Alpha", content: "Details about project Alpha..." },
   { slug: "project-beta", title: "Project Beta", content: "Details about project Beta..." },
-  { slug: "vertex", title: "Vertex Digital Solutions Agency", content: "Details about the Vertex brand..." },
+  { slug: "DevX", title: "DevX Digital Solutions Agency", content: "Details about the DevX brand..." },
 ];
 
 // This function tells Next.js which slugs to pre-render at build time.

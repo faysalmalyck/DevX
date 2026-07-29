@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { headerData } from "../Header/Navigation/menuData";
 import Logo from "./Logo";
 import HeaderLink from "../Header/Navigation/HeaderLink";
@@ -11,19 +12,21 @@ import { SuccessfullLogin } from "@/components/Auth/AuthDialog/SuccessfulLogin";
 import { FailedLogin } from "@/components/Auth/AuthDialog/FailedLogin";
 import { UserRegistered } from "@/components/Auth/AuthDialog/UserRegistered";
 import AuthDialogContext from "@/app/context/AuthDialogContext";
+import AccountDropdown from "@/components/account/AccountDropdown";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
   };
 
+<<<<<<< HEAD
   const closeMobileMenu = () => setNavbarOpen(false);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -56,11 +59,34 @@ const Header: React.FC = () => {
   useEffect(() => {
     const originalBodyOverflow = document.body.style.overflow;
     const originalHtmlOverflow = document.documentElement.style.overflow;
+=======
+  const toggleMenu = () => {
+    setNavbarOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setNavbarOpen(false);
+  }, [pathUrl]);
+
+  useEffect(() => {
+    setMounted(true);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+>>>>>>> 872113e (Refine navigation and update website content)
 
     if (navbarOpen) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
+<<<<<<< HEAD
       document.body.style.overflow = originalBodyOverflow;
       document.documentElement.style.overflow = originalHtmlOverflow;
     }
@@ -70,26 +96,78 @@ const Header: React.FC = () => {
       document.documentElement.style.overflow = originalHtmlOverflow;
     };
   }, [navbarOpen]);
+=======
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [navbarOpen, mounted]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setNavbarOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+>>>>>>> 872113e (Refine navigation and update website content)
 
   const authDialog = useContext(AuthDialogContext);
+  const isDark = mounted && resolvedTheme === "dark";
+  const isHomePage = pathUrl === "/";
+
+  // Dynamic text color strategy:
+  // 1. In dark mode, text is always light (`dark:text-white`).
+  // 2. In light mode:
+  //    - If non-sticky on homepage overlay (dark background hero), text is white (`text-white`).
+  //    - If sticky or on inner pages, text is standard dark slate (`text-slate-900`).
+  const navTextColor =
+    !sticky && isHomePage
+      ? "text-white dark:text-white"
+      : "text-slate-900 dark:text-white";
 
   return (
     <header
+<<<<<<< HEAD
       className={`fixed top-0 w-full px-2 py-3 transition-all duration-500 sm:px-4 sm:py-4 lg:px-6 ${
         navbarOpen ? "z-[1000]" : "z-50"
       } ${
+=======
+      className={`fixed top-0 left-0 right-0 z-[9999] w-full px-3 py-3 md:py-4 transition-all duration-300 ${
+>>>>>>> 872113e (Refine navigation and update website content)
         sticky
-          ? "bg-white/75 shadow-[0_16px_60px_rgba(15,23,42,0.10)] backdrop-blur-2xl dark:bg-darklight/80 dark:shadow-dark-md"
+          ? "bg-white/95 shadow-md backdrop-blur-md dark:bg-slate-900/95 dark:shadow-slate-800/50"
           : "bg-transparent"
       }`}
     >
+<<<<<<< HEAD
       <div className="mx-auto flex min-h-[60px] w-full max-w-[1180px] items-center justify-between gap-2 rounded-full border border-slate-950/10 bg-white/75 px-3 py-2.5 shadow-[0_18px_70px_rgba(15,23,42,0.10)] backdrop-blur-2xl sm:min-h-[68px] sm:px-4 lg:gap-4 lg:px-5 dark:border-white/[0.12] dark:bg-white/[0.06]">
         <Logo />
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
+=======
+      <div className="container relative mx-auto flex max-w-6xl items-center justify-between px-2 sm:px-4 py-1">
+        <Logo />
+
+        {/* Desktop Navigation */}
+        <nav
+          className={`hidden grow items-center justify-center gap-8 transition-colors duration-300 lg:flex ${navTextColor}`}
+        >
+>>>>>>> 872113e (Refine navigation and update website content)
           {headerData.map((item, index) => (
             <HeaderLink key={index} item={item} />
           ))}
         </nav>
+<<<<<<< HEAD
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             aria-label="Toggle theme"
@@ -160,26 +238,97 @@ const Header: React.FC = () => {
             onClick={closeMobileMenu}
             aria-label="Close mobile menu"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-900 transition-colors duration-300 hover:border-primary/30 hover:text-primary dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:text-Sky-blue-mist"
+=======
+
+        {/* Action Controls & Mobile Toggle */}
+        <div className="flex items-center gap-2 sm:gap-4 relative z-[10000]">
+          <button
+            type="button"
+            aria-label="Toggle theme"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+            className={`relative inline-flex h-9 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+              isDark ? "bg-slate-800" : "bg-slate-200"
+            }`}
+>>>>>>> 872113e (Refine navigation and update website content)
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="dark:text-white"
+            <span
+              className={`pointer-events-none flex h-8 w-8 transform items-center justify-center rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out dark:bg-slate-900 ${
+                isDark ? "translate-x-7" : "translate-x-0"
+              } ${!sticky && isHomePage ? "border border-white/20" : ""}`}
             >
-              <path
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="h-4 w-4 text-amber-500 dark:hidden"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="m4.93 4.93 1.41 1.41" />
+                <path d="m17.66 17.66 1.41 1.41" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+                <path d="m6.34 17.66-1.41 1.41" />
+                <path d="m19.07 4.93-1.41 1.41" />
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
                 strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="hidden h-4 w-4 text-sky-400 dark:block"
+              >
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            </span>
+          </button>
+
+          <AccountDropdown />
+
+          {/* Fully Isolated Touch Button */}
+          <button
+            type="button"
+            onClick={toggleMenu}
+            className="relative z-[10001] flex h-12 w-12 items-center justify-center bg-transparent focus:outline-none lg:hidden touch-manipulation"
+            aria-label="Toggle mobile menu"
+            aria-expanded={navbarOpen}
+          >
+            <div className="relative flex h-4 w-5 flex-col justify-between pointer-events-none">
+              <span
+                className={`h-0.5 w-full rounded-full transition-all duration-300 ${
+                  !sticky && isHomePage
+                    ? "bg-white dark:bg-white"
+                    : "bg-slate-900 dark:bg-white"
+                } ${navbarOpen ? "translate-y-[7px] rotate-45" : ""}`}
               />
-            </svg>
+              <span
+                className={`h-0.5 w-full rounded-full transition-all duration-300 ${
+                  !sticky && isHomePage
+                    ? "bg-white dark:bg-white"
+                    : "bg-slate-900 dark:bg-white"
+                } ${navbarOpen ? "opacity-0" : "opacity-100"}`}
+              />
+              <span
+                className={`h-0.5 w-full rounded-full transition-all duration-300 ${
+                  !sticky && isHomePage
+                    ? "bg-white dark:bg-white"
+                    : "bg-slate-900 dark:bg-white"
+                } ${navbarOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
+              />
+            </div>
           </button>
           </div>
         </div>
+<<<<<<< HEAD
         <nav className="flex min-h-0 flex-1 flex-col items-start gap-3 overflow-y-auto bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] dark:bg-darkmode">
           {headerData.map((item, index) => (
             <MobileHeaderLink
@@ -205,31 +354,97 @@ const Header: React.FC = () => {
             </Link>
           </div>
         </nav>
+=======
+>>>>>>> 872113e (Refine navigation and update website content)
       </div>
-      {/* Successsful Login Alert */}
+
+      {/* Auth Alerts */}
       <div
-        className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-          authDialog?.isSuccessDialogOpen == true ? "block" : "hidden"
+        className={`fixed top-6 end-1/2 translate-x-1/2 z-[10002] ${
+          authDialog?.isSuccessDialogOpen ? "block" : "hidden"
         }`}
       >
         <SuccessfullLogin />
       </div>
-      {/* Failed Login Alert */}
       <div
-        className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-          authDialog?.isFailedDialogOpen == true ? "block" : "hidden"
+        className={`fixed top-6 end-1/2 translate-x-1/2 z-[10002] ${
+          authDialog?.isFailedDialogOpen ? "block" : "hidden"
         }`}
       >
         <FailedLogin />
       </div>
-      {/* User registration Alert */}
       <div
-        className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-          authDialog?.isUserRegistered == true ? "block" : "hidden"
+        className={`fixed top-6 end-1/2 translate-x-1/2 z-[10002] ${
+          authDialog?.isUserRegistered ? "block" : "hidden"
         }`}
       >
         <UserRegistered />
       </div>
+
+      {mounted &&
+        createPortal(
+          <div
+            className={`fixed inset-0 z-[9998] lg:hidden ${
+              navbarOpen ? "visible" : "invisible pointer-events-none"
+            }`}
+            aria-hidden={!navbarOpen}
+          >
+            <button
+              type="button"
+              tabIndex={navbarOpen ? 0 : -1}
+              aria-label="Close mobile menu"
+              className={`absolute inset-0 w-full bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300 ${
+                navbarOpen ? "opacity-100" : "opacity-0"
+              }`}
+              onPointerDown={() => setNavbarOpen(false)}
+            />
+
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+              className={`absolute inset-x-3 top-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl transition-all duration-300 ease-out dark:border-slate-800 dark:bg-slate-900 ${
+                navbarOpen
+                  ? "translate-y-0 opacity-100"
+                  : "-translate-y-2 opacity-0"
+              }`}
+            >
+              <nav className="flex max-h-[calc(100vh-6rem)] max-h-[calc(100dvh-6rem)] flex-col overflow-y-auto overscroll-contain text-slate-900 dark:text-white">
+                <div className="flex flex-col space-y-1">
+                  {headerData.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-full rounded-lg transition-colors hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                    >
+                      <MobileHeaderLink
+                        item={item}
+                        onNavigate={() => setNavbarOpen(false)}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-2.5 border-t border-slate-200/60 pt-4 dark:border-slate-800/60">
+                  <Link
+                    href="/contact"
+                    className="w-full rounded-xl border border-slate-300 py-3 text-center text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
+                    onClick={() => setNavbarOpen(false)}
+                  >
+                    Contact us
+                  </Link>
+                  <Link
+                    href="/portfolio"
+                    className="w-full rounded-xl bg-blue-600 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-blue-500 active:scale-[0.98]"
+                    onClick={() => setNavbarOpen(false)}
+                  >
+                    View work
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          </div>,
+          document.body
+        )}
     </header>
   );
 };

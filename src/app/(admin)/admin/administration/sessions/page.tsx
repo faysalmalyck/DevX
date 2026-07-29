@@ -1,0 +1,2 @@
+import AdminPlaceholder from "@/components/admin/administration/AdminPlaceholder";
+export default function SessionsPage(){return <AdminPlaceholder active="sessions" title="Login Sessions" description="Review active administrator devices and end access when needed."><div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5"><p className="font-bold">Current session</p><p className="mt-1 text-sm text-slate-500 dark:text-white/60">Browser and location tracking are enabled once the server-side auth provider is configured.</p></div></AdminPlaceholder>}

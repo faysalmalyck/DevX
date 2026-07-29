@@ -8,7 +8,7 @@ import { getImgPath } from "@/utils/image";
 
 const BlogCard = ({ blog }: { blog: Blog }) => {
     const { title, coverImage, excerpt, date, slug } = blog;
-    const postTitle = title ?? "Vertex insight";
+    const postTitle = title ?? "DevX insight";
     const postSlug = slug ?? "#!";
     const postImage = coverImage ?? "";
     const postDate = date ? new Date(date) : new Date();

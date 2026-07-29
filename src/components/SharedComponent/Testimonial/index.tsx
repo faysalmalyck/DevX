@@ -11,7 +11,7 @@ const Testimonial = () => {
     },
     {
       quote:
-        'Vertex helped us turn a complex product idea into a clean, scalable platform with the kind of polish investors immediately understood.',
+        'DevX helped us turn a complex product idea into a clean, scalable platform with the kind of polish investors immediately understood.',
       name: 'Sarah Mitchell',
       role: 'Founder, SaaS Studio',
     },

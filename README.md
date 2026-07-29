@@ -1,11 +1,11 @@
-# Vertex Digital Solutions Agency Website
+# DevX Digital Solutions Agency Website
 
 ## Getting Started
 
 1. Clone Repository
 
 ```
-git clone https://github.com/your-org/vertex.git
+git clone https://github.com/your-org/DevX.git
 ```
 
 2. Install Dependencies

@@ -8,24 +8,26 @@ interface HeroSubProps {
   breadcrumbLinks: BreadcrumbLink[]
 }
 
-const HeroSub: FC<HeroSubProps> = ({ title, description, breadcrumbLinks }) => {
+const HeroSub: FC<HeroSubProps> = ({
+  title,
+  description,
+  breadcrumbLinks,
+}) => {
+  const [whiteTitle, blueTitle] = title.split('|')
+
   return (
-    <>
-      <section className='premium-shell premium-mesh relative text-center md:py-24 py-16 md:pt-44 pt-36 dark:bg-darkmode'>
-        <div className='pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent' />
-        <div className='premium-badge mx-auto mb-6 w-fit'>
-          <span className='h-2 w-2 rounded-full bg-success' />
-          Vertex studio
-        </div>
-        <h2 className='premium-heading mx-auto max-w-3xl'>
-          {title}
-        </h2>
-        <p className='premium-copy mx-auto my-[1.875rem] max-w-3xl sm:px-0 px-4'>
-          {description}
-        </p>
-        <Breadcrumb links={breadcrumbLinks} />
-      </section>
-    </>
+    <section className="relative px-4 pt-28 pb-2 text-center sm:pt-36 sm:pb-4 md:pt-44 md:pb-6 dark:bg-[#181d2b]">
+      <h1 className="mb-2 text-3xl font-normal tracking-tight sm:text-5xl md:text-7xl">
+        <span className="text-gray-900 dark:text-white">{whiteTitle}</span>{' '}
+        <span className="text-blue-600 dark:text-blue-500">{blueTitle}</span>
+      </h1>
+
+      <p className="mx-auto my-2 max-w-4xl text-base sm:text-lg dark:text-slate-300">
+        {description}
+      </p>
+
+      <Breadcrumb links={breadcrumbLinks} />
+    </section>
   )
 }
 

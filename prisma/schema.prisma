@@ -1,0 +1,337 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+enum ClientStatus {
+  ACTIVE
+  HIDDEN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum AdminStatus {
+  ACTIVE
+  SUSPENDED
+  INVITED
+  LOCKED
+}
+
+enum PermissionAction {
+  VIEW
+  CREATE
+  EDIT
+  DELETE
+  PUBLISH
+  APPROVE
+  EXPORT
+  IMPORT
+  MANAGE
+}
+
+model Client {
+  id            String       @id @default(cuid())
+  companyName   String       @unique
+  slug          String       @unique
+  logo          String
+  website       String
+  description   String?
+  industry      String?
+  country       String?
+  displayOrder  Int          @default(0)
+  featured      Boolean      @default(false)
+  status        ClientStatus @default(ACTIVE)
+  openInNewTab  Boolean      @default(true)
+  seoTitle      String?
+  seoDescription String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  deletedAt     DateTime?
+
+  @@index([status, featured, displayOrder])
+  @@index([deletedAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  action    String
+  entity    String
+  entityId  String
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+}
+
+model Admin {
+  id                       String          @id @default(cuid())
+  firstName                String
+  lastName                 String
+  email                    String          @unique
+  phone                    String?
+  username                 String          @unique
+  password                 String
+  avatar                   String?
+  designation              String?
+  department               String?
+  bio                      String?
+  timezone                 String          @default("UTC")
+  language                 String          @default("en")
+  roleId                   String
+  role                     Role            @relation(fields: [roleId], references: [id])
+  status                   AdminStatus     @default(ACTIVE)
+  twoFactorEnabled         Boolean         @default(false)
+  requirePasswordChange    Boolean         @default(true)
+  passwordExpiresAt        DateTime?
+  failedLoginAttempts      Int             @default(0)
+  lockedUntil              DateTime?
+  lastLogin                DateTime?
+  sessions                 AdminSession[]
+  activities               AdminActivity[]
+  createdAt                DateTime        @default(now())
+  updatedAt                DateTime        @updatedAt
+  deletedAt                DateTime?
+
+  @@index([roleId, status])
+  @@index([deletedAt])
+  passwordResetToken String?
+  passwordResetExpires DateTime?
+}
+
+model Role {
+  id           String           @id @default(cuid())
+  name         String           @unique
+  slug         String           @unique
+  description  String?
+  isSystem     Boolean          @default(false)
+  isSuperAdmin Boolean          @default(false)
+  admins       Admin[]
+  permissions  RolePermission[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  module      String
+  action      PermissionAction
+  roles       RolePermission[]
+
+  @@unique([module, action])
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  device    String?
+  browser   String?
+  ipAddress String?
+  location  String?
+  loginAt   DateTime @default(now())
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([adminId, expiresAt])
+}
+
+model AdminActivity {
+  id        String   @id @default(cuid())
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  action    String
+  module    String
+  description String
+  ipAddress String?
+  browser   String?
+  createdAt DateTime @default(now())
+
+  @@index([adminId, createdAt])
+  @@index([module, createdAt])
+}
+
+model User {
+  id                    String       @id @default(cuid())
+  firstName             String
+  lastName              String
+  email                 String       @unique
+  username              String       @unique
+  password              String
+  avatar                String?
+  phone                 String?
+  status                AdminStatus  @default(ACTIVE)
+  role                  String       @default("Client")
+  requirePasswordChange Boolean      @default(false)
+  passwordChangedAt     DateTime?
+  lastLogin             DateTime?
+  sessions              UserSession[]
+  activities            UserActivity[]
+  supportTickets        SupportTicket[]
+  serviceRequests      ServiceRequest[]
+  plannedActivities    PlannedActivity[]
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+  deletedAt             DateTime?
+
+  @@index([status, role])
+  @@index([deletedAt])
+  emailVerified Boolean @default(false)
+  emailVerifiedAt DateTime?
+  passwordResetToken String?
+  passwordResetExpires DateTime?
+}
+
+model UserSession {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  device    String?
+  browser   String?
+  ipAddress String?
+  location  String?
+  loginAt   DateTime @default(now())
+  expiresAt DateTime
+
+  @@index([userId, expiresAt])
+}
+
+model UserActivity {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  module    String
+  browser   String?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model SupportTicket {
+  id          String         @id @default(cuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject     String
+  category    String
+  priority    TicketPriority @default(MEDIUM)
+  status      TicketStatus   @default(OPEN)
+  messages    TicketMessage[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([userId, status])
+}
+
+model TicketMessage {
+  id          String        @id @default(cuid())
+  ticketId    String
+  ticket      SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  senderId    String        // User ID or Admin ID
+  senderType  String        // "user" or "admin"
+  senderName  String
+  content     String
+  attachments String[]      // URL list of attachments
+  createdAt   DateTime      @default(now())
+
+  @@index([ticketId])
+}
+
+model Notification {
+  id            String   @id @default(cuid())
+  recipientId   String   // User ID or Admin ID
+  recipientType String   // "user" or "admin"
+  type          String   // "PROJECT_UPDATE", "MESSAGE", "INVOICE", "MEETING", "SECURITY", etc.
+  title         String
+  message       String
+  read          Boolean  @default(false)
+  link          String?
+  createdAt     DateTime @default(now())
+
+  @@index([recipientId, read])
+}
+
+enum ServiceStatus {
+  PENDING
+  IN_PROGRESS
+  REVIEW
+  COMPLETED
+  ON_HOLD
+  CANCELLED
+}
+
+model ServiceRequest {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  serviceName   String        // "Web Development", "Mobile App Development", etc.
+  status        ServiceStatus @default(PENDING)
+  assignedTeam  String        @default("Unassigned")
+  progress      Int           @default(0)
+  deliveryDate  DateTime?
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([userId, status])
+}
+
+enum ActivityStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+model PlannedActivity {
+  id          String         @id @default(cuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        String         // "meeting", "consultation", "milestone", "task", "event"
+  title       String
+  description String?
+  scheduledAt DateTime
+  status      ActivityStatus @default(SCHEDULED)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([userId, scheduledAt])
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+

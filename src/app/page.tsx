@@ -1,26 +1,35 @@
 import React from 'react'
 import { Metadata } from "next";
 import Hero from '@/components/Home/Hero';
-import Counter from '@/app/(site)/about/Our work Count'
-import ProgressWork from '@/components/Home/progress';
-import Contactform from '@/components/Home/Contact';
-import SoftwareSolutions from '@/components/Home/SoftwareSolutions/softwareSolution';
+import Development from '@/components/Home/Develeopment/development';
+import Agile from '@/components/Home/AgileDev/agile';
+import ProcessSection from '@/components/Home/Process/ProcessSection';
+import CaseStudiesSection from '@/components/Home/CaseStudy/casestudy';
+import TechStackSection from '@/components/Home/Techstack/techstack';
+import TestimonialsSection from '@/components/Home/Testimonals/testimonals';
+import ReadytoContact from "@/components/Home/ReadytoContact/Ready";
 export const metadata: Metadata = {
   title: {
-    absolute: "Vertex | Digital Solutions Agency",
+    absolute: "DevX | Transforming Ideas Into Digital Products",
   },
   description:
-    "Vertex builds premium websites, SaaS platforms, AI integrations, and scalable digital products for ambitious brands.",
+    "DevX partners with ambitious brands to build premium websites, intelligent SaaS platforms, AI integrations, and scalable digital experiences.",
 };
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <Counter isColorMode={false} />
-      <ProgressWork isColorMode />
-      <SoftwareSolutions />
-      <Contactform />
+      <Development />
+      <Agile/>
+      <ProcessSection/>
+      <CaseStudiesSection/>
+      <TechStackSection/>
+      <TestimonialsSection/>
+      <ReadytoContact/>
+      
+      
+      
     </main>
   )
 }

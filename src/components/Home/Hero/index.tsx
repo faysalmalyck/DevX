@@ -1,283 +1,121 @@
-'use client'
+"use client";
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowRight, Sparkles, Terminal, Activity } from 'lucide-react'
-import { getImgPath } from '@/utils/image'
+import Link from "next/link";
+import Image from "next/image";
 
-const terminalLines = [
-  'SYSTEM: Initializing vertex-prod-cluster...',
-  'NETWORK: Establishing multi-region routing... OK',
-  'SECURE: TLS handshake completed with Edge node TLS_1.3',
-  'COMPUTE: Synchronizing cluster token vectors...',
-  'AI: Loading neural model pipelines... 100%',
-  'MONITOR: Latency optimization stabilized at 14ms',
-  'INFRA: Database replication scale complete.',
-  'SYSTEM: All microservices operating within peak thresholds.'
-]
-
-const heroMetrics = [
-  ['32M+', 'SaaS Value'],
-  ['99.9%', 'Uptime'],
-  ['4.9/5', 'Rating'],
-]
-
-const parseMetricValue = (value: string) => {
-  const match = value.trim().match(/^([^0-9.-]*)([0-9]+(?:\.[0-9]+)?)(.*)$/)
-
-  if (!match) {
-    return { prefix: '', target: 0, suffix: value, decimals: 0 }
-  }
-
-  const [, prefix, numericValue, suffix] = match
-
-  return {
-    prefix,
-    target: Number(numericValue),
-    suffix,
-    decimals: numericValue.includes('.') ? numericValue.split('.')[1].length : 0,
-  }
-}
-
-const AnimatedMetric = ({ value, delay = 0, isMobile = false }: { value: string; delay?: number; isMobile: boolean }) => {
-  const metricRef = useRef<HTMLSpanElement | null>(null)
-  const [hasStarted, setHasStarted] = useState(false)
-  const [currentValue, setCurrentValue] = useState(0)
-  const parsedValue = useMemo(() => parseMetricValue(value), [value])
-
-  useEffect(() => {
-    const element = metricRef.current
-
-    if (!element) return
-
-    if (isMobile || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setCurrentValue(parsedValue.target)
-      setHasStarted(true)
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasStarted(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    observer.observe(element)
-
-    return () => observer.disconnect()
-  }, [parsedValue.target, isMobile])
-
-  useEffect(() => {
-    if (!hasStarted || isMobile) return
-
-    let animationFrame = 0
-    let timeoutId: ReturnType<typeof setTimeout>
-    
-    // Increased duration from 1600ms to 3200ms to slow down the count speed significantly
-    const duration = 3200
-
-    timeoutId = setTimeout(() => {
-      const startedAt = performance.now()
-
-      const animate = (timestamp: number) => {
-        const progress = Math.min((timestamp - startedAt) / duration, 1)
-        const easedProgress = 1 - Math.pow(1 - progress, 3)
-
-        setCurrentValue(parsedValue.target * easedProgress)
-
-        if (progress < 1) {
-          animationFrame = requestAnimationFrame(animate)
-        } else {
-          setCurrentValue(parsedValue.target)
-        }
-      }
-
-      animationFrame = requestAnimationFrame(animate)
-    }, delay)
-
-    return () => {
-      clearTimeout(timeoutId)
-      cancelAnimationFrame(animationFrame)
-    }
-  }, [delay, hasStarted, parsedValue.target, isMobile])
+export default function HeroSection() {
+  const logos = [
+    {
+      src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e496e7f416a92204d0_application-logo-dev-x-webflow-template.svg",
+      alt: "Application Logo",
+    },
+    {
+      src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e4ced4f1a5dd7ee116_business-logo-dev-x-webflow-template.svg",
+      alt: "Business Logo",
+    },
+    {
+      src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e4136dc82b49eae38d_company-logo-dev-x-webflow-template.svg",
+      alt: "Company Logo",
+    },
+    {
+      src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e4833171836532c49f_enterprise-logo-dev-x-webflow-template.svg",
+      alt: "Enterprise Logo",
+    },
+    {
+      src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e4dd8946ca68a48a09_institute-logo-dev-x-webflow-template.svg",
+      alt: "Institute Logo",
+    },
+  ];
 
   return (
-    <span ref={metricRef} aria-label={value}>
-      {parsedValue.prefix}
-      {currentValue.toFixed(parsedValue.decimals)}
-      {parsedValue.suffix}
-    </span>
-  )
-}
+    <section className="relative overflow-hidden bg-white dark:bg-[#181d2b] pt-28 pb-12 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-32 transition-colors duration-300">
+      {/* Background Graphic Element */}
+      <div className="hidden sm:block absolute -right-48 lg:-right-[475px] top-[60%] -translate-y-1/2 w-[1971.5px] max-w-none pointer-events-none z-0 origin-right scale-80 opacity-0 animate-fade-right">
+        <Image
+          src="https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4a6e8212d740e0246c81_image-hero-dev-webflow-template.png"
+          alt="Development Agency - Dev X Webflow Template"
+          width={1961.5}
+          height={1468}
+          priority
+          className="w-full h-auto object-contain"
+        />
+      </div>
 
-const Hero = () => {
-  const [visibleLines, setVisibleLines] = useState<string[]>([])
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [mounted, setMounted] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+      {/* Decorative Radial Background Accent */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[800px] sm:h-[800px] bg-blue-600/10 rounded-full blur-[80px] sm:blur-[160px]" />
+      </div>
 
-  useEffect(() => {
-    setMounted(true)
-    const mobileCheck = window.innerWidth < 768
-    setIsMobile(mobileCheck)
+      {/* Hero Content Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-start">
+          <div className="w-full lg:w-[677px] text-center lg:text-left pt-2 sm:pt-6 lg:pt-8">
+            <div className="max-w-[550px] mx-auto lg:mx-0">
+              
+              {/* Main Heading */}
+              <h1 className="opacity-0 animate-fade-up text-3xl sm:text-4xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
+                Your Trusted Software{" "}
+                <span className="text-blue-600 dark:text-blue-500 block sm:inline">
+                  {"<"}Development{"/>"}
+                </span>{" "}
+                Partner.
+              </h1>
 
-    setVisibleLines(terminalLines.slice(0, 3))
-    setActiveIndex(3)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
-    const interval = setInterval(() => {
-      setVisibleLines((prev) => {
-        const nextLine = terminalLines[activeIndex]
-        const updated = [...prev, nextLine]
-        if (updated.length > 5) updated.shift()
-        return updated
-      })
-      setActiveIndex((prevIndex) => (prevIndex + 1) % terminalLines.length)
-    }, isMobile ? 3000 : 2200)
-
-    return () => clearInterval(interval)
-  }, [activeIndex, mounted, isMobile])
-
-  return (
-    <section className='premium-shell premium-mesh relative overflow-hidden pb-24 pt-28 text-white sm:pt-36 md:pb-32 md:pt-48'>
-      <div className='pointer-events-none absolute top-1/4 left-1/4 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary/10 blur-[130px]' />
-      <div className='pointer-events-none absolute right-5 top-1/4 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[120px]' />
-      
-      <div className='pointer-events-none absolute inset-x-0 top-32 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent' />
-
-      <div className='container relative z-10 mx-auto max-w-6xl px-4'>
-        <div className='grid grid-cols-12 gap-y-16 md:gap-x-8 lg:gap-x-16 items-center'>
-          
-          <div className='col-span-12 md:col-span-7 lg:col-span-6 space-y-6 md:space-y-8 flex flex-col items-start justify-center'>
-            <div className='premium-badge flex items-center gap-2 px-3 py-1.5 text-[11px] font-medium tracking-wide border border-white/10 bg-white/[0.03] backdrop-blur-md rounded-full text-white/90'>
-              <Sparkles className='h-3.5 w-3.5 text-cyan-400 animate-pulse' />
-              <span>Next-Gen Engineering Studio</span>
-            </div>
-
-            <h1 className='text-midnight_text font-black dark:text-white text-3xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight'>
-              Engineering <span className='bg-gradient-to-r from-primary via-cyan-400 to-primary bg-clip-text text-transparent'>intelligent</span> systems for world-class brands.
-            </h1>
-
-            <p className='premium-copy max-w-xl text-sm leading-relaxed text-secondary dark:text-white/70 sm:text-base md:text-lg'>
-              We orchestrate high-performance SaaS platforms, secure cloud architectures, and tailored AI integrations optimized for mission-critical business scales.
-            </p>
-
-            <div className='flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row'>
-              <Link
-                href='/contact'
-                className='premium-gradient-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-bold shadow-[0_4px_20px_rgba(139,92,246,0.3)] transition-transform duration-300 hover:-translate-y-1 sm:px-8'
-              >
-                Start a Project
-                <ArrowRight className='h-4 w-4' />
-              </Link>
-              <Link
-                href='/portfolio'
-                className='inline-flex items-center justify-center gap-2 rounded-full border border-slate-950/10 bg-white/50 px-6 py-4 text-sm font-bold text-midnight_text shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-white sm:px-8'
-              >
-                View portfolio
-              </Link>
-            </div>
-
-            <div className='flex items-center gap-4 pt-3 border-t border-white/5 w-full max-w-xl'>
-              <div className='flex items-center -space-x-3 isolate'>
-                {[1, 2, 3].map((num) => (
-                  <Image
-                    key={num}
-                    src={getImgPath(`/images/hero/hero-profile-${num}.jpg`)}
-                    alt={`Vertex operator feedback avatar ${num}`}
-                    width={40}
-                    height={40}
-                    priority
-                    className='h-9 w-9 rounded-full border-2 border-[#070A12] object-cover ring-1 ring-white/10'
-                  />
-                ))}
-              </div>
-              <div>
-                <p className='max-w-xs text-xs font-medium leading-relaxed text-secondary dark:text-white/50'>
-                  Trusted by ambitious founders and global operators deploying modern software models.
+              {/* Subtitle / Paragraph */}
+              <div className="opacity-0 animate-fade-up delay-100 mt-4 sm:mt-6 max-w-[591px]">
+                <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
+                  Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
                 </p>
               </div>
+
+              {/* Action Buttons */}
+              <div className="opacity-0 animate-fade-up delay-200 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+                <Link
+                  href="/contact"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
+                >
+                  Contact us
+                </Link>
+                <Link
+                  href="/services"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 hover:bg-gray-200 dark:bg-[#171c2c] dark:hover:bg-[#1f263b] dark:hover:text-white rounded-full transition-all duration-200 border border-gray-300 dark:border-gray-800 active:scale-95"
+                >
+                  Our services
+                </Link>
+              </div>
+
             </div>
           </div>
+        </div>
 
-          <div className='col-span-12 md:col-span-5 lg:col-span-6 relative flex flex-col items-center justify-center'>
-            
-            <div className='absolute h-72 w-72 rounded-full bg-cyan-400/10 blur-[90px] animate-pulse' />
-            
-            <div className='w-full max-w-[440px] rounded-2xl border border-white/10 bg-[#070A12]/90 p-5 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.8)] backdrop-blur-md overflow-hidden min-h-[310px] flex flex-col justify-between group hover:border-primary/30 transition-colors duration-500'>
-              
-              <div className='flex items-center justify-between pb-4 border-b border-white/5'>
-                <div className='flex items-center gap-2'>
-                  <span className='h-3 w-3 rounded-full bg-rose-500/40 group-hover:bg-rose-500/80 transition-colors duration-300' />
-                  <span className='h-3 w-3 rounded-full bg-amber-500/40 group-hover:bg-amber-500/80 transition-colors duration-300' />
-                  <span className='h-3 w-3 rounded-full bg-emerald-500/40 group-hover:bg-emerald-500/80 transition-colors duration-300' />
-                </div>
-                <div className='flex items-center gap-1.5 font-mono text-[10px] text-white/40 tracking-wider uppercase'>
-                  <Terminal className='h-3.5 w-3.5 text-primary' />
-                  <span>Live Matrix Terminal</span>
-                </div>
-              </div>
-
-              <div className='font-mono text-xs space-y-2.5 py-4 flex-grow min-h-[160px] flex flex-col justify-end'>
-                {!mounted ? (
-                  <p className='text-white/30 animate-pulse'>Awaiting runtime logs...</p>
-                ) : (
-                  visibleLines.map((line, idx) => {
-                    let colorClass = 'text-white/80'
-                    if (line.startsWith('SYSTEM:')) colorClass = 'text-primary'
-                    if (line.startsWith('SECURE:') || line.endsWith('OK') || line.endsWith('100%')) colorClass = 'text-emerald-400'
-                    if (line.startsWith('NETWORK:')) colorClass = 'text-cyan-400'
-                    if (line.startsWith('MONITOR:')) colorClass = 'text-amber-400'
-
-                    return (
-                      <div key={idx} className='flex items-start gap-2 transition-all duration-300 transform translate-y-0 opacity-100'>
-                        <span className='text-white/30 shrink-0 select-none'>&gt;</span>
-                        <p className={`leading-relaxed tracking-tight break-all ${colorClass}`}>{line}</p>
-                      </div>
-                    )
-                  })
-                )}
-                <div className='flex items-center gap-1 text-white/40'>
-                  <span className='text-white/30'>&gt;</span>
-                  <span className='h-3.5 w-2 bg-cyan-400 animate-[blink_1s_infinite]' />
-                </div>
-              </div>
-
-              <div className='pt-3 border-t border-white/5 flex items-center justify-between font-mono text-[10px] text-white/40'>
-                <div className='flex items-center gap-1.5'>
-                  <Activity className='h-3.5 w-3.5 text-emerald-400 animate-pulse' />
-                  <span>CLUSTER STATUS: SECURE</span>
-                </div>
-                <span>NODE: EP-09</span>
-              </div>
-
+        {/* Logo Strip Below Hero */}
+        <div className="opacity-0 animate-fade-up delay-300 mt-16 sm:mt-36 lg:mt-52 pt-8 sm:pt-16 border-t border-gray-200 dark:border-gray-800/60">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
+            <div className="text-center lg:text-left shrink-0">
+              <p className="text-sm sm:text-base font-bold text-gray-900 dark:text-white tracking-wide">
+                Trusted by{" "}
+                <span className="whitespace-nowrap">amazing clients</span>
+              </p>
             </div>
 
-            <div className='mt-6 w-full max-w-[440px] grid grid-cols-3 gap-2 rounded-2xl border border-white/10 bg-[#070A12]/90 p-4 text-center shadow-2xl backdrop-blur-xl z-20'>
-              {heroMetrics.map(([value, label], index) => (
-                <div key={label} className='space-y-0.5 border-r border-white/5 last:border-0'>
-                  <p className='text-sm font-black tracking-tight text-white sm:text-lg'>
-                    <AnimatedMetric value={value} delay={index * 140} isMobile={isMobile} />
-                  </p>
-                  <p className='text-[9px] font-bold uppercase tracking-widest text-secondary dark:text-white/40'>{label}</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center w-full lg:w-auto">
+              {logos.map((logo, index) => (
+                <div
+                  key={index}
+                  className="relative h-7 sm:h-8 w-24 sm:w-32 flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity duration-200 dark:invert-0 invert"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               ))}
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
-  )
+  );
 }
-
-export default Hero
