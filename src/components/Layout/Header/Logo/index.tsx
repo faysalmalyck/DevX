@@ -16,11 +16,10 @@ const Logo: React.FC = () => {
 
   const logoSrc =
     mounted && resolvedTheme === "light"
-      ? getImgPath("/images/logo/logo.svg") // Logo for light theme
-      : getImgPath("/images/logo/logo-white.svg"); // Logo for dark theme
+      ? getImgPath("/images/logo/DevX-white.svg")
+      : getImgPath("/images/logo/DevX.svg");
 
   return (
-<<<<<<< HEAD
     <Link
       href="/"
       className="flex min-w-0 shrink-0 items-center transition-transform duration-300 hover:-translate-y-0.5"
@@ -28,24 +27,13 @@ const Logo: React.FC = () => {
       <Image
         src={logoSrc}
         alt="Vertex logo"
-        width={90}
-        height={20}
+        width={150}
+        height={50}
         quality={100}
         priority
-        className="h-7 w-auto max-w-[132px] transition-all duration-300 ease-in-out hover:scale-105 hover:brightness-110 sm:h-9"
+        className="h-10 w-auto max-w-[180px] transition-all duration-300 ease-in-out hover:scale-105 hover:brightness-110 sm:h-12"
       />
     </Link>
-=======
-    <Link href="/" className="inline-block">
-              <Image
-                src="https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/6217d43b9c76b230bf4fd529_logo-dev-template.svg"
-                alt="Dev X "
-                width={240}
-                height={80}
-                className="h-12 w-auto"
-              />
-            </Link>
->>>>>>> 872113e (Refine navigation and update website content)
   );
 };
 

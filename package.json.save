@@ -7,13 +7,15 @@
         "build": "next build",
         "export": "next build",
         "start": "next start",
-        "lint": "tsc --noEmit"
+        "lint": "next lint"
     },
     "dependencies": {
         "@iconify/icons-ion": "^1.2.10",
         "@iconify/react": "^5.0.1",
         "@lottiefiles/dotlottie-react": "^0.19.9",
-        "@prisma/client": "^7.9.1",
+        "@prisma/adapter-pg": "^7.8.0",
+        "@prisma/client": "^7.8.0",
+        "aos": "^2.3.4", 872113e (Refine navigation and update website content)
         "axios": "^1.7.2",
         "bcrypt": "^6.0.0",
         "date-fns": "^3.4.0",
@@ -26,6 +28,7 @@
         "next-themes": "^0.3.0",
         "nextjs-toploader": "^3.7.15",
         "pg": "^8.22.0",
+        "prisma": "^7.8.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-fast-marquee": "^1.6.5",
@@ -41,16 +44,17 @@
     "devDependencies": {
         "@netlify/plugin-nextjs": "^5.15.12",
         "@tailwindcss/postcss": "^4.0.0",
+<<<<<<< HEAD
+=======
         "@types/aos": "^3.0.7",
         "@types/bcrypt": "^6.0.0",
+>>>>>>> 872113e (Refine navigation and update website content)
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
         "@types/react-slick": "^0.23.13",
         "postcss": "^8",
-        "prisma": "^7.9.1",
         "tailwindcss": "^4.0.0",
         "typescript": "^5"
     }
-    
 }

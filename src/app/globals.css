@@ -67,9 +67,6 @@
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
 */
 @layer base {
   *,
@@ -78,6 +75,10 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+
+  section {
+    @apply py-20 md:py-24;
   }
 }
 
@@ -97,12 +98,6 @@ body {
   background-image:
     radial-gradient(circle at top, rgba(139, 92, 246, 0.1), transparent 34rem),
     linear-gradient(135deg, rgba(34, 211, 238, 0.06), transparent 26rem);
-}
-
-@layer base {
-  section {
-    @apply py-20 md:py-24;
-  }
 }
 
 @layer utilities {
@@ -161,7 +156,21 @@ body {
     animation: reveal-up 0.75s ease both;
   }
 
-<<<<<<< HEAD
+  /* Hero Animations */
+  .animate-fade-up {
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-right {
+    animation: fadeInRight 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Stagger Delays */
+  .delay-100 { animation-delay: 200ms; }
+  .delay-200 { animation-delay: 400ms; }
+  .delay-300 { animation-delay: 600ms; }
+  .delay-400 { animation-delay: 800ms; }
+
   .intro-mark {
     animation: intro-mark-pop 0.8s cubic-bezier(0.2, 0.9, 0.2, 1) both;
   }
@@ -229,61 +238,21 @@ body {
     animation-name: aos-fade-in;
   }
 
-  [data-aos-delay='100'] {
-    animation-delay: 100ms;
-  }
+  [data-aos-delay='100'] { animation-delay: 100ms; }
+  [data-aos-delay='120'] { animation-delay: 120ms; }
+  [data-aos-delay='150'] { animation-delay: 150ms; }
+  [data-aos-delay='200'] { animation-delay: 200ms; }
+  [data-aos-delay='300'] { animation-delay: 300ms; }
+  [data-aos-delay='350'] { animation-delay: 350ms; }
+  [data-aos-delay='400'] { animation-delay: 400ms; }
+  [data-aos-delay='450'] { animation-delay: 450ms; }
+  [data-aos-delay='600'] { animation-delay: 600ms; }
+  [data-aos-delay='900'] { animation-delay: 900ms; }
 
-  [data-aos-delay='120'] {
-    animation-delay: 120ms;
-  }
-
-  [data-aos-delay='150'] {
-    animation-delay: 150ms;
-  }
-
-  [data-aos-delay='200'] {
-    animation-delay: 200ms;
-  }
-
-  [data-aos-delay='300'] {
-    animation-delay: 300ms;
-  }
-
-  [data-aos-delay='350'] {
-    animation-delay: 350ms;
-  }
-
-  [data-aos-delay='400'] {
-    animation-delay: 400ms;
-  }
-
-  [data-aos-delay='450'] {
-    animation-delay: 450ms;
-  }
-
-  [data-aos-delay='600'] {
-    animation-delay: 600ms;
-  }
-
-  [data-aos-delay='900'] {
-    animation-delay: 900ms;
-  }
-
-  [data-aos-duration='400'] {
-    animation-duration: 400ms;
-  }
-
-  [data-aos-duration='600'] {
-    animation-duration: 600ms;
-  }
-
-  [data-aos-duration='800'] {
-    animation-duration: 800ms;
-  }
-
-  [data-aos-duration='1000'] {
-    animation-duration: 1000ms;
-  }
+  [data-aos-duration='400'] { animation-duration: 400ms; }
+  [data-aos-duration='600'] { animation-duration: 600ms; }
+  [data-aos-duration='800'] { animation-duration: 800ms; }
+  [data-aos-duration='1000'] { animation-duration: 1000ms; }
 
   .skeleton-shimmer {
     position: relative;
@@ -311,21 +280,7 @@ body {
       rgba(255, 255, 255, 0.08),
       transparent
     );
-=======
-  /* Hero Animations - Slow & Smooth */
-  .animate-fade-up {
-    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-
-  .animate-fade-right {
-    animation: fadeInRight 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  /* Stagger Delays (Spaced out further) */
-  .delay-100 { animation-delay: 200ms; }
-  .delay-200 { animation-delay: 400ms; }
-  .delay-300 { animation-delay: 600ms; }
-  .delay-400 { animation-delay: 800ms; }
 }
 
 @keyframes fadeInUp {
@@ -347,7 +302,6 @@ body {
   100% {
     opacity: 1;
     transform: translateX(0);
->>>>>>> 872113e (Refine navigation and update website content)
   }
 }
 
@@ -552,7 +506,8 @@ body {
 .margin_top {
   @apply md:mt-[6.25rem] mt-0;
 }
-/* Slick Slider */
+
+/* Slick Slider Override Rules */
 .slick-slide,
 .portfolio_slide {
   @apply focus-visible:outline-0!;
@@ -564,6 +519,7 @@ body {
   @apply text-base! text-[#BBC8D5]! opacity-100!;
 }
 
+/* Blog Typography Rules */
 .blog-details p,
 .blog-details hr {
   @apply mb-8;

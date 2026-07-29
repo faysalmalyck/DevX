@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="max-w-md space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/6217d43b9c76b230bf4fd529_logo-dev-template.svg"
+                src="images/logo/DevX.svg"
                 alt="Dev X "
                 width={240}
                 height={80}
