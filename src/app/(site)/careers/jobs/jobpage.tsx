@@ -26,10 +26,10 @@ export default function OpenPositions() {
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-slate-900 dark:text-white mb-4">
-            Browse our available <span className="text-blue-600 dark:text-blue-400">positions</span>
+            Browse our available <span className="text-blue-600 dark:text-blue-500">positions</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-8">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur sint occaecat cupidatat non.
+            Explore our current job openings and find a role that matches your skills, experience, and career goals. We are always looking for talented people to join our team.
           </p>
 
           {/* Filter Buttons */}
@@ -38,9 +38,8 @@ export default function OpenPositions() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  selectedCategory === category.id
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 dark:bg-blue-500'
+className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-transparent hover:border-slate-400 dark:hover:border-transparent hover:ring-2 hover:ring-slate-400/50 dark:hover:ring-slate-400/40 hover:shadow-[0_0_12px_rgba(148,163,184,0.35)] ${                  selectedCategory === category.id
+                    ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 dark:grey-400'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
@@ -56,8 +55,7 @@ export default function OpenPositions() {
             <Link
               key={position.id}
               href={`/careers/${position.slug}`}
-              className="group flex flex-col justify-between p-8 sm:p-10 min-h-[260px] bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 rounded-md transition-all duration-200 hover:border-blue-500/50 hover:shadow-lg dark:hover:border-blue-400/50"
-            >
+className="group flex flex-col justify-between p-8 sm:p-10 min-h-[260px] bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 rounded-md transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-500 hover:shadow-lg"            >
               <div>
                 <div className="flex items-center text-xs font-semibold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-4 space-x-2">
                   <span>{position.location}</span>
@@ -65,7 +63,7 @@ export default function OpenPositions() {
                   <span>{position.type}</span>
                 </div>
                 
-                <h3 className="text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3">
+                <h3 className="text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors mb-3">
                   {position.title}
                 </h3>
               </div>

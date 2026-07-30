@@ -64,7 +64,7 @@ className={`flex items-center gap-1 whitespace-nowrap py-2 text-sm font-semibold
             viewBox="0 0 24 24"
             aria-hidden="true"
             className={`transition-transform duration-300 ${
-              submenuOpen ? "rotate-180 text-blue-500" : "rotate-0"
+              submenuOpen ? "rotate-360 text-blue-500" : "rotate-270"
             }`}
           >
             <path

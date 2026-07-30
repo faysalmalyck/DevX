@@ -66,7 +66,7 @@ export default function CareersHero() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="#open-positions"
-              className="w-full sm:w-auto text-center rounded-full bg-blue-600 px-10 py-6 text-base font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+              className="w-full sm:w-auto text-center rounded-full bg-blue-600 px-10 py-6 text-base font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(148,163,184,0.4)] dark:hover:shadow-[0_0_20px_rgba(203,213,225,0.25)]"
             >
               Browse open positions
             </a>
@@ -93,7 +93,7 @@ export default function CareersHero() {
               <div className="mt-8">
                 <a
                   href="#open-positions"
-                  className="inline-flex items-center justify-center rounded-full bg-blue-600 px-8 py-6 text-base font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+                  className="inline-flex items-center justify-center rounded-full bg-blue-500 px-8 py-6 text-base font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(148,163,184,0.4)] dark:hover:shadow-[0_0_20px_rgba(203,213,225,0.25)]"
                 >
                   Browse open positions
                 </a>
