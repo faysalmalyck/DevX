@@ -8,8 +8,8 @@ export default function ProcessSection() {
       title: '1. Project Idea',
       description: 'Lorem ipsum dolor sit amet consectoli tur adipiscing elit',
       highlightText: 'semper dalar.',
-      imageOn: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d39915cf0790ed9fbf7_image-project-idea-on-process-dev-template.png',
-      imageOff: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d39bd42a5cfbb15f394_image-project-idea-off-process-dev-template.png',
+      imageOn: '/images/Process/plan-on.png',
+      imageOff: '/images/Process/plan-off.png',
       offsetClass: 'mt-0',
     },
     {
@@ -17,8 +17,8 @@ export default function ProcessSection() {
       title: '2. Development & Execution',
       description: 'Vitae sapien pellentesque habitant morbi tristique senectus et',
       highlightText: 'faucibus aolm.',
-      imageOn: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d3980cd776c6b6f3c42_image-development-process-on-process-dev-template.png',
-      imageOff: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d396c2cfbf5517c75c0_image-development-process-off-process-dev-template.png',
+      imageOn: '/images/Process/launch-on.png',
+      imageOff: '/images/Process/launch-off.png',
       offsetClass: 'lg:mt-20',
     },
     {
@@ -26,8 +26,8 @@ export default function ProcessSection() {
       title: '3. Launch & Scale',
       description: 'Eu sem integer vitae justo eget magnalom fermentum sulputate odio',
       highlightText: 'ut enim.',
-      imageOn: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d391b1e6a5f330f2b86_image-launch-and-scale-on-process-dev-template.png',
-      imageOff: 'https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4d3971fa70018f90f67b_image-launch-and-scale-off-process-dev-template.png',
+      imageOn: '/images/Process/scale-on.png',
+      imageOff: '/images/Process/scale-off.png',
       offsetClass: 'lg:mt-40',
     },
   ];

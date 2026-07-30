@@ -32,7 +32,7 @@ export default function HeroSection() {
       {/* Background Graphic Element */}
       <div className="hidden sm:block absolute -right-48 lg:-right-[475px] top-[60%] -translate-y-1/2 w-[1971.5px] max-w-none pointer-events-none z-0 origin-right scale-80 opacity-0 animate-fade-right">
         <Image
-          src="https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4a6e8212d740e0246c81_image-hero-dev-webflow-template.png"
+          src="/images/hero/hero.png"
           alt="Development Agency - Dev X Webflow Template"
           width={1961.5}
           height={1468}

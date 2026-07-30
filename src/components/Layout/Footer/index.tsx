@@ -51,18 +51,18 @@ export default function Footer() {
                 <li><Link href="/about" className="transition hover:text-white">About</Link></li>
                 <li><Link href="/contact" className="transition hover:text-white">Contact</Link></li>
                 <li><Link href="/services" className="transition hover:text-white">Services</Link></li>
-                <li><Link href="/about/case-study" className="transition hover:text-white">Case Studies</Link></li>
+                <li><Link href="/about/team" className="transition hover:text-white">DevX Team</Link></li>
               </ul>
               <ul className="space-y-2">
-                <li><Link href="https://devtemplate.webflow.io/project/how-we-improved-facebooks-new-website-speed-by-78" className="transition hover:text-white">Case Study Single</Link></li>
-                <li><Link href="/blog" className="transition hover:text-white">Blog</Link></li>
-                <li><Link href="https://devtemplate.webflow.io/blog/code-refactoring-best-practices-when-its-time-and-when-its-not-to-do-it" className="transition hover:text-white">Blog Post</Link></li>
+                <li><Link href="/about/core-value" className="transition hover:text-white">Core Values</Link></li>
+                <li><Link href="/about/case-study" className="transition hover:text-white">Case Studies</Link></li>
+                <li><Link href="/case-studies/how-we-helped-studio-improve-its-search-engine-speed" className="transition hover:text-white">Case Study Single</Link></li>
               </ul>
               <ul className="space-y-2">
                 <li><Link href="/careers" className="transition hover:text-white">Careers</Link></li>
-                <li><Link href="https://devtemplate.webflow.io/career/react-senior-frontend-developer" className="transition hover:text-white">Careers Single</Link></li>
+                <li><Link href="/careers/account-executive" className="transition hover:text-white">Careers Single</Link></li>
+                <li><Link href="/portfolio" className="transition hover:text-white">Clients</Link></li>
                 <li><Link href="/pricing" className="transition hover:text-white">Pricing</Link></li>
-                <li><Link href="https://devtemplate.webflow.io/product/premium" className="transition hover:text-white">Pricing Single</Link></li>
               </ul>
             </div>
           </div>

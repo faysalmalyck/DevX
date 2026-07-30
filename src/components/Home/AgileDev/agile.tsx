@@ -60,7 +60,7 @@ export default function TeamSection() {
           {/* Feature Image */}
           <div className="relative w-full rounded-2xl py-2 sm:py-10 overflow-hidden shadow-lg mb-8 sm:mb-16">
             <Image
-              src="https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4f468a9a9861f027527d_image-developers-dev-webflow-template.png"
+              src="/images/hero/agile.png"
               alt="Passionate Developers - Dev X Webflow Template"
               width={1220}
               height={686}

@@ -42,7 +42,7 @@ export const caseStudiesData: CaseStudy[] = [
     techStack: ["Web and Mobile"],
     completionDate: "October 2022",
     featuredImage:
-      "https://cdn.prod.website-files.com/6217ab51d0be6980f1513f21/623f52716c2cfb39de7ca600_image-project-dev-webflow-template.png",
+      "/images/case studies/feature-image.png",
 
     overview: {
       title: 'Project Overview',
@@ -71,7 +71,7 @@ export const caseStudiesData: CaseStudy[] = [
     },
 
     resultImage:
-      "https://cdn.prod.website-files.com/6217ab51d0be6980f1513f21/623f52771b058e8d0ad359cc_image-results-project-dev-webflow-template.png",
+      "/images/case studies/result-image.png",
     result: {
       description: [
         'The new website achieved a 78% improvement in loading speed, delivering faster page loads and better Core Web Vitals. Users experienced smoother navigation, lower waiting times, and improved responsiveness. The optimized architecture also provides a strong foundation for future updates and growth.',

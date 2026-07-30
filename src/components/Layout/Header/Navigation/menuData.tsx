@@ -16,6 +16,10 @@ export const headerData: HeaderItem[] = [
   {
     label: "Services",
     href: "/services",
+    submenu: [
+      { label: "Services", href: "/services" },
+      { label: "Pricing", href: "/pricing" },
+    ]
   },
   {
     label: "Clients",

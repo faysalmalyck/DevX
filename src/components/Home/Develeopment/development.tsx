@@ -13,45 +13,45 @@ interface ServiceCard {
 const servicesData: ServiceCard[] = [
   {
     title: "Website/App Development",
-    description: "Build a powerful online presence with custom websites and web applications designed for growth.",
+    description: "/images/services/website.png",
     imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c033a9f2ec475bdb200_image-frontend-development-services-dev-webflow-template.png",
     imageAlt: "Frontend Development - Dev X Webflow Template",
   },
   {
     title: "Backend Development",
     description: "Powering your digital infrastructure with scalable backend solutions built with modern technologies.",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c037f4e5d372c3d2061_image-backend-development-services-dev-webflow-template.png",
+    imageSrc: "/images/services/backend.png",
     imageAlt: "Backend Development - Dev X Webflow Template",
   },
   {
     title: "Mobile App Development",
     description: "Seamless & high-performance mobile applications for iOS and Android that keep your users engaged.",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c039e13db45502a447e_image-mobile-app-development-services-dev-webflow-template.png",
+    imageSrc: "/images/services/mobileapp.png",
     imageAlt: "Mobile App Development - Dev X Webflow Template",
   },
   {
     title: "AI & Machine Learning",
     description: "Transform data into intelligence with custom AI/ML solutions from predictive analytics to intelligent automation systems.",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c038a9a9888dd27396d_image-ai-machine-learning-services-dev-webflow-template.png",
+    imageSrc: "/images/services/ai:ml.png",
     imageAlt: "AI & Machine Learning - Dev X Webflow Template",
   },
   {
     title: "Databases & Data Science",
     description: "Designing secure databases and transforming data into actionable intelligence for business growth.",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c04d47c057d8b6fe518_image-database-and-data-science-services-dev-webflow-template.png",
+    imageSrc: "/images/services/database.png",
     imageAlt: "Databases & Data Science - Dev X Webflow Template",
   },
   {
     title: "Servers & Cloud Infrastructure",
     description: "End to end cloud infrastructure services with secure deployments, automated scaling, and continuous monitoring.",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c03f5a8f449773a3397_image-server-cloud-infrastructure-services-dev-webflow-template.png",
+    imageSrc: "/images/services/cloud.png",
     imageAlt: "Servers & Cloud Infrastructure - Dev X Webflow Template",
   },
 ];
 
 export default function Development() {
   return (
-    <section className="relative overflow-hidden bg-white text-slate-900 transition-colors duration-200 dark:bg-[#181d2b] dark:text-white py-10 sm:py-16 md:py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-white text-slate-900 transition-colors duration-200 dark:bg-[#181d2b] dark:text-white py-8 sm:py-12 md:py-20 lg:py-24">
       {/* Background Decorative Arc */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-[250px] w-[350px] sm:h-[600px] sm:w-[900px] rounded-full border border-blue-500/20 opacity-40 blur-2xl dark:border-blue-500/10 dark:opacity-30"></div>
@@ -126,10 +126,10 @@ export default function Development() {
           style={{ animationDelay: "1100ms" }}
         >
           <Link
-            href="/contact"
+            href="/pricing"
             className="w-full sm:w-auto max-w-[280px] sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-3.5 sm:py-5 text-sm font-medium text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 active:scale-95"
           >
-            Contact us
+            Get Pricing
           </Link>
         </div>
       </div>
