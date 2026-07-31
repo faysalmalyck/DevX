@@ -155,7 +155,7 @@ export default function CartModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="cart-title"
-        className="relative z-10 flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-lg border border-[#414b62] bg-[linear-gradient(180deg,#222a40_0%,#131927_100%)] py-4 shadow-2xl sm:py-8"
+        className="relative z-10 flex max-h-[95vh] w-full max-w-md flex-col overflow-hidden rounded-lg border border-[#414b62] bg-[linear-gradient(180deg,#222a40_0%,#131927_100%)] py-2 shadow-2xl sm:py-6"
       >
         <header className="flex items-center justify-between border-b border-[#414b62] px-4 pb-3 pt-2 sm:px-6 sm:pb-3.5 sm:pt-2.5">
           <h2
