@@ -7,6 +7,7 @@ import {
   professionalProductData,
 } from "@/data/pricingdata";
 import AddToCartCard from "@/app/(site)/pricing/addtocart/AddToCartCard";
+import type { PricingPlan } from "@/components/cart/CartContext";
 
 type AnyProductData = SimpleProductDetails | FullProductDetails;
 
@@ -20,6 +21,15 @@ export default function ProductPage({
   const features = data?.features ?? [];
   const bottomContent =
     data && "bottomContent" in data ? data.bottomContent : undefined;
+  const hours = data.features.find((feature) => /hours of development/i.test(feature.text))?.text;
+  const extraHourlyRate = data.features.find((feature) => /extra hours/i.test(feature.text))?.text;
+  const plan: PricingPlan = {
+    id: data.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+    name: data.title,
+    price: data.price,
+    developmentHours: hours,
+    extraHourlyRate,
+  };
 
   return (
     <section className="relative mx-auto mt-12 max-w-7xl px-4 pt-16 pb-12 transition-colors duration-300 sm:px-6 sm:pt-24 lg:mt-16 lg:px-8 lg:pt-32">
@@ -118,6 +128,7 @@ export default function ProductPage({
             cardDescription={data?.cardDescription}
             price={data?.price}
             durationOptions={data?.durationOptions}
+            plan={plan}
           />
         </div>
 

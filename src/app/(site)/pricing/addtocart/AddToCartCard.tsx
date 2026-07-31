@@ -3,12 +3,15 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { DurationOption, defaultAddToCartData } from "@/data/pricingdata";
+import { useCart, type PricingPlan, type PurchaseDetails } from "@/components/cart/CartContext";
 
 export interface AddToCartCardProps {
   cardTitle?: string;
   cardDescription?: string;
   price?: number | string;
   durationOptions?: DurationOption[];
+  plan?: PricingPlan;
+  purchaseDetails?: PurchaseDetails;
   onAddToCart?: (selectedDuration: string) => void;
 }
 
@@ -17,10 +20,13 @@ export default function AddToCartCard({
   cardDescription = defaultAddToCartData.cardDescription,
   price = defaultAddToCartData.price,
   durationOptions = defaultAddToCartData.durationOptions,
+  plan,
+  purchaseDetails,
   onAddToCart,
 }: AddToCartCardProps) {
   const [selectedDuration, setSelectedDuration] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { addItem } = useCart();
 
   const { labels } = defaultAddToCartData;
 
@@ -38,14 +44,21 @@ export default function AddToCartCard({
 
     setIsLoading(true);
 
-    if (onAddToCart) {
-      onAddToCart(selectedDuration);
-    }
-
-    setTimeout(() => {
-      setIsLoading(false);
-      alert(labels.successAlert);
-    }, 1000);
+    const selectedOption = durationOptions.find((option) => option.value === selectedDuration);
+    const basePlan: PricingPlan = plan ?? {
+      id: cardTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+      name: cardTitle,
+      price: typeof price === "number" ? price : Number(price.replace(/[^0-9.]/g, "")) || 0,
+    };
+    const isHourlySelection = /\+\s*\d+\s*hr/i.test(selectedOption?.label ?? selectedDuration);
+    const hourlyRate = `${selectedOption?.label ?? ""} ${basePlan.extraHourlyRate ?? ""}`.match(/\$(\d+(?:\.\d+)?)/)?.[1];
+    const cartPlan: PricingPlan = {
+      ...basePlan,
+      price: isHourlySelection && hourlyRate ? Number(hourlyRate) : basePlan.price,
+    };
+    addItem(cartPlan, { ...purchaseDetails, duration: selectedOption?.label ?? selectedDuration });
+    onAddToCart?.(selectedDuration);
+    setIsLoading(false);
   };
 
   return (

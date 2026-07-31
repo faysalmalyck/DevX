@@ -8,6 +8,8 @@ import Aoscompo from "@/utils/aos";
 import NextTopLoader from "nextjs-toploader";
 import { AuthDialogProvider } from "./context/AuthDialogContext";
 import { SessionProvider } from "./context/SessionContext";
+import { CartProvider } from "@/components/cart/CartContext";
+import CartModal from "@/components/cart/CartModal";
 
 const rota = localFont({
   src: "./fonts/Rota-Medium.otf",
@@ -80,20 +82,22 @@ export default function RootLayout({
         <NextTopLoader />
         <SessionProvider>
           <AuthDialogProvider>
-            <ThemeProvider
-              attribute="class"
-              enableSystem={true}
-              defaultTheme="system"
-              enableColorScheme
-              disableTransitionOnChange
-            >
-
-              <Aoscompo>
-                <Header />
-                {children}
-                <Footer />
-              </Aoscompo>
-            </ThemeProvider>
+            <CartProvider>
+              <ThemeProvider
+                attribute="class"
+                enableSystem={true}
+                defaultTheme="system"
+                enableColorScheme
+                disableTransitionOnChange
+              >
+                <Aoscompo>
+                  <Header />
+                  {children}
+                  <Footer />
+                </Aoscompo>
+                <CartModal />
+              </ThemeProvider>
+            </CartProvider>
           </AuthDialogProvider>
         </SessionProvider>
       </body>

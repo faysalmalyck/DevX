@@ -12,7 +12,7 @@ export default function PricingPage() {
       <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header Section */}
         <div className="mx-auto mb-10 max-w-4xl pt-4 text-center md:mb-16 md:pt-8">
-          <h1 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl dark:text-white">
+          <h1 className="mb-4 text-3xl   tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl dark:text-white">
             Pricing for all types of{" "}
             <span className="text-blue-600 dark:text-blue-500">companies</span> and{" "}
             <span className="text-blue-600 dark:text-blue-500">needs</span>

@@ -14,11 +14,14 @@ import { FailedLogin } from "@/components/Auth/AuthDialog/FailedLogin";
 import { UserRegistered } from "@/components/Auth/AuthDialog/UserRegistered";
 import AuthDialogContext from "@/app/context/AuthDialogContext";
 import AccountDropdown from "@/components/account/AccountDropdown";
+import { ShoppingBag } from "lucide-react";
+import { useCart } from "@/components/cart/CartContext";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
   const authDialog = useContext(AuthDialogContext);
+  const { itemCount, openCart } = useCart();
 
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
@@ -125,7 +128,24 @@ const Header: React.FC = () => {
           {headerData.map((item, index) => (
             <HeaderLink key={index} item={item} />
           ))}
+
+          <button
+  type="button"
+  onClick={openCart}
+  aria-label={`Open cart${itemCount ? `, ${itemCount} item${itemCount === 1 ? "" : "s"}` : ""}`}
+  className="group relative inline-flex h-10 items-center gap-1.5 bg-transparent text-sm font-semibold text-gray-900 transition-colors hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 dark:text-white dark:hover:text-blue-400"
+>
+  <ShoppingBag className="h-4 w-4 stroke-current transition-colors" />
+  <span className="hidden transition-colors sm:inline">
+    Cart ({itemCount > 99 ? "99+" : itemCount})
+  </span>
+  <span className="transition-colors sm:hidden">
+    ({itemCount > 99 ? "99+" : itemCount})
+  </span>
+</button>
         </nav>
+
+        
 
         {/* Action Controls & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-4 relative z-[10000]">
@@ -180,6 +200,8 @@ const Header: React.FC = () => {
           </button>
 
           <AccountDropdown />
+
+          
 
           {/* Mobile Hamburger Toggle */}
           <button
