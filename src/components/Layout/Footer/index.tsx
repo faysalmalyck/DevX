@@ -7,19 +7,20 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* Top Section */}
-        <div className="flex flex-col items-start py-4 justify-between gap-6 border-b border-slate-800 py-12 md:flex-row md:items-center">
+        <div className="flex flex-col items-start py-12 justify-between gap-6 border-b border-slate-800 md:flex-row md:items-center">
           <div className="max-w-md space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="images/logo/DevX.svg"
-                alt="Dev X "
+                src="/images/logo/DevX.svg"
+                alt="Dev X Logo"
                 width={240}
                 height={80}
                 className="h-12 w-auto"
+                priority
               />
             </Link>
-            <p className="text-lg text-slate-500">
-              Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success. <span className="whitespace-nowrap"></span>
+            <p className="text-sm text-white">
+              Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
             </p>
           </div>
 
@@ -61,8 +62,8 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li><Link href="/careers" className="transition hover:text-white">Careers</Link></li>
                 <li><Link href="/careers/account-executive" className="transition hover:text-white">Careers Single</Link></li>
-                <li><Link href="/portfolio" className="transition hover:text-white">Clients</Link></li>
-                <li><Link href="/pricing" className="transition hover:text-white">Pricing</Link></li>
+                <li><Link href="/blog" className="transition hover:text-white">Blogs</Link></li>
+                <li><Link href="/blog/6-amazing-web-development-libraries-you-should-know-about-in-2022" className="transition hover:text-white">News</Link></li>
               </ul>
             </div>
           </div>
@@ -71,8 +72,8 @@ export default function Footer() {
           <div>
             <h3 className="mb-4 text-lg font-bold text-white">Utility pages</h3>
             <ul className="space-y-2 text-base">
-              <li><Link href="/template-pages/start-here" className="transition hover:text-white">Start Here</Link></li>
-              <li><Link href="/template-pages/style-guide" className="transition hover:text-white">Style Guide</Link></li>
+              <li><Link href="/portfolio" className="transition hover:text-white">Clients</Link></li>
+              <li><Link href="/pricing" className="transition hover:text-white">Pricing</Link></li>
             </ul>
           </div>
 
@@ -81,7 +82,6 @@ export default function Footer() {
             <h3 className="mb-2 text-lg font-bold text-white">Subscribe to our newsletter</h3>
             <p className="mb-4 text-base text-slate-400">
               To be updated with all the latest trends and product releases.
-              <span className="whitespace-nowrap"></span>
             </p>
             <form className="flex flex-col items-center sm:items-stretch gap-3">
               <input
@@ -104,8 +104,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-800 py-8 text-center text-sm text-slate-400 md:flex-row md:text-left">
           <p>
-            Copyright © 2026 Dev X | 
-            - Powered by{' '}
+            Copyright © 2026 Dev X | Powered by{' '}
             <a href="https://webflow.com/" target="_blank" rel="noreferrer" className="hover:text-white">
               Faysal Malick
             </a>

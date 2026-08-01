@@ -9,8 +9,9 @@ export const headerData: HeaderItem[] = [
       { label: "About us", href: "/about" },
       { label: "Team", href: "/about/team" },
       { label: "Careers", href: "/careers" },
-      { label: "Core Values", href: "/about/core-value" },
-      { label: "Case Studies", href: "/about/case-study" },
+      { label: "Core values", href: "/about/core-value" },
+      { label: "Case studies", href: "/about/case-study" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {

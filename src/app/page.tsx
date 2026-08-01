@@ -8,6 +8,7 @@ import CaseStudiesSection from '@/components/Home/CaseStudy/casestudy';
 import TechStackSection from '@/components/Home/Techstack/techstack';
 import TestimonialsSection from '@/components/Home/Testimonals/testimonals';
 import ReadytoContact from "@/components/Home/ReadytoContact/Ready";
+import ArticleSlider from '@/components/Home/Artical slider/page';
 export const metadata: Metadata = {
   title: {
     absolute: "DevX | Transforming Ideas Into Digital Products",
@@ -26,6 +27,7 @@ export default function Home() {
       <CaseStudiesSection/>
       <TechStackSection/>
       <TestimonialsSection/>
+      <ArticleSlider />
       <ReadytoContact/>
       
       

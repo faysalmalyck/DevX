@@ -27,6 +27,7 @@ const Header: React.FC = () => {
   const [sticky, setSticky] = useState(false);
   const [mounted, setMounted] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
@@ -35,12 +36,12 @@ const Header: React.FC = () => {
   const closeMobileMenu = () => setNavbarOpen(false);
   const toggleMenu = () => setNavbarOpen((prev) => !prev);
 
-  // Auto-close mobile navigation when navigating
+  // Auto-close mobile navigation when path changes
   useEffect(() => {
     setNavbarOpen(false);
   }, [pathUrl]);
 
-  // Initial client mounting and scroll event listener setup
+  // Initial client setup
   useEffect(() => {
     setMounted(true);
     handleScroll();
@@ -51,13 +52,16 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Handle outside clicks and Escape key to close mobile menu
+  // Handle outside clicks and Escape key
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (
+        navbarOpen &&
         mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target as Node) &&
-        navbarOpen
+        !mobileMenuRef.current.contains(target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(target)
       ) {
         closeMobileMenu();
       }
@@ -78,7 +82,7 @@ const Header: React.FC = () => {
     };
   }, [navbarOpen]);
 
-  // Lock body scroll when mobile drawer is open
+  // Lock body scroll when mobile drawer is active
   useEffect(() => {
     if (!mounted) return;
 
@@ -86,27 +90,29 @@ const Header: React.FC = () => {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
+      document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
     }
 
     return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
+      document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
     };
   }, [navbarOpen, mounted]);
 
   const isDark = mounted && resolvedTheme === "dark";
   const isHomePage = pathUrl === "/";
 
-  // Navigation Text Styling Strategy
+  // Navigation Text & Icon Styling Strategy
   const navTextColor =
     !sticky && isHomePage
       ? "text-white dark:text-white"
       : "text-slate-900 dark:text-white";
 
   const burgerLineBg =
-    !sticky && isHomePage
+    navbarOpen
+      ? "bg-slate-900 dark:bg-white"
+      : !sticky && isHomePage
       ? "bg-white"
       : "bg-slate-900 dark:bg-white";
 
@@ -123,39 +129,42 @@ const Header: React.FC = () => {
 
         {/* Desktop Navigation */}
         <nav
-          className={`hidden grow items-center justify-center gap-8 transition-colors duration-300 lg:flex ${navTextColor}`}
+          className={`hidden lg:flex flex-1 items-center justify-center ${navTextColor}`}
         >
-          {headerData.map((item, index) => (
-            <HeaderLink key={index} item={item} />
-          ))}
+          <div className="flex items-center gap-8">
+            {headerData.map((item, index) => (
+              <HeaderLink key={index} item={item} />
+            ))}
 
-          <button
-  type="button"
-  onClick={openCart}
-  aria-label={`Open cart${itemCount ? `, ${itemCount} item${itemCount === 1 ? "" : "s"}` : ""}`}
-  className="group relative inline-flex h-10 items-center gap-1.5 bg-transparent text-sm font-semibold text-gray-900 transition-colors hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 dark:text-white dark:hover:text-blue-400"
->
-  <ShoppingBag className="h-4 w-4 stroke-current transition-colors" />
-  <span className="hidden transition-colors sm:inline">
-    Cart ({itemCount > 99 ? "99+" : itemCount})
-  </span>
-  <span className="transition-colors sm:hidden">
-    ({itemCount > 99 ? "99+" : itemCount})
-  </span>
-</button>
+            <button
+              type="button"
+              onClick={openCart}
+              className="hidden lg:inline-flex items-center gap-1 font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-500"
+            >
+              <span>
+                Cart (
+                <span className="text-gray-900 dark:text-white">
+                  {itemCount}
+                </span>
+                )
+              </span>
+            </button>
+          </div>
         </nav>
-
-        
 
         {/* Action Controls & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-4 relative z-[10000]">
-          {/* Theme Switcher Toggle */}
+          {/* Theme Switcher */}
           <button
             type="button"
             aria-label="Toggle theme"
             onClick={() => setTheme(isDark ? "light" : "dark")}
             className={`relative inline-flex h-9 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-              isDark ? "bg-slate-800" : "bg-slate-200"
+              mounted
+                ? isDark
+                  ? "bg-slate-800"
+                  : "bg-slate-200"
+                : "bg-slate-200 opacity-0"
             }`}
           >
             <span
@@ -201,10 +210,25 @@ const Header: React.FC = () => {
 
           <AccountDropdown />
 
-          
+          {/* Mobile Cart Trigger */}
+          <button
+            type="button"
+            onClick={openCart}
+            className={`relative flex h-10 w-10 items-center justify-center lg:hidden ${navTextColor}`}
+            aria-label="Open cart"
+          >
+            <ShoppingBag className="h-5 w-5" />
+
+            {itemCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">
+                {itemCount > 99 ? "99+" : itemCount}
+              </span>
+            )}
+          </button>
 
           {/* Mobile Hamburger Toggle */}
           <button
+            ref={toggleButtonRef}
             type="button"
             onClick={toggleMenu}
             className="relative z-[10001] flex h-12 w-12 items-center justify-center bg-transparent focus:outline-none lg:hidden touch-manipulation"

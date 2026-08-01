@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import { Career } from '@/data/careers';
 
 export default function CareerHero({ career }: { career: Career }) {
@@ -8,9 +9,10 @@ export default function CareerHero({ career }: { career: Career }) {
         {/* Back Link on Top Left */}
         <Link
           href="/careers"
-          className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 mb-6 sm:mb-8 transition-colors"
-        >
-          <span className="mr-2">←</span> Back to all careers
+          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-blue-500 dark:text-slate-200 dark:hover:text-blue-500"
+>
+  <ArrowLeft className="h-4 w-4" />
+         Back to all careers
         </Link>
 
         <div className="mx-auto max-w-lg text-center">

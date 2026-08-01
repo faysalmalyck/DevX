@@ -37,9 +37,9 @@ export default function ProductPage({
       <div className="flex justify-start mb-6 lg:mb-8">
         <Link
           href="/pricing"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 transition-colors hover:text-slate-900 dark:hover:text-white focus:outline-none"
-        >
-          <ArrowLeft className="h-4 w-4" />
+          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-blue-500 dark:text-slate-200 dark:hover:text-blue-500"
+>
+  <ArrowLeft className="h-4 w-4" />
           <span>Back to Pricing</span>
         </Link>
       </div>

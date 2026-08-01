@@ -3,7 +3,7 @@ import HeroSub from "@/components/SharedComponent/HeroSub";
 import { Metadata } from "next";
 import CounterSection from '@/app/(site)/about/Count/Counter';
 import TeamSection from "../Team/TeamPage";
-import CoreValuesSection from "../Core Values/CoreValue";
+import CoreValuesSection from "../core values/CoreValue";
 import ReadyToStart from "@/components/Home/ReadytoContact/Ready";
 
 
