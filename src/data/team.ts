@@ -57,15 +57,6 @@ export const defaultTeamMembers: TeamMember[] = [
     visible: true,
   },
   {
-    id: "arshad-nazir",
-    name: "Arshad Nazir",
-    role: "General Manager",
-    description: "Developing and executing sales strategies while leading the sales function across the organization.",
-    image: "/images/hero/Arshad.jpg",
-    department: "Sales & Growth",
-    visible: true,
-  },
-  {
     id: "afzal-ashraf",
     name: "Afzal Ashraf",
     role: "Account Executive",
@@ -74,15 +65,7 @@ export const defaultTeamMembers: TeamMember[] = [
     department: "Sales & Growth",
     visible: true,
   },
-  {
-    id: "gulfam-afzal",
-    name: "Gulfam Afzal",
-    role: "Account Executive",
-    description: "Manages enterprise client success, product positioning, and strategic alignment.",
-    image: "/images/hero/afzal.png",
-    department: "Sales & Growth",
-    visible: true,
-  },
+  
 ];
 
 export const departments: TeamMember["department"][] = [

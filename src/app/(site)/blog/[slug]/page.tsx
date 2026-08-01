@@ -39,7 +39,7 @@ function RenderContentBlock({ block }: { block: ContentBlock }) {
   switch (block.type) {
     case "h2":
       return (
-        <h2 className="text-3xl sm:text-4xl text-gray-900 dark:text-gray-100 mt-10 mb-4 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 dark:text-gray-100 mt-10 mb-4 tracking-tight">
           {block.text}
         </h2>
       );
@@ -63,19 +63,19 @@ function RenderContentBlock({ block }: { block: ContentBlock }) {
       );
     case "h6":
       return (
-        <h6 className="px-6 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mt-4 mb-2">
+        <h6 className="px-2 sm:px-6 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mt-4 mb-2">
           {block.text}
         </h6>
       );
     case "paragraph":
       return (
-        <p className="text-gray-700 py-2 dark:text-gray-300 leading-relaxed text-base sm:text-base mb-4 pl-3 sm:pl-5">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base mb-4 pl-1 sm:pl-3">
           {block.text}
         </p>
       );
     case "ordered-list":
       return (
-        <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300 text-base sm:text-base mb-6 pl-2">
+        <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300 text-base mb-6 pl-2">
           {block.items?.map((item, idx) => (
             <li key={idx} className="leading-relaxed">
               {item}
@@ -85,7 +85,7 @@ function RenderContentBlock({ block }: { block: ContentBlock }) {
       );
     case "unordered-list":
       return (
-        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 text-base sm:text-base mb-6 pl-2">
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 text-base mb-6 pl-2">
           {block.items?.map((item, idx) => (
             <li key={idx} className="leading-relaxed">
               {item}
@@ -95,7 +95,7 @@ function RenderContentBlock({ block }: { block: ContentBlock }) {
       );
     case "quote":
       return (
-        <blockquote className="border-l-4 border-indigo-600 dark:border-indigo-400 pl-4 py-2 my-4 italic text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-slate-800/50 rounded-r-lg text-base">
+        <blockquote className="border-l-4 border-blue-600 dark:border-blue-400 pl-4 py-3 my-6 italic text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-slate-800/50 rounded-r-lg text-base">
           {block.text}
         </blockquote>
       );
@@ -118,84 +118,84 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
     .slice(0, 2);
 
   return (
-    <article className="min-h-screen bg-white dark:bg-[#181d2b] transition-colors duration-200 py-12 sm:py-16">
+    <article className="min-h-screen bg-slate-50 dark:bg-[#181d2b] text-slate-900 dark:text-white transition-colors duration-300 py-8 sm:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <Link
           href="/blog"
-          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-blue-500 dark:text-slate-200 dark:hover:text-blue-500"
+          className="mt-4 sm:mt-8 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:-translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to all articles
         </Link>
 
         {/* Article Header */}
-        <header className="py-16 text-center">
-          <div className="flex items-center justify-center space-x-3 text-sm text-gray-500 dark:text-white mb-4">
-            <span className="inline-block px-3 py-1 text-white dark:text-white font-semibold text-xs uppercase tracking-wider">
+        <header className="py-8 sm:py-12 lg:py-16 text-center">
+          <div className="flex items-center justify-center space-x-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+            <span className="inline-block px-3 py-1 bg-slate-200 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-300 dark:border-slate-800 font-semibold text-xs uppercase tracking-wider">
               {article.category}
             </span>
             <span>~</span>
             <time>{article.date}</time>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl text-gray-900 dark:text-white tracking-tight leading-tight mb-8 text-center px-4 sm:px-8 lg:px-16">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight mb-6 sm:mb-8 text-center px-2 sm:px-8 lg:px-16">
             {article.title}
           </h1>
 
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
             {article.excerpt}
           </p>
         </header>
 
         {/* Hero Image */}
-        <div className="relative w-full mb-16 rounded-2xl overflow-hidden shadow-xl bg-gray-100 dark:bg-slate-800">
+        <div className="relative w-full mb-12 sm:mb-16 rounded-2xl overflow-hidden shadow-sm dark:shadow-none bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800">
           <Image
             src={article.image}
             alt={article.title}
             width={1200}
             height={675}
             priority
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-cover"
           />
         </div>
 
         {/* Main Content Body */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto px-2 sm:px-6">
           {article.content.map((block, index) => (
             <RenderContentBlock key={index} block={block} />
           ))}
         </div>
 
         {/* Divider */}
-        <hr className="my-12 border-gray-200 dark:border-gray-800" />
+        <hr className="my-12 sm:my-16 border-slate-200 dark:border-slate-800" />
 
         {/* Related Articles Section */}
         {relatedArticles.length > 0 && (
           <section className="w-full">
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-4xl text-gray-900 dark:text-white">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white">
                 More articles
               </h2>
 
               <Link
                 href="/blog"
-                className="rounded-full border border-slate-300 bg-white px-10 py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-white dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-800 bg-white dark:bg-[#121623] px-6 sm:px-8 py-3 text-sm font-medium text-slate-700 dark:text-white transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-[#1a2032] active:scale-95"
               >
                 Browse All Posts
               </Link>
             </div>
 
             {/* Full-width 2-column layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 w-full">
               {relatedArticles.map((relArticle, idx) => (
                 <div key={`${relArticle.id}-${idx}`} className="w-full">
                   <Link
                     href={`/blog/${relArticle.slug}`}
-                    className="group flex flex-col h-full bg-[#1e2436] border border-slate-800/80 rounded-xl overflow-hidden hover:border-slate-700 transition-all duration-300 shadow-md"
+                    className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
                   >
                     {/* Image */}
-                    <div className="relative aspect-[16/10.5] w-full bg-slate-800 overflow-hidden">
+                    <div className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                       <Image
                         src={relArticle.image}
                         alt={relArticle.title}
@@ -206,21 +206,21 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                     </div>
 
                     {/* Content */}
-                    <div className="py-8 px-6 sm:px-8 flex flex-col flex-grow">
-                      <h3 className="text-xl sm:text-2xl font-normal mb-3 line-clamp-2 text-white group-hover:text-blue-400 transition-colors">
+                    <div className="p-6 sm:p-8 flex flex-col flex-grow">
+                      <h3 className="text-lg sm:text-xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {relArticle.title}
                       </h3>
 
-                      <p className="text-slate-300 text-sm mb-6 font-normal line-clamp-3">
+                      <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
                         {relArticle.excerpt}
                       </p>
 
-                      <div className="mt-auto pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                        <span className="px-5 py-2 text-xs font-semibold bg-[#3b4251] text-white rounded-full border border-slate-800">
+                      <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                        <span className="px-3 sm:px-5 py-2 text-xs font-semibold bg-slate-100 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-200 dark:border-slate-800">
                           {relArticle.category}
                         </span>
 
-                        <span className="text-xs font-normal text-slate-400">
+                        <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
                           {relArticle.date}
                         </span>
                       </div>
