@@ -5,14 +5,16 @@ export default function CaseStudiesSection() {
   const caseStudies = [
     {
       id: 1,
-      slug: '/project/how-we-improved-application-new-website-speed-by-78',
+      // Fixed: Updated route path from /project/ to /case-studies/
+      slug: '/case-studies/how-we-improved-application-new-website-speed-by-78',
       title: 'How we improved Application new website speed by 78%',
       logo: 'https://cdn.prod.website-files.com/6217ab51d0be6980f1513f21/65525409dc8fde0a0419d014_application-logo-case-study-dev-x-webflow-template.svg',
       alt: 'Application Logo',
     },
     {
       id: 2,
-      slug: '/project/how-we-helped-business-launch-new-rooms-in-less-than-6-months',
+      // Fixed: Updated route path from /project/ to /case-studies/
+      slug: '/case-studies/how-we-helped-business-launch-new-rooms-in-less-than-6-months',
       title: 'How we helped Business launch new rooms in less than 6 months',
       logo: 'https://cdn.prod.website-files.com/6217ab51d0be6980f1513f21/6552543446647bfe309272e1_business-logo-case-study-dev-x-webflow-template.svg',
       alt: 'Business Logo',
