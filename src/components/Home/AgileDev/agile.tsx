@@ -22,7 +22,7 @@ export default function TeamSection() {
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-gray-900 dark:text-white">
         {/* Header */}
         <div className="max-w-md sm:max-w-2xl lg:max-w-3xl mx-auto mb-6 sm:mb-8 text-center">
-          <h2 className="py-2 sm:py-4 text-2xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
+          <h2 className="py-2 sm:py-4 text-3xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
             We are an agile team of passionate{" "}
             <span className="text-blue-600 dark:text-blue-500">developers</span>
           </h2>

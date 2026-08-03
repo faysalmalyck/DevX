@@ -18,7 +18,7 @@ export default function Development() {
           className="mb-8 sm:mb-14 md:mb-16 text-center animate-fade-up-slow"
           style={{ animationDelay: "100ms" }}
         >
-          <h2 className="mx-auto max-w-4xl text-2xl sm:text-4xl md:text-5xl py-4 sm:py-10 md:py-16 tracking-tight text-slate-900 dark:text-white leading-tight sm:leading-snug">
+          <h2 className="mx-auto max-w-4xl text-3xl sm:text-4xl md:text-5xl py-4 sm:py-10 md:py-16 tracking-tight text-slate-900 dark:text-white leading-tight sm:leading-snug">
             We are development experts on all{" "}
             <span className="text-blue-600 dark:text-blue-500">technologies</span> &amp;{" "}
             <span className="text-blue-600 dark:text-blue-500">platforms</span>

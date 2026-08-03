@@ -37,7 +37,7 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center pt-2 sm:pt-8 pb-6 sm:pb-12 mb-6 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
             We have a simple, yet{' '}
             <span className="text-blue-600 dark:text-blue-400">bulletproof</span> and{' '}
             <span className="text-blue-600 dark:text-blue-400">effective</span> process.
@@ -45,7 +45,7 @@ export default function ProcessSection() {
         </div>
 
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 lg:gap-1 items-start relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-2 items-start relative z-10">
             {steps.map((step) => (
               <div key={step.id} className={`${step.offsetClass} w-full flex justify-center`}>
                 <div className="group relative bg-[#243042] rounded-xl border border-slate-700 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[450px] w-full max-w-sm">

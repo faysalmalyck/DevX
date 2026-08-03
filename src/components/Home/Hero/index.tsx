@@ -53,7 +53,7 @@ export default function HeroSection() {
             <div className="max-w-[550px] mx-auto lg:mx-0">
               
               {/* Main Heading */}
-              <h1 className="opacity-0 animate-fade-up text-3xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
+              <h1 className="opacity-0 animate-fade-up text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
                 Your Trusted Software{" "}
                 <span className="text-blue-500 dark:text-blue-500 block sm:inline">
                   {"<"}Development{"/>"}
