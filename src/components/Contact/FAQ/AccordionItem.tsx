@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 interface AccordionItemProps {
   id: string;
@@ -47,23 +46,20 @@ export default function AccordionItem({
         </div>
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={`faq-answer-${id}`}
-            role="region"
-            aria-labelledby={`faq-question-${id}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <div className="px-6 pb-6 pt-2 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
-              {answer}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        id={`faq-answer-${id}`}
+        role="region"
+        aria-labelledby={`faq-question-${id}`}
+        className={`grid transition-all duration-300 ease-in-out ${
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="px-6 pb-6 pt-2 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+            {answer}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

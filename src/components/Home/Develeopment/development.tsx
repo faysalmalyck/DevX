@@ -2,52 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
-interface ServiceCard {
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-}
-
-const servicesData: ServiceCard[] = [
-  {
-    title: "Website/App Development",
-    description: "/images/services/website.png",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c033a9f2ec475bdb200_image-frontend-development-services-dev-webflow-template.png",
-    imageAlt: "Frontend Development - Dev X Webflow Template",
-  },
-  {
-    title: "Backend Development",
-    description: "Powering your digital infrastructure with scalable backend solutions built with modern technologies.",
-    imageSrc: "/images/services/backend.png",
-    imageAlt: "Backend Development - Dev X Webflow Template",
-  },
-  {
-    title: "Mobile App Development",
-    description: "Seamless & high-performance mobile applications for iOS and Android that keep your users engaged.",
-    imageSrc: "/images/services/mobileapp.png",
-    imageAlt: "Mobile App Development - Dev X Webflow Template",
-  },
-  {
-    title: "AI & Machine Learning",
-    description: "Transform data into intelligence with custom AI/ML solutions from predictive analytics to intelligent automation systems.",
-    imageSrc: "/images/services/ai:ml.png",
-    imageAlt: "AI & Machine Learning - Dev X Webflow Template",
-  },
-  {
-    title: "Databases & Data Science",
-    description: "Designing secure databases and transforming data into actionable intelligence for business growth.",
-    imageSrc: "/images/services/database.png",
-    imageAlt: "Databases & Data Science - Dev X Webflow Template",
-  },
-  {
-    title: "Servers & Cloud Infrastructure",
-    description: "End to end cloud infrastructure services with secure deployments, automated scaling, and continuous monitoring.",
-    imageSrc: "/images/services/cloud.png",
-    imageAlt: "Servers & Cloud Infrastructure - Dev X Webflow Template",
-  },
-];
+import { servicesData } from "@/data/services";
 
 export default function Development() {
   return (
@@ -79,29 +34,29 @@ export default function Development() {
               style={{ animationDelay: `${(index + 1) * 150}ms` }}
             >
               {/* Graphic Section */}
-              <div className="relative flex h-52 sm:h-56 md:h-64 w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 p-4 sm:p-2 dark:bg-transparent">
-                <div
-                  className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03]"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
-                    backgroundSize: "28px 28px",
-                  }}
-                />
+<div className="relative flex h-52 sm:h-56 md:h-64 w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 dark:bg-transparent">
+  <div
+    className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03]"
+    style={{
+      backgroundImage:
+        "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
+      backgroundSize: "28px 28px",
+    }}
+  />
 
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent dark:from-blue-500/5 opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
+  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent dark:from-blue-500/5 opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
 
-                <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
-                  <Image
-                    src={service.imageSrc}
-                    alt={service.imageAlt}
-                    fill
-                    priority={index < 3}
-                    className="object-contain object-center sm:object-top"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-              </div>
+  <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
+    <Image
+      src={service.imageSrc}
+      alt={service.imageAlt}
+      fill
+      priority={index < 3}
+      className="object-cover object-center"
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    />
+  </div>
+</div>
 
               {/* Divider */}
               <div className="mb-4 sm:mb-6 h-px bg-slate-200 dark:bg-slate-700/80 transition-colors duration-300 group-hover:bg-blue-500/40" />

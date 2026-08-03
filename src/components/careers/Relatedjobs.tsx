@@ -1,14 +1,49 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useInView } from '@/hooks/useInView';
 import { Career, careersData } from '@/data/careers';
 
 interface RelatedJobsProps {
   currentCareer: Career;
 }
 
+function JobCard({ job, index }: { job: Career; index: number }) {
+  const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${index * 100}ms` }}
+      className={`transition-all duration-500 ease-out ${
+        isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
+      <Link
+        href={`/careers/${job.slug}`}
+        className="group relative flex flex-col justify-between h-full min-h-[260px] rounded-lg border border-slate-200 dark:border-slate-700/50 bg-gradient-to-b from-white to-slate-100 dark:from-[#262F43] dark:to-[#191F32] px-8 py-9 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-300 hover:border-indigo-500/50 dark:hover:border-slate-600 hover:shadow-xl dark:hover:shadow-2xl"
+      >
+        <div className="space-y-6">
+          {/* Job Details: Location | Type -> Title -> Description */}
+          <div className="space-y-6 px-8">
+            <p className="text-xs font-medium tracking-wider text-blue-500 dark:text-white">
+              {job.location} | {job.type}
+            </p>
+            <h3 className="text-2xl font-semibold text-slate-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors">
+              {job.title}
+            </h3>
+            <p className="text-sm font-light text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 pt-1">
+              {job.description}
+            </p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
 export default function RelatedJobs({ currentCareer }: RelatedJobsProps) {
+  const { ref: headerRef, isInView: isHeaderInView } = useInView({ threshold: 0.1, triggerOnce: true, rootMargin: '-50px' });
   // 1. Exclude active job
   const otherCareers = careersData.filter((job) => job.id !== currentCareer.id);
 
@@ -41,12 +76,11 @@ export default function RelatedJobs({ currentCareer }: RelatedJobsProps) {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
+        <div
+          ref={headerRef}
+          className={`flex flex-col sm:flex-row sm:items-end justify-between gap-6 transition-all duration-500 ease-out ${
+            isHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
         >
           <div className="space-y-3 max-w-2xl">
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-white">
@@ -60,38 +94,12 @@ export default function RelatedJobs({ currentCareer }: RelatedJobsProps) {
           >
             Browse all openings
           </Link>
-        </motion.div>
+        </div>
 
         {/* Job Cards Container (expanded max-width for +15% card width) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-6xl mx-auto">
           {relatedJobs.map((job, index) => (
-            <motion.div
-              key={job.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Link
-                href={`/careers/${job.slug}`}
-                className="group relative flex flex-col justify-between h-full min-h-[260px] rounded-lg border border-slate-200 dark:border-slate-700/50 bg-gradient-to-b from-white to-slate-100 dark:from-[#262F43] dark:to-[#191F32] px-8 py-9 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-300 hover:border-indigo-500/50 dark:hover:border-slate-600 hover:shadow-xl dark:hover:shadow-2xl"
-              >
-                <div className="space-y-6">
-                  {/* Job Details: Location | Type -> Title -> Description */}
-                  <div className="space-y-6 px-8">
-                    <p className="text-xs font-medium tracking-wider text-blue-500 dark:text-white">
-                      {job.location} | {job.type}
-                    </p>
-                    <h3 className="text-2xl font-semibold text-slate-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors">
-                      {job.title}
-                    </h3>
-                    <p className="text-sm font-light text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 pt-1">
-                      {job.description}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+            <JobCard key={job.id} job={job} index={index} />
           ))}
         </div>
       </div>

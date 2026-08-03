@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useInView } from "@/hooks/useInView";
 
 export default function CtaSection() {
+  const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true, rootMargin: "-50px" });
+
   return (
-    <section className="py-12">
+    <section ref={ref} className="py-12">
       <div className="mx-auto max-w-[1220px] px-4 sm:px-6 lg:px-8">
         <div className="relative">
           {/* Blue breathing glow behind */}
@@ -15,23 +17,19 @@ export default function CtaSection() {
           />
 
           {/* Main Card with #181d2c background & narrow border */}
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative flex h-[414px] w-full items-center justify-center overflow-hidden rounded-lg border border-slate-700/60 bg-[#181d2c] px-8 md:px-12 lg:px-16"
+          <div
+            className={`relative flex h-[414px] w-full items-center justify-center overflow-hidden rounded-lg border border-slate-700/60 bg-[#181d2c] px-8 md:px-12 lg:px-16 transition-all duration-600 ease-out ${
+              isInView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            }`}
           >
             {/* Content Layer */}
             <div className="relative z-10 grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-12">
               {/* Heading Text */}
               <div className="lg:col-span-7">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                  className="mx-auto max-w-md text-center lg:mx-0 lg:text-left"
+                <div
+                  className={`mx-auto max-w-md text-center lg:mx-0 lg:text-left transition-all duration-500 ease-out delay-200 ${
+                    isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'
+                  }`}
                 >
                   <h2 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-3xl tracking-tight text-transparent sm:text-5xl">
                     Ready to start working{" "}
@@ -40,17 +38,15 @@ export default function CtaSection() {
                     </span>{" "}
                     with <span className="whitespace-nowrap">our team?</span>
                   </h2>
-                </motion.div>
+                </div>
               </div>
 
               {/* Action Buttons */}
               <div className="lg:col-span-5">
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-end"
+                <div
+                  className={`flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-end transition-all duration-500 ease-out delay-300 ${
+                    isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-5'
+                  }`}
                 >
                   <Link
                     href="/contact"
@@ -64,10 +60,10 @@ export default function CtaSection() {
                   >
                     Browse Case Studies
                   </Link>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
       <div style={{ height: "180px" }}></div>
