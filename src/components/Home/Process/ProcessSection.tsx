@@ -45,7 +45,7 @@ export default function ProcessSection() {
         </div>
 
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-3 items-start relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 lg:gap-1 items-start relative z-10">
             {steps.map((step) => (
               <div key={step.id} className={`${step.offsetClass} w-full flex justify-center`}>
                 <div className="group relative bg-[#243042] rounded-xl border border-slate-700 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[450px] w-full max-w-sm">
@@ -92,7 +92,7 @@ export default function ProcessSection() {
         <div className="mt-8 sm:mt-12 py-6 sm:py-12 md:py-20 flex justify-center">
           <Link
             href="/contact"
-            className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center rounded-full bg-blue-600 px-6 sm:px-10 py-3.5 sm:py-5 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center rounded-full bg-blue-500 px-6 sm:px-10 py-3.5 sm:py-5 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-600 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
           >
             Contact us
           </Link>
