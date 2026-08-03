@@ -4,7 +4,7 @@ import { Career } from '@/data/careers';
 
 export default function CareerHero({ career }: { career: Career }) {
   return (
-    <div className="relative overflow-hidden bg-slate-50 dark:bg-[#181D2C] py-12 sm:py-16 lg:py-24 transition-colors duration-200">
+    <div className="relative overflow-hidden bg-slate-10 dark:bg-[#181D2C] py-12 sm:py-16 lg:py-24 transition-colors duration-200">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Back Link on Top Left */}
         <Link
@@ -43,7 +43,6 @@ export default function CareerHero({ career }: { career: Career }) {
             </a>
             
           </div>
-          <div className="overflow-hidden bg-slate-50 dark:bg-[#181D2C] border-b border-slate-200 dark:border-slate-600 pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-24 transition-colors duration-200"></div>
         </div>
       </div>
     </div>

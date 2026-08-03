@@ -53,9 +53,9 @@ export default function HeroSection() {
             <div className="max-w-[550px] mx-auto lg:mx-0">
               
               {/* Main Heading */}
-              <h1 className="opacity-0 animate-fade-up text-3xl sm:text-4xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
+              <h1 className="opacity-0 animate-fade-up text-3xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
                 Your Trusted Software{" "}
-                <span className="text-blue-600 dark:text-blue-500 block sm:inline">
+                <span className="text-blue-500 dark:text-blue-500 block sm:inline">
                   {"<"}Development{"/>"}
                 </span>{" "}
                 Partner.
@@ -63,7 +63,7 @@ export default function HeroSection() {
 
               {/* Subtitle / Paragraph */}
               <div className="opacity-0 animate-fade-up delay-100 mt-4 sm:mt-6 max-w-[591px]">
-                <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
+                <p className="text-gray-600 dark:text-white text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                   Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
                 </p>
               </div>
@@ -78,7 +78,7 @@ export default function HeroSection() {
                 </Link>
                 <Link
                   href="/services"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 hover:bg-gray-200 dark:bg-[#171c2c] dark:hover:bg-[#1f263b] dark:hover:text-white rounded-full transition-all duration-200 border border-gray-300 dark:border-gray-800 active:scale-95"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-3.5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
                 >
                   Our services
                 </Link>

@@ -26,7 +26,7 @@ export default function RelatedJobs({ currentCareer }: RelatedJobsProps) {
   if (relatedJobs.length === 0) return null;
 
   return (
-    <section className="relative bg-slate-50 dark:bg-[#181d2b] py-20 lg:py-32 text-slate-900 dark:text-white border-t border-slate-200 dark:border-slate-800/40 overflow-hidden transition-colors duration-300">
+    <section className="relative bg-slate-10 dark:bg-[#181d2b] py-20 lg:py-32 text-slate-900 dark:text-white border-t border-slate-200 dark:border-slate-800/40 overflow-hidden transition-colors duration-300">
       {/* Background Decorative Graphic */}
       <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[300px] z-0 opacity-20">
         <svg viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
