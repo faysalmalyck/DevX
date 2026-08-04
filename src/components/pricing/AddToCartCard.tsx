@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { DurationOption, defaultAddToCartData } from "@/data/pricingdata";
-import { useCart, type PricingPlan, type PurchaseDetails } from "@/components/cart/CartContext";
+import { useCart, type PricingPlan, type PurchaseDetails } from "@/contexts/CartContext";
 
 export interface AddToCartCardProps {
   cardTitle?: string;

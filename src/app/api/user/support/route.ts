@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/Prisma";
+import { prisma } from "@/lib/db/prisma";
 import { getActiveSession } from "@/lib/auth/session";
 
 // GET /api/user/support — list tickets for logged-in user

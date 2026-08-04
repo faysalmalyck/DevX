@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 import Link from "next/link";
 import {
   Activity,

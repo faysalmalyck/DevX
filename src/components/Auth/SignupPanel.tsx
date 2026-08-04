@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import SignUp from "@/components/Auth/SignUp";
-import AdminLogin from "@/components/Auth/AdminLogin";
+import SignUp from "@/components/auth/sign-up";
+import AdminLogin from "@/components/auth/AdminLogin";
 
 export default function SignupPanel() {
   const [mode, setMode] = useState<"signup" | "admin">("signup");

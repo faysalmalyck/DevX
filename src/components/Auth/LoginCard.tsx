@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 import { Eye, EyeOff, Lock, Mail, User, ShieldAlert } from "lucide-react";
 
 export default function LoginCard() {

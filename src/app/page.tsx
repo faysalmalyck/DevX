@@ -1,14 +1,14 @@
 import React from 'react'
 import { Metadata } from "next";
-import Hero from '@/components/Home/Hero';
-import Development from '@/components/Home/Develeopment/development';
-import Agile from '@/components/Home/AgileDev/agile';
-import ProcessSection from '@/components/Home/Process/ProcessSection';
-import CaseStudiesSection from '@/components/Home/CaseStudy/casestudy';
-import TechStackSection from '@/components/Home/Techstack/techstack';
-import TestimonialsSection from '@/components/Home/Testimonals/testimonals';
-import ReadytoContact from "@/components/Home/ReadytoContact/Ready";
-import ArticleSlider from '@/components/Home/Artical slider/page';
+import Hero from '@/components/home/hero';
+import Development from '@/components/home/development/Development';
+import Agile from '@/components/home/agile-dev/Agile';
+import ProcessSection from '@/components/home/process/ProcessSection';
+import CaseStudiesSection from '@/components/home/case-study/CaseStudy';
+import TechStackSection from '@/components/home/techstack/TechStack';
+import TestimonialsSection from '@/components/home/testimonials/Testimonials';
+import ReadytoContact from "@/components/home/ready-to-contact/Ready";
+import ArticleSlider from '@/components/home/article-slider/ArticleSlider';
 export const metadata: Metadata = {
   title: {
     absolute: "DevX | Transforming Ideas Into Digital Products",

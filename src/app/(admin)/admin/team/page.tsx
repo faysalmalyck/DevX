@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TeamAdmin from "@/components/Team/TeamAdmin";
+import TeamAdmin from "@/components/team/TeamAdmin";
 
 export const metadata: Metadata = { title: "Team management", robots: { index: false, follow: false } };
 

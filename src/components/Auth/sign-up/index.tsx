@@ -2,10 +2,10 @@
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import SocialSignUp from "../SocialSignUp";
-import Logo from "@/components/Layout/Header/Logo"
+import Logo from "@/components/layout/header/logo";
 import { useContext, useState, type FormEvent } from "react";
-import Loader from "@/components/Common/Loader";
-import AuthDialogContext from "@/app/context/AuthDialogContext";
+import Loader from "@/components/shared/Loader";
+import AuthDialogContext from "@/contexts/AuthDialogContext";
 interface SignUpProps {
   signUpOpen?: (open: boolean) => void;
 }

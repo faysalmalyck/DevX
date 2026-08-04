@@ -5,7 +5,7 @@
   import ProjectOverview from '@/components/case-studies/ProjectOverview';
   import ResultsMetrics from '@/components/case-studies/ResultsMetrics';
   import RelatedProjects from '@/components/case-studies/RelatedProjects';
-  import CtaSection from '@/components/Home/ReadytoContact/Ready';
+  import CtaSection from '@/components/home/ready-to-contact/Ready';
 
   interface PageProps {
     params: Promise<{

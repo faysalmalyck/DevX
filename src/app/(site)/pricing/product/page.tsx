@@ -6,8 +6,8 @@ import {
   FullProductDetails,
   professionalProductData,
 } from "@/data/pricingdata";
-import AddToCartCard from "@/app/(site)/pricing/addtocart/AddToCartCard";
-import type { PricingPlan } from "@/components/cart/CartContext";
+import AddToCartCard from "@/components/pricing/AddToCartCard";
+import type { PricingPlan } from "@/contexts/CartContext";
 
 type AnyProductData = SimpleProductDetails | FullProductDetails;
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/Prisma";
+import { prisma } from "@/lib/db/prisma";
 import { generateSecureToken } from "@/lib/auth/csrf";
 import { checkPasswordResetRateLimit, getClientIp } from "@/lib/auth/rate-limit";
 

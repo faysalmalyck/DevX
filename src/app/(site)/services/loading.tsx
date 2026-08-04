@@ -3,7 +3,7 @@ import {
   GridSkeleton,
   PageHeaderSkeleton,
   SplitSectionSkeleton,
-} from "@/components/Common/Skeleton";
+} from "@/components/shared/Skeleton";
 
 export default function Loading() {
   return (

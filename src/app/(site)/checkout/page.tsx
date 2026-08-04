@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, LockKeyhole } from "lucide-react";
-import { useCart, formatCurrency, CartItem } from "@/components/cart/CartContext";
+import { useCart, formatCurrency, CartItem } from "@/contexts/CartContext";
 
 function CheckoutHeader() {
   return (

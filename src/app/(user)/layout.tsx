@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 import { useRouter, usePathname } from "next/navigation";
 import { Menu, X, LogOut, LayoutDashboard, User, HelpCircle, Activity, Heart, Bell, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";

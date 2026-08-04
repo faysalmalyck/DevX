@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import OpenPositions from './jobs/jobpage';
+import OpenPositions from '@/components/careers/JobPage';
 
 interface BenefitItem {
   iconSrc: string;

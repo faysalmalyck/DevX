@@ -1,4 +1,4 @@
-import TeamSection from "@/app/(site)/team/TeamPage";
+import TeamSection from "@/components/team/TeamPage";
 import React from "react";
 
 export const metadata = {

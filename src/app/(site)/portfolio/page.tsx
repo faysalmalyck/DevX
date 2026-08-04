@@ -1,6 +1,6 @@
 import React from "react";
 import Portfolio from "@/components/portfolio/PortfolioList";
-import HeroSub from "@/components/SharedComponent/HeroSub";
+import HeroSub from "@/components/shared/HeroSub";
 import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Portfolio",

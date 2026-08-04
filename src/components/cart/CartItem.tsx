@@ -1,6 +1,6 @@
 "use client";
 
-import { formatCurrency, type CartItem as CartItemType } from "./CartContext";
+import { formatCurrency, type CartItem as CartItemType } from "@/contexts/CartContext";
 import QuantitySelector from "./QuantitySelector";
 
 const labels: Record<string, string> = {

@@ -4,18 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { headerData } from "../Header/Navigation/menuData";
-import Logo from "./Logo";
-import HeaderLink from "../Header/Navigation/HeaderLink";
-import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
+import { headerData } from "@/components/layout/header/navigation/menuData";
+import Logo from "@/components/layout/header/logo";
+import HeaderLink from "@/components/layout/header/navigation/HeaderLink";
+import MobileHeaderLink from "@/components/layout/header/navigation/MobileHeaderLink";
 import { useTheme } from "next-themes";
-import { SuccessfullLogin } from "@/components/Auth/AuthDialog/SuccessfulLogin";
-import { FailedLogin } from "@/components/Auth/AuthDialog/FailedLogin";
-import { UserRegistered } from "@/components/Auth/AuthDialog/UserRegistered";
-import AuthDialogContext from "@/app/context/AuthDialogContext";
+import { SuccessfullLogin } from "@/components/auth/auth-dialog/SuccessfulLogin";
+import { FailedLogin } from "@/components/auth/auth-dialog/FailedLogin";
+import { UserRegistered } from "@/components/auth/auth-dialog/UserRegistered";
+import AuthDialogContext from "@/contexts/AuthDialogContext";
 import AccountDropdown from "@/components/account/AccountDropdown";
 import { ShoppingBag } from "lucide-react";
-import { useCart } from "@/components/cart/CartContext";
+import { useCart } from "@/contexts/CartContext";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();

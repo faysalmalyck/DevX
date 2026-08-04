@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/Prisma";
+import { prisma } from "@/lib/db/prisma";
 import { hashPassword } from "@/lib/auth/hash";
 import { hashToken } from "@/lib/auth/csrf";
 import { destroyAllSessions } from "@/lib/auth/session";

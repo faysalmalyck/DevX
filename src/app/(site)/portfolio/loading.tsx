@@ -1,7 +1,7 @@
 import {
   GridSkeleton,
   PageHeaderSkeleton,
-} from "@/components/Common/Skeleton";
+} from "@/components/shared/Skeleton";
 
 export default function Loading() {
   return (

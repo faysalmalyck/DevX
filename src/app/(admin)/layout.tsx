@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 import { useRouter, usePathname } from "next/navigation";
 import AdminSidebar, { type AdminArea } from "@/components/admin/AdminSidebar";
 import { Menu, X, LogOut, Settings, Moon, Sun, ShieldCheck, Users, Building2, KeyRound, ClipboardList, LayoutDashboard } from "lucide-react";

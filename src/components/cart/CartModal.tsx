@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
-import { useCart } from "./CartContext";
+import { useCart } from "@/contexts/CartContext";
 
 function useModalFocusTrap(isOpen: boolean, onClose: () => void) {
   const dialogRef = useRef<HTMLElement>(null);

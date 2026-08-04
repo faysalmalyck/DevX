@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@/components/Layout/Header";
-import Footer from "@/components/Layout/Footer";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import { ThemeProvider } from "next-themes";
-import Aoscompo from "@/utils/aos";
+import Aoscompo from "@/providers/AOSProvider";
 import NextTopLoader from "nextjs-toploader";
-import { AuthDialogProvider } from "./context/AuthDialogContext";
-import { SessionProvider } from "./context/SessionContext";
-import { CartProvider } from "@/components/cart/CartContext";
+import { AuthDialogProvider } from "@/contexts/AuthDialogContext";
+import { SessionProvider } from "@/contexts/SessionContext";
+import { CartProvider } from "@/contexts/CartContext";
 import CartModal from "@/components/cart/CartModal";
 
 const rota = localFont({

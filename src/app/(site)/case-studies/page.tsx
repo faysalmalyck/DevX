@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import CtaSection from '@/components/Home/ReadytoContact/Ready';
+import CtaSection from '@/components/home/ready-to-contact/Ready';
 import { caseStudiesData as caseStudies } from '@/data/case-studies';
 
 export default function CaseStudy() {

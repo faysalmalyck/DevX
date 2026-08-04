@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Building2, ClipboardList, KeyRound, LayoutDashboard, ShieldCheck, Users, Settings, User, LogOut } from "lucide-react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 
 export type AdminArea = "dashboard" | "clients" | "team" | "admins" | "roles" | "permissions" | "activity" | "sessions" | "profile" | "security";
 

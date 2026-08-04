@@ -1,7 +1,7 @@
 import React from "react";
-import HeroSub from "@/components/SharedComponent/HeroSub";
+import HeroSub from "@/components/shared/HeroSub";
 import { Metadata } from "next";
-import Development from "@/components/Home/Develeopment/development";
+import Development from "@/components/home/development/Development";
 
 export const metadata: Metadata = {
     title: "Services",

@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { useContext, useState, type FormEvent } from "react";
 import SocialSignIn from "../SocialSignIn";
-import Logo from "@/components/Layout/Header/Logo";
+import Logo from "@/components/layout/header/logo";
 import { Toaster } from "react-hot-toast";
-import AuthDialogContext from "@/app/context/AuthDialogContext";
+import AuthDialogContext from "@/contexts/AuthDialogContext";
 
 interface SignInProps {
   signInOpen?: (open: boolean) => void;

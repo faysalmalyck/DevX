@@ -1,6 +1,6 @@
 "use client";
 
-import { formatCurrency, type CartState } from "./CartContext";
+import { formatCurrency, type CartState } from "@/contexts/CartContext";
 
 export default function CartSummary({
   subtotal,

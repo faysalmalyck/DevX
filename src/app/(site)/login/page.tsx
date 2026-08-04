@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LoginCard from "./LoginCard";
+import LoginCard from "@/components/auth/LoginCard";
 
 export const metadata: Metadata = {
   title: "Login | DevX Solutions",    

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { pricingPlansData } from "@/data/pricingdata";
-import FAQ from "@/components/Contact/FAQ";
+import FAQ from "@/components/contact/faq";
 
 export default function PricingPage() {
   const plans = pricingPlansData ?? [];

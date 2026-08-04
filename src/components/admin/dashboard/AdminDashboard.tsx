@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Building2, ClipboardList, Plus, Users, Shield, MessageSquare, ArrowUpRight, Activity } from "lucide-react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 
 interface DashboardStats {
   totalUsers: number;

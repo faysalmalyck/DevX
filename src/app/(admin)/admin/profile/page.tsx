@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, type FormEvent } from "react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 import { User, Mail, Phone, Award, Briefcase, Globe, Clock, CheckCircle2, ShieldAlert, FileText, Camera } from "lucide-react";
 
 export default function AdminProfilePage() {

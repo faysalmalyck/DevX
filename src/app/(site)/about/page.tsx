@@ -1,10 +1,10 @@
 import React from "react";
-import HeroSub from "@/components/SharedComponent/HeroSub";
+import HeroSub from "@/components/shared/HeroSub";
 import { Metadata } from "next";
-import CounterSection from '@/app/(site)/about/Count/Counter';
-import TeamSection from "../team/TeamPage";
+import CounterSection from '@/components/about/Counter';
+import TeamSection from "@/components/team/TeamPage";
 import CoreValuesPage from "./core-value/page";
-import ReadyToStart from "@/components/Home/ReadytoContact/Ready";
+import ReadyToStart from "@/components/home/ready-to-contact/Ready";
 
 
 export const metadata: Metadata = {

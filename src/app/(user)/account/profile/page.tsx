@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
-import { useSession } from "@/app/context/SessionContext";
+import { useSession } from "@/contexts/SessionContext";
 import { User, Mail, Phone, Camera, Eye, EyeOff, CheckCircle2, ShieldAlert, KeyRound } from "lucide-react";
 
 export default function UserProfilePage() {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import HeroSub from "@/components/SharedComponent/HeroSub";
+import HeroSub from "@/components/shared/HeroSub";
 
 interface ValueItem {
   id: string;

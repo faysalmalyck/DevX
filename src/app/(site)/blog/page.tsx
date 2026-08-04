@@ -1,7 +1,7 @@
 import React from "react";
 import { articles } from "@/data/blog";
-import { FeaturedPostsSection } from "./FeaturedPostsSection";
-import { LatestArticlesSection } from "./LatestArticlesSection";
+import { FeaturedPostsSection } from "@/components/blog/FeaturedPostsSection";
+import { LatestArticlesSection } from "@/components/blog/LatestArticlesSection";
 
 export default function BlogPage() {
   return (
