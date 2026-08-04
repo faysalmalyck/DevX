@@ -82,7 +82,7 @@ export default function Development() {
         >
           <Link
             href="/pricing"
-            className="w-full sm:w-auto max-w-[280px] sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-3.5 sm:py-5 text-sm font-medium text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 active:scale-95"
+            className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
           >
             Get Pricing
           </Link>

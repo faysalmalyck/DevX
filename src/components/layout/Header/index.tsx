@@ -303,7 +303,7 @@ const Header: React.FC = () => {
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation"
-              className={`absolute inset-x-3 top-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl transition-all duration-300 ease-out dark:border-slate-800 dark:bg-slate-900 ${
+              className={`absolute inset-x-3 top-20 rounded-4xl border border-slate-200 bg-white p-5 shadow-2xl transition-all duration-300 ease-out dark:border-slate-800 dark:bg-slate-900 ${
                 navbarOpen
                   ? "translate-y-0 opacity-100"
                   : "-translate-y-2 opacity-0"
@@ -321,17 +321,17 @@ const Header: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-col gap-2.5 border-t border-slate-200/60 pt-4 dark:border-slate-800/60">
+                <div className="mt-6 flex flex-col gap-3 border-t border-slate-200/60 pt-4 dark:border-slate-800/60">
                   <Link
                     href="/contact"
-                    className="w-full rounded-xl border border-slate-300 py-3 text-center text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
+                    className="w-full rounded-4xl border border-slate-300 py-5 text-center text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
                     onClick={closeMobileMenu}
                   >
                     Contact us
                   </Link>
                   <Link
                     href="/portfolio"
-                    className="w-full rounded-xl bg-blue-600 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-blue-500 active:scale-[0.98]"
+                    className="w-full rounded-4xl bg-blue-600 py-5 text-center text-sm font-semibold text-white transition-all hover:bg-blue-500 active:scale-[0.98]"
                     onClick={closeMobileMenu}
                   >
                     View work

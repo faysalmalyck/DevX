@@ -66,9 +66,7 @@ export default function CareersHero() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="#open-positions"
-              className="w-full sm:w-auto text-center rounded-full bg-blue-600 px-10 py-6 text-base font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(148,163,184,0.4)] dark:hover:shadow-[0_0_20px_rgba(203,213,225,0.25)]"
-            >
-              Browse open positions
+className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40">              Browse open positions
             </a>
           </div>
 
@@ -93,9 +91,7 @@ export default function CareersHero() {
               <div className="mt-8">
                 <a
                   href="#open-positions"
-                  className="inline-flex items-center justify-center rounded-full bg-blue-500 px-8 py-6 text-base font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(148,163,184,0.4)] dark:hover:shadow-[0_0_20px_rgba(203,213,225,0.25)]"
-                >
-                  Browse open positions
+className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40">                  Browse open positions
                 </a>
               </div>
             </div>

@@ -92,7 +92,7 @@ export default function ProcessSection() {
         <div className="mt-8 sm:mt-12 py-6 sm:py-12 md:py-20 flex justify-center">
           <Link
             href="/contact"
-            className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center rounded-full bg-blue-500 px-6 sm:px-10 py-3.5 sm:py-5 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-600 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+            className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
           >
             Contact us
           </Link>

@@ -50,7 +50,7 @@ export default function ContactHeroSection() {
         {/* Inner Left Div - Fixed 518.18 x 494.1 on desktop */}
         <div className="mt-0 w-full max-w-full lg:w-[518.18px] lg:h-[494.1px] space-y-8 flex flex-col justify-between my-auto">
           <div className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white">
+            <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white">
               Get in <span className="text-blue-500">touch</span> with our team
             </h1>
             <p className="text-slate-600 dark:text-white text-base md:text-l max-w-md">

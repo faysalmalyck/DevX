@@ -21,7 +21,7 @@ const page = () => {
   breadcrumbLinks={breadcrumbLinks}
 /> 
       
-      <div className="py-6 ">
+      <div className="">
         <Development />
       
       </div>

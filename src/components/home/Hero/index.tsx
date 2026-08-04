@@ -72,7 +72,7 @@ export default function HeroSection() {
               <div className="opacity-0 animate-fade-up delay-200 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
                <Link
   href="/contact"
-  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-8 py-5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
+  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
 >
   Contact us
 </Link>
