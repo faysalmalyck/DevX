@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import SocialLinks from '@/components/contact/social-links';
-import FAQ from '@/components/contact/faq';
+import FAQ from '@/components/contact/FAQ';
 
 
 

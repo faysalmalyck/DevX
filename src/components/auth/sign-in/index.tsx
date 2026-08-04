@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useContext, useState, type FormEvent } from "react";
 import SocialSignIn from "../SocialSignIn";
-import Logo from "@/components/layout/header/logo";
+import Logo from "@/components/layout/Header/Logo";
 import { Toaster } from "react-hot-toast";
 import AuthDialogContext from "@/contexts/AuthDialogContext";
 
