@@ -15,21 +15,20 @@ export async function GET() {
     }
 
     const sessions = await prisma.adminSession.findMany({
-      where: { adminId: session.id },
-      orderBy: { loginAt: "desc" },
-    });
+  where: { adminId: session.id },
+  orderBy: { loginAt: "desc" },
+});
 
-    // Mark current active session
-    const formatted = sessions.map((s) => ({
-      id: s.id,
-      device: s.device || "Desktop",
-      browser: s.browser || "Unknown Browser",
-      ipAddress: s.ipAddress || "127.0.0.1",
-      location: s.location || "Unknown Location",
-      loginAt: s.loginAt,
-      expiresAt: s.expiresAt,
-      isCurrent: s.id === session.sessionId,
-    }));
+const formatted = sessions.map((s: (typeof sessions)[number]) => ({
+  id: s.id,
+  device: s.device || "Desktop",
+  browser: s.browser || "Unknown Browser",
+  ipAddress: s.ipAddress || "127.0.0.1",
+  location: s.location || "Unknown Location",
+  loginAt: s.loginAt,
+  expiresAt: s.expiresAt,
+  isCurrent: s.id === session.sessionId,
+}));
 
     return NextResponse.json({
       success: true,
