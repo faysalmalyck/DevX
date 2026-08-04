@@ -273,7 +273,6 @@ export const getCaseStudyBySlug = (slug: string): CaseStudy | undefined => {
 
   const cleanSlug = decodeURIComponent(slug)
     .replace(/^\/case-studies\//, '')
-    .replace(/^\/project\//, '')
     .replace(/^\//, '')
     .toLowerCase()
     .trim();

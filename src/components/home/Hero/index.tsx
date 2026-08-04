@@ -70,18 +70,18 @@ export default function HeroSection() {
 
               {/* Action Buttons */}
               <div className="opacity-0 animate-fade-up delay-200 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
-                <Link
-                  href="/contact"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
-                >
-                  Contact us
-                </Link>
-                <Link
-                  href="/services"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-3.5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
-                >
-                  Our services
-                </Link>
+               <Link
+  href="/contact"
+  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-8 py-5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
+>
+  Contact us
+</Link>
+<Link
+  href="/services"
+  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
+>
+  Our services
+</Link>
               </div>
 
             </div>

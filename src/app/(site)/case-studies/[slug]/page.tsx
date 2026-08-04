@@ -14,7 +14,7 @@
   }
 
   // Helper to strip leading slashes or paths if data has them
-  const cleanSlug = (slug: string) => slug.replace(/^\/case-studies\//, '').replace(/^\/project\//, '').replace(/^\//, '');
+  const cleanSlug = (slug: string) => slug.replace(/^\/case-studies\//, '').replace(/^\//, '');
 
   export async function generateStaticParams() {
     return caseStudiesData.map((study) => ({

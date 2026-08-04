@@ -24,7 +24,7 @@ export default function CareerHero({ career }: { career: Career }) {
           </div>
 
           {/* Title */}
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight">
+          <h1 className="text-5xl xs:text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight">
             {career.title}
           </h1>
 
@@ -35,14 +35,13 @@ export default function CareerHero({ career }: { career: Career }) {
 
           {/* Apply Button */}
           <div className="mt-8 sm:mt-12 flex justify-center">
-            <a
-              href="#apply"
-              className="inline-block w-full sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-5 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40"
-            >
-              Apply now
-            </a>
-            
-          </div>
+  <a
+    href="#apply"
+    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-5 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40"
+  >
+    Apply now
+  </a>
+</div>
         </div>
       </div>
     </div>

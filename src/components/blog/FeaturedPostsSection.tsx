@@ -20,8 +20,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
  dark:text-gray-100">      
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 w-full">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white">
-            Articles <span className="text-blue-500">&amp;</span> Resources
+<h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white text-center sm:text-left">            Articles <span className="text-blue-500">&amp;</span> Resources
           </h1>
           <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md md:text-left">
             Discover the latest insights, developer toolkits, and best practices 
