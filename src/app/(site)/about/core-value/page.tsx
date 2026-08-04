@@ -1,4 +1,4 @@
-import CoreValues from "@/app/(site)/core values/CoreValue";
+import CoreValues from "@/app/(site)/core-values/CoreValue";
 import React from "react";
 
 export const metadata = {
