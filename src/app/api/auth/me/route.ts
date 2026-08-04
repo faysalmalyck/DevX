@@ -56,8 +56,8 @@ export async function GET() {
           createdAt: admin.createdAt,
           userType: "admin",
           permissions: admin.role.permissions.map(
-            (rp) => `${rp.permission.module}:${rp.permission.action}`
-          ),
+  (rp: any) => `${rp.permission.module}:${rp.permission.action}`
+),
           isCeo: admin.id === "ceo-faysal-mushtaq" || admin.role.isSuperAdmin,
         },
       });
