@@ -3,7 +3,7 @@ import HeroSub from "@/components/SharedComponent/HeroSub";
 import { Metadata } from "next";
 import CounterSection from '@/app/(site)/about/Count/Counter';
 import TeamSection from "../Team/TeamPage";
-import CoreValuesSection from "../core values/CoreValue";
+import CoreValuesPage from "./core-value/page";
 import ReadyToStart from "@/components/Home/ReadytoContact/Ready";
 
 
@@ -46,7 +46,7 @@ const page = () => {
 
 <CounterSection/>
 <TeamSection/>
-<CoreValuesSection/>
+<CoreValuesPage/>
 <ReadyToStart/>
 
 </div>
