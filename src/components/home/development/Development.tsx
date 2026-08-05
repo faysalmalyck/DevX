@@ -18,7 +18,7 @@ export default function Development() {
           className="mb-8 sm:mb-14 md:mb-16 text-center animate-fade-up-slow"
           style={{ animationDelay: "100ms" }}
         >
-          <h2 className="mx-auto max-w-4xl text-3xl sm:text-4xl md:text-5xl py-4 sm:py-10 md:py-16 tracking-tight text-slate-900 dark:text-white leading-tight sm:leading-snug">
+          <h2 className="mx-auto max-w-4xl text-4xl sm:text-4xl md:text-5xl py-4 sm:py-10 md:py-16 tracking-tight text-slate-900 dark:text-white leading-tight sm:leading-snug">
             We are development experts on all{" "}
             <span className="text-blue-600 dark:text-blue-500">technologies</span> &amp;{" "}
             <span className="text-blue-600 dark:text-blue-500">platforms</span>
@@ -82,7 +82,7 @@ export default function Development() {
         >
           <Link
             href="/pricing"
-            className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
           >
             Get Pricing
           </Link>

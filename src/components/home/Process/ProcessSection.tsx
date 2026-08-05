@@ -3,33 +3,33 @@ import Link from 'next/link';
 
 export default function ProcessSection() {
   const steps = [
-    {
-      id: 1,
-      title: '1. Project Idea',
-      description: 'Lorem ipsum dolor sit amet consectoli tur adipiscing elit',
-      highlightText: 'semper dalar.',
-      imageOn: '/images/Process/plan-on.png',
-      imageOff: '/images/Process/plan-off.png',
-      offsetClass: 'mt-0',
-    },
-    {
-      id: 2,
-      title: '2. Development & Execution',
-      description: 'Vitae sapien pellentesque habitant morbi tristique senectus et',
-      highlightText: 'faucibus aolm.',
-      imageOn: '/images/Process/launch-on.png',
-      imageOff: '/images/Process/launch-off.png',
-      offsetClass: 'lg:mt-20',
-    },
-    {
-      id: 3,
-      title: '3. Launch & Scale',
-      description: 'Eu sem integer vitae justo eget magnalom fermentum sulputate odio',
-      highlightText: 'ut enim.',
-      imageOn: '/images/Process/scale-on.png',
-      imageOff: '/images/Process/scale-off.png',
-      offsetClass: 'lg:mt-40',
-    },
+   {
+  id: 1,
+  title: '1. Project Idea',
+  description: 'Define business goals, strategy, and project requirements clearly.',
+  highlightText: 'Strategic planning.',
+  imageOn: '/images/Process/plan-on.png',
+  imageOff: '/images/Process/plan-off.png',
+  offsetClass: 'mt-0',
+},
+{
+  id: 2,
+  title: '2. Development & Execution',
+  description: 'Build, test, and refine every feature with precision.',
+  highlightText: 'Build with precision.',
+  imageOn: '/images/Process/launch-on.png',
+  imageOff: '/images/Process/launch-off.png',
+  offsetClass: 'lg:mt-20',
+},
+{
+  id: 3,
+  title: '3. Launch & Scale',
+  description: 'Launch your product and scale for long term growth.',
+  highlightText: 'Continuous growth.',
+  imageOn: '/images/Process/scale-on.png',
+  imageOff: '/images/Process/scale-off.png',
+  offsetClass: 'lg:mt-40',
+},
   ];
 
   return (
@@ -37,7 +37,7 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center pt-2 sm:pt-8 pb-6 sm:pb-12 mb-6 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
+          <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
             We have a simple, yet{' '}
             <span className="text-blue-600 dark:text-blue-400">bulletproof</span> and{' '}
             <span className="text-blue-600 dark:text-blue-400">effective</span> process.
@@ -92,7 +92,7 @@ export default function ProcessSection() {
         <div className="mt-8 sm:mt-12 py-6 sm:py-12 md:py-20 flex justify-center">
           <Link
             href="/contact"
-            className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
           >
             Contact us
           </Link>

@@ -103,18 +103,21 @@ const Header: React.FC = () => {
   const isDark = mounted && resolvedTheme === "dark";
   const isHomePage = pathUrl === "/";
 
-  // Navigation Text & Icon Styling Strategy
-  const navTextColor =
-    !sticky && isHomePage
-      ? "text-white dark:text-white"
-      : "text-slate-900 dark:text-white";
+  // Text color state handling:
+  // - If mobile drawer is open: always dark text in light mode, white in dark mode
+  // - If transparent home header: white text in both themes
+  // - Standard (sticky or non-home page): slate-900 in light mode, white in dark mode
+  const navTextColor = navbarOpen
+    ? "text-slate-900 dark:text-white"
+    : !sticky && isHomePage
+    ? "text-white"
+    : "text-slate-900 dark:text-white";
 
-  const burgerLineBg =
-    navbarOpen
-      ? "bg-slate-900 dark:bg-white"
-      : !sticky && isHomePage
-      ? "bg-white"
-      : "bg-slate-900 dark:bg-white";
+  const burgerLineBg = navbarOpen
+    ? "bg-slate-900 dark:bg-white"
+    : !sticky && isHomePage
+    ? "bg-white"
+    : "bg-slate-900 dark:bg-white";
 
   return (
     <header
@@ -139,11 +142,11 @@ const Header: React.FC = () => {
             <button
               type="button"
               onClick={openCart}
-              className="hidden lg:inline-flex items-center gap-1 font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-500"
+              className={`hidden lg:inline-flex items-center gap-1 font-semibold hover:text-blue-500 dark:hover:text-blue-500 ${navTextColor}`}
             >
               <span>
                 Cart (
-                <span className="text-gray-900 dark:text-white">
+                <span className={navTextColor}>
                   {itemCount}
                 </span>
                 )
@@ -214,10 +217,10 @@ const Header: React.FC = () => {
           <button
             type="button"
             onClick={openCart}
-            className={`relative flex h-10 w-10 items-center justify-center lg:hidden ${navTextColor}`}
+            className={`relative flex h-10 w-10 items-center justify-center lg:hidden transition-colors ${navTextColor}`}
             aria-label="Open cart"
           >
-            <ShoppingBag className="h-5 w-5" />
+            <ShoppingBag className="h-5 w-5 stroke-current" />
 
             {itemCount > 0 && (
               <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">

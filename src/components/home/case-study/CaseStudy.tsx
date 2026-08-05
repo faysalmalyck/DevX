@@ -23,7 +23,7 @@ export default function CaseStudiesSection() {
     <section className="relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
       {/* Header Container */}
       <div className="max-w-2xl mx-auto text-center pt-8 pb-12 mb-10">
-        <h2 className="text-3xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-tight ">
+        <h2 className="text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-tight ">
           Discover how we had helped{' '}
           <br className="hidden md:inline" />
           <span className="text-blue-600 dark:text-blue-500">world class companies</span>{' '}

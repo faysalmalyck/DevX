@@ -44,22 +44,19 @@ export default function CtaSection() {
               {/* Action Buttons */}
               <div className="lg:col-span-5">
                 <div
-                  className={`flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-end transition-all duration-500 ease-out delay-300 ${
-                    isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-5'
-                  }`}
-                >
-                  <Link
-                    href="/contact"
-                    className="w-full sm:w-auto text-center rounded-full bg-blue-600 px-10 py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
-                  >
-                    Contact us
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="w-full sm:w-auto text-center rounded-full border border-slate-300 bg-white px-10 py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
-                  >
-                    Browse Case Studies
-                  </Link>
+  className={`flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-end transition-all duration-500 ease-out delay-300 ${
+    isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-5"
+  }`}
+>
+  <Link
+    href="/contact"
+className="inline-flex w-[230px] sm:w-[220px] lg:w-auto items-center justify-center rounded-full bg-blue-600 px-6 lg:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95">    Contact us
+  </Link>
+
+  <Link
+    href="/services"
+className="inline-flex w-[230px] sm:w-[260px] lg:w-auto items-center justify-center text-center rounded-full border border-slate-300 bg-white px-6 lg:px-10 py-5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95">    Browse Case Studies
+  </Link>
                 </div>
               </div>
             </div>

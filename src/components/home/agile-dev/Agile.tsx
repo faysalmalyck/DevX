@@ -22,7 +22,7 @@ export default function TeamSection() {
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-gray-900 dark:text-white">
         {/* Header */}
         <div className="max-w-md sm:max-w-2xl lg:max-w-3xl mx-auto mb-6 sm:mb-8 text-center">
-          <h2 className="py-2 sm:py-4 text-3xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
+          <h2 className="py-2 sm:py-4 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
             We are an agile team of passionate{" "}
             <span className="text-blue-600 dark:text-blue-500">developers</span>
           </h2>
@@ -73,7 +73,7 @@ export default function TeamSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 py-6 sm:py-12 md:py-20">
             <Link
               href="/contact"
-              className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
+              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
             >
               Contact us
             </Link>

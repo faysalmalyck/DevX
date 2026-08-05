@@ -10,7 +10,7 @@ export default function TestimonialsSection() {
           {/* Header Section */}
           <div className="mb-10 flex flex-col py-6 sm:py-10 items-center md:items-center justify-between gap-6 md:flex-row text-center md:text-left">
             {/* Heading resized for mobile */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-tight text-midnight_text dark:text-white leading-snug sm:leading-tight">
+            <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-midnight_text dark:text-white leading-snug sm:leading-tight">
               What our great <span className="text-blue-600">customers</span> say
             </h2>
         
