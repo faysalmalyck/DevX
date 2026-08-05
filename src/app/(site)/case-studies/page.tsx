@@ -5,7 +5,7 @@ import { caseStudiesData as caseStudies } from '@/data/case-studies';
 
 export default function CaseStudy() {
   return (
-    <section className="mt-32 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
+    <section className="mt-32 mb-16 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
       {/* Header Container */}
       <div className="max-w-2xl mx-auto text-center pt-8 pb-4 mb-2">
         <h2 className="text-3xl md:text-7xl tracking-tight text-gray-900 dark:text-white leading-tight ">
@@ -55,7 +55,7 @@ export default function CaseStudy() {
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
       </div>
 
-      
+      <div className="my-34 h-[1px] w-full bg-gray-200 dark:bg-gray-800" />
       <CtaSection />
     </section>
   );

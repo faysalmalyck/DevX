@@ -1,29 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { caseStudiesData } from '@/data/case-studies'; // Adjust path based on your folder setup
 
 export default function CaseStudiesSection() {
-  const caseStudies = [
-    {
-      id: 1,
-      slug: '/case-studies/how-we-improved-application-new-website-speed-by-78',
-      title: 'How we improved Application new website speed by 78%',
-      logo: 'https://cdn.prod.website-files.com/6217ab51d0be6980f1513f21/65525409dc8fde0a0419d014_application-logo-case-study-dev-x-webflow-template.svg',
-      alt: 'Application Logo',
-    },
-    {
-      id: 2,
-      slug: '/case-studies/how-we-helped-business-launch-new-rooms-in-less-than-6-months',
-      title: 'How we helped Business launch new rooms in less than 6 months',
-      logo: 'https://cdn.prod.website-files.com/6217ab51d0be6980f1513f21/6552543446647bfe309272e1_business-logo-case-study-dev-x-webflow-template.svg',
-      alt: 'Business Logo',
-    },
-  ];
-
   return (
     <section className="relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
       {/* Header Container */}
       <div className="max-w-2xl mx-auto text-center pt-8 pb-12 mb-10">
-        <h2 className="text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-tight ">
+        <h2 className="text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-tight">
           Discover how we had helped{' '}
           <br className="hidden md:inline" />
           <span className="text-blue-600 dark:text-blue-500">world class companies</span>{' '}
@@ -34,10 +18,10 @@ export default function CaseStudiesSection() {
       {/* Grid Container */}
       <div className="relative">
         <div className="grid grid-cols-1 py-10 md:grid-cols-2 gap-4 relative z-10">
-          {caseStudies.map((study) => (
+          {caseStudiesData.map((study) => (
             <Link
               key={study.id}
-              href={study.slug}
+              href={`/case-studies/${study.slug}`}
               className="group relative bg-gray-100/80 dark:bg-[#252d41] rounded-lg border border-gray-200/80 dark:border-slate-700/80 py-20 px-14 md:py-16 md:px-12 min-h-[350px] shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl transition-all duration-200 ease-in-out flex flex-col justify-between hover:scale-[0.99] hover:opacity-60"
             >
               <div>

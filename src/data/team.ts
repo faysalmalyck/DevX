@@ -1,75 +1,123 @@
-export type TeamMember = {
+export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  description: string;
-  image: string;
-  department: "Leadership" | "Engineering" | "Sales & Growth";
-  visible: boolean;
-};
+  bio: string;
+  imageUrl: string;
+  slug: string;
+  department?: string;
+  visible?: boolean;
+  socials?: {
+    facebook?: string;
+    twitter?: string;
+    github?: string;
+  };
+}
 
-export const TEAM_STORAGE_KEY = "DevX-team-members";
+export const TEAM_STORAGE_KEY = "devx_team_members";
 
-export const defaultTeamMembers: TeamMember[] = [
+export const departments = [
+  "Executive",
+  "Engineering",
+  "Mobile",
+  "Sales",
+  "Marketing",
+];
+
+export const teamMembers: TeamMember[] = [
   {
-    id: "faysal-mushtaq",
+    id: "1",
     name: "Faysal Mushtaq",
-    role: "CEO & Founder",
-    description: "Leading the company with strategic vision, innovation, and a commitment to sustainable growth. Guiding teams and strategy to deliver exceptional digital solutions and lasting client value.",
-    image: "/images/hero/faysal.png",
-    department: "Leadership",
+    role: "Chief Executive Officer",
+    bio: "Leading the company with strategic vision, innovation, and a commitment to sustainable growth. Guiding teams and strategy to deliver exceptional digital solutions and lasting client value.",
+    imageUrl: "/images/hero/faysal.png",
+    slug: "faysal-mushtaq",
+    department: "Executive",
     visible: true,
+    socials: {
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+    },
   },
   {
-    id: "barkat",
-    name: "Barkat",
-    role: "CTO & Sr. Software Engineer",
-    description: "Leading engineering teams to build secure, scalable, and high performance software.",
-    image: "/images/hero/barkat.jpg",
-    department: "Engineering",
+    id: "2",
+    name: "Barkat Ullah",
+    role: "Chief Technology Officer",
+    bio: "Directing technology strategy, leading R&D, and ensuring the delivery of robust, scalable technical solutions. Drives innovation and technical excellence across all projects.",
+    imageUrl: "/images/hero/barkat.jpg",
+    slug: "barkat-ullah",
+    department: "Executive",
     visible: true,
+    socials: {
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+    },
   },
   {
-    id: "raja-saad-raza",
-    name: "Raja Saad Raza",
-    role: "iOS App Engineer",
-    description: "Developing high performance iOS apps for every stage of growth.",
-    image: "/images/hero/saad.png",
-    department: "Engineering",
+    id: "3",
+    name: "Saad",
+    role: "iOS App Developer",
+    bio: "Creating seamless, high-performance iOS applications with a focus on user experience and functionality. Skilled in Swift, SwiftUI, and mobile architecture to deliver polished, reliable apps.",
+    imageUrl: "/images/hero/saad.png",
+    slug: "saad",
+    department: "Mobile",
     visible: true,
+    socials: {
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+    },
   },
   {
-    id: "usama-ishaq",
-    name: "Usama Ishaq",
-    role: "Android/iOS App Engineer",
-    description: "Designing responsive Android apps that deliver exceptional experiences.",
-    image: "/images/hero/usama.png",
-    department: "Engineering",
+    id: "4",
+    name: "Usama",
+    role: "iOS/Android App Engineer",
+    bio: "Developing cross-platform mobile applications for both iOS and Android. Skilled in building high-quality, user-focused mobile experiences using Flutter and other relevant technologies.",
+    imageUrl: "/images/hero/usama.png",
+    slug: "usama",
+    department: "Mobile",
     visible: true,
+    socials: {
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+    },
   },
   {
-    id: "saqib-mushtaq",
-    name: "Saqib Mushtaq",
-    role: "Account Executive (EdTech)",
-    description: "Helping education partners achieve growth through tailored technology solutions.",
-    image: "/images/hero/saqib.png",
-    department: "Sales & Growth",
-    visible: true,
-  },
-  {
-    id: "afzal-ashraf",
+    id: "5",
     name: "Afzal Ashraf",
     role: "Account Executive",
-    description: "Manages enterprise client success, product positioning, and strategic alignment.",
-    image: "/images/hero/afzal.png",
-    department: "Sales & Growth",
+    bio: "Leveraging strong communication and negotiation skills to build lasting client relationships. Drives business growth through strategic account management and exceptional service delivery.",
+    imageUrl: "/images/hero/afzal.png",
+    slug: "afzal-ashraf",
+    department: "Sales",
     visible: true,
+    socials: {
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+    },
   },
-  
+  {
+    id: "6",
+    name: "Saqib Mushtaq",
+    role: "SEO Specialist",
+    bio: "Drives business growth through strategic SEO strategies, content optimization, and advanced analytics to enhance online visibility and search rankings.",
+    imageUrl: "/images/hero/saqib.png",
+    slug: "saqib-mushtaq",
+    department: "Marketing",
+    visible: true,
+    socials: {
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+    },
+  },
 ];
 
-export const departments: TeamMember["department"][] = [
-  "Leadership",
-  "Engineering",
-  "Sales & Growth",
-];
+export const getTeamMemberBySlug = (slug: string): TeamMember | undefined => {
+  if (!slug) return undefined;
+  return teamMembers.find((member) => member.slug.toLowerCase().trim() === slug.toLowerCase().trim());
+};
