@@ -140,18 +140,22 @@ const Header: React.FC = () => {
             ))}
 
             <button
-              type="button"
-              onClick={openCart}
-              className={`hidden lg:inline-flex items-center gap-1 font-semibold hover:text-blue-500 dark:hover:text-blue-500 ${navTextColor}`}
-            >
-              <span>
-                Cart (
-                <span className={navTextColor}>
-                  {itemCount}
-                </span>
-                )
-              </span>
-            </button>
+  type="button"
+  onClick={openCart}
+  className="hidden lg:inline-flex items-center font-semibold group"
+>
+  <span className="text-slate-600 dark:text-white transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+    Cart(
+  </span>
+
+  <span className="text-slate-600 dark:text-white">
+    {itemCount}
+  </span>
+
+  <span className="text-slate-600 dark:text-white transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+    )
+  </span>
+</button>
           </div>
         </nav>
 
@@ -231,31 +235,36 @@ const Header: React.FC = () => {
 
           {/* Mobile Hamburger Toggle */}
           <button
-            ref={toggleButtonRef}
-            type="button"
-            onClick={toggleMenu}
-            className="relative z-[10001] flex h-12 w-12 items-center justify-center bg-transparent focus:outline-none lg:hidden touch-manipulation"
-            aria-label="Toggle mobile menu"
-            aria-expanded={navbarOpen}
-          >
-            <div className="relative flex h-4 w-5 flex-col justify-between pointer-events-none">
-              <span
-                className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
-                  navbarOpen ? "translate-y-[7px] rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
-                  navbarOpen ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
-                  navbarOpen ? "-translate-y-[7px] -rotate-45" : ""
-                }`}
-              />
-            </div>
-          </button>
+  ref={toggleButtonRef}
+  type="button"
+  onClick={toggleMenu}
+  onTouchEnd={(e) => {
+    e.preventDefault();
+    toggleMenu();
+  }}
+  className="relative z-[10001] flex h-12 w-12 items-center justify-center bg-transparent lg:hidden touch-manipulation select-none focus:outline-none"
+  aria-label="Toggle mobile menu"
+  aria-expanded={navbarOpen}
+  aria-controls="mobile-menu"
+>
+  <div className="pointer-events-none relative flex h-4 w-5 flex-col justify-between">
+    <span
+      className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
+        navbarOpen ? "translate-y-[7px] rotate-45" : ""
+      }`}
+    />
+    <span
+      className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
+        navbarOpen ? "opacity-0" : "opacity-100"
+      }`}
+    />
+    <span
+      className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
+        navbarOpen ? "-translate-y-[7px] -rotate-45" : ""
+      }`}
+    />
+  </div>
+</button>
         </div>
       </div>
 

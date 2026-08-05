@@ -48,7 +48,7 @@ export default function CareersHero() {
       </div>
 
       {/* Main Container */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Top Hero Block */}
         <div className="mx-auto max-w-3xl text-center">

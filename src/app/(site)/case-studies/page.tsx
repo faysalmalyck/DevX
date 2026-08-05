@@ -5,14 +5,14 @@ import { caseStudiesData as caseStudies } from '@/data/case-studies';
 
 export default function CaseStudy() {
   return (
-    <section className="mt-32 mb-16 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
+    <section className="mt-15 mb-16 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
       {/* Header Container */}
       <div className="max-w-2xl mx-auto text-center pt-8 pb-4 mb-2">
-        <h2 className="text-3xl md:text-7xl tracking-tight text-gray-900 dark:text-white leading-tight ">
+        <h2 className="text-5xl md:text-7xl tracking-tight text-gray-900 dark:text-white leading-tight ">
           Case{' '}
           <span className="text-blue-600 dark:text-blue-600">Studies</span>{' '}
         </h2>
-        <p  className="mt-4 text-gray-600 dark:text-white text-lg leading-relaxed">
+        <p  className="mt-4 text-gray-600 dark:text-white text-base leading-relaxed">
           Explore how we've helped startups enterprises and growing businesses solve complex challenges through innovative engineering scalable architecture and user-focused digital products. 
         </p>
       </div>
