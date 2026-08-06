@@ -4,7 +4,23 @@ import React, { useState, useEffect } from "react";
 import { useSession } from "@/contexts/SessionContext";
 import { useRouter, usePathname } from "next/navigation";
 import AdminSidebar, { type AdminArea } from "@/components/admin/AdminSidebar";
-import { Menu, X, LogOut, Settings, Moon, Sun, ShieldCheck, Users, Building2, KeyRound, ClipboardList, LayoutDashboard } from "lucide-react";
+import {
+  Menu,
+  X,
+  LogOut,
+  Settings,
+  Moon,
+  Sun,
+  ShieldCheck,
+  Users,
+  Building2,
+  KeyRound,
+  ClipboardList,
+  LayoutDashboard,
+  Search,
+  Bell,
+  ChevronRight,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
@@ -23,10 +39,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#181d2b] text-white">
-        <div className="text-center space-y-4">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-t-primary border-white/10 mx-auto"></div>
-          <p className="text-zinc-400 font-medium">Securing operator workspace...</p>
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-[#0B0F19]">
+        <div className="space-y-4 text-center">
+          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600 dark:border-white/10 dark:border-t-blue-500" />
+          <p className="font-medium text-slate-500 dark:text-zinc-400">
+            Securing operator workspace...
+          </p>
         </div>
       </div>
     );
@@ -36,41 +54,46 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return null;
   }
 
-  // Derive active sidebar key from pathname
   let activeKey: AdminArea = "dashboard";
-  if (pathname.includes("/admin/team")) activeKey = "team";
-  else if (pathname.includes("/admin/clients")) activeKey = "clients";
-  else if (pathname.includes("/admin/administration/admins")) activeKey = "admins";
-  else if (pathname.includes("/admin/administration/roles")) activeKey = "roles";
-  else if (pathname.includes("/admin/administration/permissions")) activeKey = "permissions";
-  else if (pathname.includes("/admin/administration/activity")) activeKey = "activity";
-  else if (pathname.includes("/admin/administration/sessions")) activeKey = "sessions";
-  else if (pathname.includes("/admin/admin/profile")) activeKey = "profile";
-  else if (pathname.includes("/admin/admin/security")) activeKey = "security";
+  let pageTitle = "System Overview";
+  
+  if (pathname.includes("/admin/team")) { activeKey = "team"; pageTitle = "Manage Team"; }
+  else if (pathname.includes("/admin/clients")) { activeKey = "clients"; pageTitle = "Manage Clients"; }
+  else if (pathname.includes("/admin/administration/admins")) { activeKey = "admins"; pageTitle = "Administrators"; }
+  else if (pathname.includes("/admin/administration/roles")) { activeKey = "roles"; pageTitle = "Roles"; }
+  else if (pathname.includes("/admin/administration/permissions")) { activeKey = "permissions"; pageTitle = "Permissions"; }
+  else if (pathname.includes("/admin/administration/activity")) { activeKey = "activity"; pageTitle = "Activity Logs"; }
+  else if (pathname.includes("/admin/administration/sessions")) { activeKey = "sessions"; pageTitle = "Login Sessions"; }
+  else if (pathname.includes("/admin/admin/profile")) { activeKey = "profile"; pageTitle = "Profile"; }
+  else if (pathname.includes("/admin/admin/security")) { activeKey = "security"; pageTitle = "Security Settings"; }
 
   return (
-    <div className="flex min-h-screen bg-[#181d2b] text-white">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-[#0B0F19] dark:text-white">
       {/* Desktop Sidebar */}
       <AdminSidebar active={activeKey} />
 
       {/* Mobile Sidebar Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex md:hidden bg-black/80 backdrop-blur-sm">
-          <div className="relative w-64 bg-[#181d2b] p-5 border-r border-white/5 flex flex-col justify-between">
+        <div className="fixed inset-0 z-50 flex bg-slate-950/60 backdrop-blur-sm lg:hidden">
+          <div className="relative flex w-[280px] max-w-[80vw] flex-col justify-between border-r border-slate-200 bg-white p-5 shadow-2xl dark:border-white/10 dark:bg-[#111827]">
             <div>
-              <div className="flex items-center justify-between mb-8">
-                <Link href="/admin" className="text-2xl font-black text-white">
-                  DevX<span className="text-primary">.</span>
+              <div className="mb-8 flex items-center justify-between">
+                <Link href="/admin" className="text-2xl font-black text-slate-900 dark:text-white">
+                  DevX<span className="text-blue-600 dark:text-blue-500">.</span>
                 </Link>
-                <button onClick={() => setMobileMenuOpen(false)} className="text-zinc-400 hover:text-white cursor-pointer">
-                  <X className="h-6 w-6" />
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+                >
+                  <X className="h-5 w-5" />
                 </button>
               </div>
               <AdminSidebarNav active={activeKey} onNavItemClick={() => setMobileMenuOpen(false)} />
             </div>
-            <div className="border-t border-white/5 pt-4 space-y-4">
+            
+            <div className="mt-8 space-y-4 border-t border-slate-200 pt-6 dark:border-white/10">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center font-bold text-primary">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-sm font-bold text-blue-600 shadow-sm dark:border-zinc-800 dark:bg-blue-500/20 dark:text-blue-400">
                   {user.avatar ? (
                     <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
                   ) : (
@@ -78,15 +101,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold truncate">{user.firstName} {user.lastName}</p>
-                  <p className="text-xs text-zinc-500 truncate">{user.role}</p>
+                  <p className="truncate text-sm font-bold text-slate-900 dark:text-white">{user.firstName} {user.lastName}</p>
+                  <p className="truncate text-xs font-medium text-slate-500 dark:text-zinc-500">{user.role}</p>
                 </div>
               </div>
               <div className="flex gap-2">
                 <Link
                   href="/admin/admin/security"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1 flex justify-center items-center gap-2 rounded-xl py-2 text-xs font-semibold border border-white/10 bg-black/20 text-zinc-400"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
                 >
                   <Settings className="h-4 w-4" />
                   Security
@@ -96,7 +119,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     setMobileMenuOpen(false);
                     logout();
                   }}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-rose-500/20 bg-rose-500/10 text-rose-500 cursor-pointer"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-600 transition hover:bg-rose-100 dark:bg-rose-500/10 dark:hover:bg-rose-500/20"
                 >
                   <LogOut className="h-4 w-4" />
                 </button>
@@ -107,65 +130,89 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       )}
 
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]">
         {/* Top Header */}
-        <header className="flex h-16 items-center justify-between border-b border-white/5 px-6 bg-[#181d2b] backdrop-blur-md">
+        <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-4 backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-[#111827]/80 sm:px-6 lg:px-8">
+          
           <div className="flex items-center gap-4">
-            <button onClick={() => setMobileMenuOpen(true)} className="text-zinc-400 hover:text-white md:hidden cursor-pointer">
-              <Menu className="h-6 w-6" />
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 lg:hidden dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+            >
+              <Menu className="h-5 w-5" />
             </button>
-            <h1 className="text-lg font-bold tracking-tight md:text-xl capitalize">
-              {activeKey === "dashboard" ? "System Overview" : `${activeKey.replace("-", " ")}`}
+            
+            {/* Breadcrumb Navigation */}
+            <nav className="hidden items-center gap-2 text-sm font-medium sm:flex">
+              <Link href="/admin" className="text-slate-500 transition hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white">
+                Admin
+              </Link>
+              <ChevronRight className="h-4 w-4 text-slate-400 dark:text-zinc-600" />
+              <span className="text-slate-900 dark:text-white">{pageTitle}</span>
+            </nav>
+            <h1 className="text-lg font-bold text-slate-900 dark:text-white sm:hidden">
+              {pageTitle}
             </h1>
           </div>
 
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-white transition cursor-pointer"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
+          <div className="flex items-center gap-3 sm:gap-5">
+            {/* Global Search */}
+            <div className="hidden lg:block relative group">
+               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Search className="h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+               </div>
+               <input 
+                  type="text" 
+                  placeholder="Search resources..." 
+                  className="w-64 rounded-full border border-slate-200 bg-slate-100 py-2 pl-10 pr-4 text-sm outline-none transition-all focus:w-72 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-zinc-900/50 dark:focus:bg-[#111827]"
+               />
+               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-bold text-slate-400 dark:border-white/10 dark:bg-zinc-800 dark:text-zinc-500">⌘K</span>
+               </div>
+            </div>
 
-            <Link
-              href="/admin/admin/security"
-              className={`rounded-lg p-2 transition hover:bg-white/5 ${
-                activeKey === "security" ? "text-primary bg-primary/10" : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              <Settings className="h-5 w-5" />
-            </Link>
+            <div className="flex items-center gap-1 sm:gap-2">
+              <button
+                className="relative rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+              >
+                <Bell className="h-5 w-5" />
+                <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white dark:ring-[#111827]"></span>
+              </button>
 
-            <div className="h-6 w-px bg-white/5" />
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </button>
+            </div>
 
-            <div className="flex items-center gap-3">
-              <Link href="/admin/admin/profile" className="flex items-center gap-2 group">
-                <div className="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center font-bold text-primary transition group-hover:scale-105">
+            <div className="hidden h-6 w-px bg-slate-200 dark:bg-white/10 sm:block" />
+
+            <div className="hidden sm:flex items-center gap-3">
+              <Link href="/admin/admin/profile" className="group flex items-center gap-3 rounded-full py-1 pl-1 pr-3 transition hover:bg-slate-100 dark:hover:bg-white/5">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-xs font-bold text-blue-600 shadow-sm transition group-hover:scale-105 dark:border-zinc-800 dark:bg-blue-500/20 dark:text-blue-400">
                   {user.avatar ? (
                     <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
                   ) : (
                     user.firstName[0]
                   )}
                 </div>
-                <div className="hidden text-left sm:block">
-                  <p className="text-xs font-semibold leading-tight group-hover:text-primary transition">{user.firstName} {user.lastName}</p>
-                  <p className="text-[10px] text-zinc-500 leading-none">{user.role}</p>
+                <div className="text-left">
+                  <p className="text-sm font-bold leading-tight text-slate-900 transition dark:text-white">
+                    {user.firstName}
+                  </p>
                 </div>
               </Link>
-              <button
-                onClick={logout}
-                className="rounded-lg p-2 text-rose-500 hover:bg-rose-500/10 transition cursor-pointer"
-                title="Sign Out"
-              >
-                <LogOut className="h-5 w-5" />
-              </button>
             </div>
           </div>
         </header>
 
-        {/* Content body */}
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#181d2b]">
-          {children}
+        {/* Content body - scrollable area */}
+        <main className="relative flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 transition-colors duration-300 dark:bg-[#0B0F19]">
+          <div className="mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8">
+            {children}
+          </div>
         </main>
       </div>
     </div>
@@ -195,12 +242,14 @@ function AdminSidebarNav({ active, onNavItemClick }: { active: string; onNavItem
             key={item.key}
             href={item.href}
             onClick={onNavItemClick}
-            className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold transition ${
-              isActive ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-zinc-400 hover:text-white hover:bg-white/5"
+            className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+              isActive
+                ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
             }`}
           >
-            <Icon className="h-4 w-4" />
-            {item.label}
+            <Icon className="h-5 w-5 shrink-0" />
+            <span className="truncate">{item.label}</span>
           </Link>
         );
       })}

@@ -1,7 +1,17 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isAuthOrAdminPage = pathname?.startsWith("/admin") || pathname?.startsWith("/login") || pathname?.startsWith("/register") || pathname?.startsWith("/forgot-password") || pathname?.startsWith("/reset-password");
+
+  if (isAuthOrAdminPage) {
+    return null;
+  }
+
   return (
     <footer className="w-full bg-[#181d2b] text-slate-300">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

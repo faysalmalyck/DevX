@@ -29,6 +29,8 @@ const Header: React.FC = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
+  const isAuthOrAdminPage = pathUrl?.startsWith("/admin") || pathUrl?.startsWith("/login") || pathUrl?.startsWith("/register") || pathUrl?.startsWith("/forgot-password") || pathUrl?.startsWith("/reset-password");
+
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
   };
@@ -118,6 +120,10 @@ const Header: React.FC = () => {
     : !sticky && isHomePage
     ? "bg-white"
     : "bg-slate-900 dark:bg-white";
+
+  if (isAuthOrAdminPage) {
+    return null;
+  }
 
   return (
     <header

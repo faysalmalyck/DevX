@@ -4,8 +4,6 @@ import { verifyPassword, hashPassword } from "@/lib/auth/hash";
 import { createSession } from "@/lib/auth/session";
 import { checkLoginRateLimit, getClientIp } from "@/lib/auth/rate-limit";
 
-// Helper function to seed default CEO admin if not present
-// Keep this fallback check just in case, but seeding should be in seed.ts primarily
 async function ensureDefaultCeoAdmin() {
   try {
     let ceoRole = await prisma.role.findUnique({
@@ -24,30 +22,53 @@ async function ensureDefaultCeoAdmin() {
       });
     }
 
-    const defaultCeoEmail = "ceo@DevX.com";
-    const existingAdmin = await prisma.admin.findUnique({
-      where: { email: defaultCeoEmail },
+    const defaultCeoEmail = "faysalmalick11@gmail.com";
+    const defaultUsername = "faysal";
+    const rawPassword = "Faysal123";
+
+    const existingAdmin = await prisma.admin.findFirst({
+      where: {
+        OR: [
+          { email: defaultCeoEmail },
+          { username: defaultUsername },
+        ],
+      },
     });
 
+    const hashedPassword = await hashPassword(rawPassword);
+
     if (!existingAdmin) {
-      const hashedPassword = await hashPassword("faysal123");
       await prisma.admin.create({
         data: {
           id: "ceo-faysal-mushtaq",
           firstName: "Faysal",
-          lastName: "Mushtaq",
+          lastName: "Malick",
           email: defaultCeoEmail,
-          username: "faysal",
+          username: defaultUsername,
           password: hashedPassword,
           roleId: ceoRole.id,
           status: "ACTIVE",
-          twoFactorEnabled: true,
+          twoFactorEnabled: false,
           requirePasswordChange: false,
+          failedLoginAttempts: 0,
+          lockedUntil: null,
+        },
+      });
+    } else {
+      // Force update password, reset lockout, and clean up flags if record already exists
+      await prisma.admin.update({
+        where: { id: existingAdmin.id },
+        data: {
+          email: defaultCeoEmail,
+          password: hashedPassword,
+          failedLoginAttempts: 0,
+          lockedUntil: null,
+          status: "ACTIVE",
         },
       });
     }
   } catch (error) {
-    console.error("Failed to seed default CEO admin:", error);
+    console.error("Failed to seed or sync default CEO admin:", error);
   }
 }
 
@@ -87,6 +108,9 @@ export async function POST(request: Request) {
       );
     }
 
+    const cleanIdentifier = email.trim().toLowerCase();
+    const cleanPassword = password.trim();
+
     const ua = request.headers.get("user-agent") || "";
     const { browser, device } = parseUserAgent(ua);
 
@@ -96,8 +120,8 @@ export async function POST(request: Request) {
       const admin = await prisma.admin.findFirst({
         where: {
           OR: [
-            { email: email },
-            { username: email },
+            { email: cleanIdentifier },
+            { username: cleanIdentifier },
           ],
           deletedAt: null,
         },
@@ -129,9 +153,8 @@ export async function POST(request: Request) {
         );
       }
 
-      const isValidPassword = await verifyPassword(password, admin.password);
+      const isValidPassword = await verifyPassword(cleanPassword, admin.password);
       if (!isValidPassword) {
-        // Increment failed attempts
         const newAttempts = admin.failedLoginAttempts + 1;
         const shouldLock = newAttempts >= 5;
         const lockedUntil = shouldLock ? new Date(Date.now() + 15 * 60 * 1000) : null;
@@ -144,7 +167,6 @@ export async function POST(request: Request) {
           },
         });
 
-        // Audit Log for failed login
         await prisma.auditLog.create({
           data: {
             actorId: admin.id,
@@ -219,8 +241,8 @@ export async function POST(request: Request) {
       const user = await prisma.user.findFirst({
         where: {
           OR: [
-            { email: email },
-            { username: email },
+            { email: cleanIdentifier },
+            { username: cleanIdentifier },
           ],
           deletedAt: null,
         },
@@ -240,7 +262,7 @@ export async function POST(request: Request) {
         );
       }
 
-      const isValidPassword = await verifyPassword(password, user.password);
+      const isValidPassword = await verifyPassword(cleanPassword, user.password);
       if (!isValidPassword) {
         await prisma.auditLog.create({
           data: {
@@ -258,7 +280,6 @@ export async function POST(request: Request) {
         );
       }
 
-      // Update User Last Login
       await prisma.user.update({
         where: { id: user.id },
         data: {
@@ -266,7 +287,6 @@ export async function POST(request: Request) {
         },
       });
 
-      // Create Session
       const session = await createSession({
         userId: user.id,
         email: user.email,
@@ -278,7 +298,6 @@ export async function POST(request: Request) {
         ipAddress: ip,
       });
 
-      // Audit Logs
       await prisma.userActivity.create({
         data: {
           userId: user.id,
@@ -323,4 +342,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

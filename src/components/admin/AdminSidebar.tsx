@@ -1,11 +1,51 @@
+"use client";
+
 import Link from "next/link";
-import { Building2, ClipboardList, KeyRound, LayoutDashboard, ShieldCheck, Users, Settings, User, LogOut } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Building2,
+  ClipboardList,
+  KeyRound,
+  LayoutDashboard,
+  ShieldCheck,
+  Users,
+  Settings,
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 
-export type AdminArea = "dashboard" | "clients" | "team" | "admins" | "roles" | "permissions" | "activity" | "sessions" | "profile" | "security";
+export type AdminArea =
+  | "dashboard"
+  | "clients"
+  | "team"
+  | "admins"
+  | "roles"
+  | "permissions"
+  | "activity"
+  | "sessions"
+  | "profile"
+  | "security";
 
 export default function AdminSidebar({ active }: { active: AdminArea }) {
   const { user, logout } = useSession();
+  const [collapsed, setCollapsed] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const saved = localStorage.getItem("devx_sidebar_collapsed");
+    if (saved === "true") {
+      setCollapsed(true);
+    }
+  }, []);
+
+  const toggleCollapse = () => {
+    const next = !collapsed;
+    setCollapsed(next);
+    localStorage.setItem("devx_sidebar_collapsed", String(next));
+  };
 
   const primaryNav = [
     { label: "Dashboard", href: "/admin", key: "dashboard", icon: LayoutDashboard },
@@ -21,96 +61,160 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
     { label: "Login Sessions", href: "/admin/administration/sessions", key: "sessions", icon: KeyRound },
   ] as const;
 
+  // Don't render the transition until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return <aside className="hidden h-screen w-64 md:block shrink-0 border-r border-slate-200 bg-white dark:border-white/10 dark:bg-[#111827]" />;
+  }
+
   return (
-    <aside className="hidden w-64 shrink-0 flex-col justify-between border-r border-white/5 bg-[#181d2b] p-5 md:flex">
-      <div>
-        <div className="mb-8 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-black tracking-tight text-white">
-            DevX<span className="text-primary">.</span>
+    <aside
+      className={`group relative hidden h-screen shrink-0 flex-col justify-between border-r border-slate-200 bg-white transition-all duration-300 dark:border-white/10 dark:bg-[#111827] md:flex ${
+        collapsed ? "w-20" : "w-64"
+      }`}
+    >
+      <div className="flex flex-col overflow-y-auto overflow-x-hidden">
+        {/* Brand Header */}
+        <div className={`flex h-16 shrink-0 items-center border-b border-slate-100 dark:border-white/5 ${collapsed ? "justify-center px-0" : "justify-between px-6"}`}>
+          <Link
+            href="/admin"
+            className={`flex items-center gap-2 overflow-hidden transition-all duration-300 ${collapsed ? "w-0 opacity-0" : "w-auto opacity-100"}`}
+          >
+            <span className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+              DevX<span className="text-blue-600 dark:text-blue-500">.</span>
+            </span>
+            <span className="rounded bg-blue-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:bg-blue-500/20 dark:text-blue-400">
+              Ops
+            </span>
           </Link>
-          <span className="rounded-full bg-primary/10 border border-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary uppercase">
-            Ops
-          </span>
+          
+          {collapsed && (
+            <Link href="/admin" className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+              D<span className="text-blue-600 dark:text-blue-500">.</span>
+            </Link>
+          )}
+
+          {/* Toggle Button - Absolute when collapsed, inline when expanded */}
+          <button
+            onClick={toggleCollapse}
+            className={`flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all hover:bg-slate-50 hover:text-slate-900 dark:border-white/10 dark:bg-[#181d2b] dark:text-zinc-400 dark:hover:text-white ${
+              collapsed ? "absolute -right-3 top-5" : ""
+            }`}
+          >
+            {collapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
+          </button>
         </div>
 
-        <nav className="space-y-6">
-          <div className="space-y-1">
-            <p className="px-3 pb-2 text-[10px] font-bold uppercase tracking-[.15em] text-zinc-500">Core Modules</p>
-            {primaryNav.map(({ label, href, key, icon: Icon }) => (
-              <Link
-                key={key}
-                href={href}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold transition duration-200 ${
-                  active === key
-                    ? "bg-primary text-white shadow-lg shadow-primary/20"
-                    : "text-zinc-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                <Icon className="h-4 w-4" />
-                {label}
-              </Link>
-            ))}
+        {/* Main Navigation Sections */}
+        <nav className="flex flex-col gap-6 p-4">
+          <div className="flex flex-col gap-1">
+            {!collapsed && (
+              <p className="px-2 pb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-zinc-500">
+                Core Modules
+              </p>
+            )}
+            {primaryNav.map(({ label, href, key, icon: Icon }) => {
+              const isActive = active === key;
+              return (
+                <Link
+                  key={key}
+                  href={href}
+                  title={collapsed ? label : undefined}
+                  className={`group flex items-center rounded-xl p-2.5 text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+                  } ${collapsed ? "justify-center" : "gap-3 px-3"}`}
+                >
+                  <Icon className={`h-5 w-5 shrink-0 transition-transform duration-200 ${isActive && !collapsed ? "scale-110" : "group-hover:scale-110"}`} />
+                  {!collapsed && <span className="truncate">{label}</span>}
+                </Link>
+              );
+            })}
           </div>
 
-          <div className="space-y-1">
-            <p className="px-3 pb-2 text-[10px] font-bold uppercase tracking-[.15em] text-zinc-500">Administration</p>
-            {adminNav.map(({ label, href, key, icon: Icon }) => (
-              <Link
-                key={key}
-                href={href}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold transition duration-200 ${
-                  active === key
-                    ? "bg-primary text-white shadow-lg shadow-primary/20"
-                    : "text-zinc-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                <Icon className="h-4 w-4" />
-                {label}
-              </Link>
-            ))}
+          <div className="flex flex-col gap-1">
+            {!collapsed && (
+              <p className="px-2 pb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-zinc-500">
+                Administration
+              </p>
+            )}
+            {collapsed && <div className="mx-auto my-2 h-px w-8 bg-slate-200 dark:bg-white/10" />}
+            {adminNav.map(({ label, href, key, icon: Icon }) => {
+              const isActive = active === key;
+              return (
+                <Link
+                  key={key}
+                  href={href}
+                  title={collapsed ? label : undefined}
+                  className={`group flex items-center rounded-xl p-2.5 text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+                  } ${collapsed ? "justify-center" : "gap-3 px-3"}`}
+                >
+                  <Icon className={`h-5 w-5 shrink-0 transition-transform duration-200 ${isActive && !collapsed ? "scale-110" : "group-hover:scale-110"}`} />
+                  {!collapsed && <span className="truncate">{label}</span>}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       </div>
 
-      <div className="border-t border-white/5 pt-4 space-y-4">
-        {user && (
-          <Link href="/admin/admin/profile" className="flex items-center gap-3 group px-2 py-1.5 rounded-xl hover:bg-white/5 transition">
-            <div className="h-10 w-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center font-bold text-primary">
-              {user.avatar ? (
-                <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
-              ) : (
-                user.firstName[0]
-              )}
-            </div>
-            <div className="text-left flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white truncate leading-tight group-hover:text-primary transition">
-                {user.firstName} {user.lastName}
-              </p>
-              <p className="text-[10px] text-zinc-500 truncate leading-none">{user.role}</p>
-            </div>
-          </Link>
-        )}
+      {/* User Info & Actions */}
+      <div className="border-t border-slate-100 p-4 dark:border-white/5">
+        <div className={`flex flex-col ${collapsed ? "items-center gap-3" : "gap-4"}`}>
+          {user && !collapsed && (
+            <Link
+              href="/admin/admin/profile"
+              className="group flex items-center gap-3 rounded-xl p-2 transition hover:bg-slate-50 dark:hover:bg-white/5"
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50 font-bold text-blue-600 dark:border-blue-900/50 dark:bg-blue-500/10 dark:text-blue-400">
+                {user.avatar ? (
+                  <img
+                    src={user.avatar}
+                    alt="avatar"
+                    className="h-full w-full rounded-full object-cover"
+                  />
+                ) : (
+                  user.firstName[0]
+                )}
+              </div>
+              <div className="min-w-0 flex-1 text-left">
+                <p className="truncate text-sm font-bold text-slate-900 transition group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                  {user.firstName} {user.lastName}
+                </p>
+                <p className="truncate text-xs font-medium text-slate-500 dark:text-zinc-500">
+                  {user.role}
+                </p>
+              </div>
+            </Link>
+          )}
 
-        <div className="flex gap-2">
-          <Link
-            href="/admin/admin/security"
-            title="Operator Security Settings"
-            className={`flex-1 flex justify-center items-center gap-2 rounded-xl py-2 text-xs font-semibold border transition duration-200 ${
-              active === "security"
-                ? "bg-primary border-primary text-white"
-                : "border-white/10 bg-black/20 text-zinc-400 hover:text-white hover:border-white/20"
-            }`}
-          >
-            <Settings className="h-4 w-4" />
-            Security
-          </Link>
-          <button
-            onClick={logout}
-            title="Sign Out"
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-rose-500/20 bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white transition duration-200 cursor-pointer"
-          >
-            <LogOut className="h-4 w-4" />
-          </button>
+          <div className={`flex ${collapsed ? "flex-col items-center gap-2" : "items-center gap-2"}`}>
+            <Link
+              href="/admin/admin/security"
+              title="Security Settings"
+              className={`flex items-center justify-center rounded-xl font-medium transition-all duration-200 ${
+                active === "security"
+                  ? "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400"
+                  : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:bg-zinc-800/50 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+              } ${collapsed ? "h-10 w-10 p-0" : "h-10 flex-1 gap-2 text-xs"}`}
+            >
+              <Settings className="h-4 w-4 shrink-0" />
+              {!collapsed && <span>Security</span>}
+            </Link>
+            
+            <button
+              onClick={logout}
+              title="Sign Out"
+              className={`flex shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-600 transition hover:bg-rose-100 hover:text-rose-700 dark:bg-rose-500/10 dark:hover:bg-rose-500/20 dark:hover:text-rose-400 ${
+                collapsed ? "h-10 w-10" : "h-10 w-10"
+              }`}
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </div>
     </aside>
