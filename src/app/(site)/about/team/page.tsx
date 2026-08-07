@@ -1,11 +1,15 @@
 import TeamSection from "@/components/team/TeamPage";
-import React from "react";
+import { getPublishedTeamMembers } from "@/lib/team/queries";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Team | DevX Solutions",
   description: "Meet the team behind DevX Solutions",
 };
 
-export default function TeamPage() {
-  return <TeamSection />;
+export default async function TeamPage() {
+  const members = await getPublishedTeamMembers();
+
+  return <TeamSection members={members} />;
 }

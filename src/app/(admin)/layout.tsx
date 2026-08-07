@@ -1,263 +1,201 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useSession } from "@/contexts/SessionContext";
-import { useRouter, usePathname } from "next/navigation";
-import AdminSidebar, { type AdminArea } from "@/components/admin/AdminSidebar";
-import {
-  Menu,
-  X,
-  LogOut,
-  Settings,
-  Moon,
-  Sun,
-  ShieldCheck,
-  Users,
-  Building2,
-  KeyRound,
-  ClipboardList,
-  BriefcaseBusiness,
-  LayoutDashboard,
-  Search,
-  Bell,
-  ChevronRight,
-} from "lucide-react";
-import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { ChevronRight, Globe2, Menu, Moon, Sun, X } from "lucide-react";
+import { useSession } from "@/contexts/SessionContext";
+import AdminSidebar, { AdminSidebarAccount, AdminSidebarNav } from "@/components/admin/AdminSidebar";
+import { getAdminRouteInfo } from "@/components/admin/admin-navigation";
+
+function operatorInitials(firstName?: string, lastName?: string) {
+  return `${firstName?.[0] ?? ""}${lastName?.[0] ?? ""}`.trim().toUpperCase() || "OP";
+}
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { user, isLoading, logout } = useSession();
+  const { user, isLoading } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const mobileDrawerRef = useRef<HTMLElement>(null);
+  const lastFocusedElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!isLoading && (!user || user.userType !== "admin")) {
-      router.push("/login?portal=admin");
+      router.replace("/login?portal=admin");
     }
   }, [user, isLoading, router]);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    lastFocusedElement.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const handleKeyboard = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const drawer = mobileDrawerRef.current;
+      if (!drawer) return;
+
+      const focusable = Array.from(drawer.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )).filter((element) => !element.hasAttribute("disabled"));
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyboard);
+    requestAnimationFrame(() => mobileDrawerRef.current?.focus());
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyboard);
+      lastFocusedElement.current?.focus();
+      lastFocusedElement.current = null;
+    };
+  }, [mobileMenuOpen]);
+
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-[#0B0F19]">
-        <div className="space-y-4 text-center">
-          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600 dark:border-white/10 dark:border-t-blue-500" />
-          <p className="font-medium text-slate-500 dark:text-zinc-400">
-            Securing operator workspace...
-          </p>
+      <div className="flex min-h-screen items-center justify-center bg-[#F6F8FC] px-6 dark:bg-[#090E19]">
+        <div className="text-center">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-500 text-sm font-black text-white shadow-xl shadow-blue-500/20">
+            DX
+          </div>
+          <div className="mx-auto mt-5 h-1.5 w-32 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+            <div className="h-full w-2/3 animate-pulse rounded-full bg-blue-500" />
+          </div>
+          <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">Opening your operations workspace…</p>
         </div>
       </div>
     );
   }
 
-  if (!user || user.userType !== "admin") {
-    return null;
-  }
+  if (!user || user.userType !== "admin") return null;
 
-  let activeKey: AdminArea = "dashboard";
-  let pageTitle = "System Overview";
-  
-  if (pathname.includes("/admin/team")) { activeKey = "team"; pageTitle = "Manage Team"; }
-  else if (pathname.includes("/admin/clients")) { activeKey = "clients"; pageTitle = "Manage Clients"; }
-  else if (pathname.includes("/admin/careers")) { activeKey = "careers"; pageTitle = "Career Management"; }
-  else if (pathname.includes("/admin/applications")) { activeKey = "applications"; pageTitle = "Applications"; }
-  else if (pathname.includes("/admin/administration/admins")) { activeKey = "admins"; pageTitle = "Administrators"; }
-  else if (pathname.includes("/admin/administration/roles")) { activeKey = "roles"; pageTitle = "Roles"; }
-  else if (pathname.includes("/admin/administration/permissions")) { activeKey = "permissions"; pageTitle = "Permissions"; }
-  else if (pathname.includes("/admin/administration/activity")) { activeKey = "activity"; pageTitle = "Activity Logs"; }
-  else if (pathname.includes("/admin/administration/sessions")) { activeKey = "sessions"; pageTitle = "Login Sessions"; }
-  else if (pathname.includes("/admin/admin/profile")) { activeKey = "profile"; pageTitle = "Profile"; }
-  else if (pathname.includes("/admin/admin/security")) { activeKey = "security"; pageTitle = "Security Settings"; }
+  const currentRoute = getAdminRouteInfo(pathname);
+  const activeKey = currentRoute.key;
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-[#0B0F19] dark:text-white">
-      {/* Desktop Sidebar */}
+    <div className="flex h-screen w-full overflow-hidden bg-[#F6F8FC] text-slate-900 dark:bg-[#090E19] dark:text-white">
       <AdminSidebar active={activeKey} />
 
-      {/* Mobile Sidebar Overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex bg-slate-950/60 backdrop-blur-sm lg:hidden">
-          <div className="relative flex w-[280px] max-w-[80vw] flex-col justify-between border-r border-slate-200 bg-white p-5 shadow-2xl dark:border-white/10 dark:bg-[#111827]">
-            <div>
-              <div className="mb-8 flex items-center justify-between">
-                <Link href="/admin" className="text-2xl font-black text-slate-900 dark:text-white">
-                  DevX  <span className="text-blue-600 dark:text-blue-500">.</span>
-                </Link>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-              <AdminSidebarNav active={activeKey} onNavItemClick={() => setMobileMenuOpen(false)} />
+      {mobileMenuOpen ? (
+        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm lg:hidden" onMouseDown={() => setMobileMenuOpen(false)}>
+          <aside
+            ref={mobileDrawerRef}
+            id="admin-mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Admin navigation"
+            tabIndex={-1}
+            onMouseDown={(event) => event.stopPropagation()}
+            className="flex h-full w-[min(22rem,88vw)] flex-col overflow-hidden border-r border-white/[0.08] bg-[#0B1120] text-white shadow-2xl outline-none"
+          >
+            <div className="flex min-h-[72px] items-center justify-between border-b border-white/[0.08] px-5">
+              <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3" aria-label="DevX operations home">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-blue-500 to-violet-500 text-sm font-black text-white shadow-lg shadow-blue-950/30">DX</span>
+                <span>
+                  <span className="block text-base font-black tracking-tight">DevX Operations</span>
+                  <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/80">Control workspace</span>
+                </span>
+              </Link>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close navigation"
+                className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 transition hover:bg-white/[0.08] hover:text-white"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
-            
-            <div className="mt-8 space-y-4 border-t border-slate-200 pt-6 dark:border-white/10">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-sm font-bold text-blue-600 shadow-sm dark:border-zinc-800 dark:bg-blue-500/20 dark:text-blue-400">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
-                  ) : (
-                    user.firstName[0]
-                  )}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-bold text-slate-900 dark:text-white">{user.firstName} {user.lastName}</p>
-                  <p className="truncate text-xs font-medium text-slate-500 dark:text-zinc-500">{user.role}</p>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <Link
-                  href="/admin/admin/security"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                >
-                  <Settings className="h-4 w-4" />
-                  Security
-                </Link>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    logout();
-                  }}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-600 transition hover:bg-rose-100 dark:bg-rose-500/10 dark:hover:bg-rose-500/20"
-                >
-                  <LogOut className="h-4 w-4" />
-                </button>
-              </div>
+            <div className="flex-1 overflow-y-auto px-3 py-6">
+              <AdminSidebarNav active={activeKey} onNavigate={() => setMobileMenuOpen(false)} />
             </div>
-          </div>
+            <AdminSidebarAccount active={activeKey} onNavigate={() => setMobileMenuOpen(false)} />
+          </aside>
         </div>
-      )}
+      ) : null}
 
-      {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden bg-slate-50 dark:bg-[#0B0F19]">
-        {/* Top Header */}
-        <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white/80 px-4 backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-[#111827]/80 sm:px-6 lg:px-8">
-          
-          <div className="flex items-center gap-4">
+      <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden">
+        <header className="z-30 flex h-[72px] shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/80 px-4 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0C1220]/80 sm:px-6 lg:px-8">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 lg:hidden dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+              aria-label="Open navigation"
+              aria-controls="admin-mobile-navigation"
+              aria-expanded={mobileMenuOpen}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08] lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
-            
-            {/* Breadcrumb Navigation */}
-            <nav className="hidden items-center gap-2 text-sm font-medium sm:flex">
-              <Link href="/admin" className="text-slate-500 transition hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white">
-                Admin
-              </Link>
-              <ChevronRight className="h-4 w-4 text-slate-400 dark:text-zinc-600" />
-              <span className="text-slate-900 dark:text-white">{pageTitle}</span>
-            </nav>
-            <h1 className="text-lg font-bold text-slate-900 dark:text-white sm:hidden">
-              {pageTitle}
-            </h1>
+            <div className="min-w-0">
+              <nav className="hidden items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 sm:flex" aria-label="Breadcrumb">
+                <Link href="/admin" className="transition hover:text-blue-600 dark:hover:text-blue-300">Operations</Link>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-300 dark:text-slate-600" />
+                <span className="truncate text-slate-700 dark:text-slate-200">{currentRoute.label}</span>
+              </nav>
+              <h1 className="truncate text-base font-bold tracking-tight text-slate-900 dark:text-white sm:mt-0.5 sm:text-lg">{currentRoute.label}</h1>
+            </div>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-5">
-            {/* Global Search */}
-            <div className="hidden lg:block relative group">
-               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Search className="h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
-               </div>
-               <input 
-                  type="text" 
-                  placeholder="Search resources..." 
-                  className="w-64 rounded-full border border-slate-200 bg-slate-100 py-2 pl-10 pr-4 text-sm outline-none transition-all focus:w-72 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-zinc-900/50 dark:focus:bg-[#111827]"
-               />
-               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <span className="rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-bold text-slate-400 dark:border-white/10 dark:bg-zinc-800 dark:text-zinc-500">⌘K</span>
-               </div>
-            </div>
-
-            <div className="flex items-center gap-1 sm:gap-2">
-              <button
-                className="relative rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
-              >
-                <Bell className="h-5 w-5" />
-                <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white dark:ring-[#111827]"></span>
-              </button>
-
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
-              >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </button>
-            </div>
-
-            <div className="hidden h-6 w-px bg-slate-200 dark:bg-white/10 sm:block" />
-
-            <div className="hidden sm:flex items-center gap-3">
-              <Link href="/admin/admin/profile" className="group flex items-center gap-3 rounded-full py-1 pl-1 pr-3 transition hover:bg-slate-100 dark:hover:bg-white/5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-xs font-bold text-blue-600 shadow-sm transition group-hover:scale-105 dark:border-zinc-800 dark:bg-blue-500/20 dark:text-blue-400">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
-                  ) : (
-                    user.firstName[0]
-                  )}
-                </div>
-                <div className="text-left">
-                  <p className="text-sm font-bold leading-tight text-slate-900 transition dark:text-white">
-                    {user.firstName}
-                  </p>
-                </div>
-              </Link>
-            </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/"
+              className="hidden h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08] sm:inline-flex"
+            >
+              <Globe2 className="h-4 w-4" />
+              View site
+            </Link>
+            <button
+              type="button"
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+              aria-label={resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08]"
+            >
+              {resolvedTheme === "dark" ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
+            </button>
+            <Link
+              href="/admin/profile"
+              aria-label="Open my profile"
+              className="group flex items-center gap-2 rounded-xl py-1 pl-1 pr-2 transition hover:bg-slate-100 dark:hover:bg-white/[0.06] sm:pr-3"
+            >
+              <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-violet-500 text-[10px] font-black text-white shadow-sm">
+                {user.avatar ? <img src={user.avatar} alt="" className="h-full w-full object-cover" /> : operatorInitials(user.firstName, user.lastName)}
+              </span>
+              <span className="hidden max-w-28 truncate text-sm font-bold text-slate-700 dark:text-slate-200 sm:block">{user.firstName}</span>
+            </Link>
           </div>
         </header>
 
-        {/* Content body - scrollable area */}
-        <main className="relative flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 transition-colors duration-300 dark:bg-[#0B0F19]">
-          <div className="mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8">
-            {children}
-          </div>
+        <main className="relative flex-1 overflow-x-hidden overflow-y-auto bg-[#F6F8FC] dark:bg-[#090E19]">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_25%_-15%,rgba(59,130,246,0.1),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.08),transparent_30%)] dark:bg-[radial-gradient(circle_at_25%_-15%,rgba(59,130,246,0.13),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.1),transparent_30%)]" />
+          <div className="relative mx-auto w-full max-w-[1440px] p-4 sm:p-6 lg:p-8">{children}</div>
         </main>
       </div>
     </div>
-  );
-}
-
-// Sidebar navigation for mobile menu
-function AdminSidebarNav({ active, onNavItemClick }: { active: string; onNavItemClick?: () => void }) {
-  const sidebarItems = [
-    { label: "Dashboard", href: "/admin", key: "dashboard", icon: LayoutDashboard },
-    { label: "Manage Team", href: "/admin/team", key: "team", icon: Users },
-    { label: "Manage Clients", href: "/admin/clients", key: "clients", icon: Building2 },
-    { label: "Careers", href: "/admin/careers", key: "careers", icon: BriefcaseBusiness },
-    { label: "Applications", href: "/admin/applications", key: "applications", icon: ClipboardList },
-    { label: "Administrators", href: "/admin/administration/admins", key: "admins", icon: Users },
-    { label: "Roles", href: "/admin/administration/roles", key: "roles", icon: ShieldCheck },
-    { label: "Permissions", href: "/admin/administration/permissions", key: "permissions", icon: KeyRound },
-    { label: "Activity Logs", href: "/admin/administration/activity", key: "activity", icon: ClipboardList },
-    { label: "Login Sessions", href: "/admin/administration/sessions", key: "sessions", icon: KeyRound },
-  ];
-
-  return (
-    <nav className="space-y-1">
-      {sidebarItems.map((item) => {
-        const Icon = item.icon;
-        const isActive = active === item.key;
-        return (
-          <Link
-            key={item.key}
-            href={item.href}
-            onClick={onNavItemClick}
-            className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
-              isActive
-                ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
-                : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
-            }`}
-          >
-            <Icon className="h-5 w-5 shrink-0" />
-            <span className="truncate">{item.label}</span>
-          </Link>
-        );
-      })}
-    </nav>
   );
 }

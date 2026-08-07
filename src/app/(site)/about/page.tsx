@@ -3,16 +3,19 @@ import HeroSub from "@/components/shared/HeroSub";
 import { Metadata } from "next";
 import CounterSection from '@/components/about/Counter';
 import TeamSection from "@/components/team/TeamPage";
+import { getPublishedTeamMembers } from "@/lib/team/queries";
 import CoreValuesPage from "./core-value/page";
 import ReadyToStart from "@/components/home/ready-to-contact/Ready";
 
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
     title: "Services",
     description: "Explore DevX digital solution services across web, SaaS, AI, cloud, and product engineering.",
 };
 
-const page = () => {
+const page = async () => {
+  const members = await getPublishedTeamMembers();
   const breadcrumbLinks = [
     { href: "/", text: "Home" },
     { href: "/about", text: "About us" },
@@ -45,7 +48,7 @@ const page = () => {
  
 
 <CounterSection/>
-<TeamSection/>
+<TeamSection members={members}/>
 <CoreValuesPage/>
 <ReadyToStart/>
 
