@@ -22,6 +22,7 @@ export type AdminArea =
   | "clients"
   | "team"
   | "careers"
+  | "applications"
   | "admins"
   | "roles"
   | "permissions"
@@ -54,6 +55,7 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
     { label: "Manage Team", href: "/admin/team", key: "team", icon: Users },
     { label: "Manage Clients", href: "/admin/clients", key: "clients", icon: Building2 },
     { label: "Careers", href: "/admin/careers", key: "careers", icon: BriefcaseBusiness },
+    { label: "Applications", href: "/admin/applications", key: "applications", icon: ClipboardList },
   ] as const;
 
   const adminNav = [

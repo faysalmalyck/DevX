@@ -334,30 +334,99 @@ enum TicketStatus {
   RESOLVED
   CLOSED
 }
+
+enum CareerStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+  ARCHIVED
+}
+
+enum ApplicationStatus {
+  NEW
+  REVIEWING
+  SHORTLISTED
+  INTERVIEW
+  REJECTED
+  HIRED
+  WITHDRAWN
+}
+
 model Career {
-  id                       String   @id @default(cuid())
-  title                    String
-  slug                     String   @unique
+  id                          String        @id @default(cuid())
+  title                       String
+  slug                        String        @unique
+  department                  String
+  category                    String?
+  location                    String
+  employmentType              String
+  workMode                    String
+  experience                  String
+  shortDescription            String
+  overview                    String
+  responsibilitiesDescription String        @default("")
+  responsibilities            Json
+  requirementsDescription     String        @default("")
+  requirements                Json
+  preferredQualifications     Json
+  hiringProcess               Json
+  featured                    Boolean       @default(false)
+  displayOrder                Int           @default(0)
+  status                      CareerStatus  @default(DRAFT)
+  publishedAt                 DateTime?
+  applications                Application[]
+  createdAt                   DateTime      @default(now())
+  updatedAt                   DateTime      @updatedAt
 
-  department               String
-  category                 String?
+  @@index([status, displayOrder])
+  @@index([category, status, displayOrder])
+}
 
-  location                 String
-  employmentType           String
-  workMode                 String
-  experience               String
+model Application {
+  id                     String            @id @default(cuid())
+  careerId               String
+  career                 Career            @relation(fields: [careerId], references: [id], onDelete: Restrict)
+  fullName               String
+  email                  String
+  phone                  String
+  currentLocation        String
+  yearsOfExperience      Int
+  linkedinUrl            String?
+  portfolioUrl           String?
+  coverLetter            String
+  resumeStorageKey       String            @unique
+  resumeOriginalFilename String
+  resumeMimeType         String
+  resumeSize             Int
+  consentConfirmed       Boolean
+  status                 ApplicationStatus @default(NEW)
+  internalNotes          String?
+  createdAt              DateTime          @default(now())
+  updatedAt              DateTime          @updatedAt
 
-  shortDescription         String
-  overview                 String
+  @@unique([careerId, email])
+  @@index([careerId, createdAt])
+  @@index([status, createdAt])
+  @@index([createdAt])
+}
 
-  responsibilities         Json
-  requirements             Json
-  preferredQualifications  Json?
-  hiringProcess            Json?
+model ApplicationRateLimit {
+  key             String   @id
+  count           Int      @default(0)
+  windowStartedAt DateTime
+  updatedAt       DateTime @updatedAt
 
-  status                   String   @default("Draft")
-  featured                 Boolean  @default(false)
+  @@index([windowStartedAt])
+}
 
-  createdAt                DateTime @default(now())
-  updatedAt                DateTime @updatedAt
+// Durable cleanup queue for private resume objects when storage and Postgres
+// cannot be changed in one transaction.
+model ResumeCleanup {
+  storageKey    String   @id
+  attempts      Int      @default(0)
+  nextAttemptAt DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([nextAttemptAt])
 }

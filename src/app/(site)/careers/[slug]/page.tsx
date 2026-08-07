@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getCareerBySlug, careersData } from '@/data/careers';
+import { getPublishedCareerBySlug } from '@/lib/careers/queries';
 import CareerHero from '@/components/careers/CareerHero';
 import CareerOverview from '@/components/careers/CareerOverview';
 import CareerDetails from '@/components/careers/Careerrequirement';
 import HiringTimeline from '@/components/careers/HiringTimeline';
-import RelatedJobs from '@/components/careers/Relatedjobs';
+
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{
@@ -13,15 +14,9 @@ interface PageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  return careersData.map((career) => ({
-    slug: career.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const career = getCareerBySlug(slug);
+  const career = await getPublishedCareerBySlug(slug);
 
   if (!career) {
     return {
@@ -47,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CareerDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const career = getCareerBySlug(slug);
+  const career = await getPublishedCareerBySlug(slug);
 
   if (!career) {
     notFound();
@@ -75,7 +70,6 @@ export default async function CareerDetailPage({ params }: PageProps) {
         </div>
         
       </div>
-      <RelatedJobs currentCareer={career} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import { Career } from '@/data/careers';
+import type { PublicCareer } from '@/lib/careers/types';
 
-export default function CareerOverview({ career }: { career: Career }) {
+export default function CareerOverview({ career }: { career: PublicCareer }) {
   return (
     <div className="max-w-3xl mx-auto text-left space-y-8" dir="ltr">
       {/* Job Description Title */}

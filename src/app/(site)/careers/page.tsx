@@ -1,6 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import OpenPositions from '@/components/careers/JobPage';
+import { getPublishedCareers } from '@/lib/careers/queries';
+import { getPublicCareerCategory } from '@/lib/careers/constants';
+
+export const dynamic = 'force-dynamic';
 
 interface BenefitItem {
   iconSrc: string;
@@ -36,7 +40,17 @@ const benefitsData: BenefitItem[] = [
   },
 ];
 
-export default function CareersHero() {
+interface CareersPageProps {
+  searchParams: Promise<{
+    category?: string;
+  }>;
+}
+
+export default async function CareersHero({ searchParams }: CareersPageProps) {
+  const { category } = await searchParams;
+  const selectedCategory = getPublicCareerCategory(category);
+  const positions = await getPublishedCareers(selectedCategory);
+
   return (
     <section className="relative overflow-hidden bg-white text-slate-900 transition-colors duration-300 dark:bg-[#181d2b] dark:text-slate-100 py-20 lg:py-28">
       {/* Background Decorative Elements */}
@@ -129,7 +143,10 @@ className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-ful
 
         </div>
         <div className="mt-32 h-px w-full bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>    
-        <OpenPositions />
+        <OpenPositions
+          positions={positions}
+          selectedCategory={selectedCategory}
+        />
 
       </div>
       

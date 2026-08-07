@@ -4,7 +4,32 @@ import { verifyPassword, hashPassword } from "@/lib/auth/hash";
 import { createSession } from "@/lib/auth/session";
 import { checkLoginRateLimit, getClientIp } from "@/lib/auth/rate-limit";
 
-async function ensureDefaultCeoAdmin() {
+function getBootstrapAdminConfiguration(): {
+  email: string;
+  username: string;
+  password: string;
+} | null {
+  const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!email || !password || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return null;
+  }
+
+  const configuredUsername = process.env.ADMIN_USERNAME?.trim().toLowerCase();
+  const derivedUsername = email
+    .split("@", 1)[0]
+    .replace(/[^a-z0-9._-]/g, "")
+    .slice(0, 80);
+  const username = configuredUsername || derivedUsername;
+
+  return username ? { email, username, password } : null;
+}
+
+async function ensureBootstrapAdmin() {
+  const bootstrapAdmin = getBootstrapAdminConfiguration();
+  if (!bootstrapAdmin) return;
+
   try {
     let ceoRole = await prisma.role.findUnique({
       where: { name: "CEO" },
@@ -22,53 +47,32 @@ async function ensureDefaultCeoAdmin() {
       });
     }
 
-    const defaultCeoEmail = "faysalmalick11@gmail.com";
-    const defaultUsername = "faysal";
-    const rawPassword = "Faysal123";
-
     const existingAdmin = await prisma.admin.findFirst({
       where: {
         OR: [
-          { email: defaultCeoEmail },
-          { username: defaultUsername },
+          { email: bootstrapAdmin.email },
+          { username: bootstrapAdmin.username },
         ],
       },
     });
 
-    const hashedPassword = await hashPassword(rawPassword);
+    if (existingAdmin) return;
 
-    if (!existingAdmin) {
-      await prisma.admin.create({
-        data: {
-          id: "ceo-faysal-mushtaq",
-          firstName: "Faysal",
-          lastName: "Malick",
-          email: defaultCeoEmail,
-          username: defaultUsername,
-          password: hashedPassword,
-          roleId: ceoRole.id,
-          status: "ACTIVE",
-          twoFactorEnabled: false,
-          requirePasswordChange: false,
-          failedLoginAttempts: 0,
-          lockedUntil: null,
-        },
-      });
-    } else {
-      // Force update password, reset lockout, and clean up flags if record already exists
-      await prisma.admin.update({
-        where: { id: existingAdmin.id },
-        data: {
-          email: defaultCeoEmail,
-          password: hashedPassword,
-          failedLoginAttempts: 0,
-          lockedUntil: null,
-          status: "ACTIVE",
-        },
-      });
-    }
-  } catch (error) {
-    console.error("Failed to seed or sync default CEO admin:", error);
+    await prisma.admin.create({
+      data: {
+        firstName: process.env.ADMIN_FIRST_NAME?.trim() || "System",
+        lastName: process.env.ADMIN_LAST_NAME?.trim() || "Administrator",
+        email: bootstrapAdmin.email,
+        username: bootstrapAdmin.username,
+        password: await hashPassword(bootstrapAdmin.password),
+        roleId: ceoRole.id,
+        status: "ACTIVE",
+        twoFactorEnabled: false,
+        requirePasswordChange: true,
+      },
+    });
+  } catch {
+    // A bootstrap race or unavailable database must not disclose configuration details.
   }
 }
 
@@ -115,7 +119,7 @@ export async function POST(request: Request) {
     const { browser, device } = parseUserAgent(ua);
 
     if (role === "admin") {
-      await ensureDefaultCeoAdmin();
+      await ensureBootstrapAdmin();
 
       const admin = await prisma.admin.findFirst({
         where: {

@@ -1,23 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useTransition } from 'react';
 import Link from 'next/link';
-import { careersData as positions } from '@/data/careers';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import {
+  publicCareerCategories,
+  type PublicCareerCategory,
+} from '@/lib/careers/constants';
+import type { PublicCareer } from '@/lib/careers/types';
 
-const categories = [
-  { id: 'all', label: 'All' },
-  { id: 'frontend', label: 'Frontend' },
-  { id: 'backend', label: 'Backend' },
-  { id: 'Sales', label: 'Sales' },
-  { id: 'other', label: 'Other' },
-] as const;
+type OpenPositionsProps = {
+  positions: PublicCareer[];
+  selectedCategory: PublicCareerCategory;
+};
 
-export default function OpenPositions() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+export default function OpenPositions({
+  positions,
+  selectedCategory,
+}: OpenPositionsProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
 
-  const filteredPositions = selectedCategory === 'all'
-    ? positions
-    : positions.filter((pos) => pos.category === selectedCategory);
+  const selectCategory = (category: PublicCareerCategory) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (category === 'all') {
+      params.delete('category');
+    } else {
+      params.set('category', category);
+    }
+
+    const query = params.toString();
+    startTransition(() => {
+      router.replace(query ? `${pathname}?${query}` : pathname, {
+        scroll: false,
+      });
+    });
+  };
 
   return (
     <section id="open-positions" className="py-20 bg-white dark:bg-[#181d2b] transition-colors duration-200">
@@ -34,10 +55,10 @@ export default function OpenPositions() {
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
+            {publicCareerCategories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => selectCategory(category.id)}
 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-transparent hover:border-slate-400 dark:hover:border-transparent hover:ring-2 hover:ring-slate-400/50 dark:hover:ring-slate-400/40 hover:shadow-[0_0_12px_rgba(148,163,184,0.35)] ${                  selectedCategory === category.id
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 dark:grey-400'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
@@ -51,7 +72,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
 
         {/* Positions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredPositions.map((position) => (
+          {positions.map((position) => (
             <Link
               key={position.id}
               href={`/careers/${position.slug}`}
@@ -75,7 +96,7 @@ className="group flex flex-col justify-between p-8 sm:p-10 min-h-[260px] bg-slat
           ))}
         </div>
 
-        {filteredPositions.length === 0 && (
+        {positions.length === 0 && (
           <div className="text-center py-12 text-slate-500 dark:text-slate-400">
             No open positions available for this category right now.
           </div>

@@ -10,6 +10,7 @@ import { AuthDialogProvider } from "@/contexts/AuthDialogContext";
 import { SessionProvider } from "@/contexts/SessionContext";
 import { CartProvider } from "@/contexts/CartContext";
 import CartModal from "@/components/cart/CartModal";
+import { ToastProvider } from "@/components/ui/Toast";
 
 const rota = localFont({
   src: "./fonts/Rota-Medium.otf",
@@ -96,6 +97,7 @@ export default function RootLayout({
                   <Footer />
                 </Aoscompo>
                 <CartModal />
+                <ToastProvider />
               </ThemeProvider>
             </CartProvider>
           </AuthDialogProvider>

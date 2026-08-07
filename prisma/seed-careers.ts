@@ -1,10 +1,10 @@
-import { PrismaClient } from "@prisma/client";
-import { careersData } from "../src/data/careers";
+import { CareerStatus, PrismaClient } from "@prisma/client";
+import { careersData } from "../src/data/careers.ts";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  for (const career of careersData) {
+  for (const [index, career] of careersData.entries()) {
     await prisma.career.upsert({
       where: {
         slug: career.slug,
@@ -20,11 +20,13 @@ async function main() {
         experience: career.experience,
         shortDescription: career.description,
         overview: career.overview,
+        responsibilitiesDescription: career.responsibilitiesDescription,
         responsibilities: career.responsibilities,
+        requirementsDescription: career.requirementsDescription,
         requirements: career.requirements,
         preferredQualifications: career.preferredQualifications,
         hiringProcess: career.hiringProcess,
-        status: "Published",
+        displayOrder: index + 1,
       },
 
       create: {
@@ -38,12 +40,16 @@ async function main() {
         experience: career.experience,
         shortDescription: career.description,
         overview: career.overview,
+        responsibilitiesDescription: career.responsibilitiesDescription,
         responsibilities: career.responsibilities,
+        requirementsDescription: career.requirementsDescription,
         requirements: career.requirements,
         preferredQualifications: career.preferredQualifications,
         hiringProcess: career.hiringProcess,
-        status: "Published",
+        displayOrder: index + 1,
+        status: CareerStatus.PUBLISHED,
         featured: false,
+        publishedAt: new Date(),
       },
     });
   }

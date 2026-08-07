@@ -16,6 +16,7 @@ import {
   Building2,
   KeyRound,
   ClipboardList,
+  BriefcaseBusiness,
   LayoutDashboard,
   Search,
   Bell,
@@ -59,6 +60,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   
   if (pathname.includes("/admin/team")) { activeKey = "team"; pageTitle = "Manage Team"; }
   else if (pathname.includes("/admin/clients")) { activeKey = "clients"; pageTitle = "Manage Clients"; }
+  else if (pathname.includes("/admin/careers")) { activeKey = "careers"; pageTitle = "Career Management"; }
+  else if (pathname.includes("/admin/applications")) { activeKey = "applications"; pageTitle = "Applications"; }
   else if (pathname.includes("/admin/administration/admins")) { activeKey = "admins"; pageTitle = "Administrators"; }
   else if (pathname.includes("/admin/administration/roles")) { activeKey = "roles"; pageTitle = "Roles"; }
   else if (pathname.includes("/admin/administration/permissions")) { activeKey = "permissions"; pageTitle = "Permissions"; }
@@ -225,6 +228,8 @@ function AdminSidebarNav({ active, onNavItemClick }: { active: string; onNavItem
     { label: "Dashboard", href: "/admin", key: "dashboard", icon: LayoutDashboard },
     { label: "Manage Team", href: "/admin/team", key: "team", icon: Users },
     { label: "Manage Clients", href: "/admin/clients", key: "clients", icon: Building2 },
+    { label: "Careers", href: "/admin/careers", key: "careers", icon: BriefcaseBusiness },
+    { label: "Applications", href: "/admin/applications", key: "applications", icon: ClipboardList },
     { label: "Administrators", href: "/admin/administration/admins", key: "admins", icon: Users },
     { label: "Roles", href: "/admin/administration/roles", key: "roles", icon: ShieldCheck },
     { label: "Permissions", href: "/admin/administration/permissions", key: "permissions", icon: KeyRound },
