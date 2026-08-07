@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { testimonials } from '@/data/testimonialsData';
+import HomeSectionMotion from '@/components/home/HomeSectionMotion';
 
 export default function TestimonialsSection() {
   return (
     <section className="relative overflow-hidden py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <HomeSectionMotion className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-xl md:max-w-none">
           {/* Header Section */}
           <div className="mb-10 flex flex-col py-6 sm:py-10 items-center md:items-center justify-between gap-6 md:flex-row text-center md:text-left">
@@ -78,7 +79,7 @@ export default function TestimonialsSection() {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent dark:from-slate-900" />
           </div>
         </div>
-      </div>
+      </HomeSectionMotion>
       <div style={{ height: "180px" }}></div>
       <div className="my-12 h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-slate-600 to-transparent" />
     </section>

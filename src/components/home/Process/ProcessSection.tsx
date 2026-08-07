@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import HomeSectionMotion from '@/components/home/HomeSectionMotion';
 
 export default function ProcessSection() {
   const steps = [
@@ -34,7 +35,7 @@ export default function ProcessSection() {
 
   return (
     <section className="relative w-full py-10 sm:py-16 px-4 md:px-8 dark:bg-[#181d2b] overflow-hidden transition-colors duration-200">
-      <div className="max-w-7xl mx-auto">
+      <HomeSectionMotion className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center pt-2 sm:pt-8 pb-6 sm:pb-12 mb-6 sm:mb-16">
           <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
@@ -99,7 +100,7 @@ export default function ProcessSection() {
         </div>
 
         <div className="my-6 sm:my-12 h-px w-full bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-60" />
-      </div>
+      </HomeSectionMotion>
     </section>
   );
 }

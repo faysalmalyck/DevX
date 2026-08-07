@@ -1,10 +1,11 @@
 import React from 'react'
 import { techStack } from '@/data/techstack'
+import HomeSectionMotion from '@/components/home/HomeSectionMotion'
 
 export default function TechStackSection() {
   return (
     <section className="relative bg-white dark:bg-[#181d2b] py-16 overflow-hidden transition-colors duration-300">
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center mb-16">
+      <HomeSectionMotion className="relative z-10 max-w-4xl mx-auto px-6 text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
           Our Tech Stack
@@ -18,7 +19,7 @@ export default function TechStackSection() {
         <p className="max-w-2xl mx-auto text-lg leading-relaxed text-slate-600 dark:text-slate-300">
           Every solution is built with carefully selected programming languages and development tools that maximize quality, speed, and long term maintainability.
         </p>
-      </div>
+      </HomeSectionMotion>
 
       <div className="group relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] z-10">
         <style>{`

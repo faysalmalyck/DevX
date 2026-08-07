@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   const logos = [
     {
       src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e496e7f416a92204d0_application-logo-dev-x-webflow-template.svg",
@@ -30,7 +33,12 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-white dark:bg-[#181d2b] pt-28 pb-12 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-32 transition-colors duration-300">
       {/* Background Graphic Element */}
-      <div className="hidden sm:block absolute -right-48 lg:-right-[475px] top-[60%] -translate-y-1/2 w-[1971.5px] max-w-none pointer-events-none z-0 origin-right scale-80 opacity-0 animate-fade-right">
+      <motion.div
+        className="hidden sm:block absolute -right-48 lg:-right-[475px] top-[60%] -translate-y-1/2 w-[1971.5px] max-w-none pointer-events-none z-0 origin-right scale-80"
+        initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: "easeOut" }}
+      >
         <Image
           src="/images/hero/hero.png"
           alt="Development Agency - Dev X Webflow Template"
@@ -39,7 +47,7 @@ export default function HeroSection() {
           priority
           className="w-full h-auto object-contain"
         />
-      </div>
+      </motion.div>
 
       {/* Decorative Radial Background Accent */}
       <div className="absolute inset-0 pointer-events-none z-0">

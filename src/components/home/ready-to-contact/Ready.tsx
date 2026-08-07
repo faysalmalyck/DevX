@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useInView } from "@/hooks/useInView";
+import HomeSectionMotion from "@/components/home/HomeSectionMotion";
 
 export default function CtaSection() {
   const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true, rootMargin: "-50px" });
 
   return (
     <section ref={ref} className="py-12">
-      <div className="mx-auto max-w-[1220px] px-4 sm:px-6 lg:px-8">
+      <HomeSectionMotion className="mx-auto max-w-[1220px] px-4 sm:px-6 lg:px-8">
         <div className="relative">
           {/* Blue breathing glow behind */}
           <div
@@ -62,7 +63,7 @@ className="inline-flex w-[230px] sm:w-[260px] lg:w-auto items-center justify-cen
             </div>
           </div>
         </div>
-      </div>
+      </HomeSectionMotion>
       <div style={{ height: "180px" }}></div>
       <div className="my-12 h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-slate-600 to-transparent" />
     </section>

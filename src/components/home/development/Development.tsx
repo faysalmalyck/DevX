@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { servicesData } from "@/data/services";
+import HomeSectionMotion from "@/components/home/HomeSectionMotion";
 
 export default function Development() {
   return (
@@ -12,7 +13,7 @@ export default function Development() {
         <div className="h-[250px] w-[350px] sm:h-[600px] sm:w-[900px] rounded-full border border-blue-500/20 opacity-40 blur-2xl dark:border-blue-500/10 dark:opacity-30"></div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <HomeSectionMotion className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div
           className="mb-8 sm:mb-14 md:mb-16 text-center animate-fade-up-slow"
@@ -87,7 +88,7 @@ export default function Development() {
             Get Pricing
           </Link>
         </div>
-      </div>
+      </HomeSectionMotion>
 
       <div className="my-6 sm:my-12 h-px w-full bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-60" />
     </section>

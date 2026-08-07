@@ -6,7 +6,12 @@ import {
   type UserType,
   type AuthTokenPayload,
 } from "./jwt";
-import { setAuthCookies, clearAuthCookies, getAuthCookies } from "./cookies";
+import {
+  setAuthCookies,
+  clearAuthCookies,
+  getAuthCookies,
+  isCookieMutationUnavailable,
+} from "./cookies";
 
 // ──────────────────────────────────────────────
 // Types
@@ -140,7 +145,14 @@ async function tryRefreshSession(): Promise<SessionUser | null> {
       sessionId: payload.sessionId,
     });
 
-    await setAuthCookies(tokens.accessToken, tokens.refreshToken);
+    try {
+      await setAuthCookies(tokens.accessToken, tokens.refreshToken);
+    } catch (error) {
+      // A server component can authenticate from a valid refresh token but
+      // cannot rotate response cookies. A subsequent route-handler request
+      // performs the rotation.
+      if (!isCookieMutationUnavailable(error)) throw error;
+    }
 
     return fetchSessionUser(payload);
   } catch {

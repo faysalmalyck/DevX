@@ -25,6 +25,13 @@ function getCookieOptions(maxAgeSeconds: number) {
   };
 }
 
+export function isCookieMutationUnavailable(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    error.message.includes("Cookies can only be modified in a Server Action or Route Handler")
+  );
+}
+
 // ──────────────────────────────────────────────
 // Set auth cookies (server action / route handler)
 // ──────────────────────────────────────────────
@@ -55,21 +62,28 @@ export async function setAuthCookies(
 export async function clearAuthCookies() {
   const cookieStore = await cookies();
 
-  cookieStore.set(ACCESS_TOKEN_COOKIE, "", {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-  });
+  try {
+    cookieStore.set(ACCESS_TOKEN_COOKIE, "", {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 0,
+    });
 
-  cookieStore.set(REFRESH_TOKEN_COOKIE, "", {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-  });
+    cookieStore.set(REFRESH_TOKEN_COOKIE, "", {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 0,
+    });
+  } catch (error) {
+    // Server components may read cookies but cannot alter the response. The
+    // API routes will clear stale cookies on the next client request.
+    if (isCookieMutationUnavailable(error)) return;
+    throw error;
+  }
 }
 
 // ──────────────────────────────────────────────

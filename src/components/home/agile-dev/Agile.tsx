@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HomeSectionMotion from "@/components/home/HomeSectionMotion";
 
 export default function TeamSection() {
   const perks = [
@@ -19,7 +20,7 @@ export default function TeamSection() {
 
   return (
     <section className="w-full bg-white dark:bg-[#181d2b] transition-colors duration-200">
-      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-gray-900 dark:text-white">
+      <HomeSectionMotion className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-gray-900 dark:text-white">
         {/* Header */}
         <div className="max-w-md sm:max-w-2xl lg:max-w-3xl mx-auto mb-6 sm:mb-8 text-center">
           <h2 className="py-2 sm:py-4 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
@@ -87,7 +88,7 @@ export default function TeamSection() {
         </div>
 
         <div className="my-6 sm:my-12 h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-slate-600 to-transparent opacity-60" />
-      </div>
+      </HomeSectionMotion>
     </section>
   );
 }

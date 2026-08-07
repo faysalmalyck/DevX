@@ -1,22 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { caseStudiesData } from '@/data/case-studies'; // Adjust path based on your folder setup
+import HomeSectionMotion from '@/components/home/HomeSectionMotion';
 
 export default function CaseStudiesSection() {
   return (
     <section className="relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
-      {/* Header Container */}
-      <div className="max-w-2xl mx-auto text-center pt-8 pb-12 mb-10">
+      <HomeSectionMotion>
+        {/* Header Container */}
+        <div className="max-w-2xl mx-auto text-center pt-8 pb-12 mb-10">
         <h2 className="text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-tight">
           Discover how we had helped{' '}
           <br className="hidden md:inline" />
           <span className="text-blue-600 dark:text-blue-500">world class companies</span>{' '}
           <span className="whitespace-nowrap">in the past</span>
         </h2>
-      </div>
+        </div>
 
-      {/* Grid Container */}
-      <div className="relative">
+        {/* Grid Container */}
+        <div className="relative">
         <div className="grid grid-cols-1 py-10 md:grid-cols-2 gap-4 relative z-10">
           {caseStudiesData.map((study) => (
             <Link
@@ -51,10 +53,10 @@ export default function CaseStudiesSection() {
         {/* Decorative Background Glows */}
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
-      </div>
+        </div>
 
-      {/* Action Buttons Container */}
-      <div className="mt-16 text-center">
+        {/* Action Buttons Container */}
+        <div className="mt-16 text-center">
         <div className="flex flex-col sm:flex-row py-16 items-center justify-center gap-4">
           <Link
             href="/contact"
@@ -70,7 +72,8 @@ export default function CaseStudiesSection() {
           </Link>
         </div>
         <div className="my-12 h-px w-full bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent" />
-      </div>
+        </div>
+      </HomeSectionMotion>
     </section>
   );
 }

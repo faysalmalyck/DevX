@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { articles } from "@/data/blog";
+import HomeSectionMotion from "@/components/home/HomeSectionMotion";
 
 // Double the array to guarantee seamless looping across wide viewports
 const baseArticles = [...articles, ...articles];
@@ -56,8 +57,9 @@ export default function ArticleSlider() {
 
   return (
     <section className="pt-10 pb-16 md:pb-24 lg:pb-30 bg-slate-50 dark:bg-[#181d2b] text-slate-900 dark:text-white overflow-hidden w-full transition-colors duration-300">
-      {/* Header Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10">
+      <HomeSectionMotion>
+        {/* Header Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-xl">
             <h2 className="text-4xl sm:text-4xl lg:text-5xl font-normal tracking-tight">
@@ -85,10 +87,10 @@ export default function ArticleSlider() {
             </button>
           </div>
         </div>
-      </div>
+        </div>
 
-      {/* Full-Width Carousel Container (Edge-to-Edge) */}
-      <div className="w-full overflow-hidden">
+        {/* Full-Width Carousel Container (Edge-to-Edge) */}
+        <div className="w-full overflow-hidden">
         <div
           onTransitionEnd={handleTransitionEnd}
           className={`flex gap-4 sm:gap-6 lg:gap-10 px-4 sm:px-6 lg:px-8 ${
@@ -153,10 +155,10 @@ export default function ArticleSlider() {
             </div>
           ))}
         </div>
-      </div>
+        </div>
 
-      {/* Pagination Dots (Mobile) */}
-      <div className="flex justify-center gap-2 mt-8 md:hidden">
+        {/* Pagination Dots (Mobile) */}
+        <div className="flex justify-center gap-2 mt-8 md:hidden">
         {articles.map((_, idx) => {
           const activeIndex =
             currentIndex === 0
@@ -181,7 +183,8 @@ export default function ArticleSlider() {
             />
           );
         })}
-      </div>
+        </div>
+      </HomeSectionMotion>
     </section>
   );
 }
