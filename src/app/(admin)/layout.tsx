@@ -79,7 +79,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div>
               <div className="mb-8 flex items-center justify-between">
                 <Link href="/admin" className="text-2xl font-black text-slate-900 dark:text-white">
-                  DevX<span className="text-blue-600 dark:text-blue-500">.</span>
+                  DevX  <span className="text-blue-600 dark:text-blue-500">.</span>
                 </Link>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
