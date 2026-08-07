@@ -334,3 +334,30 @@ enum TicketStatus {
   RESOLVED
   CLOSED
 }
+model Career {
+  id                       String   @id @default(cuid())
+  title                    String
+  slug                     String   @unique
+
+  department               String
+  category                 String?
+
+  location                 String
+  employmentType           String
+  workMode                 String
+  experience               String
+
+  shortDescription         String
+  overview                 String
+
+  responsibilities         Json
+  requirements             Json
+  preferredQualifications  Json?
+  hiringProcess            Json?
+
+  status                   String   @default("Draft")
+  featured                 Boolean  @default(false)
+
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}

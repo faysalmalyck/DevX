@@ -13,6 +13,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  BriefcaseBusiness,
 } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 
@@ -20,6 +21,7 @@ export type AdminArea =
   | "dashboard"
   | "clients"
   | "team"
+  | "careers"
   | "admins"
   | "roles"
   | "permissions"
@@ -51,6 +53,7 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
     { label: "Dashboard", href: "/admin", key: "dashboard", icon: LayoutDashboard },
     { label: "Manage Team", href: "/admin/team", key: "team", icon: Users },
     { label: "Manage Clients", href: "/admin/clients", key: "clients", icon: Building2 },
+    { label: "Careers", href: "/admin/careers", key: "careers", icon: BriefcaseBusiness },
   ] as const;
 
   const adminNav = [
@@ -158,7 +161,7 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
               );
             })}
           </div>
-        </nav>
+         </nav>
       </div>
 
       {/* User Info & Actions */}
