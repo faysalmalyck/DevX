@@ -520,7 +520,7 @@ export default function ApplicationDialog({
 
   const dialog = (
     <div
-      className="fixed inset-0 z-[100] flex items-end justify-center overflow-y-auto bg-slate-950/65 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      className="mt-20 fixed inset-0 z-[100] flex items-end justify-center overflow-y-auto bg-slate-950/65 p-0 backdrop-blur-sm sm:items-center sm:p-6"
       onMouseDown={handleBackdropMouseDown}
     >
       <div
@@ -758,7 +758,7 @@ export default function ApplicationDialog({
                     onChange={(event) => updateTextField("coverLetter", event.target.value)}
                     aria-invalid={Boolean(fieldErrors.coverLetter)}
                     aria-describedby={fieldErrors.coverLetter ? inputId("coverLetter-error") : undefined}
-                    className={`${getInputClassName(Boolean(fieldErrors.coverLetter))} min-h-32 resize-y rounded-2xl py-4`}
+                    className={`${getInputClassName(Boolean(fieldErrors.coverLetter))} min-h-32 resize-y rounded-xl py-4`}
                     placeholder="Tell us why you are a good fit for this role..."
                   />
                 </FormField>
@@ -802,7 +802,7 @@ export default function ApplicationDialog({
                       <button
                         type="button"
                         onClick={removeResume}
-                        className="rounded-full p-2 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                        className="rounded-xl p-2 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
                         aria-label="Remove selected resume"
                       >
                         <X className="size-4" aria-hidden="true" />
