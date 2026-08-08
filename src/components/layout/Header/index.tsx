@@ -24,6 +24,7 @@ const Header: React.FC = () => {
   const { itemCount, openCart } = useCart();
 
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [mobileActiveHref, setMobileActiveHref] = useState<string | null>(null);
   const [sticky, setSticky] = useState(false);
   const [mounted, setMounted] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -36,12 +37,21 @@ const Header: React.FC = () => {
     setSticky(window.scrollY >= 80);
   };
 
-  const closeMobileMenu = () => setNavbarOpen(false);
-  const toggleMenu = () => setNavbarOpen((prev) => !prev);
+  const closeMobileMenu = () => {
+    setNavbarOpen(false);
+    setMobileActiveHref(null);
+  };
+  const toggleMenu = () => {
+    if (navbarOpen) {
+      setMobileActiveHref(null);
+    }
+    setNavbarOpen((prev) => !prev);
+  };
 
   // Auto-close mobile navigation when path changes
   useEffect(() => {
     setNavbarOpen(false);
+    setMobileActiveHref(null);
   }, [pathUrl]);
 
   // Initial client setup
@@ -370,7 +380,7 @@ const Header: React.FC = () => {
               aria-modal="true"
               aria-label="Mobile navigation"
               id="mobile-menu"
-              className={`absolute inset-x-3 bottom-3 top-20 overflow-hidden rounded-[2rem] border border-white/70 bg-transparent p-3 shadow-[0_24px_80px_rgba(15,23,42,0.18)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl transition-all duration-300 ease-out dark:border-white/[0.16] dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06] ${
+              className={`absolute inset-x-3 top-24 max-h-[calc(100dvh-7rem)] overflow-x-hidden overflow-y-auto overscroll-contain rounded-[2rem] border border-white/70 bg-transparent p-3 shadow-[0_24px_80px_rgba(15,23,42,0.18)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl transition-all duration-300 ease-out dark:border-white/[0.16] dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06] ${
                 navbarOpen
                   ? "translate-y-0 opacity-100"
                   : "-translate-y-2 opacity-0"
@@ -381,13 +391,18 @@ const Header: React.FC = () => {
                 className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-slate-950/20 to-transparent dark:via-white/50"
               />
 
-              <nav className="relative flex h-full min-h-0 flex-col text-slate-900 dark:text-white">
-                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
-                  <div className="flex flex-col space-y-1">
+              <nav className="relative flex flex-col text-slate-900 dark:text-white">
+                <div className="pr-1">
+                  <div
+                    className="flex flex-col space-y-1"
+                    onMouseLeave={() => setMobileActiveHref(null)}
+                  >
                     {headerData.map((item, index) => (
                       <div key={index} className="w-full">
                         <MobileHeaderLink
                           item={item}
+                          activeHref={mobileActiveHref}
+                          onActiveChange={setMobileActiveHref}
                           onNavigate={closeMobileMenu}
                         />
                       </div>

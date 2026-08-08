@@ -2,25 +2,28 @@
 
 import { useId, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { HeaderItem } from '../../../../types/menu';
 
 interface MobileHeaderLinkProps {
   item: HeaderItem;
+  activeHref?: string | null;
+  onActiveChange?: (href: string) => void;
   onNavigate?: () => void;
 }
 
 const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
   item,
+  activeHref,
+  onActiveChange,
   onNavigate,
 }) => {
-  const pathname = usePathname();
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const submenuId = useId();
 
+  const selectedHref = activeHref;
   const isParentActive =
-    pathname === item.href ||
-    (item.submenu?.some((subItem) => pathname === subItem.href) ?? false);
+    selectedHref === item.href ||
+    (item.submenu?.some((subItem) => selectedHref === subItem.href) ?? false);
 
   const baseStyle =
     'group flex w-full items-center justify-between rounded-[2rem] border px-4 py-3.5 text-left text-base font-medium transition-all duration-200 outline-none touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950';
@@ -37,13 +40,17 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
   };
 
   return (
-    <div className="relative block w-full my-1">
+    <div
+      className="relative my-1 block w-full"
+      onMouseEnter={() => onActiveChange?.(item.href)}
+    >
       {item.submenu ? (
         <>
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              onActiveChange?.(item.href);
               setSubmenuOpen((prev) => !prev);
             }}
             aria-expanded={submenuOpen}
@@ -80,13 +87,17 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
               className="ml-4 mt-2 w-full space-y-1 border-l border-slate-950/10 pl-4 pr-1 animate-reveal-up dark:border-white/10"
             >
               {item.submenu.map((subItem, index) => {
-                const isSubActive = pathname === subItem.href;
+                const isSubActive = selectedHref === subItem.href;
 
                 return (
                   <Link
                     key={`${subItem.href}-${index}`}
                     href={subItem.href}
-                    onClick={handleLinkClick}
+                    onMouseEnter={() => onActiveChange?.(subItem.href)}
+                    onClick={() => {
+                      onActiveChange?.(subItem.href);
+                      handleLinkClick();
+                    }}
                     className={
                       isSubActive
                         ? 'block w-full rounded-[2rem] border border-blue-500/20 bg-blue-500/10 px-4 py-2.5 text-sm font-semibold text-blue-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-blue-400/20 dark:bg-blue-500/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus-visible:ring-cyan-300'
@@ -103,7 +114,10 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
       ) : (
         <Link
           href={item.href}
-          onClick={handleLinkClick}
+          onClick={() => {
+            onActiveChange?.(item.href);
+            handleLinkClick();
+          }}
           className={isParentActive ? activeStyle : inactiveStyle}
         >
           {item.label}
