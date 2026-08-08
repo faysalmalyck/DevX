@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { articles } from "@/data/blog";
-import HomeSectionMotion from "@/components/home/HomeSectionMotion";
+import { HoverCard, ScrollReveal } from "@/components/motion";
 
 // Double the array to guarantee seamless looping across wide viewports
 const baseArticles = [...articles, ...articles];
@@ -57,9 +57,11 @@ export default function ArticleSlider() {
 
   return (
     <section className="pt-10 pb-16 md:pb-24 lg:pb-30 bg-slate-50 dark:bg-[#181d2b] text-slate-900 dark:text-white overflow-hidden w-full transition-colors duration-300">
-      <HomeSectionMotion>
         {/* Header Container */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10">
+        <ScrollReveal
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10"
+          preset="heading"
+        >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-xl">
             <h2 className="text-4xl sm:text-4xl lg:text-5xl font-normal tracking-tight">
@@ -87,13 +89,13 @@ export default function ArticleSlider() {
             </button>
           </div>
         </div>
-        </div>
+        </ScrollReveal>
 
         {/* Full-Width Carousel Container (Edge-to-Edge) */}
         <div className="w-full overflow-hidden">
         <div
           onTransitionEnd={handleTransitionEnd}
-          className={`flex gap-4 sm:gap-6 lg:gap-10 px-4 sm:px-6 lg:px-8 ${
+          className={`article-slider-track flex gap-4 sm:gap-6 lg:gap-10 px-4 sm:px-6 lg:px-8 ${
             isTransitioning ? "transition-transform duration-500 ease-in-out" : "transition-none"
           }`}
           style={{
@@ -102,63 +104,67 @@ export default function ArticleSlider() {
         >
           <style jsx>{`
             @media (min-width: 640px) {
-              div[style] {
+              .article-slider-track {
                 transform: translateX(calc(-${currentIndex} * (63vw + 24px))) !important;
               }
             }
             @media (min-width: 1024px) {
-              div[style] {
+              .article-slider-track {
                 transform: translateX(calc(-${currentIndex} * (44vw + 40px))) !important;
               }
             }
           `}</style>
           {extendedArticles.map((article, idx) => (
-            <div
+            <ScrollReveal
               key={`${article.id}-${idx}`}
               className="w-[85vw] sm:w-[calc(63%-12px)] lg:w-[calc(44%-12px)] flex-shrink-0"
+              delay={(idx % articles.length) * 0.08}
+              preset="card"
             >
-              <Link
-                href={`/blog/${article.slug}`}
-                className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 shadow-sm dark:shadow-none transition-all duration-300"
-              >
-                {/* Image Wrapper (Adjusted Aspect Ratio for Height) */}
-                <div className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    unoptimized
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="p-6 sm:p-8 lg:p-12 flex flex-col flex-grow">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                    
-                  {/* Footer / Meta */}
-                  <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">
-                    <span className="px-3 sm:px-5 py-2 sm:py-3 text-xs font-semibold bg-slate-100 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-200 dark:border-slate-800">
-                      {article.category}
-                    </span>
-                    <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
-                      {article.date}
-                    </span>
+              <HoverCard className="h-full">
+                <Link
+                  href={`/blog/${article.slug}`}
+                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-blue-500/40 shadow-sm dark:shadow-none transition-[border-color,box-shadow] duration-300"
+                >
+                  {/* Image Wrapper (Adjusted Aspect Ratio for Height) */}
+                  <div className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      unoptimized
+                    />
                   </div>
-                </div>
-              </Link>
-            </div>
+
+                  {/* Content */}
+                  <div className="p-6 sm:p-8 lg:p-12 flex flex-col flex-grow">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
+                      {article.excerpt}
+                    </p>
+
+                    {/* Footer / Meta */}
+                    <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                      <span className="px-3 sm:px-5 py-2 sm:py-3 text-xs font-semibold bg-slate-100 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-200 dark:border-slate-800">
+                        {article.category}
+                      </span>
+                      <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
+                        {article.date}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </HoverCard>
+            </ScrollReveal>
           ))}
         </div>
         </div>
 
         {/* Pagination Dots (Mobile) */}
-        <div className="flex justify-center gap-2 mt-8 md:hidden">
+        <ScrollReveal className="flex justify-center gap-2 mt-8 md:hidden" preset="copy">
         {articles.map((_, idx) => {
           const activeIndex =
             currentIndex === 0
@@ -183,8 +189,7 @@ export default function ArticleSlider() {
             />
           );
         })}
-        </div>
-      </HomeSectionMotion>
+        </ScrollReveal>
     </section>
   );
 }

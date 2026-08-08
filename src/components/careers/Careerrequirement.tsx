@@ -1,10 +1,11 @@
 import type { PublicCareer } from '@/lib/careers/types';
+import { ScrollReveal } from '@/components/motion';
 
 export default function CareerDetails({ career }: { career: PublicCareer }) {
   return (
     <div className="max-w-3xl mx-auto text-left space-y-8">
       {/* Job Requirements */}
-      <div className="space-y-6">
+      <ScrollReveal className="space-y-6" preset="heading">
         <h2 className="text-3xl text-slate-900 dark:text-white">
           Job Requirements
         </h2>
@@ -23,11 +24,11 @@ export default function CareerDetails({ career }: { career: PublicCareer }) {
             </li>
           ))}
         </ul>
-      </div>
+      </ScrollReveal>
 
       {/* Preferred Qualifications */}
       {career.preferredQualifications && career.preferredQualifications.length > 0 && (
-        <div className="space-y-4">
+        <ScrollReveal className="space-y-4" delay={0.14} preset="copy">
           <h3 className="text-xl text-slate-900 dark:text-white">
             Preferred Qualifications
           </h3>
@@ -39,7 +40,7 @@ export default function CareerDetails({ career }: { career: PublicCareer }) {
               </li>
             ))}
           </ul>
-        </div>
+        </ScrollReveal>
       )}
     </div>
   );

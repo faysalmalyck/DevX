@@ -4,6 +4,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/data/blog";
+import {
+  HoverCard,
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/motion";
 
 interface FeaturedPostsSectionProps {
   articles: Article[];
@@ -20,32 +26,40 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
  dark:text-gray-100">      
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 w-full">
-<h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white text-center sm:text-left">            Articles <span className="text-blue-500">&amp;</span> Resources
-          </h1>
-          <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md md:text-left">
-            Discover the latest insights, developer toolkits, and best practices 
-            engineered to help modern development teams scale faster.
-          </p>
+          <ScrollReveal preset="hero">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white text-center sm:text-left">
+              Articles <span className="text-blue-500">&amp;</span> Resources
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal preset="copy" delay={0.12}>
+            <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md md:text-left">
+              Discover the latest insights, developer toolkits, and best practices
+              engineered to help modern development teams scale faster.
+            </p>
+          </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-16 gap-6 lg:gap-10 items-start">
+        <StaggerContainer className="grid grid-cols-1 lg:grid-cols-16 gap-6 lg:gap-10 items-start">
           {/* Main Featured Article */}
-          <div className="lg:col-span-10 w-full">
-            <div className="w-full">
+          <StaggerItem className="lg:col-span-10 w-full">
+            <HoverCard className="h-full rounded-lg">
               <Link
-                className="group flex flex-col h-full   overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
+                className="group flex flex-col h-full overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
                 href={`/blog/${featuredMain.slug}`}
               >
-                <div className="w-[95%] mx-auto flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800">
-  <Image
-    alt={featuredMain.title}
-    src={featuredMain.image}
-    width={1600}
-    height={1050}
-    priority
-    className="w-full h-auto object-contain group-hover:scale-102 transition-transform duration-500"
-  />
-                </div>
+                <ScrollReveal
+                  preset="image"
+                  className="w-[95%] mx-auto flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800"
+                >
+                  <Image
+                    alt={featuredMain.title}
+                    src={featuredMain.image}
+                    width={1600}
+                    height={1050}
+                    priority
+                    className="w-full h-auto object-contain group-hover:scale-102 transition-transform duration-500"
+                  />
+                </ScrollReveal>
                 <div className="p-6 sm:p-8 flex flex-col flex-grow">
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {featuredMain.title}
@@ -63,36 +77,44 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
                   </div>
                 </div>
               </Link>
-            </div>
-          </div>
+            </HoverCard>
+          </StaggerItem>
 
           {/* Secondary Featured List */}
-          <div className="lg:col-span-6 flex flex-col gap-1 sm:gap-2 w-full">
+          <StaggerContainer className="lg:col-span-6 flex flex-col gap-1 sm:gap-2 w-full">
             {featuredList.map((article) => (
-              <Link
+              <StaggerItem key={article.id} preset="right">
+                <HoverCard className="rounded-xl">
+                  <Link
                 key={article.id}
                 href={`/blog/${article.slug}`}
-className="group flex flex-col sm:flex-row gap-4 sm:gap-5 py-2 px-2 sm:p-2 items-start rounded-xl transition-all duration-300"              >
-                <div className="relative w-full sm:w-32 lg:w-36 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800">
-  <Image
-    src={article.image}
-    alt={article.title}
-    width={560}
-    height={325}
-    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-  />
-                  {/* Dark overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 pointer-events-none" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg sm:text-xl lg:text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors leading-normal sm:leading-snug">
-                    {article.title}
-                  </h3>
-                </div>
-              </Link>
+                    className="group flex flex-col sm:flex-row gap-4 sm:gap-5 py-2 px-2 sm:p-2 items-start rounded-xl transition-all duration-300"
+                  >
+                    <ScrollReveal
+                      preset="image"
+                      className="relative w-full sm:w-32 lg:w-36 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800"
+                    >
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        width={560}
+                        height={325}
+                        className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {/* Dark overlay on hover */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 pointer-events-none" />
+                    </ScrollReveal>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg sm:text-xl lg:text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors leading-normal sm:leading-snug">
+                        {article.title}
+                      </h3>
+                    </div>
+                  </Link>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </StaggerContainer>
+        </StaggerContainer>
       </div>
     </section>
   );

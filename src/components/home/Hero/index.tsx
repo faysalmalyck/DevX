@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/motion";
 
 export default function HeroSection() {
-  const shouldReduceMotion = useReducedMotion();
-
   const logos = [
     {
       src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e496e7f416a92204d0_application-logo-dev-x-webflow-template.svg",
@@ -33,21 +35,20 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-white dark:bg-[#181d2b] pt-28 pb-12 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-32 transition-colors duration-300">
       {/* Background Graphic Element */}
-      <motion.div
+      <div
         className="hidden sm:block absolute -right-48 lg:-right-[475px] top-[60%] -translate-y-1/2 w-[1971.5px] max-w-none pointer-events-none z-0 origin-right scale-80"
-        initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: "easeOut" }}
       >
-        <Image
-          src="/images/hero/hero.png"
-          alt="Development Agency - Dev X Webflow Template"
-          width={1961.5}
-          height={1468}
-          priority
-          className="w-full h-auto object-contain"
-        />
-      </motion.div>
+        <ScrollReveal className="w-full" preset="image">
+          <Image
+            src="/images/hero/hero.png"
+            alt="Development Agency - Dev X Webflow Template"
+            width={1961.5}
+            height={1468}
+            priority
+            className="w-full h-auto object-contain"
+          />
+        </ScrollReveal>
+      </div>
 
       {/* Decorative Radial Background Accent */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -61,43 +62,57 @@ export default function HeroSection() {
             <div className="max-w-[550px] mx-auto lg:mx-0">
               
               {/* Main Heading */}
-              <h1 className="opacity-0 animate-fade-up text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
-                Your Trusted Software{" "}
-                <span className="text-blue-500 dark:text-blue-500 block sm:inline">
-                  {"<"}Development{"/>"}
-                </span>{" "}
-                Partner.
-              </h1>
+              <ScrollReveal preset="hero">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
+                  Your Trusted Software{" "}
+                  <span className="text-blue-500 dark:text-blue-500 block sm:inline">
+                    {"<"}Development{"/>"}
+                  </span>{" "}
+                  Partner.
+                </h1>
+              </ScrollReveal>
 
               {/* Subtitle / Paragraph */}
-              <div className="opacity-0 animate-fade-up delay-100 mt-4 sm:mt-6 max-w-[591px]">
+              <ScrollReveal
+                className="mt-4 sm:mt-6 max-w-[591px]"
+                delay={0.12}
+                preset="copy"
+              >
                 <p className="text-gray-600 dark:text-white text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                   Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
                 </p>
-              </div>
+              </ScrollReveal>
 
               {/* Action Buttons */}
-              <div className="opacity-0 animate-fade-up delay-200 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
-               <Link
-  href="/contact"
-  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
->
-  Contact us
-</Link>
-<Link
-  href="/services"
-  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
->
-  Our services
-</Link>
-              </div>
+              <ScrollReveal
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4"
+                delay={0.24}
+                preset="copy"
+              >
+                <Link
+                  href="/contact"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
+                >
+                  Contact us
+                </Link>
+                <Link
+                  href="/services"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
+                >
+                  Our services
+                </Link>
+              </ScrollReveal>
 
             </div>
           </div>
         </div>
 
         {/* Logo Strip Below Hero */}
-        <div className="opacity-0 animate-fade-up delay-300 mt-16 sm:mt-36 lg:mt-52 pt-8 sm:pt-16 border-t border-gray-200 dark:border-gray-800/60">
+        <ScrollReveal
+          className="mt-16 sm:mt-36 lg:mt-52 pt-8 sm:pt-16 border-t border-gray-200 dark:border-gray-800/60"
+          delay={0.36}
+          preset="copy"
+        >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
             <div className="text-center lg:text-left shrink-0">
               <p className="text-sm sm:text-base font-bold text-gray-900 dark:text-white tracking-wide">
@@ -106,11 +121,12 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center w-full lg:w-auto">
-              {logos.map((logo, index) => (
-                <div
-                  key={index}
+            <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center w-full lg:w-auto">
+              {logos.map((logo) => (
+                <StaggerItem
+                  key={logo.src}
                   className="relative h-7 sm:h-8 w-24 sm:w-32 flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity duration-200 dark:invert-0 invert"
+                  preset="image"
                 >
                   <Image
                     src={logo.src}
@@ -118,11 +134,11 @@ export default function HeroSection() {
                     fill
                     className="object-contain"
                   />
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

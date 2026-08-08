@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import HomeSectionMotion from "@/components/home/HomeSectionMotion";
+import {
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/motion";
 
 export default function TeamSection() {
   const perks = [
@@ -20,20 +24,27 @@ export default function TeamSection() {
 
   return (
     <section className="w-full bg-white dark:bg-[#181d2b] transition-colors duration-200">
-      <HomeSectionMotion className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-gray-900 dark:text-white">
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-gray-900 dark:text-white">
         {/* Header */}
-        <div className="max-w-md sm:max-w-2xl lg:max-w-3xl mx-auto mb-6 sm:mb-8 text-center">
+        <ScrollReveal
+          className="max-w-md sm:max-w-2xl lg:max-w-3xl mx-auto mb-6 sm:mb-8 text-center"
+          preset="heading"
+        >
           <h2 className="py-2 sm:py-4 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
             We are an agile team of passionate{" "}
             <span className="text-blue-600 dark:text-blue-500">developers</span>
           </h2>
-        </div>
+        </ScrollReveal>
 
         <div className="max-w-[1040px] mx-auto">
           {/* Perks Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 py-4 sm:py-10 gap-4 sm:gap-6 lg:gap-10 mb-6 lg:mb-14">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 py-4 sm:py-10 gap-4 sm:gap-6 lg:gap-10 mb-6 lg:mb-14">
             {perks.map((perk, index) => (
-              <div key={index} className="group flex items-center space-x-3 justify-center md:justify-start">
+              <StaggerItem
+                key={index}
+                className="group flex items-center space-x-3 justify-center md:justify-start"
+                preset="card"
+              >
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white transition-all duration-300 group-hover:shadow-[0_0_12px_rgba(37,99,235,0.8)]">
                   <svg
                     className="w-3.5 h-3.5 stroke-[3]"
@@ -54,12 +65,15 @@ export default function TeamSection() {
                     <span className="whitespace-nowrap">{perk.noWrapText}</span>
                   )}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Feature Image */}
-          <div className="relative w-full rounded-2xl py-2 sm:py-10 overflow-hidden shadow-lg mb-8 sm:mb-16">
+          <ScrollReveal
+            className="relative w-full rounded-2xl py-2 sm:py-10 overflow-hidden shadow-lg mb-8 sm:mb-16"
+            preset="image"
+          >
             <Image
               src="/images/hero/agile.png"
               alt="Passionate Developers - Dev X Webflow Template"
@@ -68,10 +82,13 @@ export default function TeamSection() {
               className="w-full h-auto object-cover rounded-2xl"
               priority
             />
-          </div>
+          </ScrollReveal>
 
           {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 py-6 sm:py-12 md:py-20">
+          <ScrollReveal
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 py-6 sm:py-12 md:py-20"
+            preset="copy"
+          >
             <Link
               href="/contact"
               className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
@@ -84,11 +101,11 @@ export default function TeamSection() {
             >
               Meet Our Team
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
 
         <div className="my-6 sm:my-12 h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-slate-600 to-transparent opacity-60" />
-      </HomeSectionMotion>
+      </div>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import OpenPositions from '@/components/careers/JobPage';
+import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/motion';
 import { getPublishedCareers } from '@/lib/careers/queries';
 import { getPublicCareerCategory } from '@/lib/careers/constants';
 
@@ -66,23 +67,27 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
         
         {/* Top Hero Block */}
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl font-normal tracking-tight sm:text-6xl lg:text-6xl">
-            Join our team of talented{' '}
-            <span className="text-blue-600 dark:text-blue-500">developers</span>
-            {' '}&amp;{' '}
-            <span className="text-blue-600 dark:text-blue-500">engineers</span>
-          </h1>
+          <ScrollReveal preset="hero">
+            <h1 className="text-4xl font-normal tracking-tight sm:text-6xl lg:text-6xl">
+              Join our team of talented{' '}
+              <span className="text-blue-600 dark:text-blue-500">developers</span>
+              {' '}&amp;{' '}
+              <span className="text-blue-600 dark:text-blue-500">engineers</span>
+            </h1>
+          </ScrollReveal>
 
-          <p className="mx-auto mt-6 max-w-4xl px-4 text-sm sm:text-base sm:px-0 text-slate-600 dark:text-slate-400">
-            We're always looking for talented individuals who are passionate about solving complex problems and building exceptional digital experiences.
-          </p>
+          <ScrollReveal className="mx-auto mt-6 max-w-4xl px-4 sm:px-0" delay={0.12} preset="copy">
+            <p className="text-sm text-slate-600 sm:text-base dark:text-slate-400">
+              We're always looking for talented individuals who are passionate about solving complex problems and building exceptional digital experiences.
+            </p>
+          </ScrollReveal>
 
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <ScrollReveal className="mt-10 flex items-center justify-center gap-x-6" delay={0.22} preset="copy">
             <a
               href="#open-positions"
 className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40">              Browse open positions
             </a>
-          </div>
+          </ScrollReveal>
 
           <div className="mt-20 w-full border-t border-slate-200 dark:border-slate-800" />
         </div>
@@ -93,52 +98,57 @@ className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-
           {/* Left Side Info */}
           <div className="flex flex-col justify-center lg:col-span-5">
             <div className="max-w-md">
-              <h2 className="text-3xl font-normal tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
-                Perks &amp; benefits of{' '}
-                <span className="text-blue-600 dark:text-blue-500">working</span> at our agency
-              </h2>
+              <ScrollReveal preset="heading">
+                <h2 className="text-3xl font-normal tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
+                  Perks &amp; benefits of{' '}
+                  <span className="text-blue-600 dark:text-blue-500">working</span> at our agency
+                </h2>
+              </ScrollReveal>
               
-              <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-                We invest in our people by offering meaningful benefits, ongoing learning opportunities, modern tools, and a culture that values innovation, collaboration, and work-life balance.
-              </p>
+              <ScrollReveal className="mt-6" delay={0.12} preset="copy">
+                <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+                  We invest in our people by offering meaningful benefits, ongoing learning opportunities, modern tools, and a culture that values innovation, collaboration, and work-life balance.
+                </p>
+              </ScrollReveal>
 
-              <div className="mt-8">
+              <ScrollReveal className="mt-8" delay={0.22} preset="copy">
                 <a
                   href="#open-positions"
 className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40">                  Browse open positions
                 </a>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
 
           {/* Right Side Cards */}
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-8">
-              {benefitsData.map((benefit, index) => (
-                <div 
-                  key={index} 
-                  className="flex flex-col rounded-2xl bg-slate-50/50 p-6 transition-colors dark:bg-transparent"
-                >
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center">
-                    <Image
-                      src={benefit.iconSrc}
-                      alt={benefit.altText}
-                      width={48}
-                      height={48}
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-normal text-slate-900 dark:text-white">
-                      {benefit.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
+            <StaggerContainer className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-8">
+              {benefitsData.map((benefit) => (
+                <StaggerItem key={benefit.title} className="h-full" preset="card">
+                  <HoverCard className="h-full">
+                    <div className="flex h-full flex-col rounded-2xl bg-slate-50/50 p-6 transition-colors dark:bg-transparent">
+                      <ScrollReveal className="mb-6 flex h-12 w-12 items-center justify-center" preset="image">
+                        <Image
+                          src={benefit.iconSrc}
+                          alt={benefit.altText}
+                          width={48}
+                          height={48}
+                          className="h-full w-full object-contain"
+                        />
+                      </ScrollReveal>
+                      <div>
+                        <h3 className="text-xl font-normal text-slate-900 dark:text-white">
+                          {benefit.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </div>
+                  </HoverCard>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
 
         </div>

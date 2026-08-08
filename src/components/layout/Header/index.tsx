@@ -115,11 +115,7 @@ const Header: React.FC = () => {
     ? "text-white"
     : "text-slate-900 dark:text-white";
 
-  const burgerLineBg = navbarOpen
-    ? "bg-slate-900 dark:bg-white"
-    : !sticky && isHomePage
-    ? "bg-white"
-    : "bg-slate-900 dark:bg-white";
+  const burgerLineBg = "bg-slate-900 dark:bg-white";
 
   if (isAuthOrAdminPage) {
     return null;
@@ -146,22 +142,22 @@ const Header: React.FC = () => {
             ))}
 
             <button
-  type="button"
-  onClick={openCart}
-  className="hidden lg:inline-flex items-center font-semibold group"
->
-  <span className="text-slate-600 dark:text-white transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-    Cart(
-  </span>
+              type="button"
+              onClick={openCart}
+              className="group hidden items-center font-semibold text-slate-900 transition-colors duration-200 hover:text-blue-500 dark:text-white dark:hover:text-blue-500 lg:inline-flex"
+            >
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500">
+                Cart(
+              </span>
 
-  <span className="text-slate-600 dark:text-white">
-    {itemCount}
-  </span>
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500">
+                {itemCount}
+              </span>
 
-  <span className="text-slate-600 dark:text-white transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-500">
-    )
-  </span>
-</button>
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500">
+                )
+              </span>
+            </button>
           </div>
         </nav>
 
@@ -227,13 +223,13 @@ const Header: React.FC = () => {
           <button
             type="button"
             onClick={openCart}
-            className={`relative flex h-10 w-10 items-center justify-center lg:hidden transition-colors ${navTextColor}`}
+            className="relative flex h-10 w-10 items-center justify-center text-slate-900 transition-colors hover:text-blue-500 dark:text-white dark:hover:text-blue-500 lg:hidden"
             aria-label="Open cart"
           >
             <ShoppingBag className="h-5 w-5 stroke-current" />
 
             {itemCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-slate-900 dark:text-white">
                 {itemCount > 99 ? "99+" : itemCount}
               </span>
             )}

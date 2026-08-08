@@ -7,6 +7,7 @@ import {
   publicCareerCategories,
   type PublicCareerCategory,
 } from '@/lib/careers/constants';
+import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/motion';
 import type { PublicCareer } from '@/lib/careers/types';
 
 type OpenPositionsProps = {
@@ -46,12 +47,16 @@ export default function OpenPositions({
         
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-slate-900 dark:text-white mb-4">
-            Browse our available <span className="text-blue-600 dark:text-blue-500">positions</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-8">
-            Explore our current job openings and find a role that matches your skills, experience, and career goals. We are always looking for talented people to join our team.
-          </p>
+          <ScrollReveal className="mb-4" preset="heading">
+            <h2 className="text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+              Browse our available <span className="text-blue-600 dark:text-blue-500">positions</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal className="mb-8" delay={0.12} preset="copy">
+            <p className="text-base text-slate-600 sm:text-lg dark:text-slate-400">
+              Explore our current job openings and find a role that matches your skills, experience, and career goals. We are always looking for talented people to join our team.
+            </p>
+          </ScrollReveal>
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-2">
@@ -71,35 +76,39 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
         </div>
 
         {/* Positions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <StaggerContainer className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {positions.map((position) => (
-            <Link
-              key={position.id}
-              href={`/careers/${position.slug}`}
-className="group flex flex-col justify-between p-8 sm:p-10 min-h-[260px] bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 rounded-md transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-500 hover:shadow-lg"            >
-              <div>
-                <div className="flex items-center text-xs font-semibold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-4 space-x-2">
-                  <span>{position.location}</span>
-                  <span className="inline-block w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                  <span>{position.type}</span>
-                </div>
-                
-                <h3 className="text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors mb-3">
-                  {position.title}
-                </h3>
-              </div>
-              
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                {position.description}
-              </p>
-            </Link>
+            <StaggerItem key={position.id} className="h-full" preset="card">
+              <HoverCard className="h-full">
+                <Link
+                  href={`/careers/${position.slug}`}
+                  className="group flex h-full min-h-[260px] flex-col justify-between rounded-md border border-slate-200/80 bg-slate-50 p-8 transition-all duration-200 hover:border-slate-400 hover:shadow-lg sm:p-10 dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-slate-500"
+                >
+                  <div>
+                    <div className="mb-4 flex items-center space-x-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                      <span>{position.location}</span>
+                      <span className="inline-block h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-600" />
+                      <span>{position.type}</span>
+                    </div>
+
+                    <h3 className="mb-3 text-2xl font-normal text-slate-900 transition-colors group-hover:text-blue-500 sm:text-3xl dark:text-white dark:group-hover:text-blue-500">
+                      {position.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-400">
+                    {position.description}
+                  </p>
+                </Link>
+              </HoverCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {positions.length === 0 && (
-          <div className="text-center py-12 text-slate-500 dark:text-slate-400">
+          <ScrollReveal className="py-12 text-center text-slate-500 dark:text-slate-400" preset="copy">
             No open positions available for this category right now.
-          </div>
+          </ScrollReveal>
         )}
 
       </div>

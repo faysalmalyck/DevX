@@ -2,14 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useInView } from '@/hooks/useInView';
 import { CaseStudy } from '@/data/case-studies';
+import { ScrollReveal } from '@/components/motion';
 
 export default function CaseStudyHero({ study }: { study: CaseStudy }) {
-  const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true });
-
   return (
-    <section ref={ref} className="relative overflow-hidden bg-[#0B0F17] pt-28 pb-16 lg:pt-36 lg:pb-24 text-white">
+    <section className="relative overflow-hidden bg-[#0B0F17] pt-28 pb-16 lg:pt-36 lg:pb-24 text-white">
       {/* Decorative Vector Arches Background */}
       <div className="pointer-events-none absolute inset-0 -z-0 overflow-hidden" aria-hidden="true">
         <svg
@@ -49,26 +47,22 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Navigation Link */}
-        <div
-          className={`mb-8 transition-all duration-400 ease-out ${
-            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
-          }`}
-        >
+        <ScrollReveal className="mb-8" preset="left">
           <Link
             href="/case-studies"
             className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors"
           >
             <span className="mr-2">←</span> Back to Case Studies
           </Link>
-        </div>
+        </ScrollReveal>
 
         {/* Center Header Area */}
         <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
           {/* Top Logo Container with Increased Size */}
-          <div
-            className={`inline-flex items-center justify-center mb-6 transition-all duration-500 ease-out delay-100 ${
-              isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-            }`}
+          <ScrollReveal
+            className="inline-flex items-center justify-center mb-6"
+            preset="image"
+            delay={0.1}
           >
             <div className="h-10 sm:h-12 relative w-40 sm:w-48">
               <Image
@@ -79,23 +73,21 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
                 className="object-contain object-center brightness-[2.5] dark:brightness-100"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Centered Title without Bold */}
-          <h1
-            className={`text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.15] transition-all duration-700 ease-out delay-200 ${
-              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-            }`}
-          >
-            {study.title}
-          </h1>
+          <ScrollReveal preset="hero" delay={0.18}>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.15]">
+              {study.title}
+            </h1>
+          </ScrollReveal>
         </div>
 
         {/* Main Image */}
-        <div
-          className={`relative aspect-[16/9] w-full overflow-hidden rounded-lg group transition-all duration-700 ease-out delay-300 ${
-            isInView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-[0.98]'
-          }`}
+        <ScrollReveal
+          className="relative aspect-[16/9] w-full overflow-hidden rounded-lg group"
+          preset="image"
+          delay={0.28}
         >
           <Image
             src={study.featuredImage}
@@ -105,7 +97,7 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
             className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
             priority
           />
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

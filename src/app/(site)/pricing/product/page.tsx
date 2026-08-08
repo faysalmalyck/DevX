@@ -6,6 +6,7 @@ import {
   FullProductDetails,
   professionalProductData,
 } from "@/data/pricingdata";
+import { ScrollReveal } from "@/components/motion";
 import AddToCartCard from "@/components/pricing/AddToCartCard";
 import type { PricingPlan } from "@/contexts/CartContext";
 
@@ -50,28 +51,34 @@ export default function ProductPage({
         {/* Left Column: Takes 7 of 12 columns */}
         <div className="flex flex-col space-y-8 pr-0 sm:pr-4 lg:col-span-7 lg:pr-9">
           <div className="space-y-6 sm:space-y-8">
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl dark:text-white">
-              {data?.title}
-            </h1>
-            <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-              {data?.description}
-            </p>
+            <ScrollReveal preset="hero">
+              <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl dark:text-white">
+                {data?.title}
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.12} preset="copy">
+              <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
+                {data?.description}
+              </p>
+            </ScrollReveal>
 
             {/* Main Features */}
-            <ul className="space-y-3 sm:space-y-4">
-              {features.map((feature) => (
-                <li key={feature.id} className="flex items-center space-x-3">
-                  <Check className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-500" />
-                  <span className="text-sm sm:text-base font-medium text-slate-800 dark:text-white">
-                    {feature.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <ScrollReveal delay={0.2} preset="copy">
+              <ul className="space-y-3 sm:space-y-4">
+                {features.map((feature) => (
+                  <li key={feature.id} className="flex items-center space-x-3">
+                    <Check className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-500" />
+                    <span className="text-sm font-medium text-slate-800 sm:text-base dark:text-white">
+                      {feature.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
           </div>
 
           {bottomContent && (
-            <div className="border-t border-slate-200 dark:border-slate-600 pt-8">
+            <ScrollReveal className="border-t border-slate-200 pt-8 dark:border-slate-600" delay={0.24} preset="copy">
               <div className="prose prose-blue dark:prose-invert max-w-none space-y-6 sm:space-y-8 text-slate-700 dark:text-white">
                 {bottomContent.heading && (
                   <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 dark:text-white">
@@ -117,7 +124,7 @@ export default function ProductPage({
                   </p>
                 )}
               </div>
-            </div>
+            </ScrollReveal>
           )}
         </div>
 

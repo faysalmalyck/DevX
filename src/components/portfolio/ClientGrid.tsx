@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CLIENT_STORAGE_KEY, clientSort, defaultClients } from "@/data/clients";
 import type { ClientRecord } from "@/lib/validation/client";
 import ClientCard from "@/components/admin/clients/ClientCard";
+import { HoverCard, StaggerContainer, StaggerItem } from "@/components/motion";
 
 export default function ClientGrid() {
   const [clients, setClients] = useState<ClientRecord[]>([]);
@@ -37,11 +38,15 @@ export default function ClientGrid() {
 
   return (
     <section id="portfolio" className="premium-shell p-0 my-0 dark:bg-darkmode">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-x-6 gap-y-1 px-4 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-3">
+      <StaggerContainer className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-x-6 gap-y-1 px-4 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-3">
         {activeClients.map((client) => (
-          <ClientCard key={client.id} client={client} />
+          <StaggerItem key={client.id} className="h-full">
+            <HoverCard className="h-full rounded-2xl">
+              <ClientCard client={client} />
+            </HoverCard>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </section>
   );
 }

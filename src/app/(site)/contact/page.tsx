@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import SocialLinks from '@/components/contact/social-links';
 import FAQ from '@/components/contact/FAQ';
+import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/motion';
 
 
 
@@ -50,44 +51,58 @@ export default function ContactHeroSection() {
         {/* Inner Left Div - Fixed 518.18 x 494.1 on desktop */}
         <div className="mt-0 w-full max-w-full lg:w-[518.18px] lg:h-[494.1px] space-y-8 flex flex-col justify-between my-auto">
           <div className="space-y-4">
-            <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white">
-              Get in <span className="text-blue-500">touch</span> with our team
-            </h1>
-            <p className="text-slate-600 dark:text-white text-base md:text-l max-w-md">
-              Let's discuss your ideas, answer your questions, and explore how we can help transform your vision into a scalable digital solution.
-            </p>
+            <ScrollReveal preset="hero">
+              <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white">
+                Get in <span className="text-blue-500">touch</span> with our team
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.12} preset="copy">
+              <p className="text-slate-600 dark:text-white text-base md:text-l max-w-md">
+                Let's discuss your ideas, answer your questions, and explore how we can help transform your vision into a scalable digital solution.
+              </p>
+            </ScrollReveal>
           </div>
 
           {/* Contact block */}
           <div className="space-y-4 pt-1">
-            <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
-              Contact information
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 max-w-sm">
-              <a
-                href="mailto:faysal.malick@icloud.com"
-                className="flex items-center gap-3 p-4 rounded-lg bg-slate-50 dark:bg-[#232c3e] border border-slate-200 dark:border-slate-700/50 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
-              >
-                <div className="w-10 h-10 flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <span className="text-base font-semibold text-slate-900 dark:text-slate-200">faysal.malick@icloud.com</span>
-              </a>
+            <ScrollReveal preset="heading">
+              <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
+                Contact information
+              </h2>
+            </ScrollReveal>
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 max-w-sm">
+              <StaggerItem className="h-full" preset="card">
+                <HoverCard className="h-full">
+                  <a
+                    href="mailto:faysal.malick@icloud.com"
+                    className="flex h-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-blue-500/50 dark:border-slate-700/50 dark:bg-[#232c3e] dark:hover:border-blue-400/50"
+                  >
+                    <div className="w-10 h-10 flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <span className="text-base font-semibold text-slate-900 dark:text-slate-200">faysal.malick@icloud.com</span>
+                  </a>
+                </HoverCard>
+              </StaggerItem>
 
-              <a
-                href="tel:+923055552772"
-                className="flex items-center gap-3 p-4 rounded-lg bg-slate-50 dark:bg-[#232c3e] border border-slate-200 dark:border-slate-700/50 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
-              >
-                <div className="w-10 h-10 flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <span className="text-base font-semibold text-slate-900 dark:text-slate-200">+92 305 5552772</span>
-              </a>
-            </div>
+              <StaggerItem className="h-full" preset="card">
+                <HoverCard className="h-full">
+                  <a
+                    href="tel:+923055552772"
+                    className="flex h-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-blue-500/50 dark:border-slate-700/50 dark:bg-[#232c3e] dark:hover:border-blue-400/50"
+                  >
+                    <div className="w-10 h-10 flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <span className="text-base font-semibold text-slate-900 dark:text-slate-200">+92 305 5552772</span>
+                  </a>
+                </HoverCard>
+              </StaggerItem>
+            </StaggerContainer>
           </div>
         </div>
 

@@ -19,7 +19,7 @@ export default function AccordionItem({
   onToggle,
 }: AccordionItemProps) {
   return (
-    <div className="border border-slate-200 dark:border-[#273046] rounded-md bg-slate-50 dark:bg-[#252d40]/40 overflow-hidden transition-colors hover:border-slate-300 dark:hover:border-slate-700/80">
+    <div className="border border-slate-200 dark:border-[#273046] rounded-md bg-slate-50 dark:bg-[#252d40]/40 overflow-hidden transition-colors hover:border-blue-500/50 dark:hover:border-blue-400/50">
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between p-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 rounded-3xl"

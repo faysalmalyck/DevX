@@ -1,23 +1,24 @@
 import type { PublicCareer } from '@/lib/careers/types';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/motion';
 import ApplyButton from '@/components/careers/ApplyButton';
 
 export default function HiringTimeline({ career }: { career: PublicCareer }) {
   return (
     <div>
-      <h2 className="text-2xl max-w-2xl text-slate-900 dark:text-white mb-6">Our Hiring Process</h2>
-      <div className="mt-8 relative border-l-2 border-blue-500/30 dark:border-blue-500/20 ml-4 space-y-8">
-        {career.hiringProcess.map((step) => (
-          <div key={step.step} className="relative pl-6">
+      <ScrollReveal preset="heading">
+        <h2 className="mb-6 max-w-2xl text-2xl text-slate-900 dark:text-white">Our Hiring Process</h2>
+      </ScrollReveal>
+      <StaggerContainer className="relative ml-4 mt-8 space-y-8 border-l-2 border-blue-500/30 dark:border-blue-500/20">
+        {career.hiringProcess.map((step, index) => (
+          <StaggerItem key={step.step} className="relative pl-6" preset={index % 2 === 0 ? 'left' : 'right'}>
             <div className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-bold shadow-md">
               {step.step}
             </div>
             <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-1">{step.title}</h3>
             <p className="text-sm text-slate-600 dark:text-slate-400">{step.description}</p>
-          </div>
-          
+          </StaggerItem>
         ))}
-        
-      </div>
+      </StaggerContainer>
       <div className="mt-8 sm:mt-12 flex justify-center">
   <ApplyButton
     careerSlug={career.slug}

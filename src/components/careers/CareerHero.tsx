@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { ScrollReveal } from '@/components/motion';
 import type { PublicCareer } from '@/lib/careers/types';
 import ApplyButton from '@/components/careers/ApplyButton';
 
@@ -18,21 +19,25 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
 
         <div className="mx-auto max-w-lg text-center">
           {/* Location | Full time */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-3 sm:mb-4 text-sm sm:text-base font-medium text-slate-800 dark:text-white">
+          <ScrollReveal className="mb-3 flex flex-wrap items-center justify-center gap-2 text-sm font-medium text-slate-800 sm:mb-4 sm:text-base dark:text-white" preset="copy">
             <span>{career.location}</span>
             <span className="text-slate-300 dark:text-slate-700">|</span>
             <span>{career.type}</span>
-          </div>
+          </ScrollReveal>
 
           {/* Title */}
-          <h1 className="text-5xl xs:text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight">
-            {career.title}
-          </h1>
+          <ScrollReveal preset="hero">
+            <h1 className="text-5xl font-normal leading-tight tracking-tight text-slate-900 xs:text-3xl sm:text-4xl lg:text-5xl dark:text-white">
+              {career.title}
+            </h1>
+          </ScrollReveal>
 
           {/* Career Description */}
-          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed px-2 sm:px-0">
-            {career.description || career.overview}
-          </p>
+          <ScrollReveal className="mt-4 px-2 sm:mt-6 sm:px-0" delay={0.14} preset="copy">
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
+              {career.description || career.overview}
+            </p>
+          </ScrollReveal>
 
           {/* Apply Button */}
           <div className="mt-8 sm:mt-12 flex justify-center">

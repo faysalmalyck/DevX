@@ -64,6 +64,16 @@ export interface ApplicationDialogProps {
   onSubmitted?: () => void;
 }
 
+interface FormFieldProps {
+  id: string;
+  label: string;
+  children: ReactNode;
+  error?: string;
+  required?: boolean;
+  optional?: boolean;
+  className?: string;
+}
+
 const initialFormValues: ApplicationFormValues = {
   fullName: "",
   email: "",
@@ -78,7 +88,31 @@ const initialFormValues: ApplicationFormValues = {
 };
 
 const inputBaseClassName =
-  "w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/20";
+  "min-h-11 w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/20";
+
+function getInputClassName(hasError?: boolean): string {
+  if (!hasError) return inputBaseClassName;
+  return `${inputBaseClassName} border-rose-500 text-rose-900 focus:border-rose-500 focus:ring-rose-500/20 dark:border-rose-400 dark:text-rose-100 dark:focus:border-rose-400 dark:focus:ring-rose-400/20`;
+}
+
+function FormField({ id, label, children, error, required, optional, className = "" }: FormFieldProps) {
+  return (
+    <div className={className}>
+      <div className="mb-1.5 flex items-center justify-between gap-2">
+        <label htmlFor={id} className="block text-xs font-semibold text-slate-700 dark:text-slate-200 sm:text-sm">
+          {label} {required && <span className="text-blue-600 dark:text-blue-400">*</span>}
+        </label>
+        {optional && <span className="text-xs text-slate-500 dark:text-slate-400">Optional</span>}
+      </div>
+      {children}
+      {error && (
+        <p id={`${id}-error`} className="mt-1 text-xs font-medium text-rose-600 dark:text-rose-400">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
@@ -153,9 +187,6 @@ function validateResume(file: File | null): string | undefined {
   const hasSupportedExtension = ACCEPTED_RESUME_EXTENSIONS.some((extension) =>
     lowerCaseName.endsWith(extension)
   );
-  // Some browsers omit the MIME type for local office documents. The server
-  // still verifies extension and file signatures, so an empty browser MIME
-  // value must not reject an otherwise valid resume before submission.
   const hasSupportedMimeType =
     file.type.length === 0 || ACCEPTED_RESUME_TYPES.has(file.type);
 
@@ -252,11 +283,6 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
   );
 }
 
-/**
- * Candidate application form rendered in an accessible portal dialog.
- * The corresponding API endpoint must accept multipart form data at
- * `/api/careers/[slug]/applications`.
- */
 export default function ApplicationDialog({
   careerSlug,
   careerTitle,
@@ -471,7 +497,7 @@ export default function ApplicationDialog({
       try {
         responseBody = await response.json();
       } catch {
-        // The UI still provides a safe generic error when a proxy returns a non-JSON response.
+        // Fallback for non-JSON responses
       }
       const result = parseApiResponse(responseBody);
 
@@ -518,9 +544,9 @@ export default function ApplicationDialog({
 
   if (!hasMounted || !isOpen) return null;
 
-  const dialog = (
+  const dialogContent = (
     <div
-      className="mt-20 fixed inset-0 z-[100] flex items-end justify-center overflow-y-auto bg-slate-950/65 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      className="fixed inset-x-0 bottom-0 top-20 z-[100] flex items-end justify-center overflow-hidden bg-slate-950/65 p-0 backdrop-blur-sm sm:items-center sm:p-4 lg:p-6"
       onMouseDown={handleBackdropMouseDown}
     >
       <div
@@ -530,16 +556,16 @@ export default function ApplicationDialog({
         aria-labelledby={inputId("title")}
         aria-describedby={inputId("description")}
         tabIndex={-1}
-        className="relative max-h-[100dvh] w-full max-w-4xl self-end overflow-hidden rounded-t-3xl border border-slate-200 bg-white shadow-2xl dark:border-[#2e3850] dark:bg-[#232c3e] sm:my-auto sm:max-h-[calc(100dvh-3rem)] sm:self-auto sm:rounded-3xl"
+        className="relative flex h-full max-h-full w-full max-w-3xl flex-col self-end overflow-hidden rounded-t-2xl border border-slate-200 bg-white shadow-2xl dark:border-[#2e3850] dark:bg-[#232c3e] sm:my-auto sm:h-auto sm:max-h-[calc(100dvh-7rem)] sm:self-auto sm:rounded-2xl lg:max-h-[calc(100dvh-8rem)]"
       >
-        <div className="max-h-[100dvh] overflow-y-auto p-5 sm:max-h-[calc(100dvh-3rem)] sm:p-8 lg:p-10">
-          <div className="mb-7 flex items-start justify-between gap-5 border-b border-slate-200 pb-5 dark:border-[#2e3850]">
-            <div>
-              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">Application for</p>
-              <h2 id={inputId("title")} className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
+        <div className="h-full min-h-0 overflow-y-auto overscroll-contain p-4 pb-6 sm:h-auto sm:max-h-[calc(100dvh-7rem)] sm:p-6 lg:max-h-[calc(100dvh-8rem)] lg:p-7">
+          <div className="mb-5 flex items-start justify-between gap-4 border-b border-slate-200 pb-4 dark:border-[#2e3850]">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 sm:text-sm">Application for</p>
+              <h2 id={inputId("title")} className="mt-1 break-words text-xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
                 {careerTitle}
               </h2>
-              <p id={inputId("description")} className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+              <p id={inputId("description")} className="mt-1.5 max-w-2xl text-xs leading-5 text-slate-600 dark:text-slate-300 sm:text-sm sm:leading-6">
                 Tell us about yourself and attach your resume. Fields marked with an asterisk are required.
               </p>
             </div>
@@ -556,7 +582,7 @@ export default function ApplicationDialog({
           </div>
 
           {isSubmitted ? (
-            <div className="mx-auto flex max-w-lg flex-col items-center py-10 text-center" role="status" aria-live="polite">
+            <div className="mx-auto flex max-w-lg flex-col items-center py-7 text-center sm:py-10" role="status" aria-live="polite">
               <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300">
                 <CheckCircle2 className="size-8" aria-hidden="true" />
               </div>
@@ -584,13 +610,13 @@ export default function ApplicationDialog({
               {formError && (
                 <div
                   role="alert"
-                  className="mb-6 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700 dark:border-rose-400/25 dark:bg-rose-400/10 dark:text-rose-200"
+                  className="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700 dark:border-rose-400/25 dark:bg-rose-400/10 dark:text-rose-200"
                 >
                   {formError}
                 </div>
               )}
 
-              <div className="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2">
                 <FormField
                   id={inputId("fullName")}
                   label="Full name"
@@ -722,7 +748,7 @@ export default function ApplicationDialog({
                   label="Portfolio URL"
                   error={fieldErrors.portfolioUrl}
                   optional
-                  className="md:col-span-2"
+                  className="sm:col-span-2"
                 >
                   <input
                     id={inputId("portfolioUrl")}
@@ -745,12 +771,12 @@ export default function ApplicationDialog({
                   label="Cover letter or message"
                   error={fieldErrors.coverLetter}
                   required
-                  className="md:col-span-2"
+                  className="sm:col-span-2"
                 >
                   <textarea
                     id={inputId("coverLetter")}
                     name="coverLetter"
-                    rows={5}
+                    rows={4}
                     maxLength={5000}
                     required
                     aria-required="true"
@@ -758,13 +784,13 @@ export default function ApplicationDialog({
                     onChange={(event) => updateTextField("coverLetter", event.target.value)}
                     aria-invalid={Boolean(fieldErrors.coverLetter)}
                     aria-describedby={fieldErrors.coverLetter ? inputId("coverLetter-error") : undefined}
-                    className={`${getInputClassName(Boolean(fieldErrors.coverLetter))} min-h-32 resize-y rounded-xl py-4`}
+                    className={`${getInputClassName(Boolean(fieldErrors.coverLetter))} min-h-28 resize-y rounded-xl py-3 sm:min-h-32`}
                     placeholder="Tell us why you are a good fit for this role..."
                   />
                 </FormField>
 
-                <div className="md:col-span-2">
-                  <label htmlFor={inputId("resume")} id={inputId("resume-label")} className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                <div className="sm:col-span-2">
+                  <label htmlFor={inputId("resume")} id={inputId("resume-label")} className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-200 sm:text-sm">
                     Resume <span className="text-blue-600 dark:text-blue-400">*</span>
                   </label>
                   <input
@@ -783,7 +809,7 @@ export default function ApplicationDialog({
                   />
 
                   {resume ? (
-                    <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#2e3850] dark:bg-[#232b3e]">
+                    <div className="flex items-center gap-2.5 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-[#2e3850] dark:bg-[#232b3e] sm:px-4 sm:py-3">
                       <FileText className="size-5 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-semibold text-slate-800 dark:text-slate-100">{resume.name}</p>
@@ -795,14 +821,14 @@ export default function ApplicationDialog({
                         onClick={() => fileInputRef.current?.click()}
                         aria-label="Replace your resume"
                         aria-describedby={fieldErrors.resume ? inputId("resume-error") : undefined}
-                        className="rounded-full px-3 py-1.5 text-xs font-semibold text-blue-600 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-blue-300 dark:hover:bg-blue-400/10"
+                        className="shrink-0 rounded-full px-2.5 py-1.5 text-xs font-semibold text-blue-600 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-blue-300 dark:hover:bg-blue-400/10"
                       >
                         Replace
                       </button>
                       <button
                         type="button"
                         onClick={removeResume}
-                        className="rounded-xl p-2 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                        className="shrink-0 rounded-xl p-1.5 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
                         aria-label="Remove selected resume"
                       >
                         <X className="size-4" aria-hidden="true" />
@@ -811,79 +837,99 @@ export default function ApplicationDialog({
                   ) : (
                     <button
                       ref={resumePickerRef}
-                      id={inputId("resume-picker")}
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      aria-label="Choose your resume"
                       aria-describedby={fieldErrors.resume ? inputId("resume-error") : inputId("resume-hint")}
-                      className={`flex cursor-pointer items-center gap-4 rounded-2xl border border-dashed px-5 py-4 transition ${
+                      className={`group flex w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed p-4 text-center transition focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-offset-[#232c3e] sm:p-5 ${
                         fieldErrors.resume
-                          ? "border-rose-400 bg-rose-50 dark:border-rose-400/60 dark:bg-rose-400/10"
-                          : "border-slate-300 bg-slate-50 hover:border-blue-400 hover:bg-blue-50/50 dark:border-[#39435b] dark:bg-[#232b3e] dark:hover:border-blue-400 dark:hover:bg-blue-400/5"
-                      } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-[#232c3e]`}
+                          ? "border-rose-400 bg-rose-50/50 hover:bg-rose-50 dark:border-rose-400/40 dark:bg-rose-400/5 dark:hover:bg-rose-400/10"
+                          : "border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 dark:border-[#39435b] dark:bg-[#232b3e] dark:hover:border-slate-500 dark:hover:bg-[#273046]"
+                      }`}
                     >
-                      <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-400/10 dark:text-blue-300">
-                        <Upload className="size-5" aria-hidden="true" />
-                      </span>
-                      <span>
-                        <span className="block text-sm font-semibold text-slate-800 dark:text-slate-100">Choose your resume</span>
-                        <span id={inputId("resume-hint")} className="mt-0.5 block text-xs text-slate-500 dark:text-slate-400">
-                          PDF, DOC, or DOCX · maximum 5 MB
-                        </span>
-                      </span>
+                      <div className="flex size-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition group-hover:scale-105 dark:bg-blue-400/10 dark:text-blue-300 sm:size-11">
+                        <Upload className="size-5 sm:size-6" aria-hidden="true" />
+                      </div>
+                      <p className="mt-2 text-xs font-semibold text-slate-800 dark:text-slate-200 sm:text-sm">
+                        Click to upload resume
+                      </p>
+                      <p id={inputId("resume-hint")} className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                        PDF, DOC, or DOCX up to 5 MB
+                      </p>
                     </button>
                   )}
-                  {fieldErrors.resume && <FieldError id={inputId("resume-error")} message={fieldErrors.resume} />}
+
+                  {fieldErrors.resume && (
+                    <p id={inputId("resume-error")} className="mt-1 text-xs font-medium text-rose-600 dark:text-rose-400">
+                      {fieldErrors.resume}
+                    </p>
+                  )}
                 </div>
 
-                <div className="md:col-span-2">
-                  <div className="flex items-start gap-3">
-                    <input
-                      id={inputId("privacyConsent")}
-                      name="privacyConsent"
-                      type="checkbox"
-                      checked={formValues.privacyConsent}
-                      required
-                      aria-required="true"
-                      onChange={(event) => {
-                        setFormValues((current) => ({ ...current, privacyConsent: event.target.checked }));
-                        clearError("privacyConsent");
-                        if (formError) setFormError(null);
-                      }}
-                      aria-invalid={Boolean(fieldErrors.privacyConsent)}
-                      aria-describedby={fieldErrors.privacyConsent ? inputId("privacyConsent-error") : undefined}
-                      className="mt-1 size-4 shrink-0 rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-[#232b3e]"
-                    />
-                    <label htmlFor={inputId("privacyConsent")} className="text-sm leading-6 text-slate-600 dark:text-slate-300">
-                      I consent to Dev X processing my application and resume for this role. <span className="text-blue-600 dark:text-blue-400">*</span>
+                <div className="sm:col-span-2">
+                  <div className="relative flex items-start gap-3">
+                    <div className="flex h-6 items-center">
+                      <input
+                        id={inputId("privacyConsent")}
+                        name="privacyConsent"
+                        type="checkbox"
+                        required
+                        aria-required="true"
+                        checked={formValues.privacyConsent}
+                        onChange={(event) => {
+                          const checked = event.target.checked;
+                          setFormValues((current) => ({ ...current, privacyConsent: checked }));
+                          if (checked) clearError("privacyConsent");
+                        }}
+                        aria-invalid={Boolean(fieldErrors.privacyConsent)}
+                        aria-describedby={fieldErrors.privacyConsent ? inputId("privacyConsent-error") : undefined}
+                        className="size-4.5 rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-[#39435b] dark:bg-[#232b3e] dark:focus:ring-blue-400"
+                      />
+                    </div>
+                    <label htmlFor={inputId("privacyConsent")} className="text-xs leading-5 text-slate-600 dark:text-slate-300 sm:text-sm sm:leading-6">
+                      I agree to allow DevX to store and process my personal data for recruitment purposes. <span className="text-blue-600 dark:text-blue-400">*</span>
                     </label>
                   </div>
-                  {fieldErrors.privacyConsent && <FieldError id={inputId("privacyConsent-error")} message={fieldErrors.privacyConsent} />}
+                  {fieldErrors.privacyConsent && (
+                    <p id={inputId("privacyConsent-error")} className="mt-1 text-xs font-medium text-rose-600 dark:text-rose-400">
+                      {fieldErrors.privacyConsent}
+                    </p>
+                  )}
                 </div>
 
-                <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-                  <label htmlFor={inputId("website")}>Website</label>
-                  <input
-                    id={inputId("website")}
-                    name="website"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={formValues.website}
-                    onChange={(event) => setFormValues((current) => ({ ...current, website: event.target.value }))}
-                  />
-                </div>
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formValues.website}
+                  onChange={(event) => setFormValues((current) => ({ ...current, website: event.target.value }))}
+                  className="hidden"
+                  aria-hidden="true"
+                />
               </div>
 
-              <div className="mt-8 flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between dark:border-[#2e3850]">
-                <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Your resume is kept private and only available to authorized hiring administrators.</p>
+              <div className="mt-6 flex flex-col-reverse justify-end gap-3 border-t border-slate-200 pt-5 dark:border-[#2e3850] sm:flex-row sm:items-center">
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  disabled={isSubmitting}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 px-6 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-[#39435b] dark:text-slate-200 dark:hover:bg-[#232b3e]"
+                >
+                  Cancel
+                </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-500 hover:shadow-blue-500/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 dark:focus:ring-offset-[#232c3e]"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-blue-600 px-7 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-[#232c3e]"
                 >
-                  {isSubmitting ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : <Paperclip className="size-4" aria-hidden="true" />}
-                  {isSubmitting ? "Submitting application..." : "Submit application"}
+                  {isSubmitting ? (
+                    <>
+                      <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    <span>Submit Application</span>
+                  )}
                 </button>
               </div>
             </form>
@@ -893,44 +939,5 @@ export default function ApplicationDialog({
     </div>
   );
 
-  return createPortal(dialog, document.body);
-}
-
-interface FormFieldProps {
-  id: string;
-  label: string;
-  children: ReactNode;
-  error?: string;
-  required?: boolean;
-  optional?: boolean;
-  className?: string;
-}
-
-function FormField({ id, label, children, error, required, optional, className = "" }: FormFieldProps) {
-  return (
-    <div className={className}>
-      <label htmlFor={id} className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
-        {label} {required && <span className="text-blue-600 dark:text-blue-400">*</span>}
-        {optional && <span className="ml-1 font-normal text-slate-400 dark:text-slate-500">(optional)</span>}
-      </label>
-      {children}
-      {error && <FieldError id={`${id}-error`} message={error} />}
-    </div>
-  );
-}
-
-function FieldError({ id, message }: { id: string; message: string }) {
-  return (
-    <p id={id} className="mt-1.5 text-xs font-medium text-rose-600 dark:text-rose-300">
-      {message}
-    </p>
-  );
-}
-
-function getInputClassName(hasError: boolean): string {
-  return `${inputBaseClassName} ${
-    hasError
-      ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/20 dark:border-rose-400 dark:focus:border-rose-400"
-      : ""
-  }`;
+  return createPortal(dialogContent, document.body);
 }

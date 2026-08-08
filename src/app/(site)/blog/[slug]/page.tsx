@@ -3,6 +3,12 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles, ContentBlock } from "@/data/blog";
+import {
+  HoverCard,
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/motion";
 
 interface BlogPageProps {
   params: Promise<{
@@ -121,35 +127,47 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
     <article className="min-h-screen bg-slate-50 dark:bg-[#181d2b] text-slate-900 dark:text-white transition-colors duration-300 py-8 sm:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
-        <Link
-          href="/blog"
-          className="mt-4 sm:mt-8 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:-translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to all articles
-        </Link>
+        <ScrollReveal className="mt-4 mb-8 sm:mt-8" preset="left">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:-translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to all articles
+          </Link>
+        </ScrollReveal>
 
         {/* Article Header */}
         <header className="py-8 sm:py-12 lg:py-16 text-center">
-          <div className="flex items-center justify-center space-x-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
-            <span className="inline-block px-3 py-1 bg-slate-200 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-300 dark:border-slate-800 font-semibold text-xs uppercase tracking-wider">
-              {article.category}
-            </span>
-            <span>~</span>
-            <time>{article.date}</time>
-          </div>
+          <ScrollReveal preset="copy">
+            <div className="flex items-center justify-center space-x-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+              <span className="inline-block px-3 py-1 bg-slate-200 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-300 dark:border-slate-800 font-semibold text-xs uppercase tracking-wider">
+                {article.category}
+              </span>
+              <span>~</span>
+              <time>{article.date}</time>
+            </div>
+          </ScrollReveal>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight mb-6 sm:mb-8 text-center px-2 sm:px-8 lg:px-16">
-            {article.title}
-          </h1>
+          <ScrollReveal preset="hero" delay={0.1}>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight mb-6 sm:mb-8 text-center px-2 sm:px-8 lg:px-16">
+              {article.title}
+            </h1>
+          </ScrollReveal>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
-            {article.excerpt}
-          </p>
+          <ScrollReveal preset="copy" delay={0.2}>
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
+              {article.excerpt}
+            </p>
+          </ScrollReveal>
         </header>
 
         {/* Hero Image */}
-        <div className="relative w-full mb-12 sm:mb-16 rounded-2xl overflow-hidden shadow-sm dark:shadow-none bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800">
+        <ScrollReveal
+          className="relative w-full mb-12 sm:mb-16 rounded-2xl overflow-hidden shadow-sm dark:shadow-none bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800"
+          preset="image"
+          delay={0.28}
+        >
           <Image
             src={article.image}
             alt={article.title}
@@ -158,14 +176,19 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
             priority
             className="w-full h-auto object-cover"
           />
-        </div>
+        </ScrollReveal>
 
         {/* Main Content Body */}
-        <div className="max-w-4xl mx-auto px-2 sm:px-6">
+        <StaggerContainer className="max-w-4xl mx-auto px-2 sm:px-6">
           {article.content.map((block, index) => (
-            <RenderContentBlock key={index} block={block} />
+            <StaggerItem
+              key={index}
+              preset={block.type === "h2" || block.type === "h3" ? "heading" : "copy"}
+            >
+              <RenderContentBlock block={block} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Divider */}
         <hr className="my-12 sm:my-16 border-slate-200 dark:border-slate-800" />
@@ -174,61 +197,70 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
         {relatedArticles.length > 0 && (
           <section className="w-full">
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white">
-                More articles
-              </h2>
+              <ScrollReveal preset="heading">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white">
+                  More articles
+                </h2>
+              </ScrollReveal>
 
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-800 bg-white dark:bg-[#121623] px-6 sm:px-8 py-3 text-sm font-medium text-slate-700 dark:text-white transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-[#1a2032] active:scale-95"
-              >
-                Browse All Posts
-              </Link>
+              <ScrollReveal preset="copy" delay={0.1}>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-800 bg-white dark:bg-[#121623] px-6 sm:px-8 py-3 text-sm font-medium text-slate-700 dark:text-white transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-[#1a2032] active:scale-95"
+                >
+                  Browse All Posts
+                </Link>
+              </ScrollReveal>
             </div>
 
             {/* Full-width 2-column layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 w-full">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 w-full">
               {relatedArticles.map((relArticle, idx) => (
-                <div key={`${relArticle.id}-${idx}`} className="w-full">
-                  <Link
-                    href={`/blog/${relArticle.slug}`}
-                    className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
-                  >
-                    {/* Image */}
-                    <div className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                      <Image
-                        src={relArticle.image}
-                        alt={relArticle.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        unoptimized
-                      />
-                    </div>
+                <StaggerItem key={`${relArticle.id}-${idx}`} className="w-full">
+                  <HoverCard className="h-full rounded-xl">
+                    <Link
+                      href={`/blog/${relArticle.slug}`}
+                      className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
+                    >
+                      {/* Image */}
+                      <ScrollReveal
+                        preset="image"
+                        className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden"
+                      >
+                        <Image
+                          src={relArticle.image}
+                          alt={relArticle.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          unoptimized
+                        />
+                      </ScrollReveal>
 
-                    {/* Content */}
-                    <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                      <h3 className="text-lg sm:text-xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {relArticle.title}
-                      </h3>
+                      {/* Content */}
+                      <div className="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 className="text-lg sm:text-xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {relArticle.title}
+                        </h3>
 
-                      <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
-                        {relArticle.excerpt}
-                      </p>
+                        <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
+                          {relArticle.excerpt}
+                        </p>
 
-                      <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">
-                        <span className="px-3 sm:px-5 py-2 text-xs font-semibold bg-slate-100 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-200 dark:border-slate-800">
-                          {relArticle.category}
-                        </span>
+                        <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                          <span className="px-3 sm:px-5 py-2 text-xs font-semibold bg-slate-100 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-200 dark:border-slate-800">
+                            {relArticle.category}
+                          </span>
 
-                        <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
-                          {relArticle.date}
-                        </span>
+                          <span className="text-xs font-normal text-slate-500 dark:text-slate-400">
+                            {relArticle.date}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                </div>
+                    </Link>
+                  </HoverCard>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </section>
         )}
       </div>

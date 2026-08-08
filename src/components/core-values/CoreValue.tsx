@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import HeroSub from "@/components/shared/HeroSub";
+import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 
 interface ValueItem {
   id: string;
@@ -67,43 +67,47 @@ export default function CoreValues() {
         
         {/* Header Row */}
         <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end lg:mb-16">
-          <div className="max-w-2xl">
+          <ScrollReveal className="max-w-2xl" preset="heading">
             <h2 className="text-3xl font-normal tracking-tight sm:text-4xl md:text-5xl text-slate-900 dark:text-white">
               The <span className="text-blue-600 dark:text-blue-400">core values</span> that drive everything <span className="whitespace-nowrap">we do</span>
             </h2>
-          </div>
-          <div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.12} preset="copy">
             <Link
               href="/careers"
               className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
             >
               Join Our Team
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-8 sm:gap-y-16">
+        <StaggerContainer className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-3">
           {valuesData.map((item) => (
-            <div key={item.id} className="flex flex-col items-start max-w-md">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center dark:invert-0 invert">
-                <Image
-                  src={item.iconSrc}
-                  alt={item.title}
-                  width={64}
-                  height={64}
-                  className="h-auto w-auto"
-                />
-              </div>
-              <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                {item.title}
-              </h3>
-              <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                {item.description}
-              </p>
-            </div>
+            <StaggerItem key={item.id} className="h-full max-w-md" preset="card">
+              <HoverCard className="h-full">
+                <div className="flex h-full flex-col items-start">
+                  <ScrollReveal className="mb-6 flex h-16 w-16 items-center justify-center dark:invert-0 invert" preset="image">
+                    <Image
+                      src={item.iconSrc}
+                      alt={item.title}
+                      width={64}
+                      height={64}
+                      className="h-auto w-auto"
+                    />
+                  </ScrollReveal>
+                  <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                    {item.description}
+                  </p>
+                </div>
+              </HoverCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
       </div>
     </section>

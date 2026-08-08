@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useInView } from "@/hooks/useInView";
+import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 import type { PublicTeamMember } from "@/lib/team/types";
 import { getImgPath } from "@/utils/image";
 
@@ -45,8 +45,7 @@ function SocialIcon({ network }: { network: SocialNetwork }) {
   return <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.451 20.451h-3.554v-5.569c0-1.328-.027-3.037-1.849-3.037-1.849 0-2.132 1.445-2.132 2.94v5.666H9.362V8.999h3.413v1.561h.049c.476-.9 1.637-1.849 3.37-1.849 3.602 0 4.267 2.37 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.451H3.555V8.999h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z" /></svg>;
 }
 
-function TeamMemberCard({ member, index }: { member: PublicTeamMember; index: number }) {
-  const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true, rootMargin: "-50px" });
+function TeamMemberCard({ member }: { member: PublicTeamMember }) {
   const socialLinks = [
     { label: "Facebook", href: safeExternalUrl(member.facebookUrl), network: "Facebook" as const },
     { label: "X", href: safeExternalUrl(member.twitterUrl), network: "X" as const },
@@ -55,62 +54,62 @@ function TeamMemberCard({ member, index }: { member: PublicTeamMember; index: nu
   ].filter((link): link is { label: string; href: string; network: SocialNetwork } => link.href !== null);
 
   return (
-    <article
-      ref={ref}
-      style={{ transitionDelay: `${index * 100}ms` }}
-      className={`relative flex w-full max-w-[596px] flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-8 transition-all duration-400 ease-out hover:scale-[1.02] dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-10 lg:p-12 ${
-        isInView ? "scale-100 opacity-100" : "scale-95 opacity-0"
-      }`}
-    >
-      {member.featured ? (
-        <span className="absolute right-5 top-5 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300">
-          Featured
-        </span>
-      ) : null}
+    <StaggerItem className="w-full max-w-[596px]" preset="card">
+      <HoverCard className="h-full">
+        <article className="relative flex h-full w-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-8 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-10 lg:p-12">
+          {member.featured ? (
+            <span className="absolute right-5 top-5 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300">
+              Featured
+            </span>
+          ) : null}
 
-      <div className="flex items-start justify-between gap-3 sm:gap-4">
-        <div className="flex min-w-0 items-center space-x-3 sm:space-x-4">
-          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16">
-            <img
-              src={teamImageSource(member.image)}
-              alt={member.name}
-              onError={(event) => { event.currentTarget.src = fallbackImage(); }}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <h2 className="font-semibold tracking-tight text-gray-900 dark:text-white" style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.25rem)", lineHeight: "1.2" }}>
-              {member.name}
-            </h2>
-            <p className="mt-0.5 font-normal text-gray-500 dark:text-slate-400" style={{ fontSize: "clamp(0.7rem, 2vw, 1rem)", lineHeight: "1.2" }}>
-              {member.role}
-            </p>
-            <p className="mt-1 text-xs font-medium text-blue-600 dark:text-blue-400">{member.department}</p>
-          </div>
-        </div>
+          <div className="flex items-start justify-between gap-3 sm:gap-4">
+            <div className="flex min-w-0 items-center space-x-3 sm:space-x-4">
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16">
+                <ScrollReveal className="h-full w-full" preset="image">
+                  <img
+                    src={teamImageSource(member.image)}
+                    alt={member.name}
+                    onError={(event) => { event.currentTarget.src = fallbackImage(); }}
+                    className="h-full w-full object-cover"
+                  />
+                </ScrollReveal>
+              </div>
+              <div className="min-w-0 flex-1">
+                <h2 className="font-semibold tracking-tight text-gray-900 dark:text-white" style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.25rem)", lineHeight: "1.2" }}>
+                  {member.name}
+                </h2>
+                <p className="mt-0.5 font-normal text-gray-500 dark:text-slate-400" style={{ fontSize: "clamp(0.7rem, 2vw, 1rem)", lineHeight: "1.2" }}>
+                  {member.role}
+                </p>
+                <p className="mt-1 text-xs font-medium text-blue-600 dark:text-blue-400">{member.department}</p>
+              </div>
+            </div>
 
-        {socialLinks.length > 0 ? (
-          <div className="flex shrink-0 flex-wrap justify-end gap-2 text-gray-400 dark:text-white sm:gap-3">
-            {socialLinks.map(({ label, href, network }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="transition hover:opacity-80 no-underline"
-                aria-label={`${member.name}'s ${label}`}
-              >
-                <SocialIcon network={network} />
-              </a>
-            ))}
+            {socialLinks.length > 0 ? (
+              <div className="flex shrink-0 flex-wrap justify-end gap-2 text-gray-400 dark:text-white sm:gap-3">
+                {socialLinks.map(({ label, href, network }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition hover:opacity-80 no-underline"
+                    aria-label={`${member.name}'s ${label}`}
+                  >
+                    <SocialIcon network={network} />
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
-        ) : null}
-      </div>
 
-      <p className="mt-4 text-sm font-normal leading-relaxed text-gray-600 dark:text-slate-300 sm:mt-6 sm:text-base">
-        {member.bio}
-      </p>
-    </article>
+          <p className="mt-4 text-sm font-normal leading-relaxed text-gray-600 dark:text-slate-300 sm:mt-6 sm:text-base">
+            {member.bio}
+          </p>
+        </article>
+      </HoverCard>
+    </StaggerItem>
   );
 }
 
@@ -119,29 +118,33 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
     <section className="relative overflow-hidden bg-white pb-4 pt-36 dark:bg-[#181d2b] sm:pb-16 sm:pt-40 lg:pb-24 lg:pt-48">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-8 max-w-[650px] text-center sm:mb-12">
-          <h1 className="text-4xl font-normal tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
-            Meet the <span className="text-blue-500">amazing team</span> behind <span className="whitespace-nowrap">our company</span>
-          </h1>
-          <p className="mt-4 text-sm font-normal text-gray-600 dark:text-gray-400 sm:text-base lg:text-lg">
-            The talented professionals behind our company combining creativity, technical expertise, and innovation to deliver exceptional digital solutions.
-          </p>
+          <ScrollReveal preset="hero">
+            <h1 className="text-4xl font-normal tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+              Meet the <span className="text-blue-500">amazing team</span> behind <span className="whitespace-nowrap">our company</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal className="mt-4" delay={0.12} preset="copy">
+            <p className="text-sm font-normal text-gray-600 dark:text-gray-400 sm:text-base lg:text-lg">
+              The talented professionals behind our company combining creativity, technical expertise, and innovation to deliver exceptional digital solutions.
+            </p>
+          </ScrollReveal>
         </div>
 
         {members.length > 0 ? (
           <div className="mx-auto w-full max-w-[1220px]">
-            <div className="grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-2">
-              {members.map((member, index) => <TeamMemberCard key={member.id} member={member} index={index} />)}
-            </div>
+            <StaggerContainer className="grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-2">
+              {members.map((member) => <TeamMemberCard key={member.id} member={member} />)}
+            </StaggerContainer>
           </div>
         ) : (
           <p className="py-12 text-center text-gray-600 dark:text-gray-400">Our team profiles will be available soon.</p>
         )}
 
-        <div className="mt-8 flex justify-center py-16">
+        <ScrollReveal className="mt-8 flex justify-center py-16" delay={0.16} preset="copy">
           <Link href="/careers" className="w-full max-w-[280px] rounded-full bg-blue-600 px-6 py-5 text-center text-sm font-medium text-white no-underline transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95 sm:w-auto sm:max-w-none sm:px-10 sm:py-6">
             Join Our Team
           </Link>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
