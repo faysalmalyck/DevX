@@ -23,10 +23,10 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
     (item.submenu?.some((subItem) => pathname === subItem.href) ?? false);
 
   const baseStyle =
-    'flex w-full items-center justify-between px-4 py-3 text-left text-base font-medium rounded-xl transition-all duration-200 outline-none border-none touch-manipulation select-none active:bg-slate-100 dark:active:bg-slate-800';
+    'group flex w-full items-center justify-between rounded-[2rem] border px-4 py-3.5 text-left text-base font-medium transition-all duration-200 outline-none touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950';
 
-  const activeStyle = `${baseStyle} text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-950/20 font-semibold`;
-  const inactiveStyle = `${baseStyle} text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800/40`;
+  const activeStyle = `${baseStyle} border-blue-500/20 bg-gradient-to-r from-blue-500/15 via-violet-500/10 to-cyan-400/10 font-semibold text-blue-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/25 dark:from-blue-500/25 dark:via-violet-500/15 dark:to-cyan-400/10 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]`;
+  const inactiveStyle = `${baseStyle} border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 active:bg-slate-950/[0.08] dark:text-slate-200 dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white dark:active:bg-white/[0.12]`;
 
   const handleLinkClick = () => {
     if (onNavigate) {
@@ -57,8 +57,10 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
               height="1.5em"
               viewBox="0 0 24 24"
               aria-hidden="true"
-              className={`transition-transform duration-300 pointer-events-none ${
-                submenuOpen ? 'rotate-180 text-blue-600 dark:text-blue-400' : ''
+              className={`pointer-events-none shrink-0 transition-all duration-200 ${
+                submenuOpen
+                  ? 'rotate-180 text-cyan-600 dark:text-cyan-300'
+                  : 'text-slate-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300'
               }`}
             >
               <path
@@ -75,7 +77,7 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
           {submenuOpen && (
             <div
               id={submenuId}
-              className="mt-1 w-full pl-4 pr-2 space-y-1 border-l border-slate-100 dark:border-slate-800/60 ml-4 animate-fade-in"
+              className="ml-4 mt-2 w-full space-y-1 border-l border-slate-950/10 pl-4 pr-1 animate-reveal-up dark:border-white/10"
             >
               {item.submenu.map((subItem, index) => {
                 const isSubActive = pathname === subItem.href;
@@ -87,8 +89,8 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
                     onClick={handleLinkClick}
                     className={
                       isSubActive
-                        ? 'block w-full py-2.5 px-4 text-sm font-semibold rounded-lg text-blue-600 dark:text-blue-400 bg-blue-50/30 dark:bg-blue-950/10 touch-manipulation select-none'
-                        : 'block w-full py-2.5 px-4 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-all duration-200 touch-manipulation select-none'
+                        ? 'block w-full rounded-[2rem] border border-blue-500/20 bg-blue-500/10 px-4 py-2.5 text-sm font-semibold text-blue-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-blue-400/20 dark:bg-blue-500/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus-visible:ring-cyan-300'
+                        : 'block w-full rounded-[2rem] border border-transparent px-4 py-2.5 text-sm font-medium text-slate-600 transition-all duration-200 touch-manipulation select-none hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-slate-400 dark:hover:border-white/10 dark:hover:bg-white/[0.07] dark:hover:text-white dark:focus-visible:ring-cyan-300'
                     }
                   >
                     {subItem.label}

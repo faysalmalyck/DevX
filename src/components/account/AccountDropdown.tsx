@@ -63,7 +63,7 @@ export default function AccountDropdown() {
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/80 py-1.5 pl-1.5 pr-3 text-sm font-bold shadow-sm transition hover:border-primary/30 dark:border-white/10 dark:bg-white/10"
+        className="flex items-center gap-2 rounded-full border border-white/70 bg-transparent py-1.5 pl-1.5 pr-3 text-sm font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.12] dark:text-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
       >
         <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-sky-400 text-xs text-white">
           FM
@@ -75,7 +75,7 @@ export default function AccountDropdown() {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 mt-3 w-72 rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-[0_20px_60px_rgba(15,23,42,.18)] backdrop-blur-2xl dark:border-white/10 dark:bg-[#181d2b]/95"
+          className="absolute right-0 mt-3 w-72 rounded-2xl border border-white/70 bg-transparent p-2 text-slate-900 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl dark:border-white/[0.16] dark:text-white dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06]"
         >
           <div className="p-3">
             <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export default function AccountDropdown() {
             </span>
           </div>
 
-          <div className="my-1 border-t border-slate-200/70 dark:border-white/10" />
+          <div className="my-1 border-t border-slate-950/10 dark:border-white/10" />
 
           {accountItems.map(([label, href, Icon]) => (
             <Link
@@ -100,19 +100,19 @@ export default function AccountDropdown() {
               role="menuitem"
               href={href}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-primary/10 hover:text-primary"
+              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-950/[0.05] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-slate-200 dark:hover:bg-white/[0.08] dark:focus-visible:ring-cyan-300"
             >
               <Icon className="h-4 w-4" />
               {label}
             </Link>
           ))}
 
-          <div className="my-1 border-t border-slate-200/70 dark:border-white/10" />
+          <div className="my-1 border-t border-slate-950/10 dark:border-white/10" />
 
           <button
             role="menuitem"
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-rose-500 transition hover:bg-rose-500/10"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-rose-500 transition hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
           >
             <LogOut className="h-4 w-4" />
             Logout

@@ -28,6 +28,7 @@ const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
+  const wasMobileMenuOpen = useRef(false);
 
   const isAuthOrAdminPage = pathUrl?.startsWith("/admin") || pathUrl?.startsWith("/login") || pathUrl?.startsWith("/register") || pathUrl?.startsWith("/forgot-password") || pathUrl?.startsWith("/reset-password");
 
@@ -102,20 +103,68 @@ const Header: React.FC = () => {
     };
   }, [navbarOpen, mounted]);
 
+  // Keep keyboard focus within the mobile dialog and return it to its trigger when closed.
+  useEffect(() => {
+    if (!mounted) return;
+
+    if (!navbarOpen) {
+      if (wasMobileMenuOpen.current) {
+        toggleButtonRef.current?.focus();
+      }
+      wasMobileMenuOpen.current = false;
+      return;
+    }
+
+    wasMobileMenuOpen.current = true;
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+    const focusableElements = () =>
+      Array.from(
+        mobileMenuRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []
+      );
+    const focusFrame = window.requestAnimationFrame(() => {
+      focusableElements()[0]?.focus();
+    });
+    const handleTab = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+
+      const elements = focusableElements();
+      const firstElement = elements[0];
+      const lastElement = elements[elements.length - 1];
+
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleTab);
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener('keydown', handleTab);
+    };
+  }, [navbarOpen, mounted]);
+
   const isDark = mounted && resolvedTheme === "dark";
   const isHomePage = pathUrl === "/";
 
-  // Text color state handling:
-  // - If mobile drawer is open: always dark text in light mode, white in dark mode
-  // - If transparent home header: white text in both themes
-  // - Standard (sticky or non-home page): slate-900 in light mode, white in dark mode
-  const navTextColor = navbarOpen
-    ? "text-slate-900 dark:text-white"
-    : !sticky && isHomePage
-    ? "text-white"
-    : "text-slate-900 dark:text-white";
-
+  const navTextColor = "text-slate-900 dark:text-white";
   const burgerLineBg = "bg-slate-900 dark:bg-white";
+  const mobileControlColor = navbarOpen
+    ? "text-slate-900 hover:text-blue-500 dark:text-white dark:hover:text-cyan-300"
+    : "text-slate-900 hover:text-blue-500 dark:text-white dark:hover:text-blue-500";
 
   if (isAuthOrAdminPage) {
     return null;
@@ -124,8 +173,10 @@ const Header: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[9999] w-full px-3 py-3 md:py-4 transition-all duration-300 ${
-        sticky
-          ? "bg-white/95 shadow-md backdrop-blur-md dark:bg-slate-900/95 dark:shadow-slate-800/50"
+        navbarOpen
+          ? "border-b border-slate-950/[0.06] bg-transparent shadow-[0_12px_40px_rgba(15,23,42,0.12)] backdrop-blur-3xl dark:border-white/[0.12] dark:shadow-[0_12px_40px_rgba(2,6,23,0.35)]"
+          : sticky
+          ? "border-b border-slate-950/10 bg-transparent shadow-[0_12px_40px_rgba(15,23,42,0.12)] backdrop-blur-3xl dark:border-white/[0.12] dark:shadow-[0_12px_40px_rgba(2,6,23,0.35)]"
           : "bg-transparent"
       }`}
     >
@@ -168,7 +219,7 @@ const Header: React.FC = () => {
             type="button"
             aria-label="Toggle theme"
             onClick={() => setTheme(isDark ? "light" : "dark")}
-            className={`relative inline-flex h-9 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+            className={`relative inline-flex h-9 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
               mounted
                 ? isDark
                   ? "bg-slate-800"
@@ -223,13 +274,13 @@ const Header: React.FC = () => {
           <button
             type="button"
             onClick={openCart}
-            className="relative flex h-10 w-10 items-center justify-center text-slate-900 transition-colors hover:text-blue-500 dark:text-white dark:hover:text-blue-500 lg:hidden"
+            className={`relative flex h-10 w-10 items-center justify-center transition-colors lg:hidden ${mobileControlColor}`}
             aria-label="Open cart"
           >
             <ShoppingBag className="h-5 w-5 stroke-current" />
 
             {itemCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-slate-900 dark:text-white">
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">
                 {itemCount > 99 ? "99+" : itemCount}
               </span>
             )}
@@ -237,36 +288,36 @@ const Header: React.FC = () => {
 
           {/* Mobile Hamburger Toggle */}
           <button
-  ref={toggleButtonRef}
-  type="button"
-  onClick={toggleMenu}
-  onTouchEnd={(e) => {
-    e.preventDefault();
-    toggleMenu();
-  }}
-  className="relative z-[10001] flex h-12 w-12 items-center justify-center bg-transparent lg:hidden touch-manipulation select-none focus:outline-none"
-  aria-label="Toggle mobile menu"
-  aria-expanded={navbarOpen}
-  aria-controls="mobile-menu"
->
-  <div className="pointer-events-none relative flex h-4 w-5 flex-col justify-between">
-    <span
-      className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
-        navbarOpen ? "translate-y-[7px] rotate-45" : ""
-      }`}
-    />
-    <span
-      className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
-        navbarOpen ? "opacity-0" : "opacity-100"
-      }`}
-    />
-    <span
-      className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
-        navbarOpen ? "-translate-y-[7px] -rotate-45" : ""
-      }`}
-    />
-  </div>
-</button>
+            ref={toggleButtonRef}
+            type="button"
+            onClick={toggleMenu}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              toggleMenu();
+            }}
+            className="relative z-[10001] flex h-12 w-12 touch-manipulation select-none items-center justify-center bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 lg:hidden"
+            aria-label="Toggle mobile menu"
+            aria-expanded={navbarOpen}
+            aria-controls="mobile-menu"
+          >
+            <div className="pointer-events-none relative flex h-4 w-5 flex-col justify-between">
+              <span
+                className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
+                  navbarOpen ? "translate-y-[7px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
+                  navbarOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full rounded-full transition-all duration-300 ${burgerLineBg} ${
+                  navbarOpen ? "-translate-y-[7px] -rotate-45" : ""
+                }`}
+              />
+            </div>
+          </button>
         </div>
       </div>
 
@@ -301,12 +352,13 @@ const Header: React.FC = () => {
               navbarOpen ? "visible" : "invisible pointer-events-none"
             }`}
             aria-hidden={!navbarOpen}
+            inert={!navbarOpen}
           >
             <button
               type="button"
               tabIndex={navbarOpen ? 0 : -1}
               aria-label="Close mobile menu backdrop"
-              className={`absolute inset-0 w-full bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300 ${
+              className={`absolute inset-0 w-full bg-transparent backdrop-blur-[3px] transition-opacity duration-300 ${
                 navbarOpen ? "opacity-100" : "opacity-0"
               }`}
               onPointerDown={closeMobileMenu}
@@ -317,35 +369,43 @@ const Header: React.FC = () => {
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation"
-              className={`absolute inset-x-3 top-20 rounded-4xl border border-slate-200 bg-white p-5 shadow-2xl transition-all duration-300 ease-out dark:border-slate-800 dark:bg-slate-900 ${
+              id="mobile-menu"
+              className={`absolute inset-x-3 bottom-3 top-20 overflow-hidden rounded-[2rem] border border-white/70 bg-transparent p-3 shadow-[0_24px_80px_rgba(15,23,42,0.18)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl transition-all duration-300 ease-out dark:border-white/[0.16] dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06] ${
                 navbarOpen
                   ? "translate-y-0 opacity-100"
                   : "-translate-y-2 opacity-0"
               }`}
             >
-              <nav className="flex max-h-[calc(100dvh-6rem)] flex-col overflow-y-auto overscroll-contain text-slate-900 dark:text-white">
-                <div className="flex flex-col space-y-1">
-                  {headerData.map((item, index) => (
-                    <div key={index} className="w-full">
-                      <MobileHeaderLink
-                        item={item}
-                        onNavigate={closeMobileMenu}
-                      />
-                    </div>
-                  ))}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-slate-950/20 to-transparent dark:via-white/50"
+              />
+
+              <nav className="relative flex h-full min-h-0 flex-col text-slate-900 dark:text-white">
+                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+                  <div className="flex flex-col space-y-1">
+                    {headerData.map((item, index) => (
+                      <div key={index} className="w-full">
+                        <MobileHeaderLink
+                          item={item}
+                          onNavigate={closeMobileMenu}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="mt-6 flex flex-col gap-3 border-t border-slate-200/60 pt-4 dark:border-slate-800/60">
+                <div className="mt-4 flex flex-col gap-3 border-t border-slate-950/10 pt-4 dark:border-white/10">
                   <Link
                     href="/contact"
-                    className="w-full rounded-4xl border border-slate-300 py-5 text-center text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
+                    className="w-full rounded-[2rem] border border-white/75 bg-transparent py-4 text-center text-sm font-semibold text-slate-900 backdrop-blur-xl transition-colors hover:border-slate-950/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.16] dark:text-white dark:hover:border-white/30 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
                     onClick={closeMobileMenu}
                   >
                     Contact us
                   </Link>
                   <Link
                     href="/portfolio"
-                    className="w-full rounded-4xl bg-blue-600 py-5 text-center text-sm font-semibold text-white transition-all hover:bg-blue-500 active:scale-[0.98]"
+                    className="w-full rounded-[2rem] bg-blue-600 py-4 text-center text-sm font-semibold text-white shadow-[0_14px_32px_rgba(37,99,235,0.3)] transition-all hover:bg-blue-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-slate-950"
                     onClick={closeMobileMenu}
                   >
                     View work

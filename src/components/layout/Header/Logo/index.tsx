@@ -26,7 +26,7 @@ const Logo: React.FC = () => {
     >
       <Image
         src={logoSrc}
-        alt="Vertex logo"
+        alt="DevX logo"
         width={150}
         height={50}
         quality={100}
