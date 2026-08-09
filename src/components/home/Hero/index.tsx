@@ -33,18 +33,20 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-[#181d2b] pt-28 pb-12 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-32 transition-colors duration-300">
+    <section className="relative isolate overflow-hidden bg-white pb-12 pt-28 transition-colors duration-300 dark:bg-[#181d2b] sm:pb-20 sm:pt-36 lg:pb-32 lg:pt-44">
       {/* Background Graphic Element */}
       <div
-        className="hidden sm:block absolute -right-48 lg:-right-[475px] top-[60%] -translate-y-1/2 w-[1971.5px] max-w-none pointer-events-none z-0 origin-right scale-80"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-16 z-[1] w-[175vw] max-w-none -translate-x-1/2 opacity-[0.18] dark:opacity-[0.48] sm:top-20 sm:w-[108vw] sm:max-w-[860px] sm:opacity-[0.16] sm:dark:opacity-[0.4] lg:left-auto lg:-right-[475px] lg:top-[60%] lg:w-[1971.5px] lg:max-w-none lg:-translate-y-1/2 lg:translate-x-0 lg:origin-right lg:scale-80 lg:opacity-100 lg:dark:opacity-100"
       >
         <ScrollReveal className="w-full" preset="image">
           <Image
             src="/images/hero/hero.png"
-            alt="Development Agency - Dev X Webflow Template"
-            width={1961.5}
-            height={1468}
+            alt=""
+            width={3943}
+            height={2653}
             priority
+            sizes="(max-width: 639px) 175vw, (max-width: 1023px) 860px, 1972px"
             className="w-full h-auto object-contain"
           />
         </ScrollReveal>
