@@ -2,8 +2,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
+@theme inline {
   --font-sans: var(--font-rota), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@theme {
 
   --spacing-6xl: 75rem;
   --container-screen-2xl: 83.75rem;
@@ -80,6 +83,15 @@
 
   section {
     @apply py-20 md:py-24;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
   }
 }
 
@@ -257,7 +269,13 @@ body {
 
   .skeleton-shimmer {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
+    border: 1px solid rgba(54, 88, 255, 0.14);
+    background:
+      linear-gradient(135deg, rgba(54, 88, 255, 0.08), rgba(255, 255, 255, 0.8)),
+      #f1f5f9;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
 
   .skeleton-shimmer::after {
@@ -268,17 +286,30 @@ body {
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.42),
+      rgba(54, 88, 255, 0.12),
+      rgba(255, 255, 255, 0.84),
+      rgba(54, 88, 255, 0.12),
       transparent
     );
-    animation: skeleton-shimmer 1.6s ease-in-out infinite;
+    animation: skeleton-shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    will-change: transform;
+  }
+
+  .dark .skeleton-shimmer {
+    border-color: rgba(100, 116, 139, 0.58);
+    background:
+      linear-gradient(135deg, rgba(54, 88, 255, 0.18), rgba(36, 48, 66, 0.92)),
+      #243042;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .dark .skeleton-shimmer::after {
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.08),
+      rgba(54, 88, 255, 0.18),
+      rgba(255, 255, 255, 0.12),
+      rgba(54, 88, 255, 0.18),
       transparent
     );
   }

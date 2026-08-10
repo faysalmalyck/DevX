@@ -28,7 +28,7 @@ export default function ProjectOverview({ study }: { study: CaseStudy }) {
         <div className="grid grid-cols-1 items-start gap-20 lg:grid-cols-12 lg:gap-32">
           {/* Left Column */}
           <ScrollReveal className="space-y-6 lg:col-span-6" preset="left">
-            <h2 className="mb-6 text-3xl font-normal tracking-tight text-white sm:text-4xl md:text-5xl">
+            <h2 className="mb-6 text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl">
               {study.overview.title}
             </h2>
 
@@ -67,7 +67,7 @@ export default function ProjectOverview({ study }: { study: CaseStudy }) {
             <div className="mx-auto max-w-4xl rounded-lg bg-gradient-to-b from-[#252d42] via-[#1f2636] to-[#1C2335] px-8 py-14 shadow-[0_20px_80px_rgba(0,0,0,0.35)] md:px-36 md:py-24">
               <div className="max-w-3xl">
                 <ScrollReveal preset="heading">
-                  <h2 className="text-4xl font-normal text-white md:text-5xl">
+                  <h2 className="text-4xl font-medium text-white md:text-5xl">
                     {study.execution.title}
                   </h2>
                 </ScrollReveal>

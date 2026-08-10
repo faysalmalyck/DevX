@@ -35,7 +35,7 @@ export function LatestArticlesSection({ articles }: LatestArticlesSectionProps) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 sm:mb-12">
           <ScrollReveal preset="heading">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight">
               Latest articles
             </h2>
           </ScrollReveal>
@@ -88,7 +88,7 @@ export function LatestArticlesSection({ articles }: LatestArticlesSectionProps) 
 
                   {/* Content */}
                   <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-medium mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                       {article.title}
                     </h3>
 

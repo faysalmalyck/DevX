@@ -68,7 +68,7 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
         {/* Top Hero Block */}
         <div className="mx-auto max-w-3xl text-center">
           <ScrollReveal preset="hero">
-            <h1 className="text-4xl font-normal tracking-tight sm:text-6xl lg:text-6xl">
+            <h1 className="text-4xl font-medium tracking-tight sm:text-6xl lg:text-6xl">
               Join our team of talented{' '}
               <span className="text-brand dark:text-brand">developers</span>
               {' '}&amp;{' '}
@@ -99,7 +99,7 @@ className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 s
           <div className="flex flex-col justify-center lg:col-span-5">
             <div className="max-w-md">
               <ScrollReveal preset="heading">
-                <h2 className="text-3xl font-normal tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
+                <h2 className="text-3xl font-medium tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
                   Perks &amp; benefits of{' '}
                   <span className="text-brand dark:text-brand">working</span> at our agency
                 </h2>
@@ -137,7 +137,7 @@ className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-ful
                         />
                       </ScrollReveal>
                       <div>
-                        <h3 className="text-xl font-normal text-slate-900 dark:text-white">
+                        <h3 className="text-xl font-medium text-slate-900 dark:text-white">
                           {benefit.title}
                         </h3>
                         <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">

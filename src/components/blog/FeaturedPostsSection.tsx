@@ -27,7 +27,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 w-full">
           <ScrollReveal preset="hero">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white text-center sm:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-slate-900 dark:text-white text-center sm:text-left">
               Articles <span className="text-brand">&amp;</span> Resources
             </h1>
           </ScrollReveal>
@@ -61,7 +61,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
                   />
                 </ScrollReveal>
                 <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-medium mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                     {featuredMain.title}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">

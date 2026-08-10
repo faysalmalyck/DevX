@@ -64,7 +64,7 @@ export default function ArticleSlider() {
         >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-xl">
-            <h2 className="text-4xl sm:text-4xl lg:text-5xl font-normal tracking-tight">
+            <h2 className="text-4xl sm:text-4xl lg:text-5xl font-medium tracking-tight">
               Browse our latest{" "}
               <span className="text-brand dark:text-brand">articles</span> and{" "}
               <span className="text-brand dark:text-brand">resources</span>
@@ -139,7 +139,7 @@ export default function ArticleSlider() {
 
                   {/* Content */}
                   <div className="p-6 sm:p-8 lg:p-12 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-medium mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">

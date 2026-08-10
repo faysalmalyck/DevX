@@ -77,7 +77,7 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
 
           {/* Centered Title without Bold */}
           <ScrollReveal preset="hero" delay={0.18}>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.15]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.15]">
               {study.title}
             </h1>
           </ScrollReveal>

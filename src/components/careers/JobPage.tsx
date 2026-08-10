@@ -48,7 +48,7 @@ export default function OpenPositions({
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <ScrollReveal className="mb-4" preset="heading">
-            <h2 className="text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+            <h2 className="text-4xl font-medium tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
               Browse our available <span className="text-brand dark:text-brand">positions</span>
             </h2>
           </ScrollReveal>
@@ -91,7 +91,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
                       <span>{position.type}</span>
                     </div>
 
-                    <h3 className="mb-3 text-2xl font-normal text-slate-900 transition-colors group-hover:text-brand sm:text-3xl dark:text-white dark:group-hover:text-brand">
+                    <h3 className="mb-3 text-2xl font-medium text-slate-900 transition-colors group-hover:text-brand sm:text-3xl dark:text-white dark:group-hover:text-brand">
                       {position.title}
                     </h3>
                   </div>

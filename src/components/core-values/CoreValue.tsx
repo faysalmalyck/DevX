@@ -68,7 +68,7 @@ export default function CoreValues() {
         {/* Header Row */}
         <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end lg:mb-16">
           <ScrollReveal className="max-w-2xl" preset="heading">
-            <h2 className="text-3xl font-normal tracking-tight sm:text-4xl md:text-5xl text-slate-900 dark:text-white">
+            <h2 className="text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl text-slate-900 dark:text-white">
               The <span className="text-brand dark:text-brand">core values</span> that drive everything <span className="whitespace-nowrap">we do</span>
             </h2>
           </ScrollReveal>

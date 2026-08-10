@@ -13,7 +13,72 @@ import CartModal from "@/components/cart/CartModal";
 import { ToastProvider } from "@/components/ui/Toast";
 
 const rota = localFont({
-  src: "./fonts/Rota-Medium.otf",
+  src: [
+    { path: "./fonts/Rota-Thin.otf", weight: "100", style: "normal" },
+    { path: "./fonts/Rota-ThinItalic.otf", weight: "100", style: "italic" },
+    {
+      path: "./fonts/Rota-ExtraLight.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Rota-ExtraLightItalic.otf",
+      weight: "200",
+      style: "italic",
+    },
+    { path: "./fonts/Rota-Light.otf", weight: "300", style: "normal" },
+    {
+      path: "./fonts/Rota-LightItalic.otf",
+      weight: "300",
+      style: "italic",
+    },
+    { path: "./fonts/Rota-Regular.otf", weight: "400", style: "normal" },
+    { path: "./fonts/Rota-Italic.otf", weight: "400", style: "italic" },
+    { path: "./fonts/Rota-Medium.otf", weight: "500", style: "normal" },
+    {
+      path: "./fonts/Rota-MediumItalic.otf",
+      weight: "500",
+      style: "italic",
+    },
+    { path: "./fonts/Rota-SemiBold.otf", weight: "600", style: "normal" },
+    {
+      path: "./fonts/Rota-SemiBoldItalic.otf",
+      weight: "600",
+      style: "italic",
+    },
+    { path: "./fonts/Rota-Bold.otf", weight: "700", style: "normal" },
+    {
+      path: "./fonts/Rota-BoldItalic.otf",
+      weight: "700",
+      style: "italic",
+    },
+    {
+      path: "./fonts/Rota-ExtraBold.otf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Rota-ExtraBoldItalic.otf",
+      weight: "800",
+      style: "italic",
+    },
+    { path: "./fonts/Rota-Black.otf", weight: "900", style: "normal" },
+    {
+      path: "./fonts/Rota-BlackItalic.otf",
+      weight: "900",
+      style: "italic",
+    },
+    {
+      path: "./fonts/Rota-ExtraBlack.otf",
+      weight: "950",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Rota-ExtraBlackItalic.otf",
+      weight: "950",
+      style: "italic",
+    },
+  ],
   variable: "--font-rota",
   display: "swap",
 });
@@ -79,7 +144,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${rota.variable} font-sans`}>
+      <body className={`${rota.variable} ${rota.className}`}>
         <NextTopLoader />
         <SessionProvider>
           <AuthDialogProvider>

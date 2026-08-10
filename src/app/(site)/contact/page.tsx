@@ -52,7 +52,7 @@ export default function ContactHeroSection() {
         <div className="mt-0 w-full max-w-full lg:w-[518.18px] lg:h-[494.1px] space-y-8 flex flex-col justify-between my-auto">
           <div className="space-y-4">
             <ScrollReveal preset="hero">
-              <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white">
+              <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-medium tracking-tight text-slate-900 dark:text-white">
                 Get in <span className="text-brand">touch</span> with our team
               </h1>
             </ScrollReveal>

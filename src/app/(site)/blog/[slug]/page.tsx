@@ -150,7 +150,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
           </ScrollReveal>
 
           <ScrollReveal preset="hero" delay={0.1}>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-slate-900 dark:text-white tracking-tight leading-tight mb-6 sm:mb-8 text-center px-2 sm:px-8 lg:px-16">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-medium text-slate-900 dark:text-white tracking-tight leading-tight mb-6 sm:mb-8 text-center px-2 sm:px-8 lg:px-16">
               {article.title}
             </h1>
           </ScrollReveal>
@@ -238,7 +238,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
                       {/* Content */}
                       <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                        <h3 className="text-lg sm:text-xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
+                        <h3 className="text-lg sm:text-xl font-medium mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                           {relArticle.title}
                         </h3>
 

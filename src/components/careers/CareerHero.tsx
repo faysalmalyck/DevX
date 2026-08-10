@@ -27,7 +27,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
 
           {/* Title */}
           <ScrollReveal preset="hero">
-            <h1 className="text-5xl font-normal leading-tight tracking-tight text-slate-900 xs:text-3xl sm:text-4xl lg:text-5xl dark:text-white">
+            <h1 className="text-5xl font-medium leading-tight tracking-tight text-slate-900 xs:text-3xl sm:text-4xl lg:text-5xl dark:text-white">
               {career.title}
             </h1>
           </ScrollReveal>

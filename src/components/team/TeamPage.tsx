@@ -119,7 +119,7 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-8 max-w-[650px] text-center sm:mb-12">
           <ScrollReveal preset="hero">
-            <h1 className="text-4xl font-normal tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-4xl font-medium tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
               Meet the <span className="text-brand">amazing team</span> behind <span className="whitespace-nowrap">our company</span>
             </h1>
           </ScrollReveal>
