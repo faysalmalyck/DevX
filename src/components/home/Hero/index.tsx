@@ -82,7 +82,7 @@ export default function HeroSection() {
                 delay={0.12}
                 preset="copy"
               >
-                <p className="text-gray-600 dark:text-white text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
+                <p className="text-gray-600 dark:text-white text-base sm:text-base leading-relaxed mb-6 sm:mb-8">
                   Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
                 </p>
               </ScrollReveal>
@@ -95,13 +95,13 @@ export default function HeroSection() {
               >
                 <Link
                   href="/contact"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-sm font-medium text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-lg font-semibold text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95"
                 >
                   Contact us
                 </Link>
                 <Link
                   href="/services"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
                 >
                   Our services
                 </Link>

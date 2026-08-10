@@ -77,7 +77,7 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
           </ScrollReveal>
 
           <ScrollReveal className="mx-auto mt-6 max-w-4xl px-4 sm:px-0" delay={0.12} preset="copy">
-            <p className="text-sm text-slate-600 sm:text-base dark:text-slate-400">
+            <p className="text-base text-slate-600 dark:text-slate-400">
               We're always looking for talented individuals who are passionate about solving complex problems and building exceptional digital experiences.
             </p>
           </ScrollReveal>
@@ -85,7 +85,7 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
           <ScrollReveal className="mt-10 flex items-center justify-center gap-x-6" delay={0.22} preset="copy">
             <a
               href="#open-positions"
-className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40">              Browse open positions
+className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-6 sm:py-7 text-lg font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40">              Browse open positions
             </a>
           </ScrollReveal>
 
@@ -114,7 +114,7 @@ className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 s
               <ScrollReveal className="mt-8" delay={0.22} preset="copy">
                 <a
                   href="#open-positions"
-className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40">                  Browse open positions
+className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-6 sm:py-7 text-lg font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40">                  Browse open positions
                 </a>
               </ScrollReveal>
             </div>
@@ -140,7 +140,7 @@ className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-ful
                         <h3 className="text-xl font-medium text-slate-900 dark:text-white">
                           {benefit.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        <p className="mt-2 text-base leading-relaxed text-slate-600 dark:text-slate-400">
                           {benefit.description}
                         </p>
                       </div>

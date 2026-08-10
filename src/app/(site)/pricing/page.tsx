@@ -55,7 +55,7 @@ export default function PricingPage() {
 
                         <Link
                           href={plan.link ?? "#"}
-                          className={`block text-center font-medium ${
+                          className={`block text-center text-lg font-semibold ${
                             plan.isPopular
                               ? "w-full rounded-full bg-brand py-4 px-6 text-white shadow-lg shadow-brand/25 transition-all duration-200 hover:bg-brand sm:py-5"
                               : "w-full px-8 py-3.5 sm:py-5.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"

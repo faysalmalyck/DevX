@@ -26,7 +26,7 @@ export default function TestimonialsSection() {
             {/* Button centered and resized on mobile */}
             <Link
               href="/contact"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95 self-center"
+              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95 self-center"
             >
               Contact us
             </Link>
@@ -66,7 +66,7 @@ export default function TestimonialsSection() {
                                 <div className="text-lg font-bold text-white">
                                   {testimonial.name}
                                 </div>
-                                <div className="text-sm text-slate-400">
+                                <div className="text-base text-white">
                                   {testimonial.handle}
                                 </div>
                               </div>
@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
                             </div>
                           </div>
                           <div className="mt-6">
-                            <p className="text-slate-300">{testimonial.text}</p>
+                            <p className="text-base text-slate-300">{testimonial.text}</p>
                           </div>
                         </div>
                       </HoverCard>

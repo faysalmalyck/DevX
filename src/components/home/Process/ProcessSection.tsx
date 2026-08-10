@@ -95,7 +95,7 @@ export default function ProcessSection() {
                     <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed">
+                    <p className="text-slate-300 text-base leading-relaxed">
                       {step.description}{' '}
                       <span className="whitespace-nowrap">{step.highlightText}</span>
                     </p>
@@ -118,7 +118,7 @@ export default function ProcessSection() {
         >
           <Link
             href="/contact"
-            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
           >
             Contact us
           </Link>

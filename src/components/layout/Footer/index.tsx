@@ -29,7 +29,7 @@ export default function Footer() {
                 priority
               />
             </Link>
-            <p className="text-sm text-white">
+            <p className="text-base text-white">
               Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
             </p>
           </div>
@@ -37,13 +37,13 @@ export default function Footer() {
           <div className="flex w-full flex-col items-center gap-4 sm:flex-row md:w-auto">
             <Link
               href="/contact"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
+              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
             >
               Contact us
             </Link>
             <Link
               href="/services"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
+              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
             >
               Browse Services
             </Link>
@@ -56,7 +56,7 @@ export default function Footer() {
           {/* Pages Links */}
           <div className="lg:col-span-2">
             <h3 className="mb-4 text-lg font-bold text-white">Pages</h3>
-            <div className="grid grid-cols-1 gap-4 text-base sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 text-lg sm:grid-cols-3">
               <ul className="space-y-2">
                 <li><Link href="/" className="transition hover:text-white">Home</Link></li>
                 <li><Link href="/about" className="transition hover:text-white">About</Link></li>
@@ -89,8 +89,8 @@ export default function Footer() {
 
           {/* Newsletter Form */}
           <div className="max-w-sm">
-            <h3 className="mb-2 text-lg font-bold text-white">Subscribe to our newsletter</h3>
-            <p className="mb-4 text-base text-slate-400">
+            <h3 className="mb-2 text-xl font-bold text-white">Subscribe to our newsletter</h3>
+            <p className="mb-4 text-lg text-white">
               To be updated with all the latest trends and product releases.
             </p>
             <form className="flex flex-col items-center sm:items-stretch gap-3">
@@ -102,7 +102,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
+                className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
               >
                 Subscribe
               </button>

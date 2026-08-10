@@ -75,7 +75,7 @@ export default function CoreValues() {
           <ScrollReveal delay={0.12} preset="copy">
             <Link
               href="/careers"
-              className="inline-block w-full rounded-full bg-brand px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] sm:w-auto"
+              className="inline-block w-full rounded-full bg-brand px-10 py-6 text-center text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] sm:w-auto"
             >
               Join Our Team
             </Link>

@@ -286,7 +286,7 @@ export default function LoginCard() {
                     <button
                       type="submit"
                       disabled={userLoginLoading}
-                      className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                      className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
                     >
                       {userLoginLoading ? (
                         <>
@@ -391,7 +391,7 @@ export default function LoginCard() {
                     <button
                       type="submit"
                       disabled={signupLoading}
-                      className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                      className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
                     >
                       {signupLoading ? (
                         <>
@@ -500,7 +500,7 @@ export default function LoginCard() {
                 <button
                   type="submit"
                   disabled={adminLoading}
-                  className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                  className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
                 >
                   {adminLoading ? (
                     <>

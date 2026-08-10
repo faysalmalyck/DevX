@@ -146,7 +146,7 @@ export default function AdminRegisterCard() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-primary py-3.5 font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.99] shadow-lg shadow-primary/20 mt-2 disabled:opacity-50 cursor-pointer"
+            className="w-full rounded-xl bg-primary py-3.5 text-lg font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.99] shadow-lg shadow-primary/20 mt-2 disabled:opacity-50 cursor-pointer"
           >
             {loading ? "Registering..." : "Create Admin Account"}
           </button>

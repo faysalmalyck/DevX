@@ -96,7 +96,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
                     </h3>
                   </div>
 
-                  <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-400">
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
                     {position.description}
                   </p>
                 </Link>

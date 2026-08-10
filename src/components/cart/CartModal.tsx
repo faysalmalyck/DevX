@@ -68,7 +68,7 @@ function EmptyCartState({ onGoToPricing }: { onGoToPricing: () => void }) {
         <button
           type="button"
           onClick={onGoToPricing}
-          className="mt-10 inline-flex min-h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold tracking-[-0.02em] text-white shadow-[0_8px_20px_rgba(54,88,255,0.25)] transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+          className="mt-10 inline-flex min-h-11 items-center justify-center rounded-full bg-brand px-6 text-lg font-semibold tracking-[-0.02em] text-white shadow-[0_8px_20px_rgba(54,88,255,0.25)] transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
         >
         Go to Purchase 
         </button>
@@ -208,7 +208,7 @@ export default function CartModal() {
                 type="button"
                 onClick={handleCheckout}
                 disabled={isCheckingOut}
-                className="mx-auto mt-3 flex min-h-10 w-full items-center justify-center rounded-full bg-brand px-10 py-3 text-center text-sm font-medium text-white shadow-[0_8px_20px_rgba(54,88,255,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:translate-y-0 disabled:cursor-wait disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:w-auto"
+                className="mx-auto mt-3 flex min-h-10 w-full items-center justify-center rounded-full bg-brand px-10 py-3 text-center text-lg font-semibold text-white shadow-[0_8px_20px_rgba(54,88,255,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:translate-y-0 disabled:cursor-wait disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:w-auto"
               >
                 {isCheckingOut
                   ? "Preparing checkout…"

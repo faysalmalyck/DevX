@@ -63,7 +63,7 @@ const NotFound = () => {
               </p>
               <Link
                 href="/"
-                className="premium-gradient-button rounded-md px-7 py-3 text-base font-medium"
+                className="premium-gradient-button rounded-md px-7 py-3 text-lg font-semibold"
               >
                 Go To Home
               </Link>

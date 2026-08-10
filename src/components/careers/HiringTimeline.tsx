@@ -15,7 +15,7 @@ export default function HiringTimeline({ career }: { career: PublicCareer }) {
               {step.step}
             </div>
             <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-1">{step.title}</h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400">{step.description}</p>
+            <p className="text-base text-slate-600 dark:text-slate-400">{step.description}</p>
           </StaggerItem>
         ))}
       </StaggerContainer>
@@ -23,7 +23,7 @@ export default function HiringTimeline({ career }: { career: PublicCareer }) {
   <ApplyButton
     careerSlug={career.slug}
     careerTitle={career.title}
-    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-5 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40"
+    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-5 text-lg font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40"
   >
     Apply now
   </ApplyButton>

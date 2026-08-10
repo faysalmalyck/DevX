@@ -206,7 +206,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
               <ScrollReveal preset="copy" delay={0.1}>
                 <Link
                   href="/blog"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-800 bg-white dark:bg-[#121623] px-6 sm:px-8 py-3 text-sm font-medium text-slate-700 dark:text-white transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-[#1a2032] active:scale-95"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-800 bg-white dark:bg-[#121623] px-6 sm:px-8 py-3 text-lg font-semibold text-slate-700 dark:text-white transition-all duration-200 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-[#1a2032] active:scale-95"
                 >
                   Browse All Posts
                 </Link>

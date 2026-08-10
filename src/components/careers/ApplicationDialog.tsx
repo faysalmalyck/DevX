@@ -565,7 +565,7 @@ export default function ApplicationDialog({
               <h2 id={inputId("title")} className="mt-1 break-words text-xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
                 {careerTitle}
               </h2>
-              <p id={inputId("description")} className="mt-1.5 max-w-2xl text-xs leading-5 text-slate-600 dark:text-slate-300 sm:text-sm sm:leading-6">
+              <p id={inputId("description")} className="mt-1.5 max-w-2xl text-base leading-6 text-slate-600 dark:text-slate-300">
                 Tell us about yourself and attach your resume. Fields marked with an asterisk are required.
               </p>
             </div>
@@ -587,20 +587,20 @@ export default function ApplicationDialog({
                 <CheckCircle2 className="size-8" aria-hidden="true" />
               </div>
               <h3 ref={successHeadingRef} tabIndex={-1} className="mt-5 text-2xl font-semibold text-slate-900 outline-none dark:text-white">Application received</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+              <p className="mt-3 text-base leading-6 text-slate-600 dark:text-slate-300">
                 Thank you for applying for {careerTitle}. Our team will review your application and contact you if there is a match.
               </p>
               <button
                 type="button"
                 onClick={handleClose}
-                className="mt-7 rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition hover:bg-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 dark:focus:ring-offset-[#232c3e]"
+                className="mt-7 rounded-full bg-brand px-7 py-3 text-lg font-semibold text-white shadow-lg shadow-brand/20 transition hover:bg-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 dark:focus:ring-offset-[#232c3e]"
               >
                 Done
               </button>
               <button
                 type="button"
                 onClick={handleSubmitAnother}
-                className="mt-4 text-sm font-semibold text-brand underline-offset-4 transition hover:text-brand hover:underline focus:outline-none focus:ring-2 focus:ring-brand dark:text-brand"
+                className="mt-4 text-lg font-semibold text-brand underline-offset-4 transition hover:text-brand hover:underline focus:outline-none focus:ring-2 focus:ring-brand dark:text-brand"
               >
                 Submit another application
               </button>
@@ -913,14 +913,14 @@ export default function ApplicationDialog({
                   type="button"
                   onClick={handleClose}
                   disabled={isSubmitting}
-                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 px-6 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand disabled:cursor-not-allowed disabled:opacity-50 dark:border-[#39435b] dark:text-slate-200 dark:hover:bg-[#232b3e]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 px-6 text-lg font-semibold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand disabled:cursor-not-allowed disabled:opacity-50 dark:border-[#39435b] dark:text-slate-200 dark:hover:bg-[#232b3e]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand px-7 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition hover:bg-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-[#232c3e]"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand px-7 text-lg font-semibold text-white shadow-lg shadow-brand/20 transition hover:bg-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-[#232c3e]"
                 >
                   {isSubmitting ? (
                     <>

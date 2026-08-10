@@ -44,7 +44,7 @@ export default function AccountDropdown() {
     return (
       <Link
         href="/login"
-        className="hidden sm:inline-flex px-8 py-3.5 rounded-full bg-brand text-white font-medium text-center hover:bg-brand transition-colors duration-200 shadow-md hover:shadow-lg whitespace-nowrap"
+        className="hidden sm:inline-flex px-8 py-3.5 rounded-full bg-brand text-lg font-semibold text-white text-center hover:bg-brand transition-colors duration-200 shadow-md hover:shadow-lg whitespace-nowrap"
       >
         Login
       </Link>

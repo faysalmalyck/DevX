@@ -34,7 +34,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
 
           {/* Career Description */}
           <ScrollReveal className="mt-4 px-2 sm:mt-6 sm:px-0" delay={0.14} preset="copy">
-            <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
+            <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
               {career.description || career.overview}
             </p>
           </ScrollReveal>
@@ -44,7 +44,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
   <ApplyButton
     careerSlug={career.slug}
     careerTitle={career.title}
-    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-5 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40"
+    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-5 text-lg font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40"
   >
     Apply now
   </ApplyButton>

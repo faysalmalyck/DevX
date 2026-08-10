@@ -54,7 +54,7 @@ const Testimonial = () => {
                 <p className='flex-1 text-base leading-8 text-secondary dark:text-white/65'>{review.quote}</p>
                 <div className='mt-8 border-t border-slate-200/70 pt-5 dark:border-white/10'>
                   <strong className='text-lg font-black text-midnight_text dark:text-white'>{review.name}</strong>
-                  <p className='mt-1 text-sm text-gray dark:text-white/50'>{review.role}</p>
+                  <p className='mt-1 text-base text-gray dark:text-white/50'>{review.role}</p>
                 </div>
               </article>
             ))}

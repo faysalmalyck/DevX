@@ -115,7 +115,7 @@ export default function ContactHeroSection() {
                 <p className="text-slate-600 dark:text-slate-400">Thank you for reaching out. We will get back to you shortly.</p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-4 px-6 py-2.5 rounded-full bg-brand hover:bg-brand text-white font-semibold transition-colors"
+                  className="mt-4 px-6 py-2.5 rounded-full bg-brand hover:bg-brand text-lg font-semibold text-white transition-colors"
                 >
                   Send another message
                 </button>
@@ -209,7 +209,7 @@ export default function ContactHeroSection() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-8 py-5.5 rounded-full bg-gradient-to-r from-brand to-brand hover:from-brand hover:to-indigo-500 text-white font-semibold shadow-lg hover:shadow-brand/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand disabled:opacity-50"
+                    className="px-8 py-5.5 rounded-full bg-gradient-to-r from-brand to-brand hover:from-brand hover:to-indigo-500 text-lg font-semibold text-white shadow-lg hover:shadow-brand/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand disabled:opacity-50"
                   >
                     {loading ? 'Sending...' : 'Get in touch'}
                   </button>

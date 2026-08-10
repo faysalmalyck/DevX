@@ -75,7 +75,7 @@ export default function ProjectOverview({ study }: { study: CaseStudy }) {
                 <StaggerContainer className="mt-10 space-y-8">
                   {study.execution.description?.map((paragraph, index) => (
                     <StaggerItem key={index} preset="copy">
-                      <p className="text-sm md:text-base font-normal leading-6 md:leading-8 text-white">
+                      <p className="text-base font-normal leading-6 md:leading-8 text-white">
                         {paragraph}
                       </p>
                     </StaggerItem>
@@ -83,7 +83,7 @@ export default function ProjectOverview({ study }: { study: CaseStudy }) {
 
                   {study.execution.bullets && study.execution.bullets.length > 0 && (
                     <StaggerItem preset="right">
-                      <ul className="list-disc space-y-5 pl-6 text-sm md:text-base font-normal leading-6 md:leading-8 text-slate-300 marker:text-slate-500">
+                      <ul className="list-disc space-y-5 pl-6 text-base font-normal leading-6 md:leading-8 text-slate-300 marker:text-slate-500">
                         {study.execution.bullets.map((bullet, index) => (
                           <li key={index}>{bullet}</li>
                         ))}

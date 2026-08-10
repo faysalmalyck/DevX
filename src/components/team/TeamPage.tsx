@@ -141,7 +141,7 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
         )}
 
         <ScrollReveal className="mt-8 flex justify-center py-16" delay={0.16} preset="copy">
-          <Link href="/careers" className="w-full max-w-[280px] rounded-full bg-brand px-6 py-5 text-center text-sm font-medium text-white no-underline transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95 sm:w-auto sm:max-w-none sm:px-10 sm:py-6">
+          <Link href="/careers" className="w-full max-w-[280px] rounded-full bg-brand px-6 py-5 text-center text-lg font-semibold text-white no-underline transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95 sm:w-auto sm:max-w-none sm:px-10 sm:py-6">
             Join Our Team
           </Link>
         </ScrollReveal>

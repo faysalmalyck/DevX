@@ -33,7 +33,7 @@ function RelatedProjectCard({ study }: { study: CaseStudy }) {
             {study.title}
           </h3>
         </div>
-        <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-slate-300 group-hover:text-white transition-colors">
+        <div className="mt-8 flex items-center gap-2 text-base font-semibold text-slate-300 group-hover:text-white transition-colors">
           <span>Read case study</span>
           <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </div>

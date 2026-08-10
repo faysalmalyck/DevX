@@ -77,7 +77,7 @@ export default function Development() {
                   {service.title}
                 </h3>
 
-                <p className="mt-2 text-sm sm:text-base leading-6 sm:leading-7 text-slate-600 dark:text-slate-300">
+                <p className="mt-2 text-base sm:text-base leading-6 sm:leading-7 text-slate-600 dark:text-slate-300">
                   {service.description}
                 </p>
               </div>
@@ -94,7 +94,7 @@ export default function Development() {
         >
           <Link
             href="/pricing"
-            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
           >
             Get Pricing
           </Link>

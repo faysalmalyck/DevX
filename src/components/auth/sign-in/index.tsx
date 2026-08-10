@@ -75,7 +75,7 @@ const Signin = ({ signInOpen }: SignInProps) => {
         <div className="mb-9">
           <button
             type="submit"
-            className="flex w-full cursor-pointer items-center justify-center rounded-md border border-primary bg-primary hover:bg-darkprimary dark:hover:bg-darkprimary! px-5 py-3 text-base text-white transition duration-300 ease-in-out "
+            className="flex w-full cursor-pointer items-center justify-center rounded-md border border-primary bg-primary hover:bg-darkprimary dark:hover:bg-darkprimary! px-5 py-3 text-lg font-semibold text-white transition duration-300 ease-in-out "
           >
             Sign In
             {/* {loading && <Loader />} */}

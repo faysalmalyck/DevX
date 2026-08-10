@@ -27,7 +27,7 @@ export default function AccordionItem({
         aria-controls={`faq-answer-${id}`}
         id={`faq-question-${id}`}
       >
-        <span className="text-lg font-medium text-slate-900 dark:text-white pr-8">
+        <span className="text-lg font-semibold text-slate-900 dark:text-white pr-8">
           {question}
         </span>
         <div

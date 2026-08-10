@@ -13,7 +13,7 @@ export default function TechStackSection() {
           </div>
         </ScrollReveal>
         <ScrollReveal preset="heading">
-          <h2 className="text-4xl tracking-tight text-slate-900 dark:text-white sm:text-5xl sm:leading-[1.15] mb-6">
+          <h2 className="text-5xl tracking-tight text-slate-900 dark:text-white sm:text-5xl sm:leading-[1.15] mb-6">
             Technologies That Power{' '}
             <span className="text-brand dark:text-brand">
               Innovation

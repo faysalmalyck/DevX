@@ -22,7 +22,7 @@ const HeroSub: FC<HeroSubProps> = ({
   </ScrollReveal>
 
   <ScrollReveal delay={0.12} preset="copy">
-    <p className="mt-8 mx-auto my-1 max-w-3xl text-sm sm:text-base text-gray-700 dark:text-white">
+    <p className="mt-8 mx-auto my-1 max-w-3xl text-base sm:text-base text-gray-700 dark:text-white">
       {description}
     </p>
   </ScrollReveal>

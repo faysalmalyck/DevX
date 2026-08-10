@@ -50,7 +50,7 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
         <ScrollReveal className="mb-8" preset="left">
           <Link
             href="/case-studies"
-            className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-brand transition-colors"
+            className="inline-flex items-center text-base font-medium text-slate-400 hover:text-brand transition-colors"
           >
             <span className="mr-2">←</span> Back to Case Studies
           </Link>

@@ -205,7 +205,7 @@ const Header: React.FC = () => {
             <button
               type="button"
               onClick={openCart}
-              className="group hidden items-center font-semibold text-slate-900 transition-colors duration-200 hover:text-brand dark:text-white dark:hover:text-brand lg:inline-flex"
+              className="group hidden items-center text-lg font-semibold text-slate-900 transition-colors duration-200 hover:text-brand dark:text-white dark:hover:text-brand lg:inline-flex"
             >
               <span className="text-slate-900 transition-colors duration-200 group-hover:text-brand dark:text-white dark:group-hover:text-brand">
                 Cart(
@@ -413,14 +413,14 @@ const Header: React.FC = () => {
                 <div className="mt-4 flex flex-col gap-3 border-t border-slate-950/10 pt-4 dark:border-white/10">
                   <Link
                     href="/contact"
-                    className="w-full rounded-[2rem] border border-white/75 bg-transparent py-4 text-center text-sm font-semibold text-slate-900 backdrop-blur-xl transition-colors hover:border-slate-950/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.16] dark:text-white dark:hover:border-white/30 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
+                    className="w-full rounded-[2rem] border border-white/75 bg-transparent py-4 text-center text-lg font-semibold text-slate-900 backdrop-blur-xl transition-colors hover:border-slate-950/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.16] dark:text-white dark:hover:border-white/30 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
                     onClick={closeMobileMenu}
                   >
                     Contact us
                   </Link>
                   <Link
                     href="/portfolio"
-                    className="w-full rounded-[2rem] bg-brand py-4 text-center text-sm font-semibold text-white shadow-[0_14px_32px_rgba(54,88,255,0.3)] transition-all hover:bg-brand active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-slate-950"
+                    className="w-full rounded-[2rem] bg-brand py-4 text-center text-lg font-semibold text-white shadow-[0_14px_32px_rgba(54,88,255,0.3)] transition-all hover:bg-brand active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-slate-950"
                     onClick={closeMobileMenu}
                   >
                     View work
