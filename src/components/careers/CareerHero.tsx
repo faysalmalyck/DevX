@@ -11,7 +11,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
         {/* Back Link on Top Left */}
         <Link
           href="/careers"
-          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-slate-200 dark:hover:text-brand"
+          className="mt-12 mb-8 inline-flex items-center gap-2 text-base font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-white dark:hover:text-brand"
 >
   <ArrowLeft className="h-4 w-4" />
          Back to all careers
@@ -19,9 +19,9 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
 
         <div className="mx-auto max-w-lg text-center">
           {/* Location | Full time */}
-          <ScrollReveal className="mb-3 flex flex-wrap items-center justify-center gap-2 text-sm font-medium text-slate-800 sm:mb-4 sm:text-base dark:text-white" preset="copy">
+          <ScrollReveal className="mb-3 flex flex-wrap items-center justify-center gap-2 text-base font-medium text-slate-800 sm:mb-4 sm:text-base dark:text-white" preset="copy">
             <span>{career.location}</span>
-            <span className="text-slate-300 dark:text-slate-700">|</span>
+            <span className="text-white dark:text-slate-700">|</span>
             <span>{career.type}</span>
           </ScrollReveal>
 
@@ -34,7 +34,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
 
           {/* Career Description */}
           <ScrollReveal className="mt-4 px-2 sm:mt-6 sm:px-0" delay={0.14} preset="copy">
-            <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+            <p className="text-lg leading-relaxed text-slate-600 dark:text-white">
               {career.description || career.overview}
             </p>
           </ScrollReveal>

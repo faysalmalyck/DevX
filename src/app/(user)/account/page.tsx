@@ -112,7 +112,7 @@ export default function UserDashboardPage() {
       {/* Hero greeting */}
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-primary/20 via-[#0c1222] to-emerald-500/10 p-8 shadow-2xl">
         <div className="relative z-10">
-          <p className="text-sm font-semibold text-zinc-400">{greeting},</p>
+          <p className="text-base font-semibold text-zinc-400">{greeting},</p>
           <h1 className="mt-1 text-3xl font-black tracking-tight text-white sm:text-4xl">
             {user?.firstName} {user?.lastName} 👋
           </h1>
@@ -122,13 +122,13 @@ export default function UserDashboardPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/account/services"
-              className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-white hover:brightness-110 transition shadow-lg shadow-primary/20"
+              className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 transition shadow-lg shadow-primary/20"
             >
               <Zap className="h-4 w-4" /> View Services
             </Link>
             <Link
               href="/account/support"
-              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-zinc-300 hover:text-white transition"
+              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition"
             >
               <HelpCircle className="h-4 w-4" /> Open Ticket
             </Link>
@@ -157,7 +157,7 @@ export default function UserDashboardPage() {
             <p className="mt-4 text-3xl font-black text-white">
               {loading ? <span className="inline-block h-8 w-8 animate-pulse rounded bg-white/10" /> : value}
             </p>
-            <p className="mt-1 text-sm font-semibold text-zinc-500">{label}</p>
+            <p className="mt-1 text-base font-semibold text-zinc-500">{label}</p>
           </div>
         ))}
       </div>
@@ -237,7 +237,7 @@ export default function UserDashboardPage() {
                 {[1, 2].map((i) => <div key={i} className="h-16 rounded-xl bg-white/5" />)}
               </div>
             ) : activities.filter(a => a.status === "SCHEDULED" && new Date(a.scheduledAt) > new Date()).length === 0 ? (
-              <p className="py-4 text-center text-sm text-zinc-600">Nothing scheduled</p>
+              <p className="py-4 text-center text-base text-zinc-600">Nothing scheduled</p>
             ) : (
               <div className="space-y-3">
                 {activities
@@ -247,7 +247,7 @@ export default function UserDashboardPage() {
                     <div key={act.id} className="flex items-start gap-3 rounded-xl border border-white/5 bg-black/20 p-3">
                       <span className="text-xl">{activityIcons[act.type] ?? "📌"}</span>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-semibold text-white">{act.title}</p>
+                        <p className="truncate text-base font-semibold text-white">{act.title}</p>
                         <p className="mt-0.5 flex items-center gap-1 text-xs text-zinc-500">
                           <Clock className="h-3 w-3" />
                           {new Date(act.scheduledAt).toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}
@@ -280,7 +280,7 @@ export default function UserDashboardPage() {
                 {[1, 2].map((i) => <div key={i} className="h-14 rounded-xl bg-white/5" />)}
               </div>
             ) : notifications.length === 0 ? (
-              <p className="py-4 text-center text-sm text-zinc-600">No notifications yet</p>
+              <p className="py-4 text-center text-base text-zinc-600">No notifications yet</p>
             ) : (
               <div className="space-y-2">
                 {notifications.slice(0, 3).map((notif) => (
@@ -330,7 +330,7 @@ function EmptyState({ icon: Icon, message, action }: { icon: any; message: strin
       <div className="rounded-2xl border border-white/10 bg-white/5 p-4 mb-3">
         <Icon className="h-8 w-8 text-zinc-600" />
       </div>
-      <p className="text-sm text-zinc-500">{message}</p>
+      <p className="text-base text-zinc-500">{message}</p>
       {action && (
         <Link href={action.href} className="mt-3 text-xs font-bold text-primary hover:underline flex items-center gap-1">
           {action.label} <ArrowRight className="h-3 w-3" />

@@ -117,7 +117,7 @@ export default function LoginCard() {
       <div className="relative mx-auto w-full max-w-md my-auto">
         {/* Header Section */}
         <div className="mb-6 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-[#1f2535] px-3 py-1 text-xs font-medium text-slate-300 mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-[#1f2535] px-3 py-1 text-xs font-medium text-white mb-4">
             <Sparkles className="h-3.5 w-3.5 text-brand" />
             <span>DevX Digital Platform</span>
           </div>
@@ -128,7 +128,7 @@ export default function LoginCard() {
               ? "Welcome Back"
               : "Get Started"}
           </h1>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-base text-slate-400">
             {role === "admin"
               ? "Secure credentials required for operator access"
               : "Secure portal for DevX Digital client solutions"}
@@ -178,7 +178,7 @@ export default function LoginCard() {
           {role === "user" ? (
             <>
               {/* User Sub-Toggle: Login vs Sign Up */}
-              <div className="mb-6 flex border-b border-slate-700/50 text-sm">
+              <div className="mb-6 flex border-b border-slate-700/50 text-base">
                 <button
                   onClick={() => {
                     setUserMode("login");
@@ -187,7 +187,7 @@ export default function LoginCard() {
                   }}
                   type="button"
                   className={`pb-3 font-medium transition-all duration-200 pr-6 relative cursor-pointer ${
-                    userMode === "login" ? "text-white font-semibold" : "text-slate-400 hover:text-slate-200"
+                    userMode === "login" ? "text-white font-semibold" : "text-slate-400 hover:text-white"
                   }`}
                 >
                   Login
@@ -203,7 +203,7 @@ export default function LoginCard() {
                   }}
                   type="button"
                   className={`pb-3 font-medium transition-all duration-200 px-6 relative cursor-pointer ${
-                    userMode === "signup" ? "text-white font-semibold" : "text-slate-400 hover:text-slate-200"
+                    userMode === "signup" ? "text-white font-semibold" : "text-slate-400 hover:text-white"
                   }`}
                 >
                   Create Account
@@ -217,7 +217,7 @@ export default function LoginCard() {
                 /* USER LOGIN FORM */
                 <form onSubmit={handleUserLogin} className="space-y-4">
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                    <label className="mb-1.5 block text-xs font-medium text-white">
                       Email Address or Username
                     </label>
                     <div className="relative group">
@@ -227,14 +227,14 @@ export default function LoginCard() {
                         placeholder="name@company.com"
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                    <label className="mb-1.5 block text-xs font-medium text-white">
                       Password
                     </label>
                     <div className="relative group">
@@ -244,9 +244,9 @@ export default function LoginCard() {
                         placeholder="••••••••"
                         value={userPassword}
                         onChange={(e) => setUserPassword(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
@@ -265,7 +265,7 @@ export default function LoginCard() {
                   )}
 
                   <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
-                    <label className="flex items-center gap-2 cursor-pointer hover:text-slate-200 select-none">
+                    <label className="flex items-center gap-2 cursor-pointer hover:text-white select-none">
                       <input
                         type="checkbox"
                         checked={userRememberMe}
@@ -306,7 +306,7 @@ export default function LoginCard() {
                 /* USER SIGNUP FORM */
                 <form onSubmit={handleUserSignup} className="space-y-4">
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                    <label className="mb-1.5 block text-xs font-medium text-white">
                       Full Name
                     </label>
                     <div className="relative group">
@@ -316,14 +316,14 @@ export default function LoginCard() {
                         placeholder="John Doe"
                         value={signupFullName}
                         onChange={(e) => setSignupFullName(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                      <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                    <label className="mb-1.5 block text-xs font-medium text-white">
                       Email Address
                     </label>
                     <div className="relative group">
@@ -333,14 +333,14 @@ export default function LoginCard() {
                         placeholder="name@company.com"
                         value={signupEmail}
                         onChange={(e) => setSignupEmail(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                    <label className="mb-1.5 block text-xs font-medium text-white">
                       Password
                     </label>
                     <div className="relative group">
@@ -350,9 +350,9 @@ export default function LoginCard() {
                         placeholder="Minimum 8 characters"
                         value={signupPassword}
                         onChange={(e) => setSignupPassword(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
@@ -364,7 +364,7 @@ export default function LoginCard() {
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                    <label className="mb-1.5 block text-xs font-medium text-white">
                       Confirm Password
                     </label>
                     <div className="relative group">
@@ -374,9 +374,9 @@ export default function LoginCard() {
                         placeholder="Re-enter password"
                         value={signupConfirmPassword}
                         onChange={(e) => setSignupConfirmPassword(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                     </div>
                   </div>
 
@@ -422,7 +422,7 @@ export default function LoginCard() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                <label className="mb-1.5 block text-xs font-medium text-white">
                   Admin Email or Username
                 </label>
                 <div className="relative group">
@@ -432,14 +432,14 @@ export default function LoginCard() {
                     placeholder="admin@DevX.digital"
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
-                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                   />
-                  <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                  <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                 </div>
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-medium text-slate-300">
+                <label className="mb-1.5 block text-xs font-medium text-white">
                   Security Password
                 </label>
                 <div className="relative group">
@@ -449,9 +449,9 @@ export default function LoginCard() {
                     placeholder="••••••••"
                     value={adminPassword}
                     onChange={(e) => setAdminPassword(e.target.value)}
-                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
+                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-base text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                   />
-                  <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
+                  <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-white group-focus-within:text-brand" />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -470,7 +470,7 @@ export default function LoginCard() {
               )}
 
               <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
-                <label className="flex items-center gap-2 cursor-pointer hover:text-slate-200 select-none">
+                <label className="flex items-center gap-2 cursor-pointer hover:text-white select-none">
                   <input
                     type="checkbox"
                     checked={adminRememberMe}
@@ -489,7 +489,7 @@ export default function LoginCard() {
                   <span className="text-slate-600">|</span>
                   <Link
                     href="/register/admin"
-                    className="text-slate-300 hover:text-white transition font-medium"
+                    className="text-white hover:text-white transition font-medium"
                   >
                     Register
                   </Link>

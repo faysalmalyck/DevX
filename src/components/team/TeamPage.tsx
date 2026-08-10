@@ -104,7 +104,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
             ) : null}
           </div>
 
-          <p className="mt-4 text-sm font-normal leading-relaxed text-gray-600 dark:text-slate-300 sm:mt-6 sm:text-base">
+          <p className="mt-4 text-base font-normal leading-relaxed text-gray-600 dark:text-white sm:mt-6 sm:text-base">
             {member.bio}
           </p>
         </article>
@@ -124,7 +124,7 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
             </h1>
           </ScrollReveal>
           <ScrollReveal className="mt-4" delay={0.12} preset="copy">
-            <p className="text-sm font-normal text-gray-600 dark:text-gray-400 sm:text-base lg:text-lg">
+            <p className="text-base font-normal text-gray-600 dark:text-gray-400 sm:text-base lg:text-lg">
               The talented professionals behind our company combining creativity, technical expertise, and innovation to deliver exceptional digital solutions.
             </p>
           </ScrollReveal>

@@ -29,11 +29,11 @@ function RelatedProjectCard({ study }: { study: CaseStudy }) {
               className="object-contain object-left"
             />
           </ScrollReveal>
-          <h3 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-slate-200 transition-colors leading-snug">
+          <h3 className="text-xl sm:text-2xl font-semibold text-white group-hover:text-white transition-colors leading-snug">
             {study.title}
           </h3>
         </div>
-        <div className="mt-8 flex items-center gap-2 text-base font-semibold text-slate-300 group-hover:text-white transition-colors">
+        <div className="mt-8 flex items-center gap-2 text-base font-semibold text-white group-hover:text-white transition-colors">
           <span>Read case study</span>
           <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </div>

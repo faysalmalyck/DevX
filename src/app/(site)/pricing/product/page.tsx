@@ -38,7 +38,7 @@ export default function ProductPage({
       <div className="flex justify-start mb-6 lg:mb-8">
         <Link
           href="/pricing"
-          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-slate-200 dark:hover:text-brand"
+          className="mt-12 mb-8 inline-flex items-center gap-2 text-base font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-white dark:hover:text-brand"
 >
   <ArrowLeft className="h-4 w-4" />
           <span>Back to Pricing</span>
@@ -57,7 +57,7 @@ export default function ProductPage({
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.12} preset="copy">
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
+              <p className="text-base leading-relaxed text-slate-600 sm:text-base dark:text-white">
                 {data?.description}
               </p>
             </ScrollReveal>
@@ -68,7 +68,7 @@ export default function ProductPage({
                 {features.map((feature) => (
                   <li key={feature.id} className="flex items-center space-x-3">
                     <Check className="h-5 w-5 shrink-0 text-brand dark:text-brand" />
-                    <span className="text-sm font-medium text-slate-800 sm:text-base dark:text-white">
+                    <span className="text-base font-medium text-slate-800 sm:text-base dark:text-white">
                       {feature.text}
                     </span>
                   </li>
@@ -86,7 +86,7 @@ export default function ProductPage({
                   </h2>
                 )}
                 {bottomContent.paragraph1 && (
-                  <p className="text-sm sm:text-base leading-relaxed">
+                  <p className="text-base sm:text-base leading-relaxed">
                     {bottomContent.paragraph1}
                   </p>
                 )}
@@ -96,7 +96,7 @@ export default function ProductPage({
                   </h3>
                 )}
                 {bottomContent.paragraph2 && (
-                  <p className="text-sm sm:text-base leading-relaxed">
+                  <p className="text-base sm:text-base leading-relaxed">
                     {bottomContent.paragraph2}
                   </p>
                 )}
@@ -105,7 +105,7 @@ export default function ProductPage({
                 {bottomContent.bullets && bottomContent.bullets.length > 0 && (
                   <ul className="space-y-3 pl-0">
                     {bottomContent.bullets.map((bullet, index) => (
-                      <li key={index} className="flex items-start space-x-3 text-sm sm:text-base text-slate-700 dark:text-white">
+                      <li key={index} className="flex items-start space-x-3 text-base sm:text-base text-slate-700 dark:text-white">
                         <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand dark:text-brand" />
                         <span>{bullet}</span>
                       </li>
@@ -114,12 +114,12 @@ export default function ProductPage({
                 )}
 
                 {bottomContent.paragraph3 && (
-                  <p className="text-sm sm:text-base leading-relaxed">
+                  <p className="text-base sm:text-base leading-relaxed">
                     {bottomContent.paragraph3}
                   </p>
                 )}
                 {bottomContent.paragraph4 && (
-                  <p className="text-sm sm:text-base leading-relaxed">
+                  <p className="text-base sm:text-base leading-relaxed">
                     {bottomContent.paragraph4}
                   </p>
                 )}

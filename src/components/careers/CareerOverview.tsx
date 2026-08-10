@@ -13,7 +13,7 @@ export default function CareerOverview({ career }: { career: PublicCareer }) {
 
       {/* Overview */}
       <ScrollReveal className="space-y-3" delay={0.1} preset="copy">
-        <p className="text-base sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+        <p className="text-base sm:text-base leading-relaxed text-slate-600 dark:text-white">
           {career.overview}
         </p>
       </ScrollReveal>
@@ -21,12 +21,12 @@ export default function CareerOverview({ career }: { career: PublicCareer }) {
       {/* Responsibilities Description & List */}
       <ScrollReveal className="space-y-4" delay={0.18} preset="copy">
         {career.responsibilitiesDescription && (
-          <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="text-base leading-relaxed text-slate-600 dark:text-white">
             {career.responsibilitiesDescription}
           </p>
         )}
 
-        <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300">
+        <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-white">
           {career.responsibilities.map((item, index) => (
             <li key={index} className="leading-relaxed">
               <span>{item}</span>

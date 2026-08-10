@@ -69,7 +69,7 @@ function RenderContentBlock({ block }: { block: ContentBlock }) {
       );
     case "h6":
       return (
-        <h6 className="px-2 sm:px-6 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mt-4 mb-2">
+        <h6 className="px-2 sm:px-6 text-base uppercase tracking-wider text-gray-600 dark:text-gray-400 mt-4 mb-2">
           {block.text}
         </h6>
       );
@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
         <ScrollReveal className="mt-4 mb-8 sm:mt-8" preset="left">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:hover:text-brand"
+            className="inline-flex items-center gap-2 text-base font-semibold text-slate-700 dark:text-white transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:hover:text-brand"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to all articles
@@ -140,7 +140,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
         {/* Article Header */}
         <header className="py-8 sm:py-12 lg:py-16 text-center">
           <ScrollReveal preset="copy">
-            <div className="flex items-center justify-center space-x-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+            <div className="flex items-center justify-center space-x-3 text-xs sm:text-base text-slate-500 dark:text-slate-400 mb-4">
               <span className="inline-block px-3 py-1 bg-slate-200 dark:bg-[#3b4251] text-slate-800 dark:text-white rounded-full border border-slate-300 dark:border-slate-800 font-semibold text-xs uppercase tracking-wider">
                 {article.category}
               </span>
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
           </ScrollReveal>
 
           <ScrollReveal preset="copy" delay={0.2}>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-white leading-relaxed text-center max-w-3xl mx-auto">
               {article.excerpt}
             </p>
           </ScrollReveal>
@@ -242,7 +242,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                           {relArticle.title}
                         </h3>
 
-                        <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
+                        <p className="text-slate-600 dark:text-white text-base mb-6 font-normal line-clamp-3">
                           {relArticle.excerpt}
                         </p>
 

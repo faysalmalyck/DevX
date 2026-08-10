@@ -117,8 +117,8 @@ export default function AdminDashboard() {
         <div className="max-w-md rounded-3xl border border-rose-100 bg-white p-8 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:border-rose-500/20 dark:bg-[#111827]">
           <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300"><AlertCircle className="h-6 w-6" /></span>
           <h2 className="mt-5 text-xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard unavailable</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">{error || "We could not load the workspace snapshot."}</p>
-          <button type="button" onClick={() => void loadDashboardData()} className="mt-6 inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-sm font-bold text-white transition hover:bg-brand">
+          <p className="mt-2 text-base leading-6 text-slate-500 dark:text-slate-400">{error || "We could not load the workspace snapshot."}</p>
+          <button type="button" onClick={() => void loadDashboardData()} className="mt-6 inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-base font-bold text-white transition hover:bg-brand">
             <RefreshCw className="h-4 w-4" /> Try again
           </button>
         </div>
@@ -150,13 +150,13 @@ export default function AdminDashboard() {
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]" /> Live workspace
             </span>
             <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl">{greeting}, {user?.firstName || "operator"}.</h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-400 sm:text-base">Your operational snapshot brings team, client, access, and support activity into one focused workspace.</p>
+            <p className="mt-3 max-w-xl text-base leading-6 text-slate-600 dark:text-slate-400 sm:text-base">Your operational snapshot brings team, client, access, and support activity into one focused workspace.</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <button type="button" onClick={() => void loadDashboardData()} className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.1] dark:bg-white/[0.06] dark:text-slate-200 dark:hover:bg-white/[0.1]">
+            <button type="button" onClick={() => void loadDashboardData()} className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-base font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.1] dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/[0.1]">
               <RefreshCw className="h-4 w-4" /> Refresh
             </button>
-            <Link href="/admin/team" className="inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-sm font-bold text-white shadow-lg shadow-brand/20 transition hover:bg-brand">
+            <Link href="/admin/team" className="inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-base font-bold text-white shadow-lg shadow-brand/20 transition hover:bg-brand">
               <UserPlus className="h-4 w-4" /> Team directory
             </Link>
           </div>
@@ -169,7 +169,7 @@ export default function AdminDashboard() {
             <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${tone}`} />
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">{label}</p>
+                <p className="text-base font-semibold text-slate-500 dark:text-slate-400">{label}</p>
                 <p className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white">{value.toLocaleString()}</p>
               </div>
               <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${surface}`}><Icon className="h-5 w-5" /></span>
@@ -187,9 +187,9 @@ export default function AdminDashboard() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300"><Clock3 className="h-4 w-4" /></span>
                 <h2 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">Recent activity</h2>
               </div>
-              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">The latest changes recorded in your workspace.</p>
+              <p className="mt-1 text-base text-slate-500 dark:text-slate-400">The latest changes recorded in your workspace.</p>
             </div>
-            <Link href="/admin/administration/activity" className="inline-flex items-center gap-1 text-sm font-bold text-brand transition hover:text-brand dark:text-brand dark:hover:text-brand">
+            <Link href="/admin/administration/activity" className="inline-flex items-center gap-1 text-base font-bold text-brand transition hover:text-brand dark:text-brand dark:hover:text-brand">
               View log <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -204,7 +204,7 @@ export default function AdminDashboard() {
                       <div className="min-w-0 flex-1 border-b border-slate-100 pb-5 last:border-0 last:pb-0 dark:border-white/[0.06]">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div>
-                            <p className="text-sm font-bold leading-5 text-slate-800 dark:text-slate-100">{item.description}</p>
+                            <p className="text-base font-bold leading-5 text-slate-800 dark:text-slate-100">{item.description}</p>
                             <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">{item.action.replace(/_/g, " ")}</p>
                           </div>
                           <time className="shrink-0 text-xs font-medium text-slate-400 dark:text-slate-500">{item.time}</time>
@@ -217,8 +217,8 @@ export default function AdminDashboard() {
             ) : (
               <div className="flex min-h-60 flex-col items-center justify-center text-center">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 dark:bg-white/[0.06] dark:text-slate-500"><Activity className="h-5 w-5" /></span>
-                <p className="mt-4 text-sm font-bold text-slate-700 dark:text-slate-200">No activity yet</p>
-                <p className="mt-1 max-w-xs text-sm text-slate-500 dark:text-slate-400">New workspace actions will appear here as your team starts working.</p>
+                <p className="mt-4 text-base font-bold text-slate-700 dark:text-white">No activity yet</p>
+                <p className="mt-1 max-w-xs text-base text-slate-500 dark:text-slate-400">New workspace actions will appear here as your team starts working.</p>
               </div>
             )}
           </div>
@@ -229,7 +229,7 @@ export default function AdminDashboard() {
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ClipboardList className="h-4 w-4" /></span>
             <div>
               <h2 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">Quick actions</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Jump straight into daily work.</p>
+              <p className="text-base text-slate-500 dark:text-slate-400">Jump straight into daily work.</p>
             </div>
           </div>
           <div className="mt-5 space-y-2">
@@ -237,10 +237,10 @@ export default function AdminDashboard() {
               <Link key={href} href={href} className="group flex items-center gap-3 rounded-2xl border border-slate-100 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-brand/[0.06]">
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 dark:bg-white/[0.06] ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-bold text-slate-800 dark:text-slate-100">{label}</span>
+                  <span className="block text-base font-bold text-slate-800 dark:text-slate-100">{label}</span>
                   <span className="mt-0.5 block truncate text-xs text-slate-500 dark:text-slate-400">{description}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-brand dark:text-slate-600" />
+                <ArrowRight className="h-4 w-4 shrink-0 text-white transition group-hover:translate-x-0.5 group-hover:text-brand dark:text-slate-600" />
               </Link>
             ))}
           </div>
@@ -253,9 +253,9 @@ export default function AdminDashboard() {
           <div className="relative flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ShieldCheck className="h-5 w-5" /></span>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-bold text-slate-900 dark:text-white">Access management</p>
-              <p className="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-slate-200">{stats.totalAdmins.toLocaleString()}</span> operators currently have administrative workspace access.</p>
-              <Link href="/admin/administration/admins" className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand hover:text-brand dark:text-brand dark:hover:text-brand">Review access <ArrowRight className="h-4 w-4" /></Link>
+              <p className="text-base font-bold text-slate-900 dark:text-white">Access management</p>
+              <p className="mt-1 text-base leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-white">{stats.totalAdmins.toLocaleString()}</span> operators currently have administrative workspace access.</p>
+              <Link href="/admin/administration/admins" className="mt-4 inline-flex items-center gap-1 text-base font-bold text-brand hover:text-brand dark:text-brand dark:hover:text-brand">Review access <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </article>
@@ -264,9 +264,9 @@ export default function AdminDashboard() {
           <div className="relative flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300"><ClipboardList className="h-5 w-5" /></span>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-bold text-slate-900 dark:text-white">Service desk</p>
-              <p className="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-slate-200">{stats.supportTicketsCount.toLocaleString()}</span> tickets and <span className="font-bold text-slate-800 dark:text-slate-200">{stats.serviceRequestsCount.toLocaleString()}</span> service requests are in the current snapshot.</p>
-              <p className="mt-4 text-sm font-bold text-amber-600 dark:text-amber-300">Queue counts refresh with your workspace snapshot.</p>
+              <p className="text-base font-bold text-slate-900 dark:text-white">Service desk</p>
+              <p className="mt-1 text-base leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-white">{stats.supportTicketsCount.toLocaleString()}</span> tickets and <span className="font-bold text-slate-800 dark:text-white">{stats.serviceRequestsCount.toLocaleString()}</span> service requests are in the current snapshot.</p>
+              <p className="mt-4 text-base font-bold text-amber-600 dark:text-amber-300">Queue counts refresh with your workspace snapshot.</p>
             </div>
           </div>
         </article>

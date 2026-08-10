@@ -34,7 +34,7 @@ export default function ApplicationTable({
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#111827]">
       <div className="overflow-x-auto">
-        <table className="min-w-[1050px] w-full text-left text-sm">
+        <table className="min-w-[1050px] w-full text-left text-base">
           <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-[0.12em] text-slate-500 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-500">
             <tr>
               <th className="px-5 py-4">Candidate</th>
@@ -64,11 +64,11 @@ export default function ApplicationTable({
             ) : applications.length === 0 ? (
               <tr>
                 <td colSpan={8} className="px-5 py-16 text-center">
-                  <FileText className="mx-auto h-9 w-9 text-slate-300 dark:text-zinc-700" />
+                  <FileText className="mx-auto h-9 w-9 text-white dark:text-zinc-700" />
                   <p className="mt-3 font-semibold text-slate-700 dark:text-zinc-300">
                     No applications found
                   </p>
-                  <p className="mt-1 text-sm text-slate-500 dark:text-zinc-500">
+                  <p className="mt-1 text-base text-slate-500 dark:text-zinc-500">
                     Try changing the search or filter options.
                   </p>
                 </td>

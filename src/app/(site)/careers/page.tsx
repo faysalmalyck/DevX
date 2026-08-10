@@ -53,7 +53,7 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
   const positions = await getPublishedCareers(selectedCategory);
 
   return (
-    <section className="relative overflow-hidden bg-white text-slate-900 transition-colors duration-300 dark:bg-[#181d2b] dark:text-slate-100 py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-white text-slate-900 transition-colors duration-300 dark:bg-[#181d2b] dark:text-white py-20 lg:py-28">
       {/* Background Decorative Elements */}
       <div 
         aria-hidden="true" 
@@ -77,7 +77,7 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
           </ScrollReveal>
 
           <ScrollReveal className="mx-auto mt-6 max-w-4xl px-4 sm:px-0" delay={0.12} preset="copy">
-            <p className="text-base text-slate-600 dark:text-slate-400">
+            <p className="text-base text-slate-600 dark:text-white">
               We're always looking for talented individuals who are passionate about solving complex problems and building exceptional digital experiences.
             </p>
           </ScrollReveal>
@@ -106,7 +106,7 @@ className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 s
               </ScrollReveal>
               
               <ScrollReveal className="mt-6" delay={0.12} preset="copy">
-                <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+                <p className="text-base leading-relaxed text-slate-600 dark:text-white sm:text-lg">
                   We invest in our people by offering meaningful benefits, ongoing learning opportunities, modern tools, and a culture that values innovation, collaboration, and work-life balance.
                 </p>
               </ScrollReveal>
@@ -140,7 +140,7 @@ className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-ful
                         <h3 className="text-xl font-medium text-slate-900 dark:text-white">
                           {benefit.title}
                         </h3>
-                        <p className="mt-2 text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                        <p className="mt-2 text-base leading-relaxed text-slate-600 dark:text-white">
                           {benefit.description}
                         </p>
                       </div>

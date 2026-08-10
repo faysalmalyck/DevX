@@ -52,12 +52,12 @@ export default function ContactHeroSection() {
         <div className="mt-0 w-full max-w-full lg:w-[518.18px] lg:h-[494.1px] space-y-8 flex flex-col justify-between my-auto">
           <div className="space-y-4">
             <ScrollReveal preset="hero">
-              <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-medium tracking-tight text-slate-900 dark:text-white">
+              <h1 className="text-5xl text-left sm:text-4xl md:text-7xl font-medium tracking-tight text-slate-900 dark:text-white">
                 Get in <span className="text-brand">touch</span> with our team
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.12} preset="copy">
-              <p className="text-slate-600 dark:text-white text-base md:text-l max-w-md">
+              <p className="text-slate-600 dark:text-white text-lg md:text-l max-w-md">
                 Let's discuss your ideas, answer your questions, and explore how we can help transform your vision into a scalable digital solution.
               </p>
             </ScrollReveal>
@@ -82,7 +82,7 @@ export default function ContactHeroSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <span className="text-base font-semibold text-slate-900 dark:text-slate-200">faysal.malick@icloud.com</span>
+                    <span className="text-base font-semibold text-slate-900 dark:text-white">faysal.malick@icloud.com</span>
                   </a>
                 </HoverCard>
               </StaggerItem>
@@ -98,7 +98,7 @@ export default function ContactHeroSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
-                    <span className="text-base font-semibold text-slate-900 dark:text-slate-200">+92 305 5552772</span>
+                    <span className="text-base font-semibold text-slate-900 dark:text-white">+92 305 5552772</span>
                   </a>
                 </HoverCard>
               </StaggerItem>
@@ -107,7 +107,7 @@ export default function ContactHeroSection() {
         </div>
 
         {/* Inner Right Div - Responsive on mobile, Fixed 621 x 739 on desktop */}
-        <div className="w-full h-auto lg:w-[621px] lg:h-[739px] bg-white dark:bg-[#181d2b] flex items-center justify-center p-4 sm:p-6 text-slate-900 dark:text-white font-sans">
+        <div className="w-full h-auto lg:w-[651px] lg:h-[739px] bg-white dark:bg-[#181d2b] flex items-center justify-center p-4 sm:p-6 text-slate-900 dark:text-white font-sans">
           <div className="w-full h-full bg-slate-50 dark:bg-[#232c3e] rounded-l border border-slate-200 dark:border-[#273046] p-6 md:p-12 shadow-xl dark:shadow-2xl">
             {submitted ? (
               <div className="text-center py-12 space-y-4">
@@ -125,7 +125,7 @@ export default function ContactHeroSection() {
                 <div className="grid pt-8 grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name Field */}
                   <div className="flex flex-col space-y-2">
-                    <label htmlFor="name" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label htmlFor="name" className="text-lg font-semibold text-slate-700 dark:text-white">
                       Name
                     </label>
                     <input
@@ -141,7 +141,7 @@ export default function ContactHeroSection() {
 
                   {/* Email Field */}
                   <div className="flex flex-col space-y-2">
-                    <label htmlFor="email" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label htmlFor="email" className="text-lg font-semibold text-slate-700 dark:text-white">
                       Email
                     </label>
                     <input
@@ -157,7 +157,7 @@ export default function ContactHeroSection() {
 
                   {/* Phone Field */}
                   <div className="flex flex-col space-y-2">
-                    <label htmlFor="phone" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label htmlFor="phone" className="text-lg font-semibold text-slate-700 dark:text-white">
                       Phone
                     </label>
                     <input
@@ -173,7 +173,7 @@ export default function ContactHeroSection() {
 
                   {/* Company Field */}
                   <div className="flex flex-col space-y-2">
-                    <label htmlFor="company" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    <label htmlFor="company" className="text-lg font-semibold text-slate-700 dark:text-white">
                       Company
                     </label>
                     <input
@@ -190,7 +190,7 @@ export default function ContactHeroSection() {
 
                 {/* Message Textarea */}
                 <div className="flex flex-col space-y-2">
-                  <label htmlFor="message" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                  <label htmlFor="message" className="text-lg font-semibold text-slate-700 dark:text-white">
                     Leave us a message
                   </label>
                   <textarea

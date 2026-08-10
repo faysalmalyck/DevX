@@ -68,7 +68,7 @@ export default function AddToCartCard({
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
             {cardTitle}
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-white text-base sm:text-base leading-relaxed">
             {cardDescription}
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function AddToCartCard({
           <div className="relative">
             <label
               htmlFor="duration"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2"
+              className="block text-base font-semibold text-slate-700 dark:text-white mb-2"
             >
               {labels.durationSelect}
             </label>
@@ -93,7 +93,7 @@ export default function AddToCartCard({
                 required
                 value={selectedDuration}
                 onChange={(e) => setSelectedDuration(e.target.value)}
-                className="block w-full appearance-none rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-[#1e2538] px-6 sm:px-8 py-4 sm:py-5 pr-12 text-sm sm:text-base text-slate-900 dark:text-white shadow-sm transition-all focus:outline-none focus:ring-1 focus:ring-slate-600 active:ring-1 active:ring-slate-600 cursor-pointer"
+                className="block w-full appearance-none rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-[#1e2538] px-6 sm:px-8 py-4 sm:py-5 pr-12 text-base sm:text-base text-slate-900 dark:text-white shadow-sm transition-all focus:outline-none focus:ring-1 focus:ring-slate-600 active:ring-1 active:ring-slate-600 cursor-pointer"
               >
                 <option value="" disabled className="bg-white dark:bg-[#1a2031] text-slate-400">
                   {labels.durationPlaceholder}

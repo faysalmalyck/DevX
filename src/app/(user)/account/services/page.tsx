@@ -92,7 +92,7 @@ export default function ServicesPage() {
               <Icon className={`h-5 w-5 ${color}`} />
             </div>
             <p className="text-3xl font-black text-white">{loading ? "–" : value}</p>
-            <p className="mt-1 text-sm font-semibold text-zinc-500">{label}</p>
+            <p className="mt-1 text-base font-semibold text-zinc-500">{label}</p>
           </div>
         ))}
       </div>

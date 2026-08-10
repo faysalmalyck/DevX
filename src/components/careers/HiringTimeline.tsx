@@ -11,11 +11,11 @@ export default function HiringTimeline({ career }: { career: PublicCareer }) {
       <StaggerContainer className="relative ml-4 mt-8 space-y-8 border-l-2 border-brand/30 dark:border-brand/20">
         {career.hiringProcess.map((step, index) => (
           <StaggerItem key={step.step} className="relative pl-6" preset={index % 2 === 0 ? 'left' : 'right'}>
-            <div className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white text-sm font-bold shadow-md">
+            <div className="absolute -left-[17px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white text-base font-bold shadow-md">
               {step.step}
             </div>
             <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-1">{step.title}</h3>
-            <p className="text-base text-slate-600 dark:text-slate-400">{step.description}</p>
+            <p className="text-base text-slate-600 dark:text-white">{step.description}</p>
           </StaggerItem>
         ))}
       </StaggerContainer>

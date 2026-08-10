@@ -323,14 +323,14 @@ export default function AdminProfilePage() {
               </div>
 
               {error && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+                <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                   <p>{error}</p>
                 </div>
               )}
 
               {success && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm font-semibold text-emerald-400 animate-fade-in">
+                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
                   <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                   <p>{success}</p>
                 </div>

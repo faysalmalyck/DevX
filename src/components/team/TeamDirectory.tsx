@@ -29,7 +29,7 @@ export default function TeamDirectory() {
           placeholder="Search team members..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full max-w-xs rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-700 dark:bg-[#242D40] dark:text-white"
+          className="w-full max-w-xs rounded-lg border border-gray-300 px-4 py-2 text-base dark:border-gray-700 dark:bg-[#242D40] dark:text-white"
         />
         <div className="flex flex-wrap gap-2">
           {roles.map((role: string) => (
@@ -67,14 +67,14 @@ export default function TeamDirectory() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {member.name}
               </h3>
-              <p className="text-sm text-brand font-medium">{member.role}</p>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-base text-brand font-medium">{member.role}</p>
+              <p className="mt-2 text-base text-gray-600 dark:text-gray-300">
                 {member.bio}
               </p>
             </div>
             <Link
               href={`/team/${member.slug}`}
-              className="mt-4 inline-block text-sm font-medium text-brand hover:underline dark:text-brand no-underline"
+              className="mt-4 inline-block text-base font-medium text-brand hover:underline dark:text-brand no-underline"
             >
               View Profile &rarr;
             </Link>

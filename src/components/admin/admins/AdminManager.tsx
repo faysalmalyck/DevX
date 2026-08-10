@@ -90,7 +90,7 @@ export default function AdminManager() {
       {/* Header and Action Panel */}
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[.18em] text-primary">
+          <p className="text-base font-bold uppercase tracking-[.18em] text-primary">
             Administration
           </p>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -101,13 +101,13 @@ export default function AdminManager() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-sm font-bold text-zinc-300 hover:text-white transition cursor-pointer">
+          <button className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer">
             <Download className="h-4 w-4" />
             Export
           </button>
           <button
             onClick={() => setEditing(blank())}
-            className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             Add Administrator
@@ -149,13 +149,13 @@ export default function AdminManager() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search administrators..."
-            className="w-full rounded-xl border border-white/10 bg-black/20 py-2.5 pl-9 pr-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+            className="w-full rounded-xl border border-white/10 bg-black/20 py-2.5 pl-9 pr-3 text-base text-white placeholder-zinc-600 outline-none focus:border-primary/50"
           />
         </label>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="rounded-xl border border-white/10 bg-[#0c1222] px-4 py-2.5 text-sm text-zinc-300 outline-none focus:border-primary/50"
+          className="rounded-xl border border-white/10 bg-[#0c1222] px-4 py-2.5 text-base text-zinc-300 outline-none focus:border-primary/50"
         >
           <option value="ALL">All statuses</option>
           <option value="ACTIVE">Active</option>
@@ -167,7 +167,7 @@ export default function AdminManager() {
 
       {/* Table Container */}
       <div className="overflow-x-auto rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] shadow-xl backdrop-blur-md">
-        <table className="w-full min-w-[1100px] text-left text-sm">
+        <table className="w-full min-w-[1100px] text-left text-base">
           <thead className="sticky top-0 border-b border-white/10 bg-[#0c1222] text-xs uppercase tracking-wider text-zinc-400">
             <tr>
               <th className="p-4">Administrator</th>
@@ -319,7 +319,7 @@ function AdminForm({
   };
 
   const field = (key: keyof Administrator, label: string, type = "text") => (
-    <label className="text-sm font-semibold text-zinc-300 block">
+    <label className="text-base font-semibold text-zinc-300 block">
       {label}
       <input
         type={type}
@@ -342,7 +342,7 @@ function AdminForm({
             <h2 className="text-2xl font-black text-white">
               {admins.some((a) => a.id === value.id) ? "Edit Administrator" : "Add Administrator"}
             </h2>
-            <p className="mt-1 text-sm text-zinc-500">
+            <p className="mt-1 text-base text-zinc-500">
               {isProtectedCeo(value)
                 ? "CEO controls are protected."
                 : "Create a secure administrator operator account."}
@@ -351,7 +351,7 @@ function AdminForm({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-white/10 bg-black/20 px-3.5 py-1.5 text-sm font-bold text-zinc-400 hover:text-white transition cursor-pointer"
+            className="rounded-lg border border-white/10 bg-black/20 px-3.5 py-1.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
           >
             Close
           </button>
@@ -366,7 +366,7 @@ function AdminForm({
           {field("phone", "Phone number")}
           {field("username", "Username *")}
 
-          <label className="text-sm font-semibold text-zinc-300 block">
+          <label className="text-base font-semibold text-zinc-300 block">
             Role
             <select
               disabled={isProtectedCeo(value)}
@@ -384,7 +384,7 @@ function AdminForm({
 
           {!admins.some((a) => a.id === value.id) && (
             <>
-              <label className="text-sm font-semibold text-zinc-300 block">
+              <label className="text-base font-semibold text-zinc-300 block">
                 Password
                 <input
                   type="password"
@@ -396,7 +396,7 @@ function AdminForm({
                   <span className="text-xs text-rose-500 mt-1 block">{errors.password}</span>
                 )}
               </label>
-              <label className="text-sm font-semibold text-zinc-300 block">
+              <label className="text-base font-semibold text-zinc-300 block">
                 Confirm password
                 <input
                   type="password"
@@ -410,7 +410,7 @@ function AdminForm({
         </div>
 
         <div className="space-y-3 pt-4 border-t border-white/5">
-          <label className="flex items-center gap-2.5 text-sm font-semibold text-zinc-300 cursor-pointer select-none">
+          <label className="flex items-center gap-2.5 text-base font-semibold text-zinc-300 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={value.twoFactorEnabled}
@@ -419,7 +419,7 @@ function AdminForm({
             />
             Two-factor authentication
           </label>
-          <label className="flex items-center gap-2.5 text-sm font-semibold text-zinc-300 cursor-pointer select-none">
+          <label className="flex items-center gap-2.5 text-base font-semibold text-zinc-300 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={value.status === "ACTIVE"}
@@ -435,11 +435,11 @@ function AdminForm({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-white/10 px-5 py-2.5 text-sm font-bold text-zinc-400 hover:text-white transition cursor-pointer"
+            className="rounded-xl border border-white/10 px-5 py-2.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
           >
             Cancel
           </button>
-          <button className="rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer">
+          <button className="rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer">
             Save Administrator
           </button>
         </div>

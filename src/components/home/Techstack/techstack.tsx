@@ -21,7 +21,7 @@ export default function TechStackSection() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.12} preset="copy">
-          <p className="max-w-2xl mx-auto text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="max-w-2xl mx-auto text-lg leading-relaxed text-slate-600 dark:text-white">
             Every solution is built with carefully selected programming languages and development tools that maximize quality, speed, and long term maintainability.
           </p>
         </ScrollReveal>

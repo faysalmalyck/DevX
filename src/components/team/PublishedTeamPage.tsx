@@ -94,7 +94,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
         </ScrollReveal>
 
         <div className="px-2 pb-2 pt-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">{member.department}</p>
+          <p className="text-base font-semibold uppercase tracking-[0.12em] text-primary">{member.department}</p>
           <p className="mt-3 text-base leading-7 text-secondary dark:text-white/65">{member.bio}</p>
           <SocialLinks member={member} className="mt-6 flex items-center gap-3" />
         </div>
@@ -156,7 +156,7 @@ export default function PublishedTeamPage({ members }: { members: PublicTeamMemb
                       <div>
                         <span className="mb-3 inline-flex rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-500 backdrop-blur-xl">{spotlight.role}</span>
                         <h2 className="text-3xl font-black tracking-tight text-white md:text-4xl">{spotlight.name}</h2>
-                        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-primary">{spotlight.department}</p>
+                        <p className="mt-2 text-base font-semibold uppercase tracking-[0.12em] text-primary">{spotlight.department}</p>
                         <p className="mt-4 text-base leading-relaxed text-secondary dark:text-white/70">{spotlight.bio}</p>
                       </div>
                       <SocialLinks member={spotlight} className="mt-8 flex items-center gap-3" />

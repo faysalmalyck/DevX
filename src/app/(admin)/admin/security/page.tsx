@@ -229,14 +229,14 @@ export default function AdminSecurityPage() {
               </div>
 
               {passwordError && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+                <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                   <p>{passwordError}</p>
                 </div>
               )}
 
               {passwordSuccess && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm font-semibold text-emerald-400 animate-fade-in">
+                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
                   <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                   <p>{passwordSuccess}</p>
                 </div>
@@ -300,14 +300,14 @@ export default function AdminSecurityPage() {
             </div>
 
             {sessionsError && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                 <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                 <p>{sessionsError}</p>
               </div>
             )}
 
             {sessionsSuccess && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm font-semibold text-emerald-400 animate-fade-in">
+              <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
                 <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                 <p>{sessionsSuccess}</p>
               </div>
@@ -330,7 +330,7 @@ export default function AdminSecurityPage() {
                       <div className="mt-1 rounded-lg bg-primary/10 border border-primary/20 p-2 text-primary">
                         <Monitor className="h-4 w-4" />
                       </div>
-                      <div className="space-y-1 text-sm">
+                      <div className="space-y-1 text-base">
                         <div className="flex items-center gap-2 flex-wrap">
                           <p className="font-semibold text-white">{session.browser}</p>
                           <span className="text-zinc-500">•</span>
@@ -368,7 +368,7 @@ export default function AdminSecurityPage() {
                   </div>
                 ))
               ) : (
-                <p className="text-sm text-zinc-500 text-center py-6">No login sessions audit found.</p>
+                <p className="text-base text-zinc-500 text-center py-6">No login sessions audit found.</p>
               )}
             </div>
           </div>

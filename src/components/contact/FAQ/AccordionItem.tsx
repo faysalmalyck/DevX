@@ -27,7 +27,7 @@ export default function AccordionItem({
         aria-controls={`faq-answer-${id}`}
         id={`faq-question-${id}`}
       >
-        <span className="text-lg font-semibold text-slate-900 dark:text-white pr-8">
+        <span className="text-xl font-semibold text-slate-900 dark:text-white pr-8">
           {question}
         </span>
         <div
@@ -55,7 +55,7 @@ export default function AccordionItem({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="px-6 pb-6 pt-2 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+          <div className="px-12 pb-6 pt-2 text-slate-600 dark:text-white text-lg leading-relaxed">
             {answer}
           </div>
         </div>

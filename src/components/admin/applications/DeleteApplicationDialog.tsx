@@ -81,7 +81,7 @@ export default function DeleteApplicationDialog({
         </h2>
         <p
           id="delete-application-description"
-          className="mt-2 text-sm leading-6 text-slate-600 dark:text-zinc-400"
+          className="mt-2 text-base leading-6 text-slate-600 dark:text-zinc-400"
         >
           This permanently removes {application.fullName}&apos;s application and
           stored resume. This action cannot be undone.
@@ -90,7 +90,7 @@ export default function DeleteApplicationDialog({
         {error && (
           <p
             role="alert"
-            className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
+            className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
           >
             {error}
           </p>
@@ -102,7 +102,7 @@ export default function DeleteApplicationDialog({
             type="button"
             onClick={onClose}
             disabled={deleting}
-            className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5"
+            className="rounded-xl border border-slate-200 px-4 py-2.5 text-base font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5"
           >
             Cancel
           </button>
@@ -110,7 +110,7 @@ export default function DeleteApplicationDialog({
             type="button"
             onClick={onConfirm}
             disabled={deleting}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-4 py-2.5 text-base font-bold text-white shadow-sm transition hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {deleting ? (
               <Loader2 className="h-4 w-4 animate-spin" />

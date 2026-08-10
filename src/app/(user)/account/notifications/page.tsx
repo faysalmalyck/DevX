@@ -77,7 +77,7 @@ export default function NotificationsPage() {
           <h2 className="text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
             Notifications
             {unreadCount > 0 && (
-              <span className="rounded-full bg-primary px-2.5 py-0.5 text-sm font-black text-white">
+              <span className="rounded-full bg-primary px-2.5 py-0.5 text-base font-black text-white">
                 {unreadCount}
               </span>
             )}
@@ -87,7 +87,7 @@ export default function NotificationsPage() {
         {unreadCount > 0 && (
           <button
             onClick={markAllRead}
-            className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-zinc-300 hover:text-white transition cursor-pointer"
+            className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer"
           >
             <CheckCheck className="h-4 w-4" /> Mark all read
           </button>
@@ -145,7 +145,7 @@ export default function NotificationsPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className={`font-bold text-sm leading-tight ${!notif.read ? "text-white" : "text-zinc-300"}`}>
+                      <p className={`font-bold text-base leading-tight ${!notif.read ? "text-white" : "text-zinc-300"}`}>
                         {notif.title}
                         {!notif.read && (
                           <span className="ml-2 inline-block h-2 w-2 rounded-full bg-primary align-middle" />

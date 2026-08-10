@@ -48,7 +48,7 @@ export default function PricingPage() {
                           <div className="mb-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
                             {plan.price}
                           </div>
-                          <p className="text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
+                          <p className="text-base leading-relaxed text-slate-600 sm:text-base dark:text-white">
                             {plan.description}
                           </p>
                         </div>
@@ -73,7 +73,7 @@ export default function PricingPage() {
                           {features.map((feature, idx) => (
                             <li
                               key={idx}
-                              className="flex items-center text-sm font-semibold text-slate-700 sm:text-base dark:text-slate-300"
+                              className="flex items-center text-base font-semibold text-slate-700 sm:text-base dark:text-white"
                             >
                               <svg
                                 className={`mr-3 h-5 w-5 flex-shrink-0 sm:h-6 sm:w-6 ${

@@ -17,7 +17,7 @@ export default function AdminPlaceholder({
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-sm font-bold uppercase tracking-[.18em] text-primary">
+        <p className="text-base font-bold uppercase tracking-[.18em] text-primary">
           Administration
         </p>
         <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">

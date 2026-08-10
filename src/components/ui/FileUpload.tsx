@@ -115,7 +115,7 @@ export default function FileUpload({
             <Upload className={`h-6 w-6 transition ${dragging ? "text-primary" : "text-zinc-500"}`} />
           </div>
           <div className="text-center">
-            <p className="text-sm font-semibold text-zinc-400">{label}</p>
+            <p className="text-base font-semibold text-zinc-400">{label}</p>
             <p className="mt-1 text-[11px] text-zinc-600">
               Max {maxSizeMB} MB{accept ? ` · ${accept}` : ""}
             </p>
@@ -140,7 +140,7 @@ export default function FileUpload({
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-white truncate">{file.name}</p>
+            <p className="text-base font-bold text-white truncate">{file.name}</p>
             <p className="mt-0.5 text-xs text-zinc-500">{formatSize(file.size)}</p>
           </div>
           <button
@@ -164,7 +164,7 @@ export default function FileUpload({
 
       {/* Error */}
       {error && (
-        <p className="mt-2 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-2.5 text-sm font-semibold text-rose-400">
+        <p className="mt-2 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-2.5 text-base font-semibold text-rose-400">
           {error}
         </p>
       )}

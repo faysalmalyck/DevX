@@ -11,7 +11,7 @@ export default function CartSummary({
 
   return (
     <div className="flex items-baseline justify-between gap-4 text-[#d5dced]">
-      <span className="text-sm tracking-[-0.02em]">Subtotal</span>
+      <span className="text-base tracking-[-0.02em]">Subtotal</span>
       <span className="whitespace-nowrap text-base font-bold tracking-[-0.035em] text-white sm:text-lg">
         {formatCurrency(amount)} USD
       </span>

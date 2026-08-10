@@ -63,7 +63,7 @@ export default function AccountDropdown() {
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="flex items-center gap-2 rounded-full border border-white/70 bg-transparent py-1.5 pl-1.5 pr-3 text-sm font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.12] dark:text-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
+        className="flex items-center gap-2 rounded-full border border-white/70 bg-transparent py-1.5 pl-1.5 pr-3 text-base font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.12] dark:text-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
       >
         <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-sky-400 text-xs text-white">
           FM
@@ -100,7 +100,7 @@ export default function AccountDropdown() {
               role="menuitem"
               href={href}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-950/[0.05] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-slate-200 dark:hover:bg-white/[0.08] dark:focus-visible:ring-cyan-300"
+              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 transition hover:bg-slate-950/[0.05] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-white dark:hover:bg-white/[0.08] dark:focus-visible:ring-cyan-300"
             >
               <Icon className="h-4 w-4" />
               {label}
@@ -112,7 +112,7 @@ export default function AccountDropdown() {
           <button
             role="menuitem"
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-rose-500 transition hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-base font-bold text-rose-500 transition hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
           >
             <LogOut className="h-4 w-4" />
             Logout

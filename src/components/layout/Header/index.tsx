@@ -211,7 +211,7 @@ const Header: React.FC = () => {
                 Cart(
               </span>
 
-              <span className="text-slate-900 transition-colors duration-200 group-hover:text-brand dark:text-white dark:group-hover:text-brand">
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-brand dark:text-white dark:group-hover:text-white">
                 {itemCount}
               </span>
 

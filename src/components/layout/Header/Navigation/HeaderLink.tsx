@@ -122,7 +122,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
                     className={`group flex items-center justify-between rounded-xl border px-4 py-3 text-base font-medium no-underline transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
                       isSubActive
                         ? "border-brand/20 bg-gradient-to-r from-brand/15 via-violet-500/10 to-cyan-400/10 font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/25 dark:from-brand/25 dark:via-violet-500/15 dark:to-cyan-400/10 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                        : "border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 dark:text-slate-200 dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white"
+                        : "border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 dark:text-white dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white"
                     }`}
                   >
                     <span>{subItem.label}</span>

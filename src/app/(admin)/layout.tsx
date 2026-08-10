@@ -81,13 +81,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F6F8FC] px-6 dark:bg-[#090E19]">
         <div className="text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-violet-500 text-sm font-black text-white shadow-xl shadow-brand/20">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-violet-500 text-base font-black text-white shadow-xl shadow-brand/20">
             DX
           </div>
           <div className="mx-auto mt-5 h-1.5 w-32 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
             <div className="h-full w-2/3 animate-pulse rounded-full bg-brand" />
           </div>
-          <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">Opening your operations workspace…</p>
+          <p className="mt-3 text-base font-medium text-slate-500 dark:text-slate-400">Opening your operations workspace…</p>
         </div>
       </div>
     );
@@ -116,7 +116,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             <div className="flex min-h-[72px] items-center justify-between border-b border-white/[0.08] px-5">
               <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3" aria-label="DevX operations home">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-sm font-black text-white shadow-lg shadow-blue-950/30">DX</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-base font-black text-white shadow-lg shadow-blue-950/30">DX</span>
                 <span>
                   <span className="block text-base font-black tracking-tight">DevX Operations</span>
                   <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/80">Control workspace</span>
@@ -148,15 +148,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               aria-label="Open navigation"
               aria-controls="admin-mobile-navigation"
               aria-expanded={mobileMenuOpen}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08] lg:hidden"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:hover:bg-white/[0.08] lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
             <div className="min-w-0">
               <nav className="hidden items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 sm:flex" aria-label="Breadcrumb">
                 <Link href="/admin" className="transition hover:text-brand dark:hover:text-brand">Operations</Link>
-                <ChevronRight className="h-3.5 w-3.5 text-slate-300 dark:text-slate-600" />
-                <span className="truncate text-slate-700 dark:text-slate-200">{currentRoute.label}</span>
+                <ChevronRight className="h-3.5 w-3.5 text-white dark:text-slate-600" />
+                <span className="truncate text-slate-700 dark:text-white">{currentRoute.label}</span>
               </nav>
               <h1 className="truncate text-base font-bold tracking-tight text-slate-900 dark:text-white sm:mt-0.5 sm:text-lg">{currentRoute.label}</h1>
             </div>
@@ -165,7 +165,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/"
-              className="hidden h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08] sm:inline-flex"
+              className="hidden h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:hover:bg-white/[0.08] sm:inline-flex"
             >
               <Globe2 className="h-4 w-4" />
               View site
@@ -174,7 +174,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               type="button"
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               aria-label={resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-white/[0.08]"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:hover:bg-white/[0.08]"
             >
               {resolvedTheme === "dark" ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
             </button>
@@ -186,7 +186,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-violet-500 text-[10px] font-black text-white shadow-sm">
                 {user.avatar ? <img src={user.avatar} alt="" className="h-full w-full object-cover" /> : operatorInitials(user.firstName, user.lastName)}
               </span>
-              <span className="hidden max-w-28 truncate text-sm font-bold text-slate-700 dark:text-slate-200 sm:block">{user.firstName}</span>
+              <span className="hidden max-w-28 truncate text-base font-bold text-slate-700 dark:text-white sm:block">{user.firstName}</span>
             </Link>
           </div>
         </header>

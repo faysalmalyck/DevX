@@ -137,7 +137,7 @@ export default function AdminRegisterCard() {
           </div>
 
           {error && (
-            <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+            <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
               <ShieldAlert className="h-5 w-5 flex-shrink-0" />
               <p>{error}</p>
             </div>
@@ -154,7 +154,7 @@ export default function AdminRegisterCard() {
           <div className="text-center pt-4">
             <Link
               href="/login"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 hover:text-white transition"
+              className="inline-flex items-center gap-2 text-base font-semibold text-zinc-400 hover:text-white transition"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Login

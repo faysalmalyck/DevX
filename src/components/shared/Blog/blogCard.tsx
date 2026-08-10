@@ -31,7 +31,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
                     </span>
                 </div>
                 <div className="p-4">
-                    <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-secondary dark:text-white/50">
+                    <div className="mb-4 flex items-center gap-2 text-base font-semibold text-secondary dark:text-white/50">
                         <CalendarDays className="h-4 w-4 text-primary" />
                         {format(postDate, "dd MMM yyyy")}
                     </div>
@@ -44,7 +44,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
                         </Link>
                     </h3>
                     <p className="line-clamp-3 text-base leading-7 text-secondary dark:text-white/55">{excerpt}</p>
-                    <Link href={`/blog/${postSlug}`} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                    <Link href={`/blog/${postSlug}`} className="mt-6 inline-flex items-center gap-2 text-base font-bold text-primary">
                         Read more
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </Link>

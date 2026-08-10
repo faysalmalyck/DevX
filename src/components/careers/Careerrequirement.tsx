@@ -11,14 +11,14 @@ export default function CareerDetails({ career }: { career: PublicCareer }) {
         </h2>
 
         {career.requirementsDescription && (
-          <p className="text-base sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="text-base sm:text-base leading-relaxed text-slate-600 dark:text-white">
             {career.requirementsDescription}
           </p>
         )}
 
         <ul className="space-y-3">
           {career.requirements.map((item, index) => (
-            <li key={index} className="flex items-start text-slate-600 dark:text-slate-300">
+            <li key={index} className="flex items-start text-slate-600 dark:text-white">
               <span className="text-brand dark:text-brand mr-3 text-lg">•</span>
               <span className="leading-relaxed">{item}</span>
             </li>
@@ -34,7 +34,7 @@ export default function CareerDetails({ career }: { career: PublicCareer }) {
           </h3>
           <ul className="space-y-3">
             {career.preferredQualifications.map((item, index) => (
-              <li key={index} className="flex items-start text-slate-600 dark:text-slate-300">
+              <li key={index} className="flex items-start text-slate-600 dark:text-white">
                 <span className="text-brand dark:text-brand mr-3 text-lg">•</span>
                 <span className="leading-relaxed">{item}</span>
               </li>

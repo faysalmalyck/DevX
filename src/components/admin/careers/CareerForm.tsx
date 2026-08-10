@@ -119,7 +119,7 @@ function RepeatableList({
     <fieldset className="space-y-3 rounded-2xl border border-slate-200 p-4 dark:border-slate-700">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <legend className="text-sm font-semibold text-slate-900 dark:text-white">
+          <legend className="text-base font-semibold text-slate-900 dark:text-white">
             {label}
           </legend>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
@@ -136,7 +136,7 @@ function RepeatableList({
         </button>
       </div>
       {values.length === 0 ? (
-        <p className="rounded-xl bg-slate-50 px-3 py-2 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+        <p className="rounded-xl bg-slate-50 px-3 py-2 text-base text-slate-500 dark:bg-slate-800 dark:text-slate-400">
           No items yet.
         </p>
       ) : null}
@@ -153,7 +153,7 @@ function RepeatableList({
               onChange(next);
             }}
             aria-label={`${label} item ${index + 1}`}
-            className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+            className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
           />
           <button
             type="button"
@@ -183,7 +183,7 @@ function RepeatableList({
           </button>
         </div>
       ))}
-      {error ? <p className="text-sm text-rose-600 dark:text-rose-300">{error}</p> : null}
+      {error ? <p className="text-base text-rose-600 dark:text-rose-300">{error}</p> : null}
     </fieldset>
   );
 }
@@ -323,17 +323,17 @@ export default function CareerForm({
   };
 
   const inputClass =
-    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white";
 
   return (
     <form onSubmit={handleSubmit(submit)} className="space-y-6" noValidate>
       <div className="grid gap-5 md:grid-cols-2">
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200 md:col-span-2">
+        <label className="text-base font-semibold text-slate-700 dark:text-white md:col-span-2">
           Job title
           <input {...register("title")} className={inputClass} autoFocus />
           {fieldError(errors.title) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.title)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Slug
           <input
             {...register("slug", {
@@ -343,37 +343,37 @@ export default function CareerForm({
           />
           {fieldError(errors.slug) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.slug)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Category
           <input {...register("category")} className={inputClass} />
           {fieldError(errors.category) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.category)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Department
           <input {...register("department")} className={inputClass} />
           {fieldError(errors.department) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.department)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Location
           <input {...register("location")} className={inputClass} />
           {fieldError(errors.location) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.location)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Employment type
           <input {...register("employmentType")} className={inputClass} />
           {fieldError(errors.employmentType) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.employmentType)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Work mode
           <input {...register("workMode")} className={inputClass} />
           {fieldError(errors.workMode) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.workMode)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Experience
           <input {...register("experience")} className={inputClass} />
           {fieldError(errors.experience) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.experience)}</span> : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Display order
           <input
             type="number"
@@ -385,14 +385,14 @@ export default function CareerForm({
         </label>
       </div>
 
-      <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+      <label className="block text-base font-semibold text-slate-700 dark:text-white">
         Card description
         <textarea {...register("shortDescription")} rows={3} className={inputClass} />
         {fieldError(errors.shortDescription) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.shortDescription)}</span> : null}
       </label>
 
       <fieldset className="grid gap-5 rounded-2xl border border-slate-200 p-4 md:grid-cols-[1fr_auto] md:items-end dark:border-slate-700">
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="text-base font-semibold text-slate-700 dark:text-white">
           Status
           <select {...register("status")} className={inputClass}>
             {statuses.map((status) => (
@@ -402,7 +402,7 @@ export default function CareerForm({
             ))}
           </select>
         </label>
-        <label className="flex min-h-[50px] items-center gap-3 rounded-xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+        <label className="flex min-h-[50px] items-center gap-3 rounded-xl bg-slate-50 px-4 py-3 text-base font-semibold text-slate-700 dark:bg-slate-800 dark:text-white">
           <input type="checkbox" {...register("featured")} className="h-4 w-4 rounded border-slate-300 text-brand focus:ring-brand" />
           Feature this job
         </label>
@@ -410,12 +410,12 @@ export default function CareerForm({
 
       <section className="space-y-4 rounded-2xl border border-slate-200 p-4 dark:border-slate-700">
         <h3 className="text-base font-bold text-slate-900 dark:text-white">Job description</h3>
-        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="block text-base font-semibold text-slate-700 dark:text-white">
           Description paragraph
           <textarea {...register("overview")} rows={5} className={inputClass} />
           {fieldError(errors.overview) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.overview)}</span> : null}
         </label>
-        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="block text-base font-semibold text-slate-700 dark:text-white">
           Supporting paragraph
           <textarea {...register("responsibilitiesDescription")} rows={3} className={inputClass} />
           {fieldError(errors.responsibilitiesDescription) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.responsibilitiesDescription)}</span> : null}
@@ -431,7 +431,7 @@ export default function CareerForm({
 
       <section className="space-y-4 rounded-2xl border border-slate-200 p-4 dark:border-slate-700">
         <h3 className="text-base font-bold text-slate-900 dark:text-white">Job requirements</h3>
-        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+        <label className="block text-base font-semibold text-slate-700 dark:text-white">
           Requirements paragraph
           <textarea {...register("requirementsDescription")} rows={3} className={inputClass} />
           {fieldError(errors.requirementsDescription) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.requirementsDescription)}</span> : null}
@@ -468,12 +468,12 @@ export default function CareerForm({
           </button>
         </div>
         {hiringProcess.fields.length === 0 ? (
-          <p className="rounded-xl bg-slate-50 px-3 py-2 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">No hiring process steps yet.</p>
+          <p className="rounded-xl bg-slate-50 px-3 py-2 text-base text-slate-500 dark:bg-slate-800 dark:text-slate-400">No hiring process steps yet.</p>
         ) : null}
         {hiringProcess.fields.map((field, index) => (
           <div key={field.id} className="rounded-xl border border-slate-200 p-3 dark:border-slate-700">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">Step {index + 1}</p>
+              <p className="text-base font-semibold text-slate-700 dark:text-white">Step {index + 1}</p>
               <div className="flex items-center gap-1">
                 <button type="button" onClick={() => hiringProcess.move(index, index - 1)} disabled={index === 0} aria-label={`Move step ${index + 1} up`} className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 disabled:opacity-30 dark:text-slate-400 dark:hover:bg-slate-800"><ChevronUp className="h-4 w-4" /></button>
                 <button type="button" onClick={() => hiringProcess.move(index, index + 1)} disabled={index === hiringProcess.fields.length - 1} aria-label={`Move step ${index + 1} down`} className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 disabled:opacity-30 dark:text-slate-400 dark:hover:bg-slate-800"><ChevronDown className="h-4 w-4" /></button>
@@ -481,19 +481,19 @@ export default function CareerForm({
               </div>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
-              <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Title<input {...register(`hiringProcess.${index}.title`)} className={inputClass} /></label>
-              <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Description<textarea {...register(`hiringProcess.${index}.description`)} rows={3} className={inputClass} /></label>
+              <label className="text-base font-semibold text-slate-700 dark:text-white">Title<input {...register(`hiringProcess.${index}.title`)} className={inputClass} /></label>
+              <label className="text-base font-semibold text-slate-700 dark:text-white">Description<textarea {...register(`hiringProcess.${index}.description`)} rows={3} className={inputClass} /></label>
             </div>
           </div>
         ))}
-        {fieldError(errors.hiringProcess) ? <p className="text-sm text-rose-600 dark:text-rose-300">{fieldError(errors.hiringProcess)}</p> : null}
+        {fieldError(errors.hiringProcess) ? <p className="text-base text-rose-600 dark:text-rose-300">{fieldError(errors.hiringProcess)}</p> : null}
       </fieldset>
 
-      {saveError ? <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">{saveError}</p> : null}
+      {saveError ? <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-base text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">{saveError}</p> : null}
 
       <div className="flex justify-end gap-3 border-t border-slate-200 pt-5 dark:border-slate-800">
-        <button type="button" onClick={onClose} disabled={loading} className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Cancel</button>
-        <button type="submit" disabled={loading} className="rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand disabled:cursor-wait disabled:opacity-50">{loading ? "Saving…" : mode === "create" ? "Create job" : "Save changes"}</button>
+        <button type="button" onClick={onClose} disabled={loading} className="rounded-xl border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800">Cancel</button>
+        <button type="submit" disabled={loading} className="rounded-xl bg-brand px-6 py-3 text-base font-semibold text-white transition hover:bg-brand disabled:cursor-wait disabled:opacity-50">{loading ? "Saving…" : mode === "create" ? "Create job" : "Save changes"}</button>
       </div>
     </form>
   );

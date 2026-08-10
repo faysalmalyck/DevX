@@ -99,7 +99,7 @@ export default function CoreValues() {
                 <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="text-base leading-relaxed text-slate-600 dark:text-white">
                   {item.description}
                 </p>
               </div>

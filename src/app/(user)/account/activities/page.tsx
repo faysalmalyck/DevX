@@ -69,7 +69,7 @@ export default function ActivitiesPage() {
               <Icon className={`h-5 w-5 ${color}`} />
             </div>
             <p className="text-3xl font-black text-white">{loading ? "–" : value}</p>
-            <p className="mt-1 text-sm font-semibold text-zinc-500">{label}</p>
+            <p className="mt-1 text-base font-semibold text-zinc-500">{label}</p>
           </div>
         ))}
       </div>
@@ -128,7 +128,7 @@ export default function ActivitiesPage() {
                     <div>
                       <p className="font-bold text-white">{activity.title}</p>
                       {activity.description && (
-                        <p className="mt-1 text-sm text-zinc-500">{activity.description}</p>
+                        <p className="mt-1 text-base text-zinc-500">{activity.description}</p>
                       )}
                     </div>
                     <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${s.color}`}>

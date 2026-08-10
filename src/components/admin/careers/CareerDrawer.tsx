@@ -84,7 +84,7 @@ export default function CareerDrawer({
             <h2 id="career-drawer-title" className="text-2xl font-bold text-slate-900 dark:text-white">
               {mode === "create" ? "Create job" : "Edit job"}
             </h2>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-base text-slate-500 dark:text-slate-400">
               {mode === "create"
                 ? "Add a role using the existing public job-page content fields."
                 : "Update the role without changing the public page layout."}

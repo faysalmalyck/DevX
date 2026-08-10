@@ -32,7 +32,7 @@ export default function ProjectOverview({ study }: { study: CaseStudy }) {
               {study.overview.title}
             </h2>
 
-            <div className="space-y-6 text-base font-light leading-relaxed text-slate-300 sm:text-lg">
+            <div className="space-y-6 text-base font-light leading-relaxed text-white sm:text-lg">
               {Array.isArray(study.overview.description) ? (
                 study.overview.description.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
@@ -83,7 +83,7 @@ export default function ProjectOverview({ study }: { study: CaseStudy }) {
 
                   {study.execution.bullets && study.execution.bullets.length > 0 && (
                     <StaggerItem preset="right">
-                      <ul className="list-disc space-y-5 pl-6 text-base font-normal leading-6 md:leading-8 text-slate-300 marker:text-slate-500">
+                      <ul className="list-disc space-y-5 pl-6 text-base font-normal leading-6 md:leading-8 text-white marker:text-slate-500">
                         {study.execution.bullets.map((bullet, index) => (
                           <li key={index}>{bullet}</li>
                         ))}

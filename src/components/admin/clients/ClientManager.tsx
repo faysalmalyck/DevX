@@ -118,7 +118,7 @@ export default function ClientManager() {
       {/* Header Panel */}
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[.18em] text-primary">
+          <p className="text-base font-bold uppercase tracking-[.18em] text-primary">
             Client Management
           </p>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -131,21 +131,21 @@ export default function ClientManager() {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => exportCsv()}
-            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-sm font-bold text-zinc-300 hover:text-white transition cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer"
           >
             <Download className="h-4 w-4" />
             Export
           </button>
           <button
             onClick={() => location.reload()}
-            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-sm font-bold text-zinc-300 hover:text-white transition cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer"
           >
             <RefreshCw className="h-4 w-4" />
             Refresh
           </button>
           <button
             onClick={() => setEditing(blank())}
-            className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             Add Client
@@ -166,7 +166,7 @@ export default function ClientManager() {
             className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl backdrop-blur-md"
           >
             <p className="text-3xl font-black text-white">{value}</p>
-            <p className="mt-1 text-sm font-semibold text-zinc-400">{label}</p>
+            <p className="mt-1 text-base font-semibold text-zinc-400">{label}</p>
           </div>
         ))}
       </div>
@@ -176,7 +176,7 @@ export default function ClientManager() {
 
       {/* Bulk actions */}
       {selected.length > 0 && (
-        <div className="flex items-center gap-3 rounded-xl bg-primary/10 border border-primary/20 p-3 text-sm font-bold text-primary animate-fade-in">
+        <div className="flex items-center gap-3 rounded-xl bg-primary/10 border border-primary/20 p-3 text-base font-bold text-primary animate-fade-in">
           <span>{selected.length} Selected Clients</span>
           <button
             onClick={() => setRemoving(clients.filter((c) => selected.includes(c.id)))}

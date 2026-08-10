@@ -147,7 +147,7 @@ export default function DataTable<T extends Record<string, any>>({
                     className="border-b border-white/5 hover:bg-white/[0.02] transition"
                   >
                     {columns.map((col) => (
-                      <td key={col.key} className="px-5 py-4 text-sm text-white">
+                      <td key={col.key} className="px-5 py-4 text-base text-white">
                         {col.render
                           ? col.render(row, i)
                           : (row[col.key] as ReactNode) ?? "–"}

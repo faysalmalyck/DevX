@@ -27,7 +27,7 @@ export default function CareerFilters({
           value={filters.q}
           onChange={(event) => onChange({ q: event.target.value, page: 1 })}
           placeholder="Search jobs by title, slug, or department..."
-          className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-12 pr-4 text-sm outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-400"
+          className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-12 pr-4 text-base outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-400"
         />
       </div>
 
@@ -36,7 +36,7 @@ export default function CareerFilters({
           value={filters.category}
           onChange={(event) => onChange({ category: event.target.value, page: 1 })}
           aria-label="Filter by category"
-          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
         >
           <option value="">All categories</option>
           {categories.map((category) => (
@@ -55,7 +55,7 @@ export default function CareerFilters({
             })
           }
           aria-label="Filter by status"
-          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
         >
           <option value="">All statuses</option>
           {statuses.map((status) => (
@@ -74,7 +74,7 @@ export default function CareerFilters({
             })
           }
           aria-label="Sort jobs"
-          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
         >
           <option value="displayOrder_asc">Display order</option>
           <option value="displayOrder_desc">Display order: high first</option>

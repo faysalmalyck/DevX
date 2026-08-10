@@ -53,7 +53,7 @@ export default function OpenPositions({
             </h2>
           </ScrollReveal>
           <ScrollReveal className="mb-8" delay={0.12} preset="copy">
-            <p className="text-base text-slate-600 sm:text-lg dark:text-slate-400">
+            <p className="text-base text-slate-600 sm:text-lg dark:text-white">
               Explore our current job openings and find a role that matches your skills, experience, and career goals. We are always looking for talented people to join our team.
             </p>
           </ScrollReveal>
@@ -64,9 +64,9 @@ export default function OpenPositions({
               <button
                 key={category.id}
                 onClick={() => selectCategory(category.id)}
-className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-transparent hover:border-slate-400 dark:hover:border-transparent hover:ring-2 hover:ring-slate-400/50 dark:hover:ring-slate-400/40 hover:shadow-[0_0_12px_rgba(148,163,184,0.35)] ${                  selectedCategory === category.id
+className={`px-5 py-2 rounded-full text-base font-medium transition-all duration-200 border border-transparent hover:border-slate-400 dark:hover:border-transparent hover:ring-2 hover:ring-slate-400/50 dark:hover:ring-slate-400/40 hover:shadow-[0_0_12px_rgba(148,163,184,0.35)] ${                  selectedCategory === category.id
                     ? 'bg-brand text-white shadow-md shadow-brand/20 dark:grey-400'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700'
                 }`}
               >
                 {category.label}
@@ -85,7 +85,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
                   className="group flex h-full min-h-[260px] flex-col justify-between rounded-md border border-slate-200/80 bg-slate-50 p-8 transition-all duration-200 hover:border-slate-400 hover:shadow-lg sm:p-10 dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-slate-500"
                 >
                   <div>
-                    <div className="mb-4 flex items-center space-x-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                    <div className="mb-4 flex items-center space-x-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-white">
                       <span>{position.location}</span>
                       <span className="inline-block h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-600" />
                       <span>{position.type}</span>
@@ -96,7 +96,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
                     </h3>
                   </div>
 
-                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-white">
                     {position.description}
                   </p>
                 </Link>
@@ -106,7 +106,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
         </StaggerContainer>
 
         {positions.length === 0 && (
-          <ScrollReveal className="py-12 text-center text-slate-500 dark:text-slate-400" preset="copy">
+          <ScrollReveal className="py-12 text-center text-slate-500 dark:text-white" preset="copy">
             No open positions available for this category right now.
           </ScrollReveal>
         )}

@@ -111,13 +111,13 @@ export default function ResetPasswordCard() {
             <h2 className="text-2xl font-bold text-white tracking-tight">
               Invalid Reset Attempt
             </h2>
-            <p className="text-sm text-zinc-400 leading-relaxed max-w-md mx-auto">
+            <p className="text-base text-zinc-400 leading-relaxed max-w-md mx-auto">
               This password reset link is invalid, incomplete, or has expired. Please request a new recovery link.
             </p>
             <div className="pt-4">
               <Link
                 href="/forgot-password"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition"
+                className="inline-flex items-center gap-2 text-base font-semibold text-primary hover:text-primary/80 transition"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Request Reset Email
@@ -133,7 +133,7 @@ export default function ResetPasswordCard() {
               <h2 className="text-2xl font-bold text-white tracking-tight">
                 Password Changed!
               </h2>
-              <p className="text-sm text-zinc-400 leading-relaxed">
+              <p className="text-base text-zinc-400 leading-relaxed">
                 Your credentials have been securely updated. Redirecting to login in a moment...
               </p>
             </div>
@@ -198,7 +198,7 @@ export default function ResetPasswordCard() {
             </div>
 
             {error && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                 <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                 <p>{error}</p>
               </div>

@@ -60,14 +60,14 @@ export default function ForgotPasswordCard() {
               <h2 className="text-2xl font-bold text-white tracking-tight">
                 Request Complete
               </h2>
-              <p className="text-sm text-zinc-400 leading-relaxed">
+              <p className="text-base text-zinc-400 leading-relaxed">
                 {successMessage}
               </p>
             </div>
             <div className="pt-4">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition"
+                className="inline-flex items-center gap-2 text-base font-semibold text-primary hover:text-primary/80 transition"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Return to Login
@@ -94,7 +94,7 @@ export default function ForgotPasswordCard() {
             </div>
 
             {error && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                 <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                 <p>{error}</p>
               </div>
@@ -111,7 +111,7 @@ export default function ForgotPasswordCard() {
             <div className="text-center pt-2">
               <Link
                 href="/login"
-                className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-slate-200 dark:hover:text-brand"
+                className="mt-12 mb-8 inline-flex items-center gap-2 text-base font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-white dark:hover:text-brand"
 >
   <ArrowLeft className="h-4 w-4" />
                 Back to Login

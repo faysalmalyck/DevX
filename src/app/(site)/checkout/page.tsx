@@ -11,7 +11,7 @@ function CheckoutHeader() {
         <CheckCircle2 className="h-6 w-6" />
       </div>
       <div>
-        <p className="text-sm font-semibold text-primary">Checkout ready</p>
+        <p className="text-base font-semibold text-primary">Checkout ready</p>
         <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-900 dark:text-white">
           Your project brief is saved
         </h1>
@@ -26,7 +26,7 @@ function CheckoutHeader() {
 function OrderSummary({ items, total, itemCount }: { items: CartItem[]; total: number; itemCount: number }) {
   if (items.length === 0) {
     return (
-      <p className="mt-8 rounded-xl bg-slate-100 p-4 text-sm text-slate-600 dark:bg-white/[0.05] dark:text-white/60">
+      <p className="mt-8 rounded-xl bg-slate-100 p-4 text-base text-slate-600 dark:bg-white/[0.05] dark:text-white/60">
         Your cart is currently empty. Select a plan to continue.
       </p>
     );
@@ -35,7 +35,7 @@ function OrderSummary({ items, total, itemCount }: { items: CartItem[]; total: n
   return (
     <div className="mt-8 space-y-3 border-y border-slate-200 py-6 dark:border-white/[0.1]">
       {items.map((item) => (
-        <div key={item.id} className="flex items-center justify-between gap-4 text-sm">
+        <div key={item.id} className="flex items-center justify-between gap-4 text-base">
           <span className="font-semibold text-slate-900 dark:text-white">
             {item.plan.name}{" "}
             <span className="font-normal text-slate-500 dark:text-white/50">
@@ -63,7 +63,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-3xl">
         <Link
           href="/pricing"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition hover:text-primary dark:text-white/60 dark:hover:text-white"
+          className="inline-flex items-center gap-2 text-base font-semibold text-slate-600 transition hover:text-primary dark:text-white/60 dark:hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" />
           Continue browsing plans

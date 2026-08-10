@@ -191,12 +191,12 @@ export default function UserProfilePage() {
               </div>
 
               {profileError && (
-                <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+                <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-4 w-4" /> {profileError}
                 </div>
               )}
               {profileSuccess && (
-                <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm font-semibold text-emerald-400">
+                <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400">
                   <CheckCircle2 className="h-4 w-4" /> {profileSuccess}
                 </div>
               )}
@@ -205,7 +205,7 @@ export default function UserProfilePage() {
                 <button
                   type="submit"
                   disabled={profileLoading}
-                  className="rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+                  className="rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
                 >
                   {profileLoading ? "Saving..." : "Save Changes"}
                 </button>
@@ -262,12 +262,12 @@ export default function UserProfilePage() {
               </div>
 
               {passwordError && (
-                <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-sm font-semibold text-rose-500">
+                <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-4 w-4" /> {passwordError}
                 </div>
               )}
               {passwordSuccess && (
-                <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm font-semibold text-emerald-400">
+                <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400">
                   <CheckCircle2 className="h-4 w-4" /> {passwordSuccess}
                 </div>
               )}
@@ -276,7 +276,7 @@ export default function UserProfilePage() {
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-amber-500/20 disabled:opacity-50 cursor-pointer"
+                  className="rounded-xl bg-amber-500 px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-amber-500/20 disabled:opacity-50 cursor-pointer"
                 >
                   {passwordLoading ? "Changing..." : "Change Password"}
                 </button>

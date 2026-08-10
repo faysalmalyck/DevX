@@ -77,7 +77,7 @@ export default function Development() {
                   {service.title}
                 </h3>
 
-                <p className="mt-2 text-base sm:text-base leading-6 sm:leading-7 text-slate-600 dark:text-slate-300">
+                <p className="mt-2 text-base sm:text-base leading-6 sm:leading-7 text-slate-600 dark:text-white">
                   {service.description}
                 </p>
               </div>

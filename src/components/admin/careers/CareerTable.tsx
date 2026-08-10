@@ -46,7 +46,7 @@ function ActionButton({
       ? "text-rose-600 hover:bg-rose-50 hover:text-rose-700 dark:text-rose-300 dark:hover:bg-rose-500/10"
       : tone === "primary"
         ? "text-brand hover:bg-blue-50 hover:text-brand dark:text-brand dark:hover:bg-brand/10"
-        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white";
+        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-white dark:hover:bg-slate-800 dark:hover:text-white";
 
   return (
     <button
@@ -124,14 +124,14 @@ export default function CareerTable({
         <table className="min-w-full">
           <thead className="bg-slate-50 dark:bg-slate-800">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Position</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Category</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Location</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Experience</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Status</th>
-              <th className="px-6 py-4 text-center text-sm font-semibold">Featured</th>
-              <th className="px-6 py-4 text-center text-sm font-semibold">Order</th>
-              <th className="px-6 py-4 text-right text-sm font-semibold">Actions</th>
+              <th className="px-6 py-4 text-left text-base font-semibold">Position</th>
+              <th className="px-6 py-4 text-left text-base font-semibold">Category</th>
+              <th className="px-6 py-4 text-left text-base font-semibold">Location</th>
+              <th className="px-6 py-4 text-left text-base font-semibold">Experience</th>
+              <th className="px-6 py-4 text-left text-base font-semibold">Status</th>
+              <th className="px-6 py-4 text-center text-base font-semibold">Featured</th>
+              <th className="px-6 py-4 text-center text-base font-semibold">Order</th>
+              <th className="px-6 py-4 text-right text-base font-semibold">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -142,9 +142,9 @@ export default function CareerTable({
                   <td className="px-6 py-4">
                     <p className="font-semibold text-slate-900 dark:text-white">{career.title}</p>
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">{career.category}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">{career.location}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">{career.experience}</td>
+                  <td className="px-6 py-4 text-base text-slate-600 dark:text-white">{career.category}</td>
+                  <td className="px-6 py-4 text-base text-slate-600 dark:text-white">{career.location}</td>
+                  <td className="px-6 py-4 text-base text-slate-600 dark:text-white">{career.experience}</td>
                   <td className="px-6 py-4"><StatusBadge status={career.status} /></td>
                   <td className="px-6 py-4 text-center"><FeaturedBadge featured={career.featured} /></td>
                   <td className="px-6 py-4 text-center">
@@ -162,12 +162,12 @@ export default function CareerTable({
                           event.target.value = String(career.displayOrder);
                         }
                       }}
-                      className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-center text-sm outline-none focus:border-brand disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                      className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-center text-base outline-none focus:border-brand disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                     />
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex min-w-max justify-end gap-1">
-                      <Link href={`/admin/careers/${career.id}/preview`} title="Preview job" aria-label={`Preview ${career.title}`} className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"><Eye className="h-4 w-4" /></Link>
+                      <Link href={`/admin/careers/${career.id}/preview`} title="Preview job" aria-label={`Preview ${career.title}`} className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-white dark:hover:bg-slate-800 dark:hover:text-white"><Eye className="h-4 w-4" /></Link>
                       <ActionButton label="Edit job" onClick={() => onEdit(career)} disabled={busy} tone="primary"><Pencil className="h-4 w-4" /></ActionButton>
                       <ActionButton label={career.featured ? "Unfeature job" : "Feature job"} onClick={() => onFeature(career)} disabled={busy} tone="primary"><Star className={`h-4 w-4 ${career.featured ? "fill-current" : ""}`} /></ActionButton>
                       <ActionButton label="Duplicate job" onClick={() => onDuplicate(career)} disabled={busy}><Copy className="h-4 w-4" /></ActionButton>

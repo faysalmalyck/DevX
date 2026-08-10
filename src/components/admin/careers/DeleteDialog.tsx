@@ -66,7 +66,7 @@ export default function DeleteDialog({
             <h2 id="delete-career-title" className="text-lg font-bold text-slate-900 dark:text-white">
               Delete {title}?
             </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+            <p className="mt-2 text-base leading-6 text-slate-600 dark:text-slate-400">
               This permanently removes the job. Jobs with submitted applications
               must have those applications removed first so private resumes are
               not orphaned.
@@ -74,7 +74,7 @@ export default function DeleteDialog({
           </div>
         </div>
         {error ? (
-          <p className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
+          <p className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-base text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
             {error}
           </p>
         ) : null}
@@ -84,7 +84,7 @@ export default function DeleteDialog({
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+            className="rounded-xl border border-slate-300 px-4 py-2.5 text-base font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
           >
             Cancel
           </button>
@@ -92,7 +92,7 @@ export default function DeleteDialog({
             type="button"
             onClick={onConfirm}
             disabled={loading}
-            className="rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700 disabled:cursor-wait disabled:opacity-60"
+            className="rounded-xl bg-rose-600 px-4 py-2.5 text-base font-semibold text-white transition hover:bg-rose-700 disabled:cursor-wait disabled:opacity-60"
           >
             {loading ? "Deleting…" : "Delete job"}
           </button>

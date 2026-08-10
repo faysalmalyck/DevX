@@ -22,7 +22,7 @@ export default function QuantitySelector({ quantity, onChange }: QuantitySelecto
         <Minus className="h-3 w-3" />
       </button>
 
-      <span className="text-sm font-medium text-white" aria-live="polite">
+      <span className="text-base font-medium text-white" aria-live="polite">
         {quantity}
       </span>
 

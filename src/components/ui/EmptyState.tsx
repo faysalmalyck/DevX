@@ -62,7 +62,7 @@ export default function EmptyState({
       {action && (
         <button
           onClick={action.onClick}
-          className="mt-5 flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:brightness-110 active:scale-[0.98] transition cursor-pointer"
+          className="mt-5 flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white shadow-lg shadow-primary/20 hover:brightness-110 active:scale-[0.98] transition cursor-pointer"
         >
           {action.label}
         </button>

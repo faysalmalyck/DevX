@@ -120,7 +120,7 @@ export default function SupportPage() {
         </div>
         <button
           onClick={() => setShowCreate(true)}
-          className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
+          className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
         >
           <Plus className="h-4 w-4" /> New Ticket
         </button>
@@ -135,7 +135,7 @@ export default function SupportPage() {
         ].map(({ label, value, color, bg }) => (
           <div key={label} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
             <p className={`text-3xl font-black ${color}`}>{loading ? "–" : value}</p>
-            <p className="mt-1 text-sm font-semibold text-zinc-500">{label}</p>
+            <p className="mt-1 text-base font-semibold text-zinc-500">{label}</p>
           </div>
         ))}
       </div>
@@ -201,7 +201,7 @@ export default function SupportPage() {
                         key={msg.id}
                         className={`flex gap-3 ${msg.senderType === "user" ? "flex-row-reverse" : ""}`}
                       >
-                        <div className={`flex-shrink-0 rounded-full h-8 w-8 flex items-center justify-center font-bold text-sm ${
+                        <div className={`flex-shrink-0 rounded-full h-8 w-8 flex items-center justify-center font-bold text-base ${
                           msg.senderType === "admin"
                             ? "bg-primary/20 border border-primary/30 text-primary"
                             : "bg-emerald-500/20 border border-emerald-500/30 text-emerald-400"
@@ -209,7 +209,7 @@ export default function SupportPage() {
                           {msg.senderName[0]}
                         </div>
                         <div className={`max-w-[75%] space-y-1 ${msg.senderType === "user" ? "items-end" : "items-start"} flex flex-col`}>
-                          <div className={`rounded-xl px-4 py-3 text-sm ${
+                          <div className={`rounded-xl px-4 py-3 text-base ${
                             msg.senderType === "admin"
                               ? "bg-white/5 border border-white/10 text-white"
                               : "bg-primary/15 border border-primary/20 text-white"
@@ -294,7 +294,7 @@ export default function SupportPage() {
               </div>
 
               {createError && (
-                <p className="rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm font-semibold text-rose-500">
+                <p className="rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-base font-semibold text-rose-500">
                   {createError}
                 </p>
               )}
@@ -303,14 +303,14 @@ export default function SupportPage() {
                 <button
                   type="button"
                   onClick={() => setShowCreate(false)}
-                  className="rounded-xl border border-white/10 px-5 py-2.5 text-sm font-bold text-zinc-400 hover:text-white transition cursor-pointer"
+                  className="rounded-xl border border-white/10 px-5 py-2.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={creating}
-                  className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white hover:brightness-110 disabled:opacity-50 transition shadow-lg shadow-primary/20 cursor-pointer"
+                  className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 disabled:opacity-50 transition shadow-lg shadow-primary/20 cursor-pointer"
                 >
                   <Send className="h-4 w-4" />
                   {creating ? "Submitting..." : "Submit Ticket"}

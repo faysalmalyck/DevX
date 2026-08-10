@@ -76,14 +76,14 @@ export default function ArticleSlider() {
             <button
               onClick={handlePrev}
               aria-label="Previous slide"
-              className="p-3 rounded-full border border-slate-300 dark:border-slate-700/60 bg-white dark:bg-[#1e2436] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
+              className="p-3 rounded-full border border-slate-300 dark:border-slate-700/60 bg-white dark:bg-[#1e2436] text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next slide"
-              className="p-3 rounded-full border border-slate-300 dark:border-slate-700/60 bg-white dark:bg-[#1e2436] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
+              className="p-3 rounded-full border border-slate-300 dark:border-slate-700/60 bg-white dark:bg-[#1e2436] text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -142,7 +142,7 @@ export default function ArticleSlider() {
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-medium mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                       {article.title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
+                    <p className="text-slate-600 dark:text-white text-base mb-6 font-normal line-clamp-3">
                       {article.excerpt}
                     </p>
 

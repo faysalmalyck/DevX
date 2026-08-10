@@ -247,7 +247,7 @@ export default function ApplicationsManagement({
           <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
             Applications
           </h1>
-          <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
+          <p className="mt-2 text-base text-slate-500 dark:text-zinc-400">
             Review candidates, manage hiring stages, and securely access resumes.
           </p>
         </div>
@@ -255,7 +255,7 @@ export default function ApplicationsManagement({
           type="button"
           onClick={() => void loadApplications()}
           disabled={loading}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#111827] dark:text-zinc-300 dark:hover:bg-white/5"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-base font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#111827] dark:text-zinc-300 dark:hover:bg-white/5"
         >
           <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
           Refresh
@@ -279,7 +279,7 @@ export default function ApplicationsManagement({
       {error && (
         <p
           role="alert"
-          className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
+          className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
         >
           {error}
         </p>
@@ -296,7 +296,7 @@ export default function ApplicationsManagement({
       />
 
       <footer className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-slate-500 dark:text-zinc-500">
+        <p className="text-base text-slate-500 dark:text-zinc-500">
           Showing {applications.length === 0 ? 0 : (pagination.page - 1) * pagination.pageSize + 1}
           {applications.length > 0
             ? `–${Math.min(
@@ -311,12 +311,12 @@ export default function ApplicationsManagement({
             type="button"
             onClick={() => setPage((currentPage) => Math.max(1, currentPage - 1))}
             disabled={loading || pagination.page <= 1}
-            className="inline-flex h-9 items-center gap-1 rounded-lg border border-slate-200 px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5"
+            className="inline-flex h-9 items-center gap-1 rounded-lg border border-slate-200 px-3 text-base font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5"
           >
             <ChevronLeft className="h-4 w-4" />
             Previous
           </button>
-          <span className="min-w-20 text-center text-sm font-semibold text-slate-600 dark:text-zinc-400">
+          <span className="min-w-20 text-center text-base font-semibold text-slate-600 dark:text-zinc-400">
             Page {pagination.page} of {pagination.pageCount}
           </span>
           <button
@@ -327,7 +327,7 @@ export default function ApplicationsManagement({
               )
             }
             disabled={loading || pagination.page >= pagination.pageCount}
-            className="inline-flex h-9 items-center gap-1 rounded-lg border border-slate-200 px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5"
+            className="inline-flex h-9 items-center gap-1 rounded-lg border border-slate-200 px-3 text-base font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/5"
           >
             Next
             <ChevronRight className="h-4 w-4" />

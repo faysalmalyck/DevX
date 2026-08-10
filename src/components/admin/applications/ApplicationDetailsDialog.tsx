@@ -301,7 +301,7 @@ export default function ApplicationDetailsDialog({
               {application?.fullName ?? "Loading application"}
             </h2>
             {application && (
-              <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
+              <p className="mt-1 text-base text-slate-500 dark:text-zinc-400">
                 {application.career.title}
               </p>
             )}
@@ -325,7 +325,7 @@ export default function ApplicationDetailsDialog({
           )}
 
           {error && !application && (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
+            <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
               {error}
             </div>
           )}
@@ -366,7 +366,7 @@ export default function ApplicationDetailsDialog({
                         <FileText className="h-5 w-5" />
                       </span>
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-bold text-slate-900 dark:text-white">
+                        <p className="truncate text-base font-bold text-slate-900 dark:text-white">
                           {application.resumeOriginalFilename}
                         </p>
                         <p className="mt-0.5 text-xs text-slate-500 dark:text-zinc-500">
@@ -376,7 +376,7 @@ export default function ApplicationDetailsDialog({
                     </div>
                     <a
                       href={resumeHref(application.id)}
-                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-bold text-brand transition hover:bg-blue-100 dark:border-brand/20 dark:bg-brand/10 dark:text-brand dark:hover:bg-brand/20"
+                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-base font-bold text-brand transition hover:bg-blue-100 dark:border-brand/20 dark:bg-brand/10 dark:text-brand dark:hover:bg-brand/20"
                     >
                       <Download className="h-4 w-4" />
                       Download
@@ -389,7 +389,7 @@ export default function ApplicationDetailsDialog({
                           href={linkedInUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
+                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-base font-semibold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
                         >
                           LinkedIn <ExternalLink className="h-3.5 w-3.5" />
                         </a>
@@ -399,7 +399,7 @@ export default function ApplicationDetailsDialog({
                           href={portfolioUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
+                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-base font-semibold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
                         >
                           Portfolio <ExternalLink className="h-3.5 w-3.5" />
                         </a>
@@ -412,7 +412,7 @@ export default function ApplicationDetailsDialog({
                   <h3 className="font-bold text-slate-900 dark:text-white">
                     Cover letter
                   </h3>
-                  <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-slate-700 dark:text-zinc-300">
+                  <p className="mt-3 whitespace-pre-wrap break-words text-base leading-6 text-slate-700 dark:text-zinc-300">
                     {application.coverLetter}
                   </p>
                 </section>
@@ -429,13 +429,13 @@ export default function ApplicationDetailsDialog({
                 <h3 className="font-bold text-slate-900 dark:text-white">
                   Application review
                 </h3>
-                <label className="mt-5 block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                <label className="mt-5 block text-base font-semibold text-slate-700 dark:text-zinc-300">
                   Application status
                   <select
                     value={status}
                     onChange={handleStatusChange}
                     disabled={saving}
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-base font-medium text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
                   >
                     {APPLICATION_STATUS_VALUES.map((statusValue) => (
                       <option key={statusValue} value={statusValue}>
@@ -445,7 +445,7 @@ export default function ApplicationDetailsDialog({
                   </select>
                 </label>
 
-                <label className="mt-5 block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                <label className="mt-5 block text-base font-semibold text-slate-700 dark:text-zinc-300">
                   Internal notes
                   <textarea
                     value={internalNotes}
@@ -454,7 +454,7 @@ export default function ApplicationDetailsDialog({
                     maxLength={10000}
                     rows={8}
                     placeholder="Visible only to administrators..."
-                    className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
+                    className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-base leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
                   />
                   <span className="mt-1 block text-right text-xs font-medium text-slate-400 dark:text-zinc-600">
                     {internalNotes.length}/10,000
@@ -464,7 +464,7 @@ export default function ApplicationDetailsDialog({
                 {error && (
                   <p
                     role="alert"
-                    className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-sm font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
+                    className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
                   >
                     {error}
                   </p>
@@ -474,7 +474,7 @@ export default function ApplicationDetailsDialog({
                   type="button"
                   onClick={() => void saveChanges()}
                   disabled={saving}
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-base font-bold text-white shadow-sm transition hover:bg-brand disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saving ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -507,7 +507,7 @@ function DetailItem({
         <Icon className="h-3.5 w-3.5" />
         {label}
       </dt>
-      <dd className="mt-1 break-words text-sm font-medium text-slate-800 dark:text-zinc-200">
+      <dd className="mt-1 break-words text-base font-medium text-slate-800 dark:text-zinc-200">
         {value}
       </dd>
     </div>

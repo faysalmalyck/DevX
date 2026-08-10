@@ -9,7 +9,7 @@ const statusClasses: Record<CareerStatus, string> = {
   CLOSED:
     "bg-rose-100 text-rose-800 dark:bg-rose-500/10 dark:text-rose-300",
   ARCHIVED:
-    "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300",
+    "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-white",
 };
 
 export default function StatusBadge({ status }: { status: CareerStatus }) {

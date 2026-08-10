@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
                             </div>
                           </div>
                           <div className="mt-6">
-                            <p className="text-base text-slate-300">{testimonial.text}</p>
+                            <p className="text-base text-white">{testimonial.text}</p>
                           </div>
                         </div>
                       </HoverCard>

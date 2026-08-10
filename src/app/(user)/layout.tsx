@@ -73,7 +73,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
               )}
             </div>
             <div className="text-left flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white truncate leading-tight group-hover:text-primary transition">
+              <p className="text-base font-semibold text-white truncate leading-tight group-hover:text-primary transition">
                 {user.firstName} {user.lastName}
               </p>
               <p className="text-[10px] text-zinc-500 truncate leading-none">{user.role}</p>
@@ -114,7 +114,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold truncate">{user.firstName} {user.lastName}</p>
+                  <p className="text-base font-semibold truncate">{user.firstName} {user.lastName}</p>
                   <p className="text-xs text-zinc-500 truncate">{user.role}</p>
                 </div>
               </div>
@@ -209,7 +209,7 @@ function UserSidebarNav({ active, onNavItemClick }: { active: string; onNavItemC
             key={item.key}
             href={item.href}
             onClick={onNavItemClick}
-            className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold transition duration-200 ${
+            className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-base font-bold transition duration-200 ${
               isActive
                 ? "bg-primary text-white shadow-lg shadow-primary/20"
                 : "text-zinc-400 hover:text-white hover:bg-white/5"

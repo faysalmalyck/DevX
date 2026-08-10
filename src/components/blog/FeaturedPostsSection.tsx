@@ -32,7 +32,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
             </h1>
           </ScrollReveal>
           <ScrollReveal preset="copy" delay={0.12}>
-            <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md md:text-left">
+            <p className="text-slate-600 dark:text-white text-base max-w-md md:text-left">
               Discover the latest insights, developer toolkits, and best practices
               engineered to help modern development teams scale faster.
             </p>
@@ -64,7 +64,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-medium mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                     {featuredMain.title}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
+                  <p className="text-slate-600 dark:text-white text-base mb-6 font-normal line-clamp-3">
                     {featuredMain.excerpt}
                   </p>
                   <div className="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">

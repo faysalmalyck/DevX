@@ -45,7 +45,7 @@ export default function OfficesSection() {
                   {office.city}
                 </h3>
 
-                <div className="mt-3 space-y-2.5 text-[13px] text-slate-600 dark:text-slate-300 sm:text-[15px] lg:mt-4 lg:space-y-3 lg:leading-6">
+                <div className="mt-3 space-y-2.5 text-[13px] text-slate-600 dark:text-white sm:text-[15px] lg:mt-4 lg:space-y-3 lg:leading-6">
                   <a
                     href={`mailto:${office.email}`}
                     className="group flex w-fit max-w-full items-center gap-2 break-words transition-colors hover:text-brand dark:hover:text-white"

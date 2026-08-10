@@ -30,7 +30,7 @@ export default function CartItem({ item, onRemove, onQuantityChange }: CartItemP
           <h3 className="truncate text-base font-bold tracking-[-0.035em] text-[#edf2ff] sm:text-lg">
             {item.plan.name}
           </h3>
-          <p className="mt-1 text-sm font-semibold tracking-[-0.025em] text-white sm:text-base">
+          <p className="mt-1 text-base font-semibold tracking-[-0.025em] text-white sm:text-base">
             {formatCurrency(item.plan.price)} USD
           </p>
           <p className="mt-1 text-xs tracking-[-0.025em] text-[#d5dced]">
