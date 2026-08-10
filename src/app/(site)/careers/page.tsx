@@ -70,9 +70,9 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
           <ScrollReveal preset="hero">
             <h1 className="text-4xl font-normal tracking-tight sm:text-6xl lg:text-6xl">
               Join our team of talented{' '}
-              <span className="text-blue-600 dark:text-blue-500">developers</span>
+              <span className="text-brand dark:text-brand">developers</span>
               {' '}&amp;{' '}
-              <span className="text-blue-600 dark:text-blue-500">engineers</span>
+              <span className="text-brand dark:text-brand">engineers</span>
             </h1>
           </ScrollReveal>
 
@@ -85,7 +85,7 @@ export default async function CareersHero({ searchParams }: CareersPageProps) {
           <ScrollReveal className="mt-10 flex items-center justify-center gap-x-6" delay={0.22} preset="copy">
             <a
               href="#open-positions"
-className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40">              Browse open positions
+className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40">              Browse open positions
             </a>
           </ScrollReveal>
 
@@ -101,7 +101,7 @@ className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-
               <ScrollReveal preset="heading">
                 <h2 className="text-3xl font-normal tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
                   Perks &amp; benefits of{' '}
-                  <span className="text-blue-600 dark:text-blue-500">working</span> at our agency
+                  <span className="text-brand dark:text-brand">working</span> at our agency
                 </h2>
               </ScrollReveal>
               
@@ -114,7 +114,7 @@ className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-
               <ScrollReveal className="mt-8" delay={0.22} preset="copy">
                 <a
                   href="#open-positions"
-className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40">                  Browse open positions
+className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-6 sm:py-7 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40">                  Browse open positions
                 </a>
               </ScrollReveal>
             </div>

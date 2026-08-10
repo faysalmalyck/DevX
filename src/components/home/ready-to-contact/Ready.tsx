@@ -11,7 +11,7 @@ export default function CtaSection() {
           {/* Blue breathing glow behind */}
           <div
             aria-hidden="true"
-            className="absolute left-1/2 top-1/2 h-[414px] w-full max-w-[1220px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-blue-600/40 opacity-70 blur-[64px] animate-pulse motion-reduce:animate-none"
+            className="absolute left-1/2 top-1/2 h-[414px] w-full max-w-[1220px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-brand/40 opacity-70 blur-[64px] animate-pulse motion-reduce:animate-none"
           />
 
           {/* Main Card with #181d2c background & narrow border */}
@@ -30,7 +30,7 @@ export default function CtaSection() {
                 >
                   <h2 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-3xl tracking-tight text-transparent sm:text-5xl">
                     Ready to start working{" "}
-                    <span className="text-blue-600 dark:text-blue-500">
+                    <span className="text-brand dark:text-brand">
                       together
                     </span>{" "}
                     with <span className="whitespace-nowrap">our team?</span>
@@ -47,7 +47,7 @@ export default function CtaSection() {
                 >
                   <Link
                     href="/contact"
-                    className="inline-flex w-[230px] sm:w-[220px] lg:w-auto items-center justify-center rounded-full bg-blue-600 px-6 lg:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+                    className="inline-flex w-[230px] sm:w-[220px] lg:w-auto items-center justify-center rounded-full bg-brand px-6 lg:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
                   >
                     Contact us
                   </Link>

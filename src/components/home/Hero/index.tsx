@@ -37,37 +37,39 @@ export default function HeroSection() {
       {/* Background Graphic Element */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-16 z-[1] w-[175vw] max-w-none -translate-x-1/2 opacity-[0.18] dark:opacity-[0.48] sm:top-20 sm:w-[108vw] sm:max-w-[860px] sm:opacity-[0.16] sm:dark:opacity-[0.4] lg:left-auto lg:-right-[475px] lg:top-[60%] lg:w-[1971.5px] lg:max-w-none lg:-translate-y-1/2 lg:translate-x-0 lg:origin-right lg:scale-80 lg:opacity-100 lg:dark:opacity-100"
+        className="pointer-events-none absolute left-1/2 top-16 z-[1] w-[175vw] max-w-none -translate-x-1/2 opacity-[0.18] dark:opacity-[0.48] sm:top-20 sm:w-[108vw] sm:max-w-[860px] sm:opacity-[0.16] sm:dark:opacity-[0.4] lg:left-auto lg:-right-[475px] lg:top-[52%] lg:w-[1971.5px] lg:max-w-none lg:-translate-y-1/2 lg:translate-x-0 lg:origin-right lg:scale-80 lg:opacity-100 lg:dark:opacity-100"
       >
         <ScrollReveal className="w-full" preset="image">
-          <Image
-            src="/images/hero/hero.png"
-            alt=""
-            width={3943}
-            height={2653}
-            priority
-            sizes="(max-width: 639px) 175vw, (max-width: 1023px) 860px, 1972px"
-            className="w-full h-auto object-contain"
-          />
+          <div className="w-full animate-float-slow motion-reduce:animate-none">
+            <Image
+              src="/images/hero/hero.png"
+              alt=""
+              width={3943}
+              height={2653}
+              priority
+              sizes="(max-width: 639px) 175vw, (max-width: 1023px) 860px, 1972px"
+              className="w-full h-auto object-contain"
+            />
+          </div>
         </ScrollReveal>
       </div>
 
       {/* Decorative Radial Background Accent */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[800px] sm:h-[800px] bg-blue-600/10 rounded-full blur-[80px] sm:blur-[160px]" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[800px] sm:h-[800px] bg-brand/10 rounded-full blur-[80px] sm:blur-[160px]" />
       </div>
 
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-start">
-          <div className="w-full lg:w-[677px] text-center lg:text-left pt-2 sm:pt-6 lg:pt-8">
+          <div className="w-full lg:w-[677px] text-center lg:text-left pt-2 sm:pt-6 lg:pt-24">
             <div className="max-w-[550px] mx-auto lg:mx-0">
               
               {/* Main Heading */}
               <ScrollReveal preset="hero">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
                   Your Trusted Software{" "}
-                  <span className="text-blue-500 dark:text-blue-500 block sm:inline">
+                  <span className="text-brand dark:text-brand block sm:inline">
                     {"<"}Development{"/>"}
                   </span>{" "}
                   Partner.
@@ -93,7 +95,7 @@ export default function HeroSection() {
               >
                 <Link
                   href="/contact"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95"
+                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-sm font-medium text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95"
                 >
                   Contact us
                 </Link>

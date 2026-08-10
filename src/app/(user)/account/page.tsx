@@ -44,7 +44,7 @@ interface Notification {
 }
 
 const serviceColors: Record<string, string> = {
-  "Web Development": "from-blue-500/20 to-blue-600/5 border-blue-500/20 text-blue-400",
+  "Web Development": "from-brand/20 to-brand/5 border-brand/20 text-brand",
   "Mobile App": "from-purple-500/20 to-purple-600/5 border-purple-500/20 text-purple-400",
   "SaaS Platform": "from-emerald-500/20 to-emerald-600/5 border-emerald-500/20 text-emerald-400",
   "SaaS Platform Development": "from-emerald-500/20 to-emerald-600/5 border-emerald-500/20 text-emerald-400",
@@ -55,11 +55,11 @@ const serviceColors: Record<string, string> = {
 
 const statusConfig: Record<string, { label: string; color: string }> = {
   PENDING: { label: "Pending", color: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20" },
-  IN_PROGRESS: { label: "In Progress", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  IN_PROGRESS: { label: "In Progress", color: "bg-brand/10 text-brand border-brand/20" },
   REVIEW: { label: "Review", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
   COMPLETED: { label: "Completed", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
   CANCELLED: { label: "Cancelled", color: "bg-rose-500/10 text-rose-400 border-rose-500/20" },
-  SCHEDULED: { label: "Scheduled", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  SCHEDULED: { label: "Scheduled", color: "bg-brand/10 text-brand border-brand/20" },
   OPEN: { label: "Open", color: "bg-rose-500/10 text-rose-400 border-rose-500/20" },
 };
 
@@ -142,7 +142,7 @@ export default function UserDashboardPage() {
       {/* Stats overview */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: "Active Services", value: activeServices, icon: Heart, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+          { label: "Active Services", value: activeServices, icon: Heart, color: "text-brand", bg: "bg-brand/10 border-brand/20" },
           { label: "Upcoming Activities", value: upcomingActivities, icon: Calendar, color: "text-purple-400", bg: "bg-purple-500/10 border-purple-500/20" },
           { label: "Total Services", value: services.length, icon: TrendingUp, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
           { label: "Unread Notifications", value: unreadCount, icon: Bell, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },

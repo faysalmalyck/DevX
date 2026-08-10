@@ -120,7 +120,7 @@ export default function AddToCartCard({
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-full bg-blue-600 px-6 py-4 sm:py-5 text-center text-sm sm:text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 cursor-pointer"
+              className="w-full rounded-full bg-brand px-6 py-4 sm:py-5 text-center text-sm sm:text-base font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 disabled:opacity-50 cursor-pointer"
             >
               {isLoading ? labels.loadingBtn : labels.addToCartBtn}
             </button>

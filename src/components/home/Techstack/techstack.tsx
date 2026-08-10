@@ -15,7 +15,7 @@ export default function TechStackSection() {
         <ScrollReveal preset="heading">
           <h2 className="text-4xl tracking-tight text-slate-900 dark:text-white sm:text-5xl sm:leading-[1.15] mb-6">
             Technologies That Power{' '}
-            <span className="text-blue-600 dark:text-blue-400">
+            <span className="text-brand dark:text-brand">
               Innovation
             </span>
           </h2>

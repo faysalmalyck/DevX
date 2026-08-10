@@ -53,7 +53,7 @@ export default function ContactHeroSection() {
           <div className="space-y-4">
             <ScrollReveal preset="hero">
               <h1 className="text-5xl text-center sm:text-4xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white">
-                Get in <span className="text-blue-500">touch</span> with our team
+                Get in <span className="text-brand">touch</span> with our team
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.12} preset="copy">
@@ -75,7 +75,7 @@ export default function ContactHeroSection() {
                 <HoverCard className="h-full">
                   <a
                     href="mailto:faysal.malick@icloud.com"
-                    className="flex h-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-blue-500/50 dark:border-slate-700/50 dark:bg-[#232c3e] dark:hover:border-blue-400/50"
+                    className="flex h-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand/50 dark:border-slate-700/50 dark:bg-[#232c3e] dark:hover:border-blue-400/50"
                   >
                     <div className="w-10 h-10 flex items-center justify-center shrink-0">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@ export default function ContactHeroSection() {
                 <HoverCard className="h-full">
                   <a
                     href="tel:+923055552772"
-                    className="flex h-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-blue-500/50 dark:border-slate-700/50 dark:bg-[#232c3e] dark:hover:border-blue-400/50"
+                    className="flex h-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-brand/50 dark:border-slate-700/50 dark:bg-[#232c3e] dark:hover:border-blue-400/50"
                   >
                     <div className="w-10 h-10 flex items-center justify-center shrink-0">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@ export default function ContactHeroSection() {
                 <p className="text-slate-600 dark:text-slate-400">Thank you for reaching out. We will get back to you shortly.</p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-4 px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-colors"
+                  className="mt-4 px-6 py-2.5 rounded-full bg-brand hover:bg-brand text-white font-semibold transition-colors"
                 >
                   Send another message
                 </button>
@@ -135,7 +135,7 @@ export default function ContactHeroSection() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Carter"
-                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 dark:focus:border-slate-500 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
+                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
                     />
                   </div>
 
@@ -151,7 +151,7 @@ export default function ContactHeroSection() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="example@email.com"
-                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 dark:focus:border-slate-500 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
+                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
                     />
                   </div>
 
@@ -167,7 +167,7 @@ export default function ContactHeroSection() {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="(123) 456 - 789"
-                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 dark:focus:border-slate-500 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
+                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
                     />
                   </div>
 
@@ -183,7 +183,7 @@ export default function ContactHeroSection() {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Facebook"
-                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 dark:focus:border-slate-500 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
+                      className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
                     />
                   </div>
                 </div>
@@ -200,7 +200,7 @@ export default function ContactHeroSection() {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Please type your message here..."
-                    className="w-full px-5 py-4 rounded-2xl bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 dark:focus:border-slate-500 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in resize-y"
+                    className="w-full px-5 py-4 rounded-2xl bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in resize-y"
                   />
                 </div>
 
@@ -209,7 +209,7 @@ export default function ContactHeroSection() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-8 py-5.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold shadow-lg hover:shadow-blue-500/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+                    className="px-8 py-5.5 rounded-full bg-gradient-to-r from-brand to-brand hover:from-brand hover:to-indigo-500 text-white font-semibold shadow-lg hover:shadow-brand/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand disabled:opacity-50"
                   >
                     {loading ? 'Sending...' : 'Get in touch'}
                   </button>

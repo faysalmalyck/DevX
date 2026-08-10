@@ -241,7 +241,7 @@ export default function ApplicationsManagement({
     <div className="space-y-6 pb-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand dark:text-brand">
             Careers
           </p>
           <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">

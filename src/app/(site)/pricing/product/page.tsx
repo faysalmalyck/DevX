@@ -38,7 +38,7 @@ export default function ProductPage({
       <div className="flex justify-start mb-6 lg:mb-8">
         <Link
           href="/pricing"
-          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-blue-500 dark:text-slate-200 dark:hover:text-blue-500"
+          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-slate-200 dark:hover:text-brand"
 >
   <ArrowLeft className="h-4 w-4" />
           <span>Back to Pricing</span>
@@ -67,7 +67,7 @@ export default function ProductPage({
               <ul className="space-y-3 sm:space-y-4">
                 {features.map((feature) => (
                   <li key={feature.id} className="flex items-center space-x-3">
-                    <Check className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-500" />
+                    <Check className="h-5 w-5 shrink-0 text-brand dark:text-brand" />
                     <span className="text-sm font-medium text-slate-800 sm:text-base dark:text-white">
                       {feature.text}
                     </span>
@@ -106,7 +106,7 @@ export default function ProductPage({
                   <ul className="space-y-3 pl-0">
                     {bottomContent.bullets.map((bullet, index) => (
                       <li key={index} className="flex items-start space-x-3 text-sm sm:text-base text-slate-700 dark:text-white">
-                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-600 dark:text-blue-500" />
+                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand dark:text-brand" />
                         <span>{bullet}</span>
                       </li>
                     ))}

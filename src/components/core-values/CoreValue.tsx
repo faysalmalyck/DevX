@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 
 interface ValueItem {
   id: string;
@@ -69,13 +69,13 @@ export default function CoreValues() {
         <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end lg:mb-16">
           <ScrollReveal className="max-w-2xl" preset="heading">
             <h2 className="text-3xl font-normal tracking-tight sm:text-4xl md:text-5xl text-slate-900 dark:text-white">
-              The <span className="text-blue-600 dark:text-blue-400">core values</span> that drive everything <span className="whitespace-nowrap">we do</span>
+              The <span className="text-brand dark:text-brand">core values</span> that drive everything <span className="whitespace-nowrap">we do</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.12} preset="copy">
             <Link
               href="/careers"
-              className="inline-block w-full rounded-full bg-blue-600 px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] sm:w-auto"
+              className="inline-block w-full rounded-full bg-brand px-10 py-6 text-center text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] sm:w-auto"
             >
               Join Our Team
             </Link>
@@ -86,25 +86,23 @@ export default function CoreValues() {
         <StaggerContainer className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-3">
           {valuesData.map((item) => (
             <StaggerItem key={item.id} className="h-full max-w-md" preset="card">
-              <HoverCard className="h-full">
-                <div className="flex h-full flex-col items-start">
-                  <ScrollReveal className="mb-6 flex h-16 w-16 items-center justify-center dark:invert-0 invert" preset="image">
-                    <Image
-                      src={item.iconSrc}
-                      alt={item.title}
-                      width={64}
-                      height={64}
-                      className="h-auto w-auto"
-                    />
-                  </ScrollReveal>
-                  <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                    {item.description}
-                  </p>
-                </div>
-              </HoverCard>
+              <div className="flex h-full flex-col items-start">
+                <ScrollReveal className="mb-6 flex h-16 w-16 items-center justify-center dark:invert-0 invert" preset="image">
+                  <Image
+                    src={item.iconSrc}
+                    alt={item.title}
+                    width={64}
+                    height={64}
+                    className="h-auto w-auto"
+                  />
+                </ScrollReveal>
+                <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  {item.title}
+                </h3>
+                <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                  {item.description}
+                </p>
+              </div>
             </StaggerItem>
           ))}
         </StaggerContainer>

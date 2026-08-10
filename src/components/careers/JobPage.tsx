@@ -49,7 +49,7 @@ export default function OpenPositions({
         <div className="max-w-3xl mx-auto text-center mb-12">
           <ScrollReveal className="mb-4" preset="heading">
             <h2 className="text-4xl font-normal tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
-              Browse our available <span className="text-blue-600 dark:text-blue-500">positions</span>
+              Browse our available <span className="text-brand dark:text-brand">positions</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal className="mb-8" delay={0.12} preset="copy">
@@ -65,7 +65,7 @@ export default function OpenPositions({
                 key={category.id}
                 onClick={() => selectCategory(category.id)}
 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-transparent hover:border-slate-400 dark:hover:border-transparent hover:ring-2 hover:ring-slate-400/50 dark:hover:ring-slate-400/40 hover:shadow-[0_0_12px_rgba(148,163,184,0.35)] ${                  selectedCategory === category.id
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 dark:grey-400'
+                    ? 'bg-brand text-white shadow-md shadow-brand/20 dark:grey-400'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
@@ -91,7 +91,7 @@ className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-2
                       <span>{position.type}</span>
                     </div>
 
-                    <h3 className="mb-3 text-2xl font-normal text-slate-900 transition-colors group-hover:text-blue-500 sm:text-3xl dark:text-white dark:group-hover:text-blue-500">
+                    <h3 className="mb-3 text-2xl font-normal text-slate-900 transition-colors group-hover:text-brand sm:text-3xl dark:text-white dark:group-hover:text-brand">
                       {position.title}
                     </h3>
                   </div>

@@ -36,7 +36,7 @@ export default function ResetPasswordCard() {
       color = "bg-amber-500";
     } else if (score === 4) {
       text = "Good";
-      color = "bg-blue-500";
+      color = "bg-brand";
     } else if (score === 5) {
       text = "Strong";
       color = "bg-emerald-500";

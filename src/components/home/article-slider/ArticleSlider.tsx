@@ -66,8 +66,8 @@ export default function ArticleSlider() {
           <div className="max-w-xl">
             <h2 className="text-4xl sm:text-4xl lg:text-5xl font-normal tracking-tight">
               Browse our latest{" "}
-              <span className="text-blue-600 dark:text-blue-500">articles</span> and{" "}
-              <span className="text-blue-600 dark:text-blue-500">resources</span>
+              <span className="text-brand dark:text-brand">articles</span> and{" "}
+              <span className="text-brand dark:text-brand">resources</span>
             </h2>
           </div>
 
@@ -124,7 +124,7 @@ export default function ArticleSlider() {
               <HoverCard className="h-full">
                 <Link
                   href={`/blog/${article.slug}`}
-                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-blue-500/40 shadow-sm dark:shadow-none transition-[border-color,box-shadow] duration-300"
+                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-brand/40 shadow-sm dark:shadow-none transition-[border-color,box-shadow] duration-300"
                 >
                   {/* Image Wrapper (Adjusted Aspect Ratio for Height) */}
                   <div className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
@@ -139,7 +139,7 @@ export default function ArticleSlider() {
 
                   {/* Content */}
                   <div className="p-6 sm:p-8 lg:p-12 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
@@ -183,7 +183,7 @@ export default function ArticleSlider() {
               aria-label={`Go to slide ${idx + 1}`}
               className={`h-2 rounded-full transition-all duration-300 ${
                 activeIndex === idx
-                  ? "w-6 bg-blue-600 dark:bg-blue-500"
+                  ? "w-6 bg-brand dark:bg-brand"
                   : "w-2 bg-slate-300 dark:bg-slate-700"
               }`}
             />

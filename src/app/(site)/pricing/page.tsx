@@ -15,8 +15,8 @@ export default function PricingPage() {
         <ScrollReveal className="mx-auto mb-10 max-w-4xl pt-4 text-center md:mb-16 md:pt-8" preset="hero">
           <h1 className="mb-4 text-3xl tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl dark:text-white">
             Pricing for all types of{" "}
-            <span className="text-blue-600 dark:text-blue-500">companies</span> and{" "}
-            <span className="text-blue-600 dark:text-blue-500">needs</span>
+            <span className="text-brand dark:text-brand">companies</span> and{" "}
+            <span className="text-brand dark:text-brand">needs</span>
           </h1>
         </ScrollReveal>
 
@@ -31,11 +31,11 @@ export default function PricingPage() {
               <StaggerItem key={plan.id} className="h-full" preset="card">
                 <HoverCard className="h-full">
                   <div
-                    className={`relative flex h-full min-h-[550px] flex-col justify-between bg-slate-50 p-6 transition-all duration-300 hover:border-blue-500/40 sm:p-8 md:min-h-[650px] md:p-10 lg:p-12 dark:bg-gradient-to-b dark:from-[#252E42] dark:to-[#1A2033] ${
+                    className={`relative flex h-full min-h-[550px] flex-col justify-between bg-slate-50 p-6 transition-all duration-300 hover:border-brand/40 sm:p-8 md:min-h-[650px] md:p-10 lg:p-12 dark:bg-gradient-to-b dark:from-[#252E42] dark:to-[#1A2033] ${
                       !isLast ? "border-b border-slate-200 md:border-b-0 md:border-r dark:border-slate-500/80" : ""
                     } ${
                       plan.isPopular
-                        ? "z-10 border border-blue-600 shadow-2xl dark:border-blue-500"
+                        ? "z-10 border border-brand shadow-2xl dark:border-brand"
                         : "hover:bg-slate-100 dark:hover:brightness-110"
                     } ${isFirst ? "md:rounded-l-2xl" : ""} ${isLast ? "md:rounded-r-2xl" : ""}`}
                   >
@@ -57,8 +57,8 @@ export default function PricingPage() {
                           href={plan.link ?? "#"}
                           className={`block text-center font-medium ${
                             plan.isPopular
-                              ? "w-full rounded-full bg-blue-600 py-4 px-6 text-white shadow-lg shadow-blue-600/25 transition-all duration-200 hover:bg-blue-500 sm:py-5"
-                              : "w-full px-8 py-3.5 sm:py-5.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 dark:focus:border-slate-500 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
+                              ? "w-full rounded-full bg-brand py-4 px-6 text-white shadow-lg shadow-brand/25 transition-all duration-200 hover:bg-brand sm:py-5"
+                              : "w-full px-8 py-3.5 sm:py-5.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
                           }`}
                         >
                           Get started
@@ -78,7 +78,7 @@ export default function PricingPage() {
                               <svg
                                 className={`mr-3 h-5 w-5 flex-shrink-0 sm:h-6 sm:w-6 ${
                                   plan.isPopular
-                                    ? "text-blue-600 dark:text-blue-500"
+                                    ? "text-brand dark:text-brand"
                                     : "text-slate-500 dark:text-slate-400"
                                 }`}
                                 fill="none"

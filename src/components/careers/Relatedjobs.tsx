@@ -25,10 +25,10 @@ function JobCard({ job, index }: { job: Career; index: number }) {
       >
         <div className="space-y-4 sm:space-y-6">
           <div className="space-y-3 sm:space-y-6 px-1 sm:px-8">
-            <p className="text-xs font-medium tracking-wider text-blue-500 dark:text-white">
+            <p className="text-xs font-medium tracking-wider text-brand dark:text-white">
               {job.location} | {job.type}
             </p>
-            <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors">
+            <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
               {job.title}
             </h3>
             <p className="text-xs sm:text-sm font-light text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 pt-1">

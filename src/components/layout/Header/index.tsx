@@ -173,8 +173,8 @@ const Header: React.FC = () => {
   const navTextColor = "text-slate-900 dark:text-white";
   const burgerLineBg = "bg-slate-900 dark:bg-white";
   const mobileControlColor = navbarOpen
-    ? "text-slate-900 hover:text-blue-500 dark:text-white dark:hover:text-cyan-300"
-    : "text-slate-900 hover:text-blue-500 dark:text-white dark:hover:text-blue-500";
+    ? "text-slate-900 hover:text-brand dark:text-white dark:hover:text-cyan-300"
+    : "text-slate-900 hover:text-brand dark:text-white dark:hover:text-brand";
 
   if (isAuthOrAdminPage) {
     return null;
@@ -205,17 +205,17 @@ const Header: React.FC = () => {
             <button
               type="button"
               onClick={openCart}
-              className="group hidden items-center font-semibold text-slate-900 transition-colors duration-200 hover:text-blue-500 dark:text-white dark:hover:text-blue-500 lg:inline-flex"
+              className="group hidden items-center font-semibold text-slate-900 transition-colors duration-200 hover:text-brand dark:text-white dark:hover:text-brand lg:inline-flex"
             >
-              <span className="text-slate-900 transition-colors duration-200 group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500">
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-brand dark:text-white dark:group-hover:text-brand">
                 Cart(
               </span>
 
-              <span className="text-slate-900 transition-colors duration-200 group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500">
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-brand dark:text-white dark:group-hover:text-brand">
                 {itemCount}
               </span>
 
-              <span className="text-slate-900 transition-colors duration-200 group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500">
+              <span className="text-slate-900 transition-colors duration-200 group-hover:text-brand dark:text-white dark:group-hover:text-brand">
                 )
               </span>
             </button>
@@ -290,7 +290,7 @@ const Header: React.FC = () => {
             <ShoppingBag className="h-5 w-5 stroke-current" />
 
             {itemCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand px-1 text-[10px] font-bold text-white">
                 {itemCount > 99 ? "99+" : itemCount}
               </span>
             )}
@@ -420,7 +420,7 @@ const Header: React.FC = () => {
                   </Link>
                   <Link
                     href="/portfolio"
-                    className="w-full rounded-[2rem] bg-blue-600 py-4 text-center text-sm font-semibold text-white shadow-[0_14px_32px_rgba(37,99,235,0.3)] transition-all hover:bg-blue-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-slate-950"
+                    className="w-full rounded-[2rem] bg-brand py-4 text-center text-sm font-semibold text-white shadow-[0_14px_32px_rgba(54,88,255,0.3)] transition-all hover:bg-brand active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-slate-950"
                     onClick={closeMobileMenu}
                   >
                     View work

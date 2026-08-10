@@ -111,7 +111,7 @@ export default function ForgotPasswordCard() {
             <div className="text-center pt-2">
               <Link
                 href="/login"
-                className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-blue-500 dark:text-slate-200 dark:hover:text-blue-500"
+                className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-slate-200 dark:hover:text-brand"
 >
   <ArrowLeft className="h-4 w-4" />
                 Back to Login

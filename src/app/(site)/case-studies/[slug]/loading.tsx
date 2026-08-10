@@ -28,7 +28,7 @@ export default function Loading() {
       className="min-h-screen bg-[#0B0F17] text-white"
     >
       <section className="relative overflow-hidden pb-16 pt-28 lg:pb-24 lg:pt-36">
-        <div className="pointer-events-none absolute left-1/2 top-1/4 h-[350px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[140px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/4 h-[350px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[140px]" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Skeleton className="mb-8 h-5 w-44 rounded-full" />
           <div className="mx-auto mb-12 max-w-4xl text-center sm:mb-16">

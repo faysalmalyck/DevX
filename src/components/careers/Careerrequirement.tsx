@@ -19,7 +19,7 @@ export default function CareerDetails({ career }: { career: PublicCareer }) {
         <ul className="space-y-3">
           {career.requirements.map((item, index) => (
             <li key={index} className="flex items-start text-slate-600 dark:text-slate-300">
-              <span className="text-blue-600 dark:text-blue-400 mr-3 text-lg">•</span>
+              <span className="text-brand dark:text-brand mr-3 text-lg">•</span>
               <span className="leading-relaxed">{item}</span>
             </li>
           ))}
@@ -35,7 +35,7 @@ export default function CareerDetails({ career }: { career: PublicCareer }) {
           <ul className="space-y-3">
             {career.preferredQualifications.map((item, index) => (
               <li key={index} className="flex items-start text-slate-600 dark:text-slate-300">
-                <span className="text-blue-600 dark:text-blue-400 mr-3 text-lg">•</span>
+                <span className="text-brand dark:text-brand mr-3 text-lg">•</span>
                 <span className="leading-relaxed">{item}</span>
               </li>
             ))}

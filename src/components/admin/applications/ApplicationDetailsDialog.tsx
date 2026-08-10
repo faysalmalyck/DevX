@@ -291,7 +291,7 @@ export default function ApplicationDetailsDialog({
       >
         <header className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-5 dark:border-white/10 sm:px-7">
           <div className="min-w-0">
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 dark:text-blue-400">
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-brand dark:text-brand">
               Candidate application
             </p>
             <h2
@@ -320,7 +320,7 @@ export default function ApplicationDetailsDialog({
         <div className="min-h-0 overflow-y-auto px-5 py-5 sm:px-7 sm:py-6">
           {loading && (
             <div className="flex min-h-72 items-center justify-center">
-              <Loader2 className="h-7 w-7 animate-spin text-blue-600 dark:text-blue-400" />
+              <Loader2 className="h-7 w-7 animate-spin text-brand dark:text-brand" />
             </div>
           )}
 
@@ -362,7 +362,7 @@ export default function ApplicationDetailsDialog({
                   </h3>
                   <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand">
                         <FileText className="h-5 w-5" />
                       </span>
                       <div className="min-w-0">
@@ -376,7 +376,7 @@ export default function ApplicationDetailsDialog({
                     </div>
                     <a
                       href={resumeHref(application.id)}
-                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-bold text-blue-700 transition hover:bg-blue-100 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-300 dark:hover:bg-blue-500/20"
+                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-bold text-brand transition hover:bg-blue-100 dark:border-brand/20 dark:bg-brand/10 dark:text-brand dark:hover:bg-brand/20"
                     >
                       <Download className="h-4 w-4" />
                       Download
@@ -389,7 +389,7 @@ export default function ApplicationDetailsDialog({
                           href={linkedInUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-blue-600 transition hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-500/10"
+                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
                         >
                           LinkedIn <ExternalLink className="h-3.5 w-3.5" />
                         </a>
@@ -399,7 +399,7 @@ export default function ApplicationDetailsDialog({
                           href={portfolioUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-blue-600 transition hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-500/10"
+                          className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
                         >
                           Portfolio <ExternalLink className="h-3.5 w-3.5" />
                         </a>
@@ -435,7 +435,7 @@ export default function ApplicationDetailsDialog({
                     value={status}
                     onChange={handleStatusChange}
                     disabled={saving}
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-800 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
                   >
                     {APPLICATION_STATUS_VALUES.map((statusValue) => (
                       <option key={statusValue} value={statusValue}>
@@ -454,7 +454,7 @@ export default function ApplicationDetailsDialog({
                     maxLength={10000}
                     rows={8}
                     placeholder="Visible only to administrators..."
-                    className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
+                    className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
                   />
                   <span className="mt-1 block text-right text-xs font-medium text-slate-400 dark:text-zinc-600">
                     {internalNotes.length}/10,000
@@ -474,7 +474,7 @@ export default function ApplicationDetailsDialog({
                   type="button"
                   onClick={() => void saveChanges()}
                   disabled={saving}
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saving ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

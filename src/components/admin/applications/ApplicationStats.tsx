@@ -26,7 +26,7 @@ const statDefinitions = [
     key: "new",
     label: "New",
     icon: Sparkles,
-    iconClass: "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400",
+    iconClass: "bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand",
   },
   {
     key: "reviewing",

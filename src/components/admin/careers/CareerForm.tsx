@@ -129,7 +129,7 @@ function RepeatableList({
         <button
           type="button"
           onClick={() => onChange([...values, ""])}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-blue-200 px-3 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50 dark:border-blue-500/30 dark:text-blue-300 dark:hover:bg-blue-500/10"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-blue-200 px-3 py-2 text-xs font-semibold text-brand transition hover:bg-blue-50 dark:border-brand/30 dark:text-brand dark:hover:bg-brand/10"
         >
           <Plus className="h-3.5 w-3.5" />
           Add item
@@ -153,7 +153,7 @@ function RepeatableList({
               onChange(next);
             }}
             aria-label={`${label} item ${index + 1}`}
-            className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+            className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
           />
           <button
             type="button"
@@ -323,7 +323,7 @@ export default function CareerForm({
   };
 
   const inputClass =
-    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white";
 
   return (
     <form onSubmit={handleSubmit(submit)} className="space-y-6" noValidate>
@@ -403,7 +403,7 @@ export default function CareerForm({
           </select>
         </label>
         <label className="flex min-h-[50px] items-center gap-3 rounded-xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">
-          <input type="checkbox" {...register("featured")} className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+          <input type="checkbox" {...register("featured")} className="h-4 w-4 rounded border-slate-300 text-brand focus:ring-brand" />
           Feature this job
         </label>
       </fieldset>
@@ -461,7 +461,7 @@ export default function CareerForm({
           <button
             type="button"
             onClick={() => hiringProcess.append({ title: "", description: "" })}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-blue-200 px-3 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50 dark:border-blue-500/30 dark:text-blue-300 dark:hover:bg-blue-500/10"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-blue-200 px-3 py-2 text-xs font-semibold text-brand transition hover:bg-blue-50 dark:border-brand/30 dark:text-brand dark:hover:bg-brand/10"
           >
             <Plus className="h-3.5 w-3.5" />
             Add step
@@ -493,7 +493,7 @@ export default function CareerForm({
 
       <div className="flex justify-end gap-3 border-t border-slate-200 pt-5 dark:border-slate-800">
         <button type="button" onClick={onClose} disabled={loading} className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Cancel</button>
-        <button type="submit" disabled={loading} className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-wait disabled:opacity-50">{loading ? "Saving…" : mode === "create" ? "Create job" : "Save changes"}</button>
+        <button type="submit" disabled={loading} className="rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand disabled:cursor-wait disabled:opacity-50">{loading ? "Saving…" : mode === "create" ? "Create job" : "Save changes"}</button>
       </div>
     </form>
   );

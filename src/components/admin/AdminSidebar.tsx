@@ -48,7 +48,7 @@ export function AdminSidebarNav({ active, collapsed = false, onNavigate, classNa
                   onClick={onNavigate}
                   className={`group relative flex min-h-11 items-center rounded-xl text-sm font-semibold transition-all duration-200 ${
                     isActive
-                      ? "bg-gradient-to-r from-blue-500/25 to-violet-500/20 text-white shadow-[0_10px_24px_rgba(37,99,235,0.18)]"
+                      ? "bg-gradient-to-r from-brand/25 to-violet-500/20 text-white shadow-[0_10px_24px_rgba(54,88,255,0.18)]"
                       : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
                   } ${collapsed ? "justify-center px-2" : "gap-3 px-3"}`}
                 >
@@ -110,7 +110,7 @@ export function AdminSidebarAccount({ active, collapsed = false, onNavigate }: O
           onClick={onNavigate}
           className={`flex h-10 items-center justify-center rounded-xl text-xs font-bold transition ${
             active === "security"
-              ? "bg-blue-500 text-white shadow-lg shadow-blue-950/30"
+              ? "bg-brand text-white shadow-lg shadow-blue-950/30"
               : "bg-white/[0.06] text-slate-300 hover:bg-white/[0.1] hover:text-white"
           } ${collapsed ? "w-10" : "flex-1 gap-2"}`}
         >
@@ -152,10 +152,10 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
         collapsed ? "w-[84px]" : "w-[280px]"
       }`}
     >
-      <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_20%_0%,rgba(59,130,246,0.28),transparent_48%),radial-gradient(circle_at_100%_30%,rgba(139,92,246,0.2),transparent_42%)]" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_20%_0%,rgba(54,88,255,0.28),transparent_48%),radial-gradient(circle_at_100%_30%,rgba(139,92,246,0.2),transparent_42%)]" />
       <div className="relative flex min-h-[72px] items-center border-b border-white/[0.08] px-4">
         <Link href="/admin" className={`flex min-w-0 items-center ${collapsed ? "mx-auto" : "gap-3"}`} aria-label="DevX operations home">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-blue-500 to-violet-500 text-sm font-black tracking-tight text-white shadow-lg shadow-blue-950/30">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-sm font-black tracking-tight text-white shadow-lg shadow-blue-950/30">
             DX
           </span>
           {collapsed ? null : (

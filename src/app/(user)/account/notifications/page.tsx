@@ -14,7 +14,7 @@ interface Notification {
 }
 
 const typeConfig: Record<string, { icon: any; color: string; bg: string }> = {
-  INFO: { icon: Info, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+  INFO: { icon: Info, color: "text-brand", bg: "bg-brand/10 border-brand/20" },
   SUCCESS: { icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
   WARNING: { icon: AlertTriangle, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
   ERROR: { icon: XCircle, color: "text-rose-400", bg: "bg-rose-500/10 border-rose-500/20" },

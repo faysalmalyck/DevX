@@ -41,7 +41,7 @@ export default function ApplicationFilters({
           value={search}
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder="Search candidate name or email..."
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-white dark:placeholder:text-zinc-500 dark:focus:bg-[#111827]"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand focus:bg-white focus:ring-4 focus:ring-brand/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-white dark:placeholder:text-zinc-500 dark:focus:bg-[#111827]"
         />
       </label>
 
@@ -51,7 +51,7 @@ export default function ApplicationFilters({
           <select
             value={careerId}
             onChange={(event) => onCareerChange(event.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
           >
             <option value="">All jobs</option>
             {jobs.map((job) => (
@@ -69,7 +69,7 @@ export default function ApplicationFilters({
             onChange={(event) =>
               onStatusChange(event.target.value as ApplicationStatusValue | "")
             }
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
           >
             <option value="">All statuses</option>
             {APPLICATION_STATUS_VALUES.map((value) => (
@@ -87,7 +87,7 @@ export default function ApplicationFilters({
             onChange={(event) =>
               onSortChange(event.target.value as "newest" | "oldest")
             }
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
           >
             <option value="newest">Newest first</option>
             <option value="oldest">Oldest first</option>

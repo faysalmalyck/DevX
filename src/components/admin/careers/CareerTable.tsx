@@ -45,7 +45,7 @@ function ActionButton({
     tone === "danger"
       ? "text-rose-600 hover:bg-rose-50 hover:text-rose-700 dark:text-rose-300 dark:hover:bg-rose-500/10"
       : tone === "primary"
-        ? "text-blue-600 hover:bg-blue-50 hover:text-blue-700 dark:text-blue-300 dark:hover:bg-blue-500/10"
+        ? "text-brand hover:bg-blue-50 hover:text-brand dark:text-brand dark:hover:bg-brand/10"
         : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white";
 
   return (
@@ -162,7 +162,7 @@ export default function CareerTable({
                           event.target.value = String(career.displayOrder);
                         }
                       }}
-                      className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-center text-sm outline-none focus:border-blue-500 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                      className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-center text-sm outline-none focus:border-brand disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                     />
                   </td>
                   <td className="px-6 py-4">

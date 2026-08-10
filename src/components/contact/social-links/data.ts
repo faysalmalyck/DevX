@@ -24,7 +24,7 @@ export const socialPlatforms: SocialPlatform[] = [
     description: 'Connect with us for professional updates and industry insights.',
     url: 'https://linkedin.com',
     icon: FaLinkedin,
-    colorHex: 'hover:border-blue-500/50 hover:bg-blue-500/5',
+    colorHex: 'hover:border-brand/50 hover:bg-brand/5',
   },
   {
     id: 'github',
@@ -48,7 +48,7 @@ export const socialPlatforms: SocialPlatform[] = [
     description: 'Join our community for company news and event highlights.',
     url: 'https://facebook.com',
     icon: FaFacebook,
-    colorHex: 'hover:border-blue-600/50 hover:bg-blue-600/5',
+    colorHex: 'hover:border-brand/50 hover:bg-brand/5',
   },
   {
     id: 'instagram',

@@ -17,7 +17,7 @@ interface ServiceRequest {
 
 const statusConfig: Record<string, { label: string; color: string }> = {
   PENDING: { label: "Pending", color: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20" },
-  IN_PROGRESS: { label: "In Progress", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  IN_PROGRESS: { label: "In Progress", color: "bg-brand/10 text-brand border-brand/20" },
   REVIEW: { label: "In Review", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
   COMPLETED: { label: "Completed", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
   ON_HOLD: { label: "On Hold", color: "bg-orange-500/10 text-orange-400 border-orange-500/20" },
@@ -83,7 +83,7 @@ export default function ServicesPage() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { label: "Total Requests", value: services.length, icon: Heart, color: "text-primary", bg: "bg-primary/10 border-primary/20" },
-          { label: "Active Services", value: active, icon: TrendingUp, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+          { label: "Active Services", value: active, icon: TrendingUp, color: "text-brand", bg: "bg-brand/10 border-brand/20" },
           { label: "Completed", value: completed, icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
           { label: "Avg. Progress", value: `${avgProgress}%`, icon: BarChart3, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
         ].map(({ label, value, icon: Icon, color, bg }) => (

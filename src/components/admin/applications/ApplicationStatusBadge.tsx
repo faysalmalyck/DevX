@@ -4,7 +4,7 @@ import {
 } from "./types";
 
 const statusStyles: Record<ApplicationStatusValue, string> = {
-  NEW: "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-300",
+  NEW: "border-blue-200 bg-blue-50 text-brand dark:border-brand/20 dark:bg-brand/10 dark:text-brand",
   REVIEWING:
     "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-300",
   SHORTLISTED:

@@ -101,7 +101,7 @@ function RenderContentBlock({ block }: { block: ContentBlock }) {
       );
     case "quote":
       return (
-        <blockquote className="border-l-4 border-blue-600 dark:border-blue-400 pl-4 py-3 my-6 italic text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-slate-800/50 rounded-r-lg text-base">
+        <blockquote className="border-l-4 border-brand dark:border-blue-400 pl-4 py-3 my-6 italic text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-slate-800/50 rounded-r-lg text-base">
           {block.text}
         </blockquote>
       );
@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
         <ScrollReveal className="mt-4 mb-8 sm:mt-8" preset="left">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:-translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:hover:text-brand"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to all articles
@@ -238,7 +238,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
                       {/* Content */}
                       <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                        <h3 className="text-lg sm:text-xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        <h3 className="text-lg sm:text-xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                           {relArticle.title}
                         </h3>
 

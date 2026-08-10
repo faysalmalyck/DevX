@@ -17,7 +17,7 @@ export default function CaseStudy() {
         <ScrollReveal preset="hero">
           <h2 className="text-5xl md:text-7xl tracking-tight text-gray-900 dark:text-white leading-tight ">
             Case{' '}
-            <span className="text-blue-600 dark:text-blue-600">Studies</span>{' '}
+            <span className="text-brand dark:text-brand">Studies</span>{' '}
           </h2>
         </ScrollReveal>
         <ScrollReveal preset="copy" delay={0.12}>
@@ -54,7 +54,7 @@ export default function CaseStudy() {
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-2 text-gray-900 dark:text-white font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mt-auto">
+                <div className="flex items-center gap-2 text-gray-900 dark:text-white font-semibold group-hover:text-brand dark:group-hover:text-brand transition-colors duration-200 mt-auto">
                   <span>Read case study</span>
                   <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
                     →
@@ -67,7 +67,7 @@ export default function CaseStudy() {
       </StaggerContainer>
 
         {/* Decorative Background Glows */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-brand/10 dark:bg-brand/10 rounded-full blur-3xl -z-10 pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
       </div>
 

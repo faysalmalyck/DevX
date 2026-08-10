@@ -50,7 +50,7 @@ function actionAppearance(action: string) {
     return { icon: AlertCircle, tone: "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300" };
   }
   if (normalized.includes("PUBLISH") || normalized.includes("APPROVE")) {
-    return { icon: CheckCircle2, tone: "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300" };
+    return { icon: CheckCircle2, tone: "bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand" };
   }
 
   return { icon: Activity, tone: "bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300" };
@@ -118,7 +118,7 @@ export default function AdminDashboard() {
           <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300"><AlertCircle className="h-6 w-6" /></span>
           <h2 className="mt-5 text-xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard unavailable</h2>
           <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">{error || "We could not load the workspace snapshot."}</p>
-          <button type="button" onClick={() => void loadDashboardData()} className="mt-6 inline-flex h-10 items-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-bold text-white transition hover:bg-blue-700">
+          <button type="button" onClick={() => void loadDashboardData()} className="mt-6 inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-sm font-bold text-white transition hover:bg-brand">
             <RefreshCw className="h-4 w-4" /> Try again
           </button>
         </div>
@@ -127,14 +127,14 @@ export default function AdminDashboard() {
   }
 
   const metricCards = [
-    { label: "People records", value: stats.totalUsers, detail: "Registered platform users", icon: Users, tone: "from-blue-500 to-cyan-400", surface: "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300" },
+    { label: "People records", value: stats.totalUsers, detail: "Registered platform users", icon: Users, tone: "from-brand to-cyan-400", surface: "bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand" },
     { label: "Client accounts", value: stats.totalClients, detail: "Active client records", icon: Building2, tone: "from-violet-500 to-fuchsia-400", surface: "bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300" },
     { label: "Operators", value: stats.totalAdmins, detail: "Admin workspace access", icon: ShieldCheck, tone: "from-emerald-500 to-teal-400", surface: "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-300" },
     { label: "Support queue", value: stats.supportTicketsCount, detail: `${stats.serviceRequestsCount.toLocaleString()} service requests`, icon: ClipboardList, tone: "from-amber-500 to-orange-400", surface: "bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300" },
   ];
 
   const quickActions = [
-    { label: "Manage team", description: "Profiles and public publishing", href: "/admin/team", icon: Users, tone: "text-blue-600 dark:text-blue-300" },
+    { label: "Manage team", description: "Profiles and public publishing", href: "/admin/team", icon: Users, tone: "text-brand dark:text-brand" },
     { label: "Review applications", description: "Candidate submissions", href: "/admin/applications", icon: FileText, tone: "text-violet-600 dark:text-violet-300" },
     { label: "Manage careers", description: "Roles, drafts, and listings", href: "/admin/careers", icon: BriefcaseBusiness, tone: "text-emerald-600 dark:text-emerald-300" },
     { label: "Access controls", description: "Administrators and roles", href: "/admin/administration/admins", icon: ShieldCheck, tone: "text-amber-600 dark:text-amber-300" },
@@ -143,10 +143,10 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6 pb-8">
       <section className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white px-6 py-7 shadow-[0_20px_60px_rgba(15,23,42,0.07)] dark:border-white/[0.08] dark:bg-[#111827] sm:px-8 sm:py-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(59,130,246,0.18),transparent_32%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.15),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(54,88,255,0.18),transparent_32%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.15),transparent_28%)]" />
         <div className="relative flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-blue-700 dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-200">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-brand dark:border-blue-400/20 dark:bg-brand/10 dark:text-brand">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]" /> Live workspace
             </span>
             <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl">{greeting}, {user?.firstName || "operator"}.</h2>
@@ -156,7 +156,7 @@ export default function AdminDashboard() {
             <button type="button" onClick={() => void loadDashboardData()} className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.1] dark:bg-white/[0.06] dark:text-slate-200 dark:hover:bg-white/[0.1]">
               <RefreshCw className="h-4 w-4" /> Refresh
             </button>
-            <Link href="/admin/team" className="inline-flex h-10 items-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700">
+            <Link href="/admin/team" className="inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-sm font-bold text-white shadow-lg shadow-brand/20 transition hover:bg-brand">
               <UserPlus className="h-4 w-4" /> Team directory
             </Link>
           </div>
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
               </div>
               <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">The latest changes recorded in your workspace.</p>
             </div>
-            <Link href="/admin/administration/activity" className="inline-flex items-center gap-1 text-sm font-bold text-blue-600 transition hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-200">
+            <Link href="/admin/administration/activity" className="inline-flex items-center gap-1 text-sm font-bold text-brand transition hover:text-brand dark:text-brand dark:hover:text-brand">
               View log <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -226,7 +226,7 @@ export default function AdminDashboard() {
 
         <aside className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/[0.08] dark:bg-[#111827] sm:p-6">
           <div className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300"><ClipboardList className="h-4 w-4" /></span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ClipboardList className="h-4 w-4" /></span>
             <div>
               <h2 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">Quick actions</h2>
               <p className="text-sm text-slate-500 dark:text-slate-400">Jump straight into daily work.</p>
@@ -234,13 +234,13 @@ export default function AdminDashboard() {
           </div>
           <div className="mt-5 space-y-2">
             {quickActions.map(({ label, description, href, icon: Icon, tone }) => (
-              <Link key={href} href={href} className="group flex items-center gap-3 rounded-2xl border border-slate-100 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-blue-500/[0.06]">
+              <Link key={href} href={href} className="group flex items-center gap-3 rounded-2xl border border-slate-100 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-brand/[0.06]">
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 dark:bg-white/[0.06] ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-sm font-bold text-slate-800 dark:text-slate-100">{label}</span>
                   <span className="mt-0.5 block truncate text-xs text-slate-500 dark:text-slate-400">{description}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-500 dark:text-slate-600" />
+                <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-brand dark:text-slate-600" />
               </Link>
             ))}
           </div>
@@ -249,13 +249,13 @@ export default function AdminDashboard() {
 
       <section className="grid gap-4 py-0 md:grid-cols-2">
         <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
-          <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl" />
+          <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-brand/10 blur-3xl" />
           <div className="relative flex items-start gap-4">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300"><ShieldCheck className="h-5 w-5" /></span>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ShieldCheck className="h-5 w-5" /></span>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold text-slate-900 dark:text-white">Access management</p>
               <p className="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-slate-200">{stats.totalAdmins.toLocaleString()}</span> operators currently have administrative workspace access.</p>
-              <Link href="/admin/administration/admins" className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-200">Review access <ArrowRight className="h-4 w-4" /></Link>
+              <Link href="/admin/administration/admins" className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand hover:text-brand dark:text-brand dark:hover:text-brand">Review access <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </article>

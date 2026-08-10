@@ -28,7 +28,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 w-full">
           <ScrollReveal preset="hero">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-slate-900 dark:text-white text-center sm:text-left">
-              Articles <span className="text-blue-500">&amp;</span> Resources
+              Articles <span className="text-brand">&amp;</span> Resources
             </h1>
           </ScrollReveal>
           <ScrollReveal preset="copy" delay={0.12}>
@@ -61,7 +61,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
                   />
                 </ScrollReveal>
                 <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                     {featuredMain.title}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 font-normal line-clamp-3">
@@ -105,7 +105,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 pointer-events-none" />
                     </ScrollReveal>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg sm:text-xl lg:text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors leading-normal sm:leading-snug">
+                      <h3 className="text-lg sm:text-xl lg:text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-brand dark:group-hover:text-brand transition-colors leading-normal sm:leading-snug">
                         {article.title}
                       </h3>
                     </div>

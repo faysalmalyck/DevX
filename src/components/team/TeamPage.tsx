@@ -58,7 +58,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
       <HoverCard className="h-full">
         <article className="relative flex h-full w-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-8 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-10 lg:p-12">
           {member.featured ? (
-            <span className="absolute right-5 top-5 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300">
+            <span className="absolute right-5 top-5 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-brand dark:bg-brand/15 dark:text-brand">
               Featured
             </span>
           ) : null}
@@ -82,7 +82,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
                 <p className="mt-0.5 font-normal text-gray-500 dark:text-slate-400" style={{ fontSize: "clamp(0.7rem, 2vw, 1rem)", lineHeight: "1.2" }}>
                   {member.role}
                 </p>
-                <p className="mt-1 text-xs font-medium text-blue-600 dark:text-blue-400">{member.department}</p>
+                <p className="mt-1 text-xs font-medium text-brand dark:text-brand">{member.department}</p>
               </div>
             </div>
 
@@ -120,7 +120,7 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
         <div className="mx-auto mb-8 max-w-[650px] text-center sm:mb-12">
           <ScrollReveal preset="hero">
             <h1 className="text-4xl font-normal tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
-              Meet the <span className="text-blue-500">amazing team</span> behind <span className="whitespace-nowrap">our company</span>
+              Meet the <span className="text-brand">amazing team</span> behind <span className="whitespace-nowrap">our company</span>
             </h1>
           </ScrollReveal>
           <ScrollReveal className="mt-4" delay={0.12} preset="copy">
@@ -141,7 +141,7 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
         )}
 
         <ScrollReveal className="mt-8 flex justify-center py-16" delay={0.16} preset="copy">
-          <Link href="/careers" className="w-full max-w-[280px] rounded-full bg-blue-600 px-6 py-5 text-center text-sm font-medium text-white no-underline transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95 sm:w-auto sm:max-w-none sm:px-10 sm:py-6">
+          <Link href="/careers" className="w-full max-w-[280px] rounded-full bg-brand px-6 py-5 text-center text-sm font-medium text-white no-underline transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95 sm:w-auto sm:max-w-none sm:px-10 sm:py-6">
             Join Our Team
           </Link>
         </ScrollReveal>

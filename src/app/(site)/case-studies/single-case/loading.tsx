@@ -35,7 +35,7 @@ export default function Loading() {
             <CaseStudyCardSkeleton />
             <CaseStudyCardSkeleton />
           </div>
-          <div className="pointer-events-none absolute left-1/4 top-1/2 -z-0 h-96 w-96 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-600/10" />
+          <div className="pointer-events-none absolute left-1/4 top-1/2 -z-0 h-96 w-96 -translate-y-1/2 rounded-full bg-brand/10 blur-3xl dark:bg-brand/10" />
         </div>
         <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-4 py-16 sm:flex-row">
           <Skeleton className="h-14 w-full max-w-[280px] rounded-full sm:w-40" />

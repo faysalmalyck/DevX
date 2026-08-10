@@ -9,16 +9,11 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  const breadcrumbLinks = [
-    { href: "/", text: "Home" },
-    { href: "/services", text: "Services" },
-  ];
   return (
     <>
       <HeroSub
   title="Our|Services"
   description="Empowering businesses with innovative digital solutions that accelerate growth, enhance efficiency, and create lasting competitive advantage."
-  breadcrumbLinks={breadcrumbLinks}
 /> 
       
       <div className="">

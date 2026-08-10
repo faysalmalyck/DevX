@@ -61,8 +61,8 @@ export const showToast = {
 
   info: (message: string) =>
     toast(message, {
-      icon: renderIcon(<Info className="h-5 w-5 text-blue-400" />),
-      style: { borderColor: "rgba(59,130,246,0.2)" },
+      icon: renderIcon(<Info className="h-5 w-5 text-brand" />),
+      style: { borderColor: "rgba(54,88,255,0.2)" },
     }),
 
   loading: (message: string) =>

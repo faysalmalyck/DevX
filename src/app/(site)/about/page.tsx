@@ -2,6 +2,7 @@ import React from "react";
 import HeroSub from "@/components/shared/HeroSub";
 import { Metadata } from "next";
 import CounterSection from '@/components/about/Counter';
+import OfficesSection from "@/components/about/OfficesSection";
 import TeamSection from "@/components/team/TeamPage";
 import { getPublishedTeamMembers } from "@/lib/team/queries";
 import CoreValuesPage from "./core-value/page";
@@ -17,16 +18,11 @@ export const metadata: Metadata = {
 
 const page = async () => {
   const members = await getPublishedTeamMembers();
-  const breadcrumbLinks = [
-    { href: "/", text: "Home" },
-    { href: "/about", text: "About us" },
-  ];
   return (
     <>
       <HeroSub
   title="About our|Company"
   description="We partner with businesses of all sizes to transform ideas into powerful digital experiences. Through innovation, collaboration, and technical excellence, we build reliable solutions that help organizations stay ahead in a competitive market."
-  breadcrumbLinks={breadcrumbLinks}
 /> 
       
 <div className="mx-auto max-w-8xl pt-32 pb-24 px-2">
@@ -34,7 +30,7 @@ const page = async () => {
     <ScrollReveal preset="heading" className="w-full max-w-[500px]">
       <h2 className="text-3xl font-rote tracking-tight text-gray-900 sm:text-5xl dark:text-white mb-0 text-center md:text-left leading-snug">
   We started in 2019 as a small team of{" "}
-  <span className="text-blue-600 dark:text-blue-500">passionate</span> developers
+  <span className="text-brand dark:text-brand">passionate</span> developers
 </h2>
     </ScrollReveal>
     <ScrollReveal preset="copy" delay={0.1} className="w-full max-w-[575px]">
@@ -51,6 +47,7 @@ const page = async () => {
 <CounterSection/>
 <TeamSection members={members}/>
 <CoreValuesPage/>
+<OfficesSection/>
 <ReadyToStart/>
 
 </div>

@@ -11,7 +11,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
         {/* Back Link on Top Left */}
         <Link
           href="/careers"
-          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-blue-500 dark:text-slate-200 dark:hover:text-blue-500"
+          className="mt-12 mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:-translate-x-1 hover:text-brand dark:text-slate-200 dark:hover:text-brand"
 >
   <ArrowLeft className="h-4 w-4" />
          Back to all careers
@@ -44,7 +44,7 @@ export default function CareerHero({ career }: { career: PublicCareer }) {
   <ApplyButton
     careerSlug={career.slug}
     careerTitle={career.title}
-    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-5 text-sm sm:text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40"
+    className="inline-block w-3/4 sm:w-auto text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-5 text-sm sm:text-base font-medium text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand hover:shadow-brand/40"
   >
     Apply now
   </ApplyButton>

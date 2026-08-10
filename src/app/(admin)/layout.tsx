@@ -81,11 +81,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F6F8FC] px-6 dark:bg-[#090E19]">
         <div className="text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-500 text-sm font-black text-white shadow-xl shadow-blue-500/20">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-violet-500 text-sm font-black text-white shadow-xl shadow-brand/20">
             DX
           </div>
           <div className="mx-auto mt-5 h-1.5 w-32 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
-            <div className="h-full w-2/3 animate-pulse rounded-full bg-blue-500" />
+            <div className="h-full w-2/3 animate-pulse rounded-full bg-brand" />
           </div>
           <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">Opening your operations workspace…</p>
         </div>
@@ -116,7 +116,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             <div className="flex min-h-[72px] items-center justify-between border-b border-white/[0.08] px-5">
               <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3" aria-label="DevX operations home">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-blue-500 to-violet-500 text-sm font-black text-white shadow-lg shadow-blue-950/30">DX</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-sm font-black text-white shadow-lg shadow-blue-950/30">DX</span>
                 <span>
                   <span className="block text-base font-black tracking-tight">DevX Operations</span>
                   <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/80">Control workspace</span>
@@ -154,7 +154,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </button>
             <div className="min-w-0">
               <nav className="hidden items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 sm:flex" aria-label="Breadcrumb">
-                <Link href="/admin" className="transition hover:text-blue-600 dark:hover:text-blue-300">Operations</Link>
+                <Link href="/admin" className="transition hover:text-brand dark:hover:text-brand">Operations</Link>
                 <ChevronRight className="h-3.5 w-3.5 text-slate-300 dark:text-slate-600" />
                 <span className="truncate text-slate-700 dark:text-slate-200">{currentRoute.label}</span>
               </nav>
@@ -192,7 +192,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         <main className="relative flex-1 overflow-x-hidden overflow-y-auto bg-[#F6F8FC] dark:bg-[#090E19]">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_25%_-15%,rgba(59,130,246,0.1),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.08),transparent_30%)] dark:bg-[radial-gradient(circle_at_25%_-15%,rgba(59,130,246,0.13),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.1),transparent_30%)]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_25%_-15%,rgba(54,88,255,0.1),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.08),transparent_30%)] dark:bg-[radial-gradient(circle_at_25%_-15%,rgba(54,88,255,0.13),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.1),transparent_30%)]" />
           <div className="relative mx-auto w-full max-w-[1440px] p-4 sm:p-6 lg:p-8">{children}</div>
         </main>
       </div>

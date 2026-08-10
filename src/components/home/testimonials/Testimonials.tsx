@@ -20,13 +20,13 @@ export default function TestimonialsSection() {
           >
             {/* Heading resized for mobile */}
             <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-midnight_text dark:text-white leading-snug sm:leading-tight">
-              What our great <span className="text-blue-600">customers</span> say
+              What our great <span className="text-brand">customers</span> say
             </h2>
         
             {/* Button centered and resized on mobile */}
             <Link
               href="/contact"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95 self-center"
+              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95 self-center"
             >
               Contact us
             </Link>
@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
                       preset="card"
                     >
                       <HoverCard>
-                        <div className="rounded-lg border border-slate-700 bg-slate-800 p-6 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-blue-500/50 hover:shadow-[0_12px_30px_rgba(59,130,246,0.16)]">
+                        <div className="rounded-lg border border-slate-700 bg-slate-800 p-6 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-brand/50 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)]">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <ScrollReveal

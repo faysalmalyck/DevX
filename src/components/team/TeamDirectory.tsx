@@ -38,7 +38,7 @@ export default function TeamDirectory() {
               onClick={() => setSelectedRole(role)}
               className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
                 selectedRole === role
-                  ? "bg-blue-600 text-white"
+                  ? "bg-brand text-white"
                   : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300"
               }`}
             >
@@ -67,14 +67,14 @@ export default function TeamDirectory() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {member.name}
               </h3>
-              <p className="text-sm text-blue-500 font-medium">{member.role}</p>
+              <p className="text-sm text-brand font-medium">{member.role}</p>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                 {member.bio}
               </p>
             </div>
             <Link
               href={`/team/${member.slug}`}
-              className="mt-4 inline-block text-sm font-medium text-blue-600 hover:underline dark:text-blue-400 no-underline"
+              className="mt-4 inline-block text-sm font-medium text-brand hover:underline dark:text-brand no-underline"
             >
               View Profile &rarr;
             </Link>

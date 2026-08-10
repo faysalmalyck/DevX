@@ -19,10 +19,10 @@ export default function AccordionItem({
   onToggle,
 }: AccordionItemProps) {
   return (
-    <div className="border border-slate-200 dark:border-[#273046] rounded-md bg-slate-50 dark:bg-[#252d40]/40 overflow-hidden transition-colors hover:border-blue-500/50 dark:hover:border-blue-400/50">
+    <div className="border border-slate-200 dark:border-[#273046] rounded-md bg-slate-50 dark:bg-[#252d40]/40 overflow-hidden transition-colors hover:border-brand/50 dark:hover:border-blue-400/50">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 rounded-3xl"
+        className="w-full flex items-center justify-between p-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 rounded-3xl"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${id}`}
         id={`faq-question-${id}`}
@@ -33,7 +33,7 @@ export default function AccordionItem({
         <div
           className={`shrink-0 w-8 h-8 flex items-center justify-center rounded-full border transition-all duration-300 ${
             isOpen
-              ? 'bg-blue-500/10 border-blue-500/30 text-blue-500'
+              ? 'bg-brand/10 border-brand/30 text-brand'
               : 'bg-slate-100 dark:bg-[#2a3449] border-slate-200 dark:border-[#323d56] text-slate-500 dark:text-slate-400'
           }`}
         >

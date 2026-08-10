@@ -118,7 +118,7 @@ export default function LoginCard() {
         {/* Header Section */}
         <div className="mb-6 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-[#1f2535] px-3 py-1 text-xs font-medium text-slate-300 mb-4">
-            <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+            <Sparkles className="h-3.5 w-3.5 text-brand" />
             <span>DevX Digital Platform</span>
           </div>
           <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -147,7 +147,7 @@ export default function LoginCard() {
               }}
               className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer ${
                 role === "user"
-                  ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.5)] font-semibold"
+                  ? "bg-brand text-white shadow-[0_0_15px_rgba(54,88,255,0.5)] font-semibold"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -163,7 +163,7 @@ export default function LoginCard() {
               }}
               className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer ${
                 role === "admin"
-                  ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.5)] font-semibold"
+                  ? "bg-brand text-white shadow-[0_0_15px_rgba(54,88,255,0.5)] font-semibold"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -192,7 +192,7 @@ export default function LoginCard() {
                 >
                   Login
                   {userMode === "login" && (
-                    <span className="absolute bottom-0 left-0 h-0.5 w-10 bg-blue-600 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.8)]" />
+                    <span className="absolute bottom-0 left-0 h-0.5 w-10 bg-brand rounded-full shadow-[0_0_8px_rgba(54,88,255,0.8)]" />
                   )}
                 </button>
                 <button
@@ -208,7 +208,7 @@ export default function LoginCard() {
                 >
                   Create Account
                   {userMode === "signup" && (
-                    <span className="absolute bottom-0 left-6 h-0.5 w-24 bg-blue-600 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.8)]" />
+                    <span className="absolute bottom-0 left-6 h-0.5 w-24 bg-brand rounded-full shadow-[0_0_8px_rgba(54,88,255,0.8)]" />
                   )}
                 </button>
               </div>
@@ -227,9 +227,9 @@ export default function LoginCard() {
                         placeholder="name@company.com"
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                     </div>
                   </div>
 
@@ -244,9 +244,9 @@ export default function LoginCard() {
                         placeholder="••••••••"
                         value={userPassword}
                         onChange={(e) => setUserPassword(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
@@ -270,13 +270,13 @@ export default function LoginCard() {
                         type="checkbox"
                         checked={userRememberMe}
                         onChange={(e) => setUserRememberMe(e.target.checked)}
-                        className="h-4 w-4 rounded border-slate-700 bg-[#252c3f] text-blue-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                        className="h-4 w-4 rounded border-slate-700 bg-[#252c3f] text-brand focus:ring-0 focus:ring-offset-0 cursor-pointer"
                       />
                       Remember me
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-blue-500 hover:text-blue-400 font-medium transition"
+                      className="text-brand hover:text-brand font-medium transition"
                     >
                       Forgot password?
                     </Link>
@@ -286,7 +286,7 @@ export default function LoginCard() {
                     <button
                       type="submit"
                       disabled={userLoginLoading}
-                      className="w-3/4 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] shadow-[0_0_20px_rgba(37,99,235,0.6)] hover:shadow-[0_0_25px_rgba(37,99,235,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                      className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
                     >
                       {userLoginLoading ? (
                         <>
@@ -316,9 +316,9 @@ export default function LoginCard() {
                         placeholder="John Doe"
                         value={signupFullName}
                         onChange={(e) => setSignupFullName(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                      <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                     </div>
                   </div>
 
@@ -333,9 +333,9 @@ export default function LoginCard() {
                         placeholder="name@company.com"
                         value={signupEmail}
                         onChange={(e) => setSignupEmail(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                      <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                     </div>
                   </div>
 
@@ -350,9 +350,9 @@ export default function LoginCard() {
                         placeholder="Minimum 8 characters"
                         value={signupPassword}
                         onChange={(e) => setSignupPassword(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
@@ -374,9 +374,9 @@ export default function LoginCard() {
                         placeholder="Re-enter password"
                         value={signupConfirmPassword}
                         onChange={(e) => setSignupConfirmPassword(e.target.value)}
-                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                        className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                       />
-                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                      <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                     </div>
                   </div>
 
@@ -391,7 +391,7 @@ export default function LoginCard() {
                     <button
                       type="submit"
                       disabled={signupLoading}
-                      className="w-3/4 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] shadow-[0_0_20px_rgba(37,99,235,0.6)] hover:shadow-[0_0_25px_rgba(37,99,235,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                      className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
                     >
                       {signupLoading ? (
                         <>
@@ -432,9 +432,9 @@ export default function LoginCard() {
                     placeholder="admin@DevX.digital"
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
-                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                   />
-                  <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                  <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                 </div>
               </div>
 
@@ -449,9 +449,9 @@ export default function LoginCard() {
                     placeholder="••••••••"
                     value={adminPassword}
                     onChange={(e) => setAdminPassword(e.target.value)}
-                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-blue-600 focus:shadow-[0_0_20px_rgba(37,99,235,0.25)]"
+                    className="w-full rounded-full border border-slate-700/60 bg-[#252c3f] pl-11 pr-11 py-3 text-sm text-white placeholder-slate-500 outline-none transition duration-200 hover:border-slate-500 hover:shadow-[0_0_15px_rgba(148,163,184,0.15)] focus:border-brand focus:shadow-[0_0_20px_rgba(54,88,255,0.25)]"
                   />
-                  <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-blue-500" />
+                  <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition duration-200 group-hover:text-slate-200 group-focus-within:text-brand" />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -475,14 +475,14 @@ export default function LoginCard() {
                     type="checkbox"
                     checked={adminRememberMe}
                     onChange={(e) => setAdminRememberMe(e.target.checked)}
-                    className="h-4 w-4 rounded border-slate-700 bg-[#252c3f] text-blue-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                    className="h-4 w-4 rounded border-slate-700 bg-[#252c3f] text-brand focus:ring-0 focus:ring-offset-0 cursor-pointer"
                   />
                   Remember device
                 </label>
                 <div className="flex items-center gap-3">
                   <Link
                     href="/forgot-password"
-                    className="text-blue-500 hover:text-blue-400 font-medium transition"
+                    className="text-brand hover:text-brand font-medium transition"
                   >
                     Forgot?
                   </Link>
@@ -500,7 +500,7 @@ export default function LoginCard() {
                 <button
                   type="submit"
                   disabled={adminLoading}
-                  className="w-3/4 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] shadow-[0_0_20px_rgba(37,99,235,0.6)] hover:shadow-[0_0_25px_rgba(37,99,235,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                  className="w-3/4 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand active:scale-[0.98] shadow-[0_0_20px_rgba(54,88,255,0.6)] hover:shadow-[0_0_25px_rgba(54,88,255,0.85)] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
                 >
                   {adminLoading ? (
                     <>

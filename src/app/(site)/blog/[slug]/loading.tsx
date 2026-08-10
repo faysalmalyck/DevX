@@ -63,7 +63,7 @@ export default function Loading() {
             <TextSkeleton className="w-10/12" />
             <TextSkeleton className="w-full" />
           </div>
-          <Skeleton className="my-8 h-28 rounded-r-lg border-l-4 border-l-blue-500" />
+          <Skeleton className="my-8 h-28 rounded-r-lg border-l-4 border-l-brand" />
         </section>
 
         <div className="my-12 border-t border-slate-200 dark:border-slate-800 sm:my-16" />

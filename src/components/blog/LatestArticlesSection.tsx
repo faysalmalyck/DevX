@@ -51,7 +51,7 @@ export function LatestArticlesSection({ articles }: LatestArticlesSectionProps) 
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-blue-600 text-white shadow-sm"
+                        ? "bg-brand text-white shadow-sm"
                         : "bg-white dark:bg-[#1e2436] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
                     }`}
                   >
@@ -88,7 +88,7 @@ export function LatestArticlesSection({ articles }: LatestArticlesSectionProps) 
 
                   {/* Content */}
                   <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-normal mb-3 line-clamp-2 text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
                       {article.title}
                     </h3>
 

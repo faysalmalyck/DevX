@@ -37,14 +37,14 @@ interface SupportTicket {
 
 const priorityConfig: Record<string, { label: string; color: string }> = {
   LOW: { label: "Low", color: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20" },
-  MEDIUM: { label: "Medium", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  MEDIUM: { label: "Medium", color: "bg-brand/10 text-brand border-brand/20" },
   HIGH: { label: "High", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
   URGENT: { label: "Urgent", color: "bg-rose-500/10 text-rose-400 border-rose-500/20" },
 };
 
 const statusConfig: Record<string, { label: string; color: string; icon: any }> = {
   OPEN: { label: "Open", color: "bg-rose-500/10 text-rose-400 border-rose-500/20", icon: AlertCircle },
-  IN_PROGRESS: { label: "In Progress", color: "bg-blue-500/10 text-blue-400 border-blue-500/20", icon: Clock },
+  IN_PROGRESS: { label: "In Progress", color: "bg-brand/10 text-brand border-brand/20", icon: Clock },
   RESOLVED: { label: "Resolved", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20", icon: CheckCircle2 },
   CLOSED: { label: "Closed", color: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20", icon: X },
 };
@@ -130,7 +130,7 @@ export default function SupportPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         {[
           { label: "Open Tickets", value: open, color: "text-rose-400", bg: "bg-rose-500/10 border-rose-500/20" },
-          { label: "In Progress", value: inProgress, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+          { label: "In Progress", value: inProgress, color: "text-brand", bg: "bg-brand/10 border-brand/20" },
           { label: "Resolved", value: resolved, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
         ].map(({ label, value, color, bg }) => (
           <div key={label} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">

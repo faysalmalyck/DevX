@@ -31,18 +31,18 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
           />
           <defs>
             <linearGradient id={`hero-gradient-1-${study.slug}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#3658ff" stopOpacity="0.8" />
               <stop offset="100%" stopColor="#6366F1" stopOpacity="0.1" />
             </linearGradient>
             <linearGradient id={`hero-gradient-2-${study.slug}`} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#6366F1" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="#3658ff" stopOpacity="0.1" />
             </linearGradient>
           </defs>
         </svg>
 
         {/* Ambient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-600/10 rounded-full blur-[140px]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand/10 rounded-full blur-[140px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -50,7 +50,7 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
         <ScrollReveal className="mb-8" preset="left">
           <Link
             href="/case-studies"
-            className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors"
+            className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-brand transition-colors"
           >
             <span className="mr-2">←</span> Back to Case Studies
           </Link>

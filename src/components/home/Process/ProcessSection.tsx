@@ -48,8 +48,8 @@ export default function ProcessSection() {
         >
           <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
             We have a simple, yet{' '}
-            <span className="text-blue-600 dark:text-blue-400">bulletproof</span> and{' '}
-            <span className="text-blue-600 dark:text-blue-400">effective</span> process.
+            <span className="text-brand dark:text-brand">bulletproof</span> and{' '}
+            <span className="text-brand dark:text-brand">effective</span> process.
           </h2>
         </ScrollReveal>
 
@@ -62,7 +62,7 @@ export default function ProcessSection() {
                 preset={step.id === 2 ? 'right' : 'left'}
               >
                 <HoverCard className="w-full max-w-sm">
-                  <div className="group relative bg-[#243042] rounded-xl border border-slate-700 shadow-md transition-[border-color,box-shadow] duration-300 hover:border-blue-500/50 hover:shadow-[0_12px_30px_rgba(59,130,246,0.16)] overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[450px] w-full max-w-sm">
+                  <div className="group relative bg-[#243042] rounded-xl border border-slate-700 shadow-md transition-[border-color,box-shadow] duration-300 hover:border-brand/50 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[450px] w-full max-w-sm">
 
                   <div className="relative h-[220px] sm:h-[280px] w-full bg-slate-800 overflow-hidden">
                     <ScrollReveal className="absolute inset-0" preset="image">
@@ -108,7 +108,7 @@ export default function ProcessSection() {
           </StaggerContainer>
 
           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
         </div>
 
         {/* Action Button */}
@@ -118,7 +118,7 @@ export default function ProcessSection() {
         >
           <Link
             href="/contact"
-            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+            className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
           >
             Contact us
           </Link>

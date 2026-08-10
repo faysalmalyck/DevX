@@ -85,7 +85,7 @@ export default function ApplicationTable({
                       onClick={() => onOpen(application.id)}
                       className="group text-left"
                     >
-                      <span className="block font-bold text-slate-900 transition group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                      <span className="block font-bold text-slate-900 transition group-hover:text-brand dark:text-white dark:group-hover:text-brand">
                         {application.fullName}
                       </span>
                       <span className="mt-0.5 block max-w-52 truncate text-xs text-slate-500 dark:text-zinc-500">
@@ -118,7 +118,7 @@ export default function ApplicationTable({
                   <td className="px-4 py-4">
                     <a
                       href={resumeHref(application.id)}
-                      className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-bold text-blue-600 transition hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-500/10"
+                      className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-bold text-brand transition hover:bg-blue-50 dark:text-brand dark:hover:bg-brand/10"
                     >
                       <Download className="h-3.5 w-3.5" aria-hidden="true" />
                       Download
@@ -129,7 +129,7 @@ export default function ApplicationTable({
                       <button
                         type="button"
                         onClick={() => onOpen(application.id)}
-                        className="rounded-lg p-2 text-slate-500 transition hover:bg-blue-50 hover:text-blue-600 dark:text-zinc-400 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
+                        className="rounded-lg p-2 text-slate-500 transition hover:bg-blue-50 hover:text-brand dark:text-zinc-400 dark:hover:bg-brand/10 dark:hover:text-brand"
                         aria-label={`View ${application.fullName}'s application`}
                         title="View application"
                       >

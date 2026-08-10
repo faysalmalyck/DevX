@@ -32,20 +32,20 @@ export default function TeamSection() {
         >
           <h2 className="py-2 sm:py-4 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
             We are an agile team of passionate{" "}
-            <span className="text-blue-600 dark:text-blue-500">developers</span>
+            <span className="text-brand dark:text-brand">developers</span>
           </h2>
         </ScrollReveal>
 
-        <div className="max-w-[1040px] mx-auto">
+        <div className="max-w-[1220px] mx-auto">
           {/* Perks Grid */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 py-4 sm:py-10 gap-4 sm:gap-6 lg:gap-10 mb-6 lg:mb-14">
+          <StaggerContainer className="mx-auto mb-6 grid max-w-[1040px] grid-cols-1 gap-4 py-4 sm:gap-6 sm:py-10 md:grid-cols-3 lg:mb-14 lg:gap-10">
             {perks.map((perk, index) => (
               <StaggerItem
                 key={index}
                 className="group flex items-center space-x-3 justify-center md:justify-start"
                 preset="card"
               >
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white transition-all duration-300 group-hover:shadow-[0_0_12px_rgba(37,99,235,0.8)]">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-brand flex items-center justify-center text-white transition-all duration-300 group-hover:shadow-[0_0_12px_rgba(54,88,255,0.8)]">
                   <svg
                     className="w-3.5 h-3.5 stroke-[3]"
                     fill="none"
@@ -71,7 +71,7 @@ export default function TeamSection() {
 
           {/* Feature Image */}
           <ScrollReveal
-            className="relative w-full rounded-2xl py-2 sm:py-10 overflow-hidden shadow-lg mb-8 sm:mb-16"
+            className="relative w-full overflow-hidden rounded-2xl py-2 sm:py-10 mb-8 sm:mb-16"
             preset="image"
           >
             <Image
@@ -91,7 +91,7 @@ export default function TeamSection() {
           >
             <Link
               href="/contact"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-blue-600 px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-sm font-medium text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
             >
               Contact us
             </Link>

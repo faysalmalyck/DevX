@@ -26,7 +26,7 @@ function StatCard({ targetValue, suffix, label }: StatCardProps) {
     <StaggerItem className="flex flex-col mt-12 py-[4.6875rem] items-center justify-center text-center">
       <div className="text-5xl font-normal lg:text-8xl text-gray-900 dark:text-white mb-4">
         <CountUp value={targetValue} />
-        <span className="text-blue-600 dark:text-blue-500">{suffix}</span>
+        <span className="text-brand dark:text-brand">{suffix}</span>
       </div>
       <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200 m-0">
         {label}

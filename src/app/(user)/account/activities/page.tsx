@@ -21,7 +21,7 @@ const typeIcon: Record<string, string> = {
 };
 
 const statusConfig: Record<string, { label: string; color: string }> = {
-  SCHEDULED: { label: "Scheduled", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  SCHEDULED: { label: "Scheduled", color: "bg-brand/10 text-brand border-brand/20" },
   COMPLETED: { label: "Completed", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
   CANCELLED: { label: "Cancelled", color: "bg-rose-500/10 text-rose-400 border-rose-500/20" },
 };
@@ -60,7 +60,7 @@ export default function ActivitiesPage() {
       {/* Summary cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         {[
-          { label: "Upcoming", value: upcoming, icon: Calendar, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+          { label: "Upcoming", value: upcoming, icon: Calendar, color: "text-brand", bg: "bg-brand/10 border-brand/20" },
           { label: "Completed", value: activities.filter(a => a.status === "COMPLETED").length, icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
           { label: "Total", value: activities.length, icon: Clock, color: "text-zinc-400", bg: "bg-white/5 border-white/10" },
         ].map(({ label, value, icon: Icon, color, bg }) => (

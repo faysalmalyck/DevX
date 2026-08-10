@@ -12,7 +12,7 @@ export default function SocialLinks() {
         {/* Section Header */}
         <ScrollReveal preset="heading" className="space-y-8 max-w-lg mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-rote tracking-tight text-white">
-            Follow us for <span className='text-blue-500'>{" "}great content{" "}</span> about coding & development
+            Follow us for <span className='text-brand'>{" "}great content{" "}</span> about coding & development
           </h2>
           
         </ScrollReveal>
@@ -28,7 +28,7 @@ export default function SocialLinks() {
                     href={platform.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group relative flex h-full flex-col p-8 rounded-lg bg-[#232c3e]/40 dark:bg-[#232c3e]/40 border border-[#273046] transition-all duration-300 ease-in-out hover:border-blue-500/50 ${platform.colorHex} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`group relative flex h-full flex-col p-8 rounded-lg bg-[#232c3e]/40 dark:bg-[#232c3e]/40 border border-[#273046] transition-all duration-300 ease-in-out hover:border-brand/50 ${platform.colorHex} focus:outline-none focus:ring-2 focus:ring-brand`}
                     aria-label={`Visit our ${platform.name} page`}
                   >
                     {/* Header with Icon and Arrow */}
