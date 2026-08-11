@@ -1,47 +1,123 @@
-// data/servicesData.ts
+// Development already uses image illustrations for card visuals rather than an
+// IconComponent system, so `icon` preserves that existing visual contract.
+export type ServiceCardIcon = {
+  src: string;
+  alt: string;
+};
 
-export interface ServiceCard {
+export type ServiceCard = {
+  id: string;
   title: string;
   description: string;
-  imageSrc: string;
-  imageAlt: string;
-}
+  icon: ServiceCardIcon;
+  href?: string;
+  status: "existing" | "draft";
+};
 
-export const servicesData: ServiceCard[] = [
+export const servicesData: readonly ServiceCard[] = [
   {
+    id: "custom-software",
+    title: "Custom Software",
+    // DRAFT — NEEDS REVIEW: service-offering copy requires human sign-off.
+    description:
+      "Creating tailored software that supports your workflows, priorities, and evolving business needs.",
+    icon: {
+      src: "/images/services/customsoftware.png",
+      alt: "Custom Software illustration",
+    },
+    status: "draft",
+  },
+  {
+    id: "website-app-development",
     title: "Website/App Development",
-    description: "Building responsive, modern, and scalable web applications tailored to your business needs.",
-    imageSrc: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f4c033a9f2ec475bdb200_image-frontend-development-services-dev-webflow-template.png",
-    imageAlt: "Frontend Development - Dev X Webflow Template",
+    description:
+      "Building responsive, modern, and scalable web applications tailored to your business needs.",
+    icon: {
+      src: "/images/services/website.png",
+      alt: "Frontend Development - Dev X Webflow Template",
+    },
+    status: "existing",
   },
   {
-    title: "Backend Development",
-    description: "Powering your digital infrastructure with scalable backend solutions built with modern technologies.",
-    imageSrc: "/images/services/backend.png",
-    imageAlt: "Backend Development - Dev X Webflow Template",
-  },
-  {
+    id: "mobile-app-development",
     title: "Mobile App Development",
-    description: "Seamless & high-performance mobile applications for iOS and Android that keep your users engaged.",
-    imageSrc: "/images/services/mobileapp.png",
-    imageAlt: "Mobile App Development - Dev X Webflow Template",
+    description:
+      "Seamless & high-performance mobile applications for iOS and Android that keep your users engaged.",
+    icon: {
+      src: "/images/services/mobileapp.png",
+      alt: "Mobile App Development - Dev X Webflow Template",
+    },
+    status: "existing",
   },
   {
+    id: "saas",
+    title: "SaaS",
+    // DRAFT — NEEDS REVIEW: service-offering copy requires human sign-off.
+    description:
+      "Shaping flexible SaaS products around your idea, users, and the needs of a growing business.",
+    icon: {
+      src: "/images/services/saas.png",
+      alt: "SaaS illustration",
+    },
+    status: "draft",
+  },
+  {
+    id: "ai-machine-learning",
     title: "AI & Machine Learning",
-    description: "Transform data into intelligence with custom AI/ML solutions from predictive analytics to intelligent automation systems.",
-    imageSrc: "/images/services/ai:ml.png",
-    imageAlt: "AI & Machine Learning - Dev X Webflow Template",
+    description:
+      "Transform data into intelligence with custom AI/ML solutions from predictive analytics to intelligent automation systems.",
+    // The prior ai:ml.png source is deleted; ai.png is the supplied replacement.
+    icon: {
+      src: "/images/services/ai.png",
+      alt: "AI & Machine Learning - Dev X Webflow Template",
+    },
+    status: "existing",
   },
   {
+    id: "legacy-modernization",
+    title: "Legacy Modernization",
+    // DRAFT — NEEDS REVIEW: service-offering copy requires human sign-off.
+    description:
+      "Refreshing established software to better support current needs, future change, and reliable operations.",
+    icon: {
+      src: "/images/services/legecymodernization.png",
+      alt: "Legacy Modernization illustration",
+    },
+    status: "draft",
+  },
+  {
+    id: "crm-erp",
+    title: "CRM & ERP",
+    // DRAFT — NEEDS REVIEW: service-offering copy requires human sign-off.
+    description:
+      "Bringing essential business workflows together in systems designed for clearer, more connected work.",
+    icon: {
+      src: "/images/services/backend.png",
+      alt: "CRM & ERP illustration",
+    },
+    status: "draft",
+  },
+  {
+    id: "business-automation",
+    title: "Business Automation",
+    // DRAFT — NEEDS REVIEW: service-offering copy requires human sign-off.
+    description:
+      "Simplifying repeatable work with thoughtful automation designed around your team and business processes.",
+    icon: {
+      src: "/images/services/Businessautomation.png",
+      alt: "Business Automation illustration",
+    },
+    status: "draft",
+  },
+  {
+    id: "databases-data-science",
     title: "Databases & Data Science",
-    description: "Designing secure databases and transforming data into actionable intelligence for business growth.",
-    imageSrc: "/images/services/database.png",
-    imageAlt: "Databases & Data Science - Dev X Webflow Template",
-  },
-  {
-    title: "Servers & Cloud Infrastructure",
-    description: "End to end cloud infrastructure services with secure deployments, automated scaling, and continuous monitoring.",
-    imageSrc: "/images/services/cloud.png",
-    imageAlt: "Servers & Cloud Infrastructure - Dev X Webflow Template",
+    description:
+      "Designing secure databases and transforming data into actionable intelligence for business growth.",
+    icon: {
+      src: "/images/services/database.png",
+      alt: "Databases & Data Science - Dev X Webflow Template",
+    },
+    status: "existing",
   },
 ];

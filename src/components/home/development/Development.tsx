@@ -32,10 +32,10 @@ export default function Development() {
         </ScrollReveal>
 
         {/* Cards Grid Section */}
-        <StaggerContainer className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
+        <StaggerContainer className="grid items-stretch grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
           {servicesData.map((service, index) => (
             <StaggerItem
-              key={index}
+              key={service.id}
               className="h-full"
               preset="card"
             >
@@ -57,8 +57,8 @@ export default function Development() {
   <ScrollReveal className="absolute inset-0" preset="image">
     <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
       <Image
-        src={service.imageSrc}
-        alt={service.imageAlt}
+        src={service.icon.src}
+        alt={service.icon.alt}
         fill
         priority={index < 3}
         className="object-cover object-center"
