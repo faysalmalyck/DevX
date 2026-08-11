@@ -8,7 +8,8 @@
         "postinstall": "prisma generate",
         "export": "next build",
         "start": "next start",
-        "lint": "tsc --noEmit"
+        "lint": "tsc --noEmit",
+        "test": "vitest run"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.7.1",
@@ -47,15 +48,20 @@
     "devDependencies": {
         "@netlify/plugin-nextjs": "^5.15.12",
         "@tailwindcss/postcss": "^4.0.0",
+        "@testing-library/dom": "^10.4.1",
+        "@testing-library/react": "^16.3.2",
+        "@testing-library/user-event": "^14.6.3",
         "@types/aos": "^3.0.7",
         "@types/bcrypt": "^6.0.0",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
         "@types/react-slick": "^0.23.13",
+        "jsdom": "^29.1.1",
         "postcss": "^8",
         "puppeteer": "^25.4.0",
         "tailwindcss": "^4.0.0",
-        "typescript": "^5"
+        "typescript": "^5",
+        "vitest": "^4.1.10"
     }
 }

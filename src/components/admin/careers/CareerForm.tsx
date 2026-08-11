@@ -5,6 +5,16 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDown, ChevronUp, Plus, Trash2 } from "lucide-react";
 import { getClientCsrfToken } from "@/lib/auth/client-csrf";
+import {
+  careerCategories,
+  careerDepartments,
+  careerEmploymentTypes,
+  careerExperienceMonths,
+  careerExperienceYears,
+  careerWorkModes,
+  formatCareerExperience,
+  parseCareerExperience,
+} from "@/lib/careers/constants";
 import type { CareerContent } from "@/lib/careers/types";
 import { careerStatusLabels } from "@/lib/careers/status";
 import {
@@ -192,6 +202,10 @@ function fieldError(error?: { message?: string }): string | undefined {
   return error?.message;
 }
 
+function hasOption(options: readonly string[], value: string): boolean {
+  return options.includes(value);
+}
+
 export default function CareerForm({
   mode,
   career,
@@ -201,6 +215,9 @@ export default function CareerForm({
   const [loading, setLoading] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [slugEdited, setSlugEdited] = useState(mode === "edit");
+  const [experienceYears, setExperienceYears] = useState("");
+  const [experienceMonths, setExperienceMonths] = useState("0");
+  const [legacyExperience, setLegacyExperience] = useState<string | null>(null);
   const {
     control,
     register,
@@ -216,12 +233,22 @@ export default function CareerForm({
   });
   const hiringProcess = useFieldArray({ control, name: "hiringProcess" });
   const title = watch("title");
+  const category = watch("category");
+  const department = watch("department");
+  const employmentType = watch("employmentType");
+  const workMode = watch("workMode");
   const responsibilities = watch("responsibilities");
   const requirements = watch("requirements");
   const preferredQualifications = watch("preferredQualifications");
 
   useEffect(() => {
-    reset(toFormValues(career));
+    const values = toFormValues(career);
+    const parsedExperience = parseCareerExperience(values.experience);
+
+    reset(values);
+    setExperienceYears(parsedExperience ? String(parsedExperience.years) : "");
+    setExperienceMonths(parsedExperience ? String(parsedExperience.months) : "0");
+    setLegacyExperience(parsedExperience || !values.experience ? null : values.experience);
     setSlugEdited(mode === "edit");
     setSaveError(null);
   }, [career, mode, reset]);
@@ -234,6 +261,23 @@ export default function CareerForm({
 
   const setList = (name: ListName, values: string[]) => {
     setValue(name, values, { shouldDirty: true, shouldValidate: true });
+  };
+
+  const updateExperience = (years: string, months: string) => {
+    setExperienceYears(years);
+    setExperienceMonths(months);
+    setLegacyExperience(null);
+
+    if (!years) {
+      setValue("experience", "", { shouldDirty: true, shouldValidate: true });
+      return;
+    }
+
+    setValue(
+      "experience",
+      formatCareerExperience({ years: Number(years), months: Number(months) }),
+      { shouldDirty: true, shouldValidate: true },
+    );
   };
 
   const applyFieldErrors = (response: ApiError) => {
@@ -345,12 +389,36 @@ export default function CareerForm({
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Category
-          <input {...register("category")} className={inputClass} />
+          <select {...register("category")} className={inputClass}>
+            <option value="" disabled>
+              Select a category
+            </option>
+            {!hasOption(careerCategories, category) && category ? (
+              <option value={category}>Current: {category}</option>
+            ) : null}
+            {careerCategories.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
           {fieldError(errors.category) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.category)}</span> : null}
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Department
-          <input {...register("department")} className={inputClass} />
+          <select {...register("department")} className={inputClass}>
+            <option value="" disabled>
+              Select a department
+            </option>
+            {!hasOption(careerDepartments, department) && department ? (
+              <option value={department}>Current: {department}</option>
+            ) : null}
+            {careerDepartments.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
           {fieldError(errors.department) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.department)}</span> : null}
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
@@ -360,19 +428,80 @@ export default function CareerForm({
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Employment type
-          <input {...register("employmentType")} className={inputClass} />
+          <select {...register("employmentType")} className={inputClass}>
+            {!hasOption(careerEmploymentTypes, employmentType) && employmentType ? (
+              <option value={employmentType}>Current: {employmentType}</option>
+            ) : null}
+            {careerEmploymentTypes.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
           {fieldError(errors.employmentType) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.employmentType)}</span> : null}
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Work mode
-          <input {...register("workMode")} className={inputClass} />
+          <select {...register("workMode")} className={inputClass}>
+            <option value="" disabled>
+              Select a work mode
+            </option>
+            {!hasOption(careerWorkModes, workMode) && workMode ? (
+              <option value={workMode}>Current: {workMode}</option>
+            ) : null}
+            {careerWorkModes.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
           {fieldError(errors.workMode) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.workMode)}</span> : null}
         </label>
-        <label className="text-base font-semibold text-slate-700 dark:text-white">
+        <fieldset className="text-base font-semibold text-slate-700 dark:text-white">
           Experience
-          <input {...register("experience")} className={inputClass} />
+          <div className="mt-2 grid grid-cols-2 gap-3">
+            <label>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Years</span>
+              <select
+                aria-label="Experience years"
+                value={experienceYears}
+                onChange={(event) => updateExperience(event.target.value, experienceMonths)}
+                className={inputClass}
+              >
+                <option value="" disabled>
+                  Select years
+                </option>
+                {careerExperienceYears.map((year) => (
+                  <option key={year} value={year}>
+                    {year} {year === 1 ? "year" : "years"}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Months</span>
+              <select
+                aria-label="Experience months"
+                value={experienceMonths}
+                onChange={(event) => updateExperience(experienceYears, event.target.value)}
+                className={inputClass}
+              >
+                {careerExperienceMonths.map((month) => (
+                  <option key={month} value={month}>
+                    {month} {month === 1 ? "month" : "months"}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <input type="hidden" {...register("experience")} />
+          {legacyExperience ? (
+            <p className="mt-2 text-xs text-amber-700 dark:text-amber-300">
+              Current experience: {legacyExperience}. Choose years or months to replace it.
+            </p>
+          ) : null}
           {fieldError(errors.experience) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.experience)}</span> : null}
-        </label>
+        </fieldset>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Display order
           <input

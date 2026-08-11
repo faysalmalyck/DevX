@@ -357,6 +357,19 @@ enum TeamMemberStatus {
   PUBLISHED
 }
 
+enum TeamMemberDepartment {
+  EXECUTIVE
+  ENGINEERING
+  MOBILE
+  SALES
+  MARKETING
+}
+
+enum TeamMemberProfileStatus {
+  INCOMPLETE
+  COMPLETE
+}
+
 model Career {
   id                          String        @id @default(cuid())
   title                       String
@@ -437,25 +450,27 @@ model ResumeCleanup {
 }
 
 model TeamMember {
-  id           String           @id @default(cuid())
-  name         String
-  slug         String           @unique
-  role         String
-  department   String
-  bio          String
-  image        String?
-  email        String?          @unique
-  phone        String?
-  linkedinUrl  String?
-  facebookUrl  String?
-  twitterUrl   String?
-  githubUrl    String?
-  displayOrder Int              @default(0)
-  featured     Boolean          @default(false)
-  status       TeamMemberStatus @default(DRAFT)
-  createdAt    DateTime         @default(now())
-  updatedAt    DateTime         @updatedAt
-  deletedAt    DateTime?
+  id               String                  @id @default(cuid())
+  name             String?
+  slug             String?                 @unique
+  role             String?
+  department       TeamMemberDepartment?
+  legacyDepartment String?
+  bio              String?
+  image            String?
+  email            String?                 @unique
+  phone            String?
+  linkedinUrl      String?
+  facebookUrl      String?
+  twitterUrl       String?
+  githubUrl        String?
+  displayOrder     Int                     @default(0)
+  featured         Boolean                 @default(false)
+  status           TeamMemberStatus        @default(DRAFT)
+  profileStatus    TeamMemberProfileStatus @default(INCOMPLETE)
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  deletedAt        DateTime?
 
   @@index([status, deletedAt, displayOrder])
   @@index([deletedAt, displayOrder, createdAt])

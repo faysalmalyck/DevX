@@ -1,12 +1,18 @@
-import type { Prisma } from "@prisma/client";
+import type {
+  Prisma,
+  TeamMemberDepartment,
+  TeamMemberProfileStatus,
+} from "@prisma/client";
+import { teamMemberDepartmentLabel } from "@/lib/validations/team";
 
 export type TeamMemberRecord = {
   id: string;
-  name: string;
-  slug: string;
-  role: string;
-  department: string;
-  bio: string;
+  name: string | null;
+  slug: string | null;
+  role: string | null;
+  department: TeamMemberDepartment | null;
+  legacyDepartment: string | null;
+  bio: string | null;
   image: string | null;
   email: string | null;
   phone: string | null;
@@ -17,6 +23,7 @@ export type TeamMemberRecord = {
   displayOrder: number;
   featured: boolean;
   status: "DRAFT" | "PUBLISHED";
+  profileStatus: TeamMemberProfileStatus;
   createdAt: string;
   updatedAt: string;
 };
@@ -42,16 +49,64 @@ export const publicTeamMemberSelect = {
   featured: true,
 } satisfies Prisma.TeamMemberSelect;
 
-export type PublicTeamMember = Prisma.TeamMemberGetPayload<{
+type PublicTeamMemberSource = Prisma.TeamMemberGetPayload<{
   select: typeof publicTeamMemberSelect;
 }>;
 
+export type PublicTeamMember = Omit<
+  PublicTeamMemberSource,
+  "name" | "slug" | "role" | "department" | "bio"
+> & {
+  name: string;
+  slug: string;
+  role: string;
+  department: string;
+  bio: string;
+};
+
+export function serializePublicTeamMember(member: PublicTeamMemberSource): PublicTeamMember | null {
+  if (!member.name || !member.slug || !member.role || !member.department || !member.bio) {
+    return null;
+  }
+
+  const department = teamMemberDepartmentLabel(member.department);
+  if (!department) return null;
+
+  return {
+    ...member,
+    name: member.name,
+    slug: member.slug,
+    role: member.role,
+    department,
+    bio: member.bio,
+  };
+}
+
 export function serializeTeamMember(member: {
-  id: string; name: string; slug: string; role: string; department: string; bio: string;
-  image: string | null; email: string | null; phone: string | null; linkedinUrl: string | null;
-  facebookUrl: string | null; twitterUrl: string | null; githubUrl: string | null;
-  displayOrder: number; featured: boolean; status: "DRAFT" | "PUBLISHED";
-  createdAt: Date; updatedAt: Date;
+  id: string;
+  name: string | null;
+  slug: string | null;
+  role: string | null;
+  department: TeamMemberDepartment | null;
+  legacyDepartment: string | null;
+  bio: string | null;
+  image: string | null;
+  email: string | null;
+  phone: string | null;
+  linkedinUrl: string | null;
+  facebookUrl: string | null;
+  twitterUrl: string | null;
+  githubUrl: string | null;
+  displayOrder: number;
+  featured: boolean;
+  status: "DRAFT" | "PUBLISHED";
+  profileStatus: TeamMemberProfileStatus;
+  createdAt: Date;
+  updatedAt: Date;
 }): TeamMemberRecord {
-  return { ...member, createdAt: member.createdAt.toISOString(), updatedAt: member.updatedAt.toISOString() };
+  return {
+    ...member,
+    createdAt: member.createdAt.toISOString(),
+    updatedAt: member.updatedAt.toISOString(),
+  };
 }

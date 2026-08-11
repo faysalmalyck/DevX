@@ -1,10 +1,58 @@
 import { z } from "zod";
 
+export const TEAM_MEMBER_DEPARTMENTS = [
+  { value: "EXECUTIVE", label: "Executive" },
+  { value: "ENGINEERING", label: "Engineering" },
+  { value: "MOBILE", label: "Mobile" },
+  { value: "SALES", label: "Sales" },
+  { value: "MARKETING", label: "Marketing" },
+] as const;
+
+export const TEAM_MEMBER_DEPARTMENT_VALUES = TEAM_MEMBER_DEPARTMENTS.map(
+  ({ value }) => value,
+) as [
+  (typeof TEAM_MEMBER_DEPARTMENTS)[number]["value"],
+  ...(typeof TEAM_MEMBER_DEPARTMENTS)[number]["value"][],
+];
+
+export type TeamMemberDepartment = (typeof TEAM_MEMBER_DEPARTMENTS)[number]["value"];
+
+const departmentValues = new Set<string>(TEAM_MEMBER_DEPARTMENT_VALUES);
+const departmentByLabel = new Map(
+  TEAM_MEMBER_DEPARTMENTS.map(({ label, value }) => [label.toLowerCase(), value]),
+);
+
+export function normalizeTeamMemberDepartment(value: unknown): TeamMemberDepartment | null {
+  if (typeof value !== "string") return null;
+
+  const normalized = value.trim();
+  if (!normalized) return null;
+  if (departmentValues.has(normalized)) return normalized as TeamMemberDepartment;
+
+  return departmentByLabel.get(normalized.toLowerCase()) ?? null;
+}
+
+export function teamMemberDepartmentLabel(
+  department: TeamMemberDepartment | null | undefined,
+) {
+  return TEAM_MEMBER_DEPARTMENTS.find(({ value }) => value === department)?.label ?? null;
+}
+
 const requiredText = (label: string, min: number, max: number) =>
-  z.string().trim().min(min, `${label} is required.`).max(max, `${label} must be ${max} characters or fewer.`);
+  z
+    .string()
+    .trim()
+    .min(min, `${label} is required.`)
+    .max(max, `${label} must be ${max} characters or fewer.`);
 
 const optionalText = (max: number) =>
-  z.string().trim().max(max, `Must be ${max} characters or fewer.`).optional().nullable().transform((value) => value || null);
+  z
+    .string()
+    .trim()
+    .max(max, `Must be ${max} characters or fewer.`)
+    .optional()
+    .nullable()
+    .transform((value) => value || null);
 
 const optionalHttpUrl = z
   .string()
@@ -42,24 +90,111 @@ const optionalImage = z
   .nullable()
   .transform((value) => value || null);
 
-export const teamMemberStatusSchema = z.enum(["DRAFT", "PUBLISHED"]);
+const optionalEmail = z
+  .string()
+  .trim()
+  .email("Enter a valid email address.")
+  .max(320, "Email must be 320 characters or fewer.")
+  .optional()
+  .nullable()
+  .or(z.literal(""))
+  .transform((value) => value || null);
 
-export const teamMemberSchema = z.object({
-  name: requiredText("Name", 2, 160),
-  slug: z.string().trim().min(2, "Slug is required.").max(160, "Slug must be 160 characters or fewer.").regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers, and single hyphens only."),
-  role: requiredText("Role", 2, 160),
-  department: requiredText("Department", 2, 100),
-  bio: requiredText("Biography", 10, 5_000),
+const blankToNull = (value: unknown) =>
+  value === null || value === undefined || (typeof value === "string" && value.trim() === "")
+    ? null
+    : value;
+
+const optionalDraftText = (label: string, min: number, max: number) =>
+  z.preprocess(blankToNull, requiredText(label, min, max).nullable());
+
+const optionalDraftSlug = z.preprocess(
+  blankToNull,
+  z
+    .string()
+    .trim()
+    .min(2, "Slug is required.")
+    .max(160, "Slug must be 160 characters or fewer.")
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers, and single hyphens only.")
+    .nullable(),
+);
+
+export const teamMemberDepartmentSchema = z.enum(TEAM_MEMBER_DEPARTMENT_VALUES);
+
+const optionalDraftDepartment = z.preprocess((value) => {
+  const normalized = normalizeTeamMemberDepartment(value);
+  if (normalized) return normalized;
+  return blankToNull(value);
+}, teamMemberDepartmentSchema.nullable());
+
+const completeRequiredText = (label: string, min: number, max: number) =>
+  z.preprocess(
+    (value) => (typeof value === "string" ? value : ""),
+    requiredText(label, min, max),
+  );
+
+const completeSlug = z.preprocess(
+  (value) => (typeof value === "string" ? value : ""),
+  z
+    .string()
+    .trim()
+    .min(2, "Slug is required.")
+    .max(160, "Slug must be 160 characters or fewer.")
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers, and single hyphens only."),
+);
+
+const completeDepartment = z.preprocess((value) => {
+  if (typeof value !== "string") return "";
+  return normalizeTeamMemberDepartment(value) ?? value.trim();
+}, z
+  .string()
+  .min(1, "Department is required.")
+  .refine((value) => departmentValues.has(value), "Choose a supported department."));
+
+export const teamMemberProfileSchema = z.object({
+  name: completeRequiredText("Name", 2, 160),
+  slug: completeSlug,
+  role: completeRequiredText("Role", 2, 160),
+  department: completeDepartment,
+  bio: completeRequiredText("Biography", 10, 5_000),
   image: optionalImage,
-  email: z.string().trim().email("Enter a valid email address.").max(320, "Email must be 320 characters or fewer.").optional().nullable().or(z.literal("")).transform((value) => value || null),
+  email: optionalEmail,
   phone: optionalText(60),
   linkedinUrl: optionalHttpUrl,
   facebookUrl: optionalHttpUrl,
   twitterUrl: optionalHttpUrl,
   githubUrl: optionalHttpUrl,
-  displayOrder: z.number().int("Display order must be a whole number.").min(0, "Display order cannot be negative.").max(1_000_000, "Display order is too large."),
-  featured: z.boolean(),
-  status: teamMemberStatusSchema,
 });
 
-export type TeamMemberFormValues = z.infer<typeof teamMemberSchema>;
+export type TeamMemberProfileValues = z.input<typeof teamMemberProfileSchema>;
+
+export const teamMemberStatusSchema = z.enum(["DRAFT", "PUBLISHED"]);
+
+/**
+ * A draft accepts omitted required profile fields, but it still rejects values
+ * that are present and invalid. The profile status is derived separately from
+ * the stricter `teamMemberProfileSchema`.
+ */
+export const teamMemberDraftSchema = z.object({
+  name: optionalDraftText("Name", 2, 160),
+  slug: optionalDraftSlug,
+  role: optionalDraftText("Role", 2, 160),
+  department: optionalDraftDepartment,
+  bio: optionalDraftText("Biography", 10, 5_000),
+  image: optionalImage,
+  email: optionalEmail,
+  phone: optionalText(60),
+  linkedinUrl: optionalHttpUrl,
+  facebookUrl: optionalHttpUrl,
+  twitterUrl: optionalHttpUrl,
+  githubUrl: optionalHttpUrl,
+  displayOrder: z.number().int("Display order must be a whole number.").min(0, "Display order cannot be negative.").max(1_000_000, "Display order is too large.").optional().default(0),
+  featured: z.boolean().optional().default(false),
+  status: teamMemberStatusSchema.optional().default("DRAFT"),
+});
+
+// Preserve the existing export name for callers while allowing incomplete
+// drafts to be saved deliberately.
+export const teamMemberSchema = teamMemberDraftSchema;
+
+export type TeamMemberFormValues = z.infer<typeof teamMemberDraftSchema>;
