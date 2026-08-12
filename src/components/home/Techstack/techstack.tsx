@@ -87,6 +87,8 @@ export default function TechStackSection() {
           </div>
         </div>
       </ScrollReveal>
+
+      <div className="mt-36 mb-12 h-px w-full bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-slate-600 sm:mt-28 sm:mb-12" />
     </section>
   )
 }
