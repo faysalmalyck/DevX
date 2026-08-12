@@ -6,12 +6,6 @@ export default function TechStackSection() {
   return (
     <section className="relative bg-white dark:bg-[#181d2b] py-16 overflow-hidden transition-colors duration-300">
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center mb-16">
-        <ScrollReveal delay={0.04} preset="copy">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping motion-reduce:animate-none" />
-            Our Tech Stack
-          </div>
-        </ScrollReveal>
         <ScrollReveal preset="heading">
           <h2 className="text-5xl tracking-tight text-slate-900 dark:text-white sm:text-5xl sm:leading-[1.15] mb-6">
             Technologies That Power{' '}

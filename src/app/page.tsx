@@ -10,6 +10,7 @@ import TechStackSection from '@/components/home/Techstack/techstack';
 import TestimonialsSection from '@/components/home/testimonials/Testimonials';
 import ReadytoContact from "@/components/home/ready-to-contact/Ready";
 import ArticleSlider from '@/components/home/article-slider/ArticleSlider';
+import FinalCTA from '@/components/home/final-cta/FinalCTA';
 export const metadata: Metadata = {
   title: {
     absolute: "DevX | Transforming Ideas Into Digital Products",
@@ -28,12 +29,10 @@ export default function Home() {
       <TechStackSection/>
       <WhyDevX />
       <CaseStudiesSection/>
+      <ReadytoContact/>
       <TestimonialsSection/>
       <ArticleSlider />
-      <ReadytoContact/>
-      
-      
-      
+      <FinalCTA />
     </main>
   )
 }

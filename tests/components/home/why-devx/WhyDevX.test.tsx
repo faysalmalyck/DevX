@@ -52,7 +52,7 @@ describe("WHY DEVX cards", () => {
     expect(whyDevxData.every((card) => card.description.length > 0)).toBe(true);
   });
 
-  it("renders an accessible, responsive equal-height card grid", () => {
+  it("renders an accessible, responsive equal-height carousel", () => {
     render(<WhyDevX />);
 
     expect(
@@ -68,16 +68,16 @@ describe("WHY DEVX cards", () => {
 
     whyDevxData.forEach((card) => {
       expect(screen.getByAltText(card.image.alt).getAttribute("src")).toBe(card.image.src);
-      expect(screen.getByText(card.description)).toBeTruthy();
+      expect(screen.getAllByText(card.description)).toHaveLength(3);
     });
 
-    const grid = document.querySelector(".grid");
-    expect(grid?.className).toContain("grid-cols-1");
-    expect(grid?.className).toContain("sm:grid-cols-2");
-    expect(grid?.className).toContain("lg:grid-cols-3");
-    expect(grid?.className).toContain("items-stretch");
-    expect(document.querySelectorAll("article.h-full.flex.flex-col")).toHaveLength(6);
-    expect(document.querySelectorAll("article > .aspect-square")).toHaveLength(6);
+    const carousel = screen.getByTestId("why-devx-carousel");
+    expect(carousel.className).toContain("overflow-x-auto");
+    expect(carousel.querySelectorAll("[data-card]")).toHaveLength(18);
+    expect(carousel.querySelectorAll("[data-card][aria-hidden='true']")).toHaveLength(12);
+    expect(screen.getByRole("button", { name: "Previous reason" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Next reason" })).toBeTruthy();
+    expect(document.querySelectorAll("article.h-full.flex.flex-col")).toHaveLength(18);
     expect(document.querySelectorAll("article > .h-px")).toHaveLength(0);
   });
 });

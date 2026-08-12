@@ -5,66 +5,76 @@ import { ScrollReveal } from "@/components/motion";
 
 export default function CtaSection() {
   return (
-    <section className="py-12">
-      <div className="mx-auto max-w-[1220px] px-4 sm:px-6 lg:px-8">
+    <section
+      aria-labelledby="ready-to-connect-heading"
+      className="mt-15 mb-15 relative overflow-hidden bg-white py-16 text-white transition-colors duration-300 dark:bg-[#181d2b] sm:py-20 lg:py-24"
+    >
+      <div className="relative mx-auto w-full max-w-[1220px] px-4 sm:px-6 lg:px-8">
         <div className="relative">
-          {/* Blue breathing glow behind */}
+          {/* Complete 360-degree Breathing Glow behind the card using blue-600 */}
           <div
             aria-hidden="true"
-            className="absolute left-1/2 top-1/2 h-[414px] w-full max-w-[1220px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-brand/40 opacity-70 blur-[64px] animate-pulse motion-reduce:animate-none"
+            className="pointer-events-none absolute -inset-3 hidden animate-pulse rounded-3xl bg-gradient-to-r from-blue-600/60 via-blue-500/60 to-blue-600/60 opacity-80 blur-2xl duration-[4000ms] dark:block"
           />
 
-          {/* Main Card with #181d2c background & narrow border */}
-          <ScrollReveal
-            className="relative flex h-[414px] w-full items-center justify-center overflow-hidden rounded-lg border border-slate-700/60 bg-[#181d2c] px-8 md:px-12 lg:px-16"
-            preset="card"
-          >
-            {/* Content Layer */}
-            <div className="relative z-10 grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-12">
-              {/* Heading Text */}
-              <div className="lg:col-span-7">
-                <ScrollReveal
-                  className="mx-auto max-w-md text-center lg:mx-0 lg:text-left"
-                  delay={0.12}
-                  preset="left"
-                >
-                  <h2 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-3xl tracking-tight text-transparent sm:text-5xl">
-                    Ready to start working{" "}
-                    <span className="text-brand dark:text-brand">
-                      together
-                    </span>{" "}
-                    with <span className="whitespace-nowrap">our team?</span>
+          <ScrollReveal preset="card" className="relative">
+            <div className="relative overflow-hidden rounded-2xl border border-[#3b4458] bg-[#181e2d] shadow-[0_28px_100px_rgba(2,6,23,0.35)]">
+              {/* Inside Curve Lines with Synchronized Breathing Animation */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 1220 414"
+                preserveAspectRatio="none"
+                className="pointer-events-none absolute inset-0 hidden h-full w-full animate-pulse text-[#697185]/45 duration-[4000ms] lg:block"
+              >
+                <path
+                  d="M355 84H540C570 84 594 108 594 138V322"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M924 0C890 88 895 191 940 255C997 334 1093 356 1220 319"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
+
+              <div className="relative z-10 grid min-h-[28rem] items-center gap-10 px-7 py-14 sm:px-10 sm:py-16 lg:h-[414px] lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-14 lg:px-16 lg:py-0">
+                <ScrollReveal className="max-w-[650px]" delay={0.1} preset="left">
+                  <h2
+                    id="ready-to-connect-heading"
+                    className="text-3xl font-normal leading-[1.14] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.5rem]"
+                  >
+                    Ready to start working
+                    <br className="hidden lg:block" />{" "}
+                    <span className="text-brand">together</span> with our team?
                   </h2>
                 </ScrollReveal>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="lg:col-span-5">
                 <ScrollReveal
-                  className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-end"
-                  delay={0.24}
+                  className="flex flex-col gap-4 sm:flex-row lg:justify-end lg:gap-9"
+                  delay={0.2}
                   preset="right"
                 >
                   <Link
-              href="/contact"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full bg-brand px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-white transition-all duration-200 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:scale-95"
-            >
-              Contact us
-            </Link>
-            <Link
-              href="/services"
-              className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-white dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
-            >
-              Case Studies
-            </Link>
+                    href="/contact"
+                    className="inline-flex h-[4.25rem] w-full items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,99,235,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:translate-y-0 sm:w-40"
+                  >
+                    Contact us
+                  </Link>
+                  <Link
+                    href="/services"
+                    className="inline-flex h-[4.25rem] w-full items-center justify-center rounded-full bg-[#252e46] px-8 text-lg font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#303b58] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:translate-y-0 sm:w-44"
+                  >
+                    Our services
+                  </Link>
                 </ScrollReveal>
               </div>
             </div>
           </ScrollReveal>
         </div>
       </div>
-      <div style={{ height: "180px" }}></div>
-      <div className="my-12 h-px w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-slate-600 to-transparent" />
     </section>
   );
 }
