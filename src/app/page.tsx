@@ -2,6 +2,7 @@ import React from 'react'
 import { Metadata } from "next";
 import Hero from '@/components/home/Hero';
 import Development from '@/components/home/development/Development';
+import WhyDevX from '@/components/home/why-devx/WhyDevX';
 import Agile from '@/components/home/agile-dev/Agile';
 import ProcessSection from '@/components/home/Process/ProcessSection';
 import CaseStudiesSection from '@/components/home/case-study/CaseStudy';
@@ -24,8 +25,9 @@ export default function Home() {
       <Development />
       <Agile/>
       <ProcessSection/>
-      <CaseStudiesSection/>
       <TechStackSection/>
+      <WhyDevX />
+      <CaseStudiesSection/>
       <TestimonialsSection/>
       <ArticleSlider />
       <ReadytoContact/>

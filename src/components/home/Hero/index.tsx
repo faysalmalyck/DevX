@@ -67,12 +67,9 @@ export default function HeroSection() {
               
               {/* Main Heading */}
               <ScrollReveal preset="hero">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white tracking-tight leading-[1.15]">
-                  Your Trusted Software{" "}
-                  <span className="text-brand dark:text-brand block sm:inline">
-                    {"<"}Development{"/>"}
-                  </span>{" "}
-                  Partner.
+                <h1 className="text-balance text-4xl leading-[1.15] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+                 We Build the Technology Behind{" "}
+                   <span className="text-brand dark:text-brand">Growing Businesses</span>.
                 </h1>
               </ScrollReveal>
 
@@ -82,8 +79,8 @@ export default function HeroSection() {
                 delay={0.12}
                 preset="copy"
               >
-                <p className="text-gray-600 dark:text-white text-base sm:text-base leading-relaxed mb-6 sm:mb-8">
-                  Trusted by growing businesses to architect, develop, and scale secure, high performance software systems built for long term success.
+                <p className="mb-6 text-balance text-base leading-relaxed text-gray-600 dark:text-white sm:mb-8">
+                  From strategy and design to scalable development, we help ambitious businesses turn complex ideas into reliable digital products that drive measurable growth.
                 </p>
               </ScrollReveal>
 
@@ -97,7 +94,7 @@ export default function HeroSection() {
                   href="/contact"
                   className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-lg font-semibold text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95"
                 >
-                  Contact us
+                  Book a Free Consultation
                 </Link>
                 <Link
                   href="/services"

@@ -9,17 +9,17 @@ import {
 export default function TeamSection() {
   const perks = [
     {
-      text: "Deliver your MVP in 4 weeks ",
-      noWrapText: "or less",
-    },
-    {
-      text: "Efficient and scalable infrastructure",
-      noWrapText: "",
-    },
-    {
-      text: "Affordable cost ",
-      noWrapText: "for startups",
-    },
+text: "Launch your MVP in 4 weeks ",
+noWrapText: "or less",
+},
+{
+text: "Build on scalable, reliable infrastructure",
+noWrapText: "",
+},
+{
+text: "Cost-effective solutions for growing businesses",
+noWrapText: " ",
+},
   ];
 
   return (
@@ -31,8 +31,8 @@ export default function TeamSection() {
           preset="heading"
         >
           <h2 className="py-2 sm:py-4 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug">
-            We are an agile team of passionate{" "}
-            <span className="text-brand dark:text-brand">developers</span>
+            We Are an Agile Team Delivering{" "}
+            <span className="text-brand dark:text-brand">Business-Focused</span>{" "}Solutions.
           </h2>
         </ScrollReveal>
 

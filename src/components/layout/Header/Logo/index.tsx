@@ -22,7 +22,7 @@ const Logo: React.FC = () => {
   return (
     <Link
       href="/"
-      className="flex min-w-0 shrink-0 items-center transition-transform duration-300 hover:-translate-y-0.5"
+      className="group flex min-w-0 shrink-0 items-center"
     >
       <Image
         src={logoSrc}
@@ -31,7 +31,7 @@ const Logo: React.FC = () => {
         height={50}
         quality={100}
         priority
-        className="h-10 w-auto max-w-[180px] transition-all duration-300 ease-in-out hover:scale-105 hover:brightness-110 sm:h-12"
+        className="h-10 w-auto max-w-[180px] transition-opacity duration-300 ease-in-out group-hover:opacity-75 sm:h-12"
       />
     </Link>
   );

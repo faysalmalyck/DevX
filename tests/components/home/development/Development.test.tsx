@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 import Development from "@/components/home/development/Development";
@@ -89,16 +89,20 @@ describe("Development service cards", () => {
   it("renders an informational, responsive, equal-height card grid", () => {
     render(<Development />);
 
+    const grid = document.querySelector(".grid");
+    expect(grid).toBeTruthy();
     expect(
-      screen.getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent),
+      within(grid as HTMLElement)
+        .getAllByRole("heading", { level: 3 })
+        .map((heading) => heading.textContent),
     ).toEqual(servicesData.map((service) => service.title));
     expect(screen.getAllByRole("img")).toHaveLength(9);
     expect(screen.getAllByRole("link")).toHaveLength(1);
-    expect(screen.getByRole("link", { name: "Get Pricing" }).getAttribute("href")).toBe(
-      "/pricing",
-    );
+    expect(screen.getByText("Already Using Software? We Can Make It Better.")).toBeTruthy();
+    expect(
+      screen.getByRole("link", { name: "Improve My Software" }).getAttribute("href"),
+    ).toBe("/contact");
 
-    const grid = document.querySelector(".grid");
     expect(grid?.className).toContain("grid-cols-1");
     expect(grid?.className).toContain("sm:grid-cols-2");
     expect(grid?.className).toContain("lg:grid-cols-3");

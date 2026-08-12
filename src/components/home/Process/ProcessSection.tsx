@@ -34,7 +34,7 @@ export default function ProcessSection() {
   highlightText: 'Continuous growth.',
   imageOn: '/images/Process/scale-on.png',
   imageOff: '/images/Process/scale-off.png',
-  offsetClass: 'lg:mt-40',
+  offsetClass: 'mt-0',
 },
   ];
 
@@ -47,9 +47,9 @@ export default function ProcessSection() {
           preset="heading"
         >
           <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
-            We have a simple, yet{' '}
-            <span className="text-brand dark:text-brand">bulletproof</span> and{' '}
-            <span className="text-brand dark:text-brand">effective</span> process.
+            We deliver through a simple, yet{' '}
+            <span className="text-brand dark:text-brand">Powerful</span> and{' '}
+            <span className="text-brand dark:text-brand">Effective</span> Process.
           </h2>
         </ScrollReveal>
 
