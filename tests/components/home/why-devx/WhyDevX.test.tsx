@@ -17,7 +17,9 @@ vi.mock("@/components/motion", () => ({
     <div className={className}>{children}</div>
   ),
   StaggerContainer: ({ children, className }: MotionWrapperProps) => (
-    <div className={className}>{children}</div>
+    <div data-testid="why-devx-motion-container" className={className}>
+      {children}
+    </div>
   ),
   StaggerItem: ({ children, className }: MotionWrapperProps) => (
     <div className={className}>{children}</div>
@@ -55,12 +57,13 @@ describe("WHY DEVX cards", () => {
   it("renders an accessible, responsive equal-height carousel", () => {
     render(<WhyDevX />);
 
-    expect(
-      screen.getByRole("heading", {
-        level: 2,
-        name: "Why Growing Businesses Choose DevX.",
-      }),
-    ).toBeTruthy();
+    const heading = screen.getByRole("heading", {
+      level: 2,
+      name: "Why Growing Businesses Choose DevX.",
+    });
+    expect(heading).toBeTruthy();
+    expect(heading.className).toContain("text-4xl");
+    expect(heading.className).toContain("md:text-5xl");
     expect(
       screen.getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent),
     ).toEqual(whyDevxData.map((card) => card.title));
@@ -72,9 +75,15 @@ describe("WHY DEVX cards", () => {
     });
 
     const carousel = screen.getByTestId("why-devx-carousel");
-    expect(carousel.className).toContain("overflow-x-auto");
+    const motionContainer = screen.getByTestId("why-devx-motion-container");
+    expect(motionContainer.className).toContain("w-full");
+    expect(motionContainer.className).toContain("overflow-x-auto");
     expect(carousel.querySelectorAll("[data-card]")).toHaveLength(18);
     expect(carousel.querySelectorAll("[data-card][aria-hidden='true']")).toHaveLength(12);
+    const card = carousel.querySelector("[data-card]");
+    expect(card?.parentElement?.className).toContain("sm:w-[48vw]");
+    expect(card?.parentElement?.className).toContain("md:w-[40vw]");
+    expect(card?.parentElement?.className).toContain("lg:w-[31vw]");
     expect(screen.getByRole("button", { name: "Previous reason" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "Next reason" })).toBeTruthy();
     expect(document.querySelectorAll("article.h-full.flex.flex-col")).toHaveLength(18);

@@ -7,6 +7,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/motion";
+import AmbientFlare from "@/components/shared/AmbientFlare";
 
 export default function HeroSection() {
   const logos = [
@@ -54,10 +55,7 @@ export default function HeroSection() {
         </ScrollReveal>
       </div>
 
-      {/* Decorative Radial Background Accent */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[800px] sm:h-[800px] bg-brand/10 rounded-full blur-[80px] sm:blur-[160px]" />
-      </div>
+      <AmbientFlare className="-right-[38%] top-20 sm:-right-[24%] sm:top-16 md:-right-[14%] md:top-14 lg:-right-[6%] lg:top-12" />
 
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">

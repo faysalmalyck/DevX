@@ -1,13 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import { revealVariants, staggerContainerVariants, type RevealPreset } from "./variants";
 
 type StaggerContainerProps = {
   children: ReactNode;
   className?: string;
   amount?: number;
+  containerRef?: Ref<HTMLDivElement>;
 };
 
 type StaggerItemProps = {
@@ -20,11 +21,13 @@ export function StaggerContainer({
   children,
   className,
   amount = 0.2,
+  containerRef,
 }: StaggerContainerProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
+      ref={containerRef}
       className={className}
       variants={staggerContainerVariants}
       initial={shouldReduceMotion ? false : "hidden"}

@@ -26,6 +26,24 @@ describe("Ready to contact CTA", () => {
       "/services",
     );
 
+    const contactAction = screen.getByRole("link", { name: "Contact us" });
+    const servicesAction = screen.getByRole("link", { name: "Our services" });
+    expect(contactAction.className).toContain("max-w-[280px]");
+    expect(servicesAction.className).toContain("max-w-[280px]");
+    expect(contactAction.className).toContain("sm:w-40");
+    expect(servicesAction.className).toContain("sm:w-44");
+
+    const section = screen
+      .getByRole("heading", { level: 2 })
+      .closest("section");
+    const flare = section?.querySelector("[data-ambient-flare]");
+    expect(section?.className).toContain("isolate");
+    expect(section?.className).toContain("overflow-hidden");
+    expect(section?.querySelectorAll("[data-ambient-flare]")).toHaveLength(1);
+    expect(flare?.getAttribute("data-variant")).toBe("banner");
+    expect(flare?.className).not.toContain("hidden");
+    expect(flare?.parentElement?.querySelector(".z-10")).toBeTruthy();
+
     const decorativeSvg = document.querySelector("svg[aria-hidden='true']");
     expect(decorativeSvg?.querySelectorAll("path")).toHaveLength(2);
   });

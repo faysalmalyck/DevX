@@ -2,22 +2,19 @@
 
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
+import AmbientFlare from "@/components/shared/AmbientFlare";
 
 export default function CtaSection() {
   return (
     <section
       aria-labelledby="ready-to-connect-heading"
-      className="mt-15 mb-15 relative overflow-hidden bg-white py-16 text-white transition-colors duration-300 dark:bg-[#181d2b] sm:py-20 lg:py-24"
+      className="mt-15 mb-15 relative isolate overflow-hidden bg-white py-16 text-white transition-colors duration-300 dark:bg-[#181d2b] sm:py-20 lg:py-24"
     >
       <div className="relative mx-auto w-full max-w-[1220px] px-4 sm:px-6 lg:px-8">
         <div className="relative">
-          {/* Complete 360-degree Breathing Glow behind the card using blue-600 */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-3 hidden animate-pulse rounded-3xl bg-gradient-to-r from-blue-600/60 via-blue-500/60 to-blue-600/60 opacity-80 blur-2xl duration-[4000ms] dark:block"
-          />
+          <AmbientFlare variant="banner" />
 
-          <ScrollReveal preset="card" className="relative">
+          <ScrollReveal preset="card" className="relative z-10">
             <div className="relative overflow-hidden rounded-2xl border border-[#3b4458] bg-[#181e2d] shadow-[0_28px_100px_rgba(2,6,23,0.35)]">
               {/* Inside Curve Lines with Synchronized Breathing Animation */}
               <svg
@@ -53,19 +50,19 @@ export default function CtaSection() {
                 </ScrollReveal>
 
                 <ScrollReveal
-                  className="flex flex-col gap-4 sm:flex-row lg:justify-end lg:gap-9"
+                  className="flex flex-col items-center gap-4 sm:flex-row sm:items-center lg:justify-end lg:gap-9"
                   delay={0.2}
                   preset="right"
                 >
                   <Link
                     href="/contact"
-                    className="inline-flex h-[4.25rem] w-full items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,99,235,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:translate-y-0 sm:w-40"
+                    className="inline-flex h-[4.25rem] w-full max-w-[280px] items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,99,235,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:translate-y-0 sm:w-40 sm:max-w-none"
                   >
                     Contact us
                   </Link>
                   <Link
                     href="/services"
-                    className="inline-flex h-[4.25rem] w-full items-center justify-center rounded-full bg-[#252e46] px-8 text-lg font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#303b58] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:translate-y-0 sm:w-44"
+                    className="inline-flex h-[4.25rem] w-full max-w-[280px] items-center justify-center rounded-full bg-[#252e46] px-8 text-lg font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#303b58] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:translate-y-0 sm:w-44 sm:max-w-none"
                   >
                     Our services
                   </Link>
