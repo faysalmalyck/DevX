@@ -18,13 +18,13 @@ export default function FinalCTA() {
             preset="heading"
           >
             <h2 className="text-balance text-4xl font-medium leading-snug tracking-tight sm:text-4xl sm:leading-tight md:text-5xl">
-              Ready to Fix What&apos;s Slowing Your{" "}
-              <span className="text-brand">Business Down?</span>
+              Your Business Problem Deserves a <span className="text-brand">better Software Solution</span>.
             </h2>
+
             <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
-              Tell us where work gets stuck. We&apos;ll help you decide whether
-              the right next step is new software, modernization, automation,
-              or integration.
+              Tell us what is slowing your business down. We&apos;ll help you
+              identify the right software, automation, integration, or
+              modernization approach to solve it.
             </p>
           </ScrollReveal>
 
@@ -43,16 +43,21 @@ export default function FinalCTA() {
                     className="h-8 w-8 text-white/90"
                     strokeWidth={1.5}
                   />
+
                   <h3 className="mt-5 text-2xl font-semibold tracking-tight">
-                    Let&apos;s Fix Your Process
+                    Discuss Your Business Challenge
                   </h3>
-                  <p className="mt-3 max-w-xs text-sm leading-6 text-white/90">
-                    Share the bottlenecks, manual work, or disconnected
-                    systems creating friction across the business.
+
+                  <p className="mt-3 max-w-md text-sm leading-6 text-white/90">
+                    Share the problem, bottleneck, or manual process you want to
+                    improve. We&apos;ll evaluate your needs and recommend a
+                    practical solution built around your business, goals, and
+                    existing systems.
                   </p>
                 </div>
+
                 <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white">
-                  Start the conversation
+                  Get a Solution Recommendation
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </button>
@@ -62,17 +67,25 @@ export default function FinalCTA() {
                 className="group relative flex flex-col justify-between gap-8 border-t border-slate-200 bg-white px-8 py-10 text-left transition duration-300 hover:bg-slate-50 focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand dark:border-slate-700/80 dark:bg-[#12151f] dark:hover:bg-[#161a27] dark:focus-visible:outline-blue-400 sm:px-10 sm:py-12 md:border-l md:border-t-0"
               >
                 <div>
-                  <Layers3 className="h-8 w-8 text-brand" strokeWidth={1.5} />
+                  <Layers3
+                    className="h-8 w-8 text-brand"
+                    strokeWidth={1.5}
+                  />
+
                   <h3 className="mt-5 text-2xl font-semibold tracking-tight">
-                    Explore Our Services
+                    Find the Right Solution
                   </h3>
-                  <p className="mt-3 max-w-xs text-sm leading-6 text-slate-500 dark:text-slate-400">
-                    Review the service paths, then select the challenges and
-                    capabilities that fit your business.
+
+                  <p className="mt-3 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">
+                    Explore solutions for inefficient workflows, disconnected
+                    systems, outdated software, scaling challenges, and new
+                    digital products. See how we can solve the problems holding
+                    your business back.
                   </p>
                 </div>
+
                 <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
-                  View services
+                  Explore Business Solutions
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </Link>
@@ -85,7 +98,10 @@ export default function FinalCTA() {
         </div>
       </section>
 
-      <LeadCaptureDialog request={leadRequest} onClose={() => setLeadRequest(null)} />
+      <LeadCaptureDialog
+        request={leadRequest}
+        onClose={() => setLeadRequest(null)}
+      />
     </>
   );
 }

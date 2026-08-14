@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ServicesExperience from "@/components/services/ServicesExperience";
 import HeroSub from "@/components/shared/HeroSub";
-import FinalCTA from "@/components/home/final-cta/FinalCTA";
 
 export const metadata: Metadata = {
   title: "Business Problems & Services Experience",
@@ -20,7 +19,6 @@ export default function BusinessProblemsPage() {
         description="Select your operational challenges, legacy constraints, automation goals, and integration needs to build a custom solution blueprint."
       />
       <ServicesExperience />
-      <FinalCTA />
     </>
   );
 }
