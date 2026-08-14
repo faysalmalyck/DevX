@@ -75,7 +75,7 @@ export default function AccountDropdown() {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 mt-3 w-72 rounded-2xl border border-white/70 bg-transparent p-2 text-slate-900 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl dark:border-white/[0.16] dark:text-white dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06]"
+          className="absolute right-0 mt-3 w-72 rounded-lg border border-white/70 bg-transparent p-2 text-slate-900 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl dark:border-white/[0.16] dark:text-white dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06]"
         >
           <div className="p-3">
             <div className="flex items-center gap-3">
@@ -100,7 +100,7 @@ export default function AccountDropdown() {
               role="menuitem"
               href={href}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 transition hover:bg-slate-950/[0.05] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-white dark:hover:bg-white/[0.08] dark:focus-visible:ring-cyan-300"
+              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-slate-700 transition hover:bg-slate-950/[0.05] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-white dark:hover:bg-white/[0.08] dark:focus-visible:ring-cyan-300"
             >
               <Icon className="h-4 w-4" />
               {label}
@@ -112,7 +112,7 @@ export default function AccountDropdown() {
           <button
             role="menuitem"
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-base font-bold text-rose-500 transition hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-bold text-rose-500 transition hover:bg-rose-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
           >
             <LogOut className="h-4 w-4" />
             Logout

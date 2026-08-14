@@ -169,7 +169,7 @@ export default function CartModal() {
             type="button"
             onClick={closeCart}
             aria-label="Close cart"
-            className="grid h-9 w-9 place-items-center rounded-xl text-white transition hover:bg-white/[0.09] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+            className="grid h-9 w-9 place-items-center rounded-lg text-white transition hover:bg-white/[0.09] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
           >
             <X className="h-5 w-5 stroke-[1.75]" />
           </button>

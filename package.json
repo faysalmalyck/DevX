@@ -21,6 +21,8 @@
         "@supabase/supabase-js": "^2.112.0",
         "axios": "^1.7.2",
         "bcrypt": "^6.0.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
         "date-fns": "^3.4.0",
         "framer-motion": "^12.43.0",
         "gray-matter": "^4.0.3",
@@ -43,6 +45,7 @@
         "remark": "^15.0.1",
         "remark-html": "^16.0.1",
         "slick-carousel": "^1.8.1",
+        "tailwind-merge": "^3.6.0",
         "zod": "^4.4.3"
     },
     "devDependencies": {

@@ -72,7 +72,7 @@ export default function CaseStudiesSection() {
 
         {/* Decorative Background Glows */}
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-brand/10 dark:bg-brand/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-lg blur-3xl -z-10 pointer-events-none" />
         </div>
 
         {/* Action Buttons Container */}

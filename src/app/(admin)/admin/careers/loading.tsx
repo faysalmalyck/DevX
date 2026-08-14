@@ -7,14 +7,14 @@ export default function Loading() {
         {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={index}
-            className="h-28 rounded-2xl bg-slate-200 dark:bg-slate-700"
+            className="h-28 rounded-lg bg-slate-200 dark:bg-slate-700"
           />
         ))}
       </div>
 
-      <div className="h-12 rounded-xl bg-slate-200 dark:bg-slate-700" />
+      <div className="h-12 rounded-lg bg-slate-200 dark:bg-slate-700" />
 
-      <div className="h-96 rounded-2xl bg-slate-200 dark:bg-slate-700" />
+      <div className="h-96 rounded-lg bg-slate-200 dark:bg-slate-700" />
     </div>
   );
 }

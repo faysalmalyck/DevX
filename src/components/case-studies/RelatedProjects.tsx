@@ -12,10 +12,10 @@ import {
 
 function RelatedProjectCard({ study }: { study: CaseStudy }) {
   return (
-    <HoverCard className="h-full rounded-2xl">
+    <HoverCard className="h-full rounded-lg">
       <Link
         href={`/case-studies/${study.slug}`}
-        className="group bg-[#111726]/60 border border-slate-800 p-8 sm:p-10 rounded-2xl flex h-full flex-col justify-between min-h-[280px] hover:border-slate-600 hover:shadow-[0_0_25px_rgba(148,163,184,0.15)] hover:bg-[#111726] transition-all duration-300 backdrop-blur-sm"
+        className="group bg-[#111726]/60 border border-slate-800 p-8 sm:p-10 rounded-lg flex h-full flex-col justify-between min-h-[280px] hover:border-slate-600 hover:shadow-[0_0_25px_rgba(148,163,184,0.15)] hover:bg-[#111726] transition-all duration-300 backdrop-blur-sm"
       >
         <div>
           <ScrollReveal

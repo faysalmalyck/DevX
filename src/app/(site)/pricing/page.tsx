@@ -21,7 +21,7 @@ export default function PricingPage() {
         </ScrollReveal>
 
         {/* Cards Joined Horizontally */}
-        <StaggerContainer className="grid grid-cols-1 items-stretch overflow-hidden rounded-2xl border border-slate-200 shadow-xl md:grid-cols-3 md:rounded-lg dark:border-slate-600/80 dark:shadow-2xl">
+        <StaggerContainer className="grid grid-cols-1 items-stretch overflow-hidden rounded-lg border border-slate-200 shadow-xl md:grid-cols-3 md:rounded-lg dark:border-slate-600/80 dark:shadow-2xl">
           {plans.map((plan, index) => {
             const features = plan.features ?? [];
             const isFirst = index === 0;

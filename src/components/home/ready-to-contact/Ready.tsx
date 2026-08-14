@@ -15,7 +15,7 @@ export default function CtaSection() {
           <AmbientFlare variant="banner" />
 
           <ScrollReveal preset="card" className="relative z-10">
-            <div className="relative overflow-hidden rounded-2xl border border-[#3b4458] bg-[#181e2d] shadow-[0_28px_100px_rgba(2,6,23,0.35)]">
+            <div className="relative overflow-hidden rounded-lg border border-[#3b4458] bg-[#181e2d] shadow-[0_28px_100px_rgba(2,6,23,0.35)]">
               {/* Inside Curve Lines with Synchronized Breathing Animation */}
               <svg
                 aria-hidden="true"

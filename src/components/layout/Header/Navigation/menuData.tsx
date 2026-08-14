@@ -7,10 +7,10 @@ export const headerData: HeaderItem[] = [
     href: "/about",
     submenu: [
       { label: "About us", href: "/about" },
-      { label: "Team", href: "/about/team" },
+      { label: "Team", href: "/team" },
       { label: "Careers", href: "/careers" },
-      { label: "Core values", href: "/about/core-value" },
-      { label: "Case studies", href: "/about/case-study" },
+      { label: "Core values", href: "/core-values" },
+      { label: "Case studies", href: "/case-studies" },
       { label: "Blog", href: "/blog" },
     ],
   },
@@ -19,8 +19,9 @@ export const headerData: HeaderItem[] = [
     href: "/services",
     submenu: [
       { label: "Services", href: "/services" },
-      { label: "Pricing", href: "/pricing" },
-    ]
+      { label: "Business Problem", href: "/services/business-problems" },
+      { label: "System Integration", href: "/services/system-integration" },
+    ],
   },
   {
     label: "Clients",

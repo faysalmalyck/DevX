@@ -84,11 +84,11 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
           <StaggerContainer className="lg:col-span-6 flex flex-col gap-1 sm:gap-2 w-full">
             {featuredList.map((article) => (
               <StaggerItem key={article.id} preset="right">
-                <HoverCard className="rounded-xl">
+                <HoverCard className="rounded-lg">
                   <Link
                 key={article.id}
                 href={`/blog/${article.slug}`}
-                    className="group flex flex-col sm:flex-row gap-4 sm:gap-5 py-2 px-2 sm:p-2 items-start rounded-xl transition-all duration-300"
+                    className="group flex flex-col sm:flex-row gap-4 sm:gap-5 py-2 px-2 sm:p-2 items-start rounded-lg transition-all duration-300"
                   >
                     <ScrollReveal
                       preset="image"

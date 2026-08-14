@@ -52,8 +52,8 @@ export default function PricingDetailSkeleton() {
             </div>
             <Skeleton className="mt-8 h-12 w-32 rounded-full" />
             <div className="mt-8 space-y-4">
-              <Skeleton className="h-14 rounded-2xl" />
-              <Skeleton className="h-14 rounded-2xl" />
+              <Skeleton className="h-14 rounded-lg" />
+              <Skeleton className="h-14 rounded-lg" />
             </div>
             <Skeleton className="mt-6 h-14 w-full rounded-full" />
           </div>

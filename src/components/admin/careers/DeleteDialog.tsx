@@ -47,7 +47,7 @@ export default function DeleteDialog({
         role="alertdialog"
         aria-modal="true"
         aria-labelledby="delete-career-title"
-        className="relative z-10 w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+        className="relative z-10 w-full max-w-md rounded-lg border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
       >
         <button
           type="button"
@@ -59,7 +59,7 @@ export default function DeleteDialog({
           <X className="h-4 w-4" />
         </button>
         <div className="flex items-start gap-4 pr-8">
-          <div className="rounded-xl bg-rose-100 p-3 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300">
+          <div className="rounded-lg bg-rose-100 p-3 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300">
             <AlertTriangle className="h-5 w-5" />
           </div>
           <div>
@@ -74,7 +74,7 @@ export default function DeleteDialog({
           </div>
         </div>
         {error ? (
-          <p className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-base text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
+          <p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-base text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
             {error}
           </p>
         ) : null}
@@ -84,7 +84,7 @@ export default function DeleteDialog({
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="rounded-xl border border-slate-300 px-4 py-2.5 text-base font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
+            className="rounded-lg border border-slate-300 px-4 py-2.5 text-base font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
           >
             Cancel
           </button>
@@ -92,7 +92,7 @@ export default function DeleteDialog({
             type="button"
             onClick={onConfirm}
             disabled={loading}
-            className="rounded-xl bg-rose-600 px-4 py-2.5 text-base font-semibold text-white transition hover:bg-rose-700 disabled:cursor-wait disabled:opacity-60"
+            className="rounded-lg bg-rose-600 px-4 py-2.5 text-base font-semibold text-white transition hover:bg-rose-700 disabled:cursor-wait disabled:opacity-60"
           >
             {loading ? "Deleting…" : "Delete job"}
           </button>

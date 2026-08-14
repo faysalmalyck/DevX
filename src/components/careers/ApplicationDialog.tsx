@@ -556,7 +556,7 @@ export default function ApplicationDialog({
         aria-labelledby={inputId("title")}
         aria-describedby={inputId("description")}
         tabIndex={-1}
-        className="relative flex h-full max-h-full w-full max-w-3xl flex-col self-end overflow-hidden rounded-t-2xl border border-slate-200 bg-white shadow-2xl dark:border-[#2e3850] dark:bg-[#232c3e] sm:my-auto sm:h-auto sm:max-h-[calc(100dvh-7rem)] sm:self-auto sm:rounded-2xl lg:max-h-[calc(100dvh-8rem)]"
+        className="relative flex h-full max-h-full w-full max-w-3xl flex-col self-end overflow-hidden rounded-t-2xl border border-slate-200 bg-white shadow-2xl dark:border-[#2e3850] dark:bg-[#232c3e] sm:my-auto sm:h-auto sm:max-h-[calc(100dvh-7rem)] sm:self-auto sm:rounded-lg lg:max-h-[calc(100dvh-8rem)]"
       >
         <div className="h-full min-h-0 overflow-y-auto overscroll-contain p-4 pb-6 sm:h-auto sm:max-h-[calc(100dvh-7rem)] sm:p-6 lg:max-h-[calc(100dvh-8rem)] lg:p-7">
           <div className="mb-5 flex items-start justify-between gap-4 border-b border-slate-200 pb-4 dark:border-[#2e3850]">
@@ -610,7 +610,7 @@ export default function ApplicationDialog({
               {formError && (
                 <div
                   role="alert"
-                  className="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-base font-medium text-rose-700 dark:border-rose-400/25 dark:bg-rose-400/10 dark:text-rose-200"
+                  className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-base font-medium text-rose-700 dark:border-rose-400/25 dark:bg-rose-400/10 dark:text-rose-200"
                 >
                   {formError}
                 </div>
@@ -784,7 +784,7 @@ export default function ApplicationDialog({
                     onChange={(event) => updateTextField("coverLetter", event.target.value)}
                     aria-invalid={Boolean(fieldErrors.coverLetter)}
                     aria-describedby={fieldErrors.coverLetter ? inputId("coverLetter-error") : undefined}
-                    className={`${getInputClassName(Boolean(fieldErrors.coverLetter))} min-h-28 resize-y rounded-xl py-3 sm:min-h-32`}
+                    className={`${getInputClassName(Boolean(fieldErrors.coverLetter))} min-h-28 resize-y rounded-lg py-3 sm:min-h-32`}
                     placeholder="Tell us why you are a good fit for this role..."
                   />
                 </FormField>
@@ -809,7 +809,7 @@ export default function ApplicationDialog({
                   />
 
                   {resume ? (
-                    <div className="flex items-center gap-2.5 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-[#2e3850] dark:bg-[#232b3e] sm:px-4 sm:py-3">
+                    <div className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-[#2e3850] dark:bg-[#232b3e] sm:px-4 sm:py-3">
                       <FileText className="size-5 shrink-0 text-brand dark:text-brand" aria-hidden="true" />
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-base font-semibold text-slate-800 dark:text-slate-100">{resume.name}</p>
@@ -828,7 +828,7 @@ export default function ApplicationDialog({
                       <button
                         type="button"
                         onClick={removeResume}
-                        className="shrink-0 rounded-xl p-1.5 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                        className="shrink-0 rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
                         aria-label="Remove selected resume"
                       >
                         <X className="size-4" aria-hidden="true" />
@@ -840,7 +840,7 @@ export default function ApplicationDialog({
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
                       aria-describedby={fieldErrors.resume ? inputId("resume-error") : inputId("resume-hint")}
-                      className={`group flex w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed p-4 text-center transition focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-offset-[#232c3e] sm:p-5 ${
+                      className={`group flex w-full flex-col items-center justify-center rounded-lg border-2 border-dashed p-4 text-center transition focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-offset-[#232c3e] sm:p-5 ${
                         fieldErrors.resume
                           ? "border-rose-400 bg-rose-50/50 hover:bg-rose-50 dark:border-rose-400/40 dark:bg-rose-400/5 dark:hover:bg-rose-400/10"
                           : "border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100 dark:border-[#39435b] dark:bg-[#232b3e] dark:hover:border-slate-500 dark:hover:bg-[#273046]"

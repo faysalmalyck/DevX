@@ -143,7 +143,7 @@ export default function CareerManagement({
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Career Management</h1>
           <p className="mt-2 text-slate-500 dark:text-slate-400">Manage the public job records, publishing state, ordering, and featured jobs.</p>
         </div>
-        <button onClick={handleCreate} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand">
+        <button onClick={handleCreate} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand">
           <Plus className="h-4 w-4" />
           Add job
         </button>

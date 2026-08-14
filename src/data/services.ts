@@ -10,7 +10,7 @@ export type ServiceCard = {
   title: string;
   description: string;
   icon: ServiceCardIcon;
-  href?: string;
+  href: string;
   status: "existing" | "draft";
 };
 
@@ -25,6 +25,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/customsoftware.png",
       alt: "Custom Software illustration",
     },
+    href: "/services/custom-software",
     status: "draft",
   },
   {
@@ -36,6 +37,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/website.png",
       alt: "Frontend Development - Dev X Webflow Template",
     },
+    href: "/services/web-applications",
     status: "existing",
   },
   {
@@ -47,6 +49,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/mobileapp.png",
       alt: "Mobile App Development - Dev X Webflow Template",
     },
+    href: "/services/mobile-applications",
     status: "existing",
   },
   {
@@ -59,6 +62,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/saas.png",
       alt: "SaaS illustration",
     },
+    href: "/services/saas",
     status: "draft",
   },
   {
@@ -71,6 +75,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/ai.png",
       alt: "AI & Machine Learning - Dev X Webflow Template",
     },
+    href: "/services/ai-solutions",
     status: "existing",
   },
   {
@@ -83,6 +88,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/legecymodernization.png",
       alt: "Legacy Modernization illustration",
     },
+    href: "/services/legacy-modernization",
     status: "draft",
   },
   {
@@ -95,6 +101,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/backend.png",
       alt: "CRM & ERP illustration",
     },
+    href: "/services/crm-erp",
     status: "draft",
   },
   {
@@ -107,6 +114,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/Businessautomation.png",
       alt: "Business Automation illustration",
     },
+    href: "/services/business-automation",
     status: "draft",
   },
   {
@@ -118,6 +126,7 @@ export const servicesData: readonly ServiceCard[] = [
       src: "/images/services/database.png",
       alt: "Databases & Data Science - Dev X Webflow Template",
     },
+    href: "/services/databases-data-science",
     status: "existing",
   },
 ];

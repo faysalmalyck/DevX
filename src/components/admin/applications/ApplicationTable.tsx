@@ -32,7 +32,7 @@ export default function ApplicationTable({
   onDelete,
 }: ApplicationTableProps) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#111827]">
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#111827]">
       <div className="overflow-x-auto">
         <table className="min-w-[1050px] w-full text-left text-base">
           <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-[0.12em] text-slate-500 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-500">

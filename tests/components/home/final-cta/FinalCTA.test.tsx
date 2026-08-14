@@ -9,39 +9,44 @@ vi.mock("@/components/motion", () => ({
 }));
 
 describe("FinalCTA", () => {
-  it("opens a consultation form from the consultation action", async () => {
+  it("opens a process form and links to the services diagnostic", async () => {
     const user = userEvent.setup();
     render(<FinalCTA />);
 
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Have a Business Problem Technology Can Solve?",
+        name: "Ready to Fix What's Slowing Your Business Down?",
       }),
     ).toBeTruthy();
+    expect(screen.queryByText("Start with the problem")).toBeNull();
+    expect(
+      screen
+        .getByRole("link", { name: /explore our services/i })
+        .getAttribute("href"),
+    ).toBe("/services#business-problems");
+    const ctaCard = screen.getByTestId("final-cta-card");
+    for (const token of [
+      "rounded-lg",
+      "border-slate-200",
+      "shadow-sm",
+      "hover:border-brand/40",
+      "hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)]",
+      "dark:border-slate-700/80",
+      "dark:hover:border-blue-400/50",
+    ]) {
+      expect(ctaCard.className).toContain(token);
+    }
 
-    await user.click(screen.getByRole("button", { name: /book a free consultation/i }));
+    await user.click(screen.getByRole("button", { name: /fix your process/i }));
 
     expect(
-      screen.getByRole("dialog", { name: "Book a Free Consultation" }),
+      screen.getByRole("dialog", { name: "Let’s Fix Your Process" }),
     ).toBeTruthy();
     expect(screen.getByLabelText(/^name/i)).toBeTruthy();
     expect(screen.getByLabelText(/^email/i)).toBeTruthy();
-    expect(screen.getByLabelText(/what would you like to solve/i)).toBeTruthy();
-    expect(screen.getByRole("button", { name: "Prepare consultation email" })).toBeTruthy();
-  });
-
-  it("opens a project-specific form from the project action", async () => {
-    const user = userEvent.setup();
-    render(<FinalCTA />);
-
-    await user.click(screen.getByRole("button", { name: /tell us about your project/i }));
-
-    expect(
-      screen.getByRole("dialog", { name: "Tell Us About Your Project" }),
-    ).toBeTruthy();
-    expect(screen.getByLabelText(/project details/i)).toBeTruthy();
-    expect(screen.getByRole("button", { name: "Prepare project email" })).toBeTruthy();
+    expect(screen.getByLabelText(/what should work better/i)).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Prepare process email" })).toBeTruthy();
     expect(
       screen.getByText("This opens your default email app. Nothing is sent until you choose Send there."),
     ).toBeTruthy();
@@ -51,7 +56,7 @@ describe("FinalCTA", () => {
     const user = userEvent.setup();
     render(<FinalCTA />);
 
-    await user.click(screen.getByRole("button", { name: /book a free consultation/i }));
+    await user.click(screen.getByRole("button", { name: /fix your process/i }));
     await user.click(screen.getByRole("button", { name: "Close enquiry form" }));
 
     expect(screen.queryByRole("dialog")).toBeNull();
@@ -61,8 +66,8 @@ describe("FinalCTA", () => {
     const user = userEvent.setup();
     render(<FinalCTA />);
 
-    await user.click(screen.getByRole("button", { name: /tell us about your project/i }));
-    await user.click(screen.getByRole("button", { name: "Prepare project email" }));
+    await user.click(screen.getByRole("button", { name: /fix your process/i }));
+    await user.click(screen.getByRole("button", { name: "Prepare process email" }));
 
     expect(screen.getByText("Enter your name (2–120 characters).")).toBeTruthy();
     expect(screen.getByText("Enter a valid email address.")).toBeTruthy();

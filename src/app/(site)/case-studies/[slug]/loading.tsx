@@ -7,7 +7,7 @@ import {
 
 function RelatedCaseStudySkeleton() {
   return (
-    <article className="flex min-h-[280px] h-full flex-col justify-between rounded-2xl border border-slate-800 bg-[#111726]/60 p-8 sm:p-10">
+    <article className="flex min-h-[280px] h-full flex-col justify-between rounded-lg border border-slate-800 bg-[#111726]/60 p-8 sm:p-10">
       <div>
         <Skeleton className="mb-6 h-8 w-36 rounded-lg" />
         <HeadingSkeleton className="h-8 w-11/12" />

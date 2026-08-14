@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 import Development from "@/components/home/development/Development";
 import { servicesData } from "@/data/services";
+import { serviceSolutionSlugs } from "@/data/service-solutions";
 
 type MotionWrapperProps = {
   children: ReactNode;
@@ -84,9 +85,24 @@ describe("Development service cards", () => {
     expect(servicesData[6]?.icon).toMatchObject({
       src: "/images/services/backend.png",
     });
+    expect(servicesData.map((service) => service.href)).toEqual([
+      "/services/custom-software",
+      "/services/web-applications",
+      "/services/mobile-applications",
+      "/services/web-applications",
+      "/services/ai-solutions",
+      "/services/legacy-modernization",
+      "/services/crm-erp",
+      "/services/business-automation",
+      "/services/system-integration",
+    ]);
+    for (const service of servicesData) {
+      const slug = service.href?.replace("/services/", "");
+      expect(serviceSolutionSlugs).toContain(slug);
+    }
   });
 
-  it("renders an informational, responsive, equal-height card grid", () => {
+  it("renders a linked, responsive, equal-height card grid", () => {
     render(<Development />);
 
     const grid = document.querySelector(".grid");
@@ -97,16 +113,35 @@ describe("Development service cards", () => {
         .map((heading) => heading.textContent),
     ).toEqual(servicesData.map((service) => service.title));
     expect(screen.getAllByRole("img")).toHaveLength(9);
-    expect(screen.getAllByRole("link")).toHaveLength(1);
+    const serviceLinks = document.querySelectorAll("[data-service-card-link]");
+    expect(serviceLinks).toHaveLength(9);
+    expect(
+      Array.from(serviceLinks).map((link) => link.getAttribute("href")),
+    ).toEqual(servicesData.map((service) => service.href));
+    expect(screen.getAllByRole("link")).toHaveLength(10);
     expect(screen.getByText("Already Using Software? We Can Make It Better.")).toBeTruthy();
     expect(
       screen.getByRole("link", { name: "Improve My Software" }).getAttribute("href"),
-    ).toBe("/contact");
+    ).toBe("/services");
 
     expect(grid?.className).toContain("grid-cols-1");
     expect(grid?.className).toContain("sm:grid-cols-2");
     expect(grid?.className).toContain("lg:grid-cols-3");
     expect(grid?.className).toContain("items-stretch");
     expect(document.querySelectorAll(".h-full.flex.flex-col")).toHaveLength(9);
+  });
+
+  it("can hide the embedded modernization CTA without changing the service grid", () => {
+    render(<Development showImprovementCta={false} />);
+
+    expect(screen.getAllByRole("img")).toHaveLength(9);
+    expect(
+      screen.queryByText("Already Using Software? We Can Make It Better."),
+    ).toBeNull();
+    expect(
+      screen.queryByRole("link", { name: "Improve My Software" }),
+    ).toBeNull();
+    expect(document.querySelectorAll("[data-service-card-link]")).toHaveLength(9);
+    expect(screen.getAllByRole("link")).toHaveLength(9);
   });
 });

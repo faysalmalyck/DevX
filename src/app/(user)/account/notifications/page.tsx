@@ -87,7 +87,7 @@ export default function NotificationsPage() {
         {unreadCount > 0 && (
           <button
             onClick={markAllRead}
-            className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer"
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer"
           >
             <CheckCheck className="h-4 w-4" /> Mark all read
           </button>
@@ -95,12 +95,12 @@ export default function NotificationsPage() {
       </div>
 
       {/* Filter */}
-      <div className="flex gap-2 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-2">
+      <div className="flex gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-2">
         {(["all", "unread"] as const).map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`rounded-xl px-4 py-2 text-xs font-bold transition cursor-pointer ${
+            className={`rounded-lg px-4 py-2 text-xs font-bold transition cursor-pointer ${
               filter === f
                 ? "bg-primary text-white shadow-lg shadow-primary/20"
                 : "text-zinc-400 hover:text-white hover:bg-white/5"
@@ -114,10 +114,10 @@ export default function NotificationsPage() {
       {/* List */}
       {loading ? (
         <div className="space-y-3 animate-pulse">
-          {[1, 2, 3, 4, 5].map((i) => <div key={i} className="h-20 rounded-2xl bg-white/5 border border-white/5" />)}
+          {[1, 2, 3, 4, 5].map((i) => <div key={i} className="h-20 rounded-lg bg-white/5 border border-white/5" />)}
         </div>
       ) : visible.length === 0 ? (
-        <div className="flex flex-col items-center py-16 text-center rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
+        <div className="flex flex-col items-center py-16 text-center rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
           <Bell className="h-12 w-12 text-zinc-700 mb-4" />
           <p className="text-zinc-500 font-semibold">
             {filter === "unread" ? "No unread notifications" : "No notifications yet"}
@@ -132,13 +132,13 @@ export default function NotificationsPage() {
             return (
               <div
                 key={notif.id}
-                className={`group flex items-start gap-4 rounded-2xl border p-4 transition-all ${
+                className={`group flex items-start gap-4 rounded-lg border p-4 transition-all ${
                   !notif.read
                     ? "border-primary/15 bg-primary/5 hover:border-primary/30"
                     : "border-white/5 bg-black/10 hover:bg-white/[0.02]"
                 }`}
               >
-                <div className={`mt-0.5 flex-shrink-0 rounded-xl border p-2 ${t.bg}`}>
+                <div className={`mt-0.5 flex-shrink-0 rounded-lg border p-2 ${t.bg}`}>
                   <Icon className={`h-4 w-4 ${t.color}`} />
                 </div>
 

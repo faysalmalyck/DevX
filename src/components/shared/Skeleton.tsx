@@ -26,7 +26,7 @@ export function HeadingSkeleton({ className }: SkeletonProps) {
 }
 
 export function ImageSkeleton({ className }: SkeletonProps) {
-  return <Skeleton className={joinClasses("aspect-[4/3] rounded-xl", className)} />;
+  return <Skeleton className={joinClasses("aspect-[4/3] rounded-lg", className)} />;
 }
 
 export function PageHeaderSkeleton() {
@@ -49,7 +49,7 @@ export function PageHeaderSkeleton() {
 
 export function CardSkeleton({ withImage = false }: { withImage?: boolean }) {
   return (
-    <article className="overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-[0_10px_28px_rgba(15,23,42,0.04)] dark:border-slate-700/70 dark:bg-[#243042] dark:shadow-none">
+    <article className="overflow-hidden rounded-lg border border-slate-200/80 bg-white shadow-[0_10px_28px_rgba(15,23,42,0.04)] dark:border-slate-700/70 dark:bg-[#243042] dark:shadow-none">
       {withImage ? (
         <ImageSkeleton className="aspect-[16/10] rounded-none" />
       ) : (
@@ -105,17 +105,17 @@ export function SplitSectionSkeleton() {
             <TextSkeleton className="w-4/5" />
           </div>
           <div className="mt-8 grid grid-cols-2 gap-4">
-            <div className="rounded-xl border border-slate-200/80 bg-white p-4 dark:border-slate-700/70 dark:bg-[#243042]">
+            <div className="rounded-lg border border-slate-200/80 bg-white p-4 dark:border-slate-700/70 dark:bg-[#243042]">
               <Skeleton className="h-4 w-2/3" />
               <Skeleton className="mt-3 h-7 w-1/2" />
             </div>
-            <div className="rounded-xl border border-slate-200/80 bg-white p-4 dark:border-slate-700/70 dark:bg-[#243042]">
+            <div className="rounded-lg border border-slate-200/80 bg-white p-4 dark:border-slate-700/70 dark:bg-[#243042]">
               <Skeleton className="h-4 w-2/3" />
               <Skeleton className="mt-3 h-7 w-1/2" />
             </div>
           </div>
         </div>
-        <ImageSkeleton className="aspect-[16/11] rounded-xl" />
+        <ImageSkeleton className="aspect-[16/11] rounded-lg" />
       </div>
     </section>
   );
@@ -123,13 +123,13 @@ export function SplitSectionSkeleton() {
 
 export function FormSkeleton() {
   return (
-    <div className="rounded-xl border border-slate-200/80 bg-white p-6 shadow-[0_10px_28px_rgba(15,23,42,0.04)] dark:border-slate-700/70 dark:bg-[#243042] dark:shadow-none sm:p-8">
+    <div className="rounded-lg border border-slate-200/80 bg-white p-6 shadow-[0_10px_28px_rgba(15,23,42,0.04)] dark:border-slate-700/70 dark:bg-[#243042] dark:shadow-none sm:p-8">
       <HeadingSkeleton className="h-8 w-56" />
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Skeleton className="h-14 rounded-xl" />
-        <Skeleton className="h-14 rounded-xl" />
-        <Skeleton className="h-14 rounded-xl sm:col-span-2" />
-        <Skeleton className="h-32 rounded-xl sm:col-span-2" />
+        <Skeleton className="h-14 rounded-lg" />
+        <Skeleton className="h-14 rounded-lg" />
+        <Skeleton className="h-14 rounded-lg sm:col-span-2" />
+        <Skeleton className="h-32 rounded-lg sm:col-span-2" />
       </div>
       <Skeleton className="mt-6 h-14 w-44 rounded-full" />
     </div>

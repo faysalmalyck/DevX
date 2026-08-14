@@ -2,7 +2,14 @@
 
 import { useId, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { HeaderItem } from '../../../../types/menu';
+import {
+  isNavigationHrefActive,
+  isNavigationParentActive,
+  splitNavigationHref,
+  useLocationHash,
+} from '@/components/layout/Header/Navigation/navigationState';
 
 interface MobileHeaderLinkProps {
   item: HeaderItem;
@@ -19,11 +26,15 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
 }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const submenuId = useId();
+  const pathname = usePathname();
+  const hash = useLocationHash();
 
   const selectedHref = activeHref;
-  const isParentActive =
-    selectedHref === item.href ||
-    (item.submenu?.some((subItem) => selectedHref === subItem.href) ?? false);
+  const isPreviewing = selectedHref !== null && selectedHref !== undefined;
+  const isParentActive = isPreviewing
+    ? selectedHref === item.href ||
+      (item.submenu?.some((subItem) => selectedHref === subItem.href) ?? false)
+    : isNavigationParentActive(item, pathname);
 
   const baseStyle =
     'group flex w-full items-center justify-between rounded-[2rem] border px-4 py-3.5 text-left text-base font-medium transition-all duration-200 outline-none touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950';
@@ -55,6 +66,7 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
             }}
             aria-expanded={submenuOpen}
             aria-controls={submenuId}
+            aria-current={isParentActive ? 'page' : undefined}
             className={isParentActive ? activeStyle : inactiveStyle}
           >
             <span>{item.label}</span>
@@ -87,12 +99,24 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
               className="ml-4 mt-2 w-full space-y-1 border-l border-slate-950/10 pl-4 pr-1 animate-reveal-up dark:border-white/10"
             >
               {item.submenu.map((subItem, index) => {
-                const isSubActive = selectedHref === subItem.href;
+                const isSubActive = isPreviewing
+                  ? selectedHref === subItem.href
+                  : isNavigationHrefActive(subItem.href, pathname, hash);
+                const { hash: subItemHash } = splitNavigationHref(
+                  subItem.href,
+                );
 
                 return (
                   <Link
                     key={`${subItem.href}-${index}`}
                     href={subItem.href}
+                    aria-current={
+                      isSubActive
+                        ? subItemHash
+                          ? 'location'
+                          : 'page'
+                        : undefined
+                    }
                     onMouseEnter={() => onActiveChange?.(subItem.href)}
                     onClick={() => {
                       onActiveChange?.(subItem.href);
@@ -114,6 +138,7 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
       ) : (
         <Link
           href={item.href}
+          aria-current={isParentActive ? 'page' : undefined}
           onClick={() => {
             onActiveChange?.(item.href);
             handleLinkClick();

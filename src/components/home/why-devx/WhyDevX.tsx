@@ -93,9 +93,6 @@ export default function WhyDevX() {
 
       {/* Full-bleed track with breakpoint scaling */}
       <div data-testid="why-devx-carousel" className="relative w-full">
-        {/* The motion observer and its staggered children stay direct siblings.
-            The scroll container is viewport-wide, so its 20% in-view threshold
-            is reachable at every breakpoint. */}
         <StaggerContainer
           containerRef={trackRef}
           className="flex w-full gap-4 overflow-x-auto px-4 pb-4 transition-all duration-300 sm:gap-6 sm:px-6 lg:gap-8 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

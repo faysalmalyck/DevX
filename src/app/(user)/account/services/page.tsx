@@ -87,8 +87,8 @@ export default function ServicesPage() {
           { label: "Completed", value: completed, icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
           { label: "Avg. Progress", value: `${avgProgress}%`, icon: BarChart3, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
         ].map(({ label, value, icon: Icon, color, bg }) => (
-          <div key={label} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
-            <div className={`inline-flex rounded-xl border p-2.5 mb-3 ${bg}`}>
+          <div key={label} className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
+            <div className={`inline-flex rounded-lg border p-2.5 mb-3 ${bg}`}>
               <Icon className={`h-5 w-5 ${color}`} />
             </div>
             <p className="text-3xl font-black text-white">{loading ? "–" : value}</p>
@@ -98,7 +98,7 @@ export default function ServicesPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-3">
+      <div className="flex flex-wrap gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-3">
         {["ALL", "IN_PROGRESS", "PENDING", "REVIEW", "COMPLETED", "CANCELLED"].map((f) => {
           const labels: Record<string, string> = { ALL: "All", IN_PROGRESS: "In Progress", PENDING: "Pending", REVIEW: "In Review", COMPLETED: "Completed", CANCELLED: "Cancelled" };
           return (
@@ -120,10 +120,10 @@ export default function ServicesPage() {
       {/* Services grid */}
       {loading ? (
         <div className="grid gap-4 sm:grid-cols-2 animate-pulse">
-          {[1, 2, 3, 4].map((i) => <div key={i} className="h-52 rounded-2xl bg-white/5 border border-white/5" />)}
+          {[1, 2, 3, 4].map((i) => <div key={i} className="h-52 rounded-lg bg-white/5 border border-white/5" />)}
         </div>
       ) : visible.length === 0 ? (
-        <div className="flex flex-col items-center py-16 text-center rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
+        <div className="flex flex-col items-center py-16 text-center rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
           <Heart className="h-12 w-12 text-zinc-700 mb-4" />
           <p className="text-zinc-500 font-semibold">No services found</p>
           <p className="mt-1 text-xs text-zinc-600">Contact us to request a new solution.</p>
@@ -138,11 +138,11 @@ export default function ServicesPage() {
             return (
               <div
                 key={service.id}
-                className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl hover:border-primary/30 transition-all"
+                className="group rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl hover:border-primary/30 transition-all"
               >
                 <div className="mb-4 flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-2xl">
+                    <div className="rounded-lg border border-white/10 bg-white/5 p-3 text-2xl">
                       {icon}
                     </div>
                     <div>

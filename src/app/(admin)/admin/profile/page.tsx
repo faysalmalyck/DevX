@@ -93,7 +93,7 @@ export default function AdminProfilePage() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Profile Card Summary */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md text-center">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md text-center">
             <div className="relative mx-auto w-24 h-24 mb-4">
               <div className="h-full w-full rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center font-bold text-3xl text-primary overflow-hidden">
                 {avatar ? (
@@ -132,7 +132,7 @@ export default function AdminProfilePage() {
                 placeholder="https://example.com/avatar.jpg"
                 value={avatar}
                 onChange={(e) => setAvatar(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-xs text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                className="w-full rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs text-white placeholder-zinc-600 outline-none focus:border-primary/50"
               />
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function AdminProfilePage() {
 
         {/* Profile Settings Form */}
         <div className="lg:col-span-8">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
             <form onSubmit={handleSave} className="space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 {/* First Name */}
@@ -154,7 +154,7 @@ export default function AdminProfilePage() {
                       required
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -171,7 +171,7 @@ export default function AdminProfilePage() {
                       required
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -188,7 +188,7 @@ export default function AdminProfilePage() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -205,7 +205,7 @@ export default function AdminProfilePage() {
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -222,7 +222,7 @@ export default function AdminProfilePage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+1 (555) 000-0000"
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -239,7 +239,7 @@ export default function AdminProfilePage() {
                       value={designation}
                       onChange={(e) => setDesignation(e.target.value)}
                       placeholder="Operator"
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <Award className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -256,7 +256,7 @@ export default function AdminProfilePage() {
                       value={department}
                       onChange={(e) => setDepartment(e.target.value)}
                       placeholder="Infrastructure"
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
                   </div>
@@ -271,7 +271,7 @@ export default function AdminProfilePage() {
                     <select
                       value={language}
                       onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-[#0c1222] pl-11 pr-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-[#0c1222] pl-11 pr-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
                     >
                       <option value="en">English (US)</option>
                       <option value="es">Español</option>
@@ -291,7 +291,7 @@ export default function AdminProfilePage() {
                     <select
                       value={timezone}
                       onChange={(e) => setTimezone(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-[#0c1222] pl-11 pr-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-[#0c1222] pl-11 pr-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
                     >
                       <option value="UTC">UTC (Coordinated Universal Time)</option>
                       <option value="EST">EST (Eastern Standard Time)</option>
@@ -315,7 +315,7 @@ export default function AdminProfilePage() {
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
                       placeholder="Brief personal summary..."
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                     />
                     <FileText className="absolute left-4 top-4 h-5 w-5 text-zinc-600" />
                   </div>
@@ -323,14 +323,14 @@ export default function AdminProfilePage() {
               </div>
 
               {error && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
+                <div className="flex items-center gap-2.5 rounded-lg border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                   <p>{error}</p>
                 </div>
               )}
 
               {success && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
+                <div className="flex items-center gap-2.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
                   <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                   <p>{success}</p>
                 </div>
@@ -340,7 +340,7 @@ export default function AdminProfilePage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="rounded-xl bg-primary px-6 py-3 font-semibold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+                  className="rounded-lg bg-primary px-6 py-3 font-semibold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? "Saving settings..." : "Save Settings"}
                 </button>

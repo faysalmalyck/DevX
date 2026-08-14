@@ -72,14 +72,14 @@ export default function ApplicationStats({ stats }: ApplicationStatsProps) {
       {statDefinitions.map(({ key, label, icon: Icon, iconClass }) => (
         <div
           key={key}
-          className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-white/10 dark:bg-[#111827]"
+          className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-white/10 dark:bg-[#111827]"
         >
           <div className="flex items-start justify-between gap-3">
             <p className="text-xs font-semibold text-slate-500 dark:text-zinc-400">
               {label}
             </p>
             <span
-              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${iconClass}`}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${iconClass}`}
             >
               <Icon className="h-4 w-4" aria-hidden="true" />
             </span>

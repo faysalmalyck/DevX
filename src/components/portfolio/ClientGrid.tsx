@@ -41,7 +41,7 @@ export default function ClientGrid() {
       <StaggerContainer className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-x-6 gap-y-1 px-4 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-3">
         {activeClients.map((client) => (
           <StaggerItem key={client.id} className="h-full">
-            <HoverCard className="h-full rounded-2xl">
+            <HoverCard className="h-full rounded-lg">
               <ClientCard client={client} />
             </HoverCard>
           </StaggerItem>

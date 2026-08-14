@@ -164,7 +164,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
         {/* Hero Image */}
         <ScrollReveal
-          className="relative w-full mb-12 sm:mb-16 rounded-2xl overflow-hidden shadow-sm dark:shadow-none bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800"
+          className="relative w-full mb-12 sm:mb-16 rounded-lg overflow-hidden shadow-sm dark:shadow-none bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800"
           preset="image"
           delay={0.28}
         >
@@ -217,10 +217,10 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 w-full">
               {relatedArticles.map((relArticle, idx) => (
                 <StaggerItem key={`${relArticle.id}-${idx}`} className="w-full">
-                  <HoverCard className="h-full rounded-xl">
+                  <HoverCard className="h-full rounded-lg">
                     <Link
                       href={`/blog/${relArticle.slug}`}
-                      className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
+                      className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
                     >
                       {/* Image */}
                       <ScrollReveal

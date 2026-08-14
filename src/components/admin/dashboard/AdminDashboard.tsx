@@ -61,7 +61,7 @@ function DashboardSkeleton() {
     <div className="space-y-6 pb-8 animate-pulse">
       <div className="h-64 rounded-[28px] border border-slate-200 bg-white/80 dark:border-white/[0.08] dark:bg-white/[0.04]" />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {[0, 1, 2, 3].map((item) => <div key={item} className="h-40 rounded-2xl border border-slate-200 bg-white/80 dark:border-white/[0.08] dark:bg-white/[0.04]" />)}
+        {[0, 1, 2, 3].map((item) => <div key={item} className="h-40 rounded-lg border border-slate-200 bg-white/80 dark:border-white/[0.08] dark:bg-white/[0.04]" />)}
       </div>
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
         <div className="h-[420px] rounded-3xl border border-slate-200 bg-white/80 dark:border-white/[0.08] dark:bg-white/[0.04]" />
@@ -115,10 +115,10 @@ export default function AdminDashboard() {
     return (
       <div className="flex min-h-[420px] items-center justify-center pb-8">
         <div className="max-w-md rounded-3xl border border-rose-100 bg-white p-8 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:border-rose-500/20 dark:bg-[#111827]">
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300"><AlertCircle className="h-6 w-6" /></span>
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300"><AlertCircle className="h-6 w-6" /></span>
           <h2 className="mt-5 text-xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard unavailable</h2>
           <p className="mt-2 text-base leading-6 text-slate-500 dark:text-slate-400">{error || "We could not load the workspace snapshot."}</p>
-          <button type="button" onClick={() => void loadDashboardData()} className="mt-6 inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-base font-bold text-white transition hover:bg-brand">
+          <button type="button" onClick={() => void loadDashboardData()} className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg bg-brand px-4 text-base font-bold text-white transition hover:bg-brand">
             <RefreshCw className="h-4 w-4" /> Try again
           </button>
         </div>
@@ -153,10 +153,10 @@ export default function AdminDashboard() {
             <p className="mt-3 max-w-xl text-base leading-6 text-slate-600 dark:text-slate-400 sm:text-base">Your operational snapshot brings team, client, access, and support activity into one focused workspace.</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <button type="button" onClick={() => void loadDashboardData()} className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-base font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.1] dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/[0.1]">
+            <button type="button" onClick={() => void loadDashboardData()} className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-base font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.1] dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/[0.1]">
               <RefreshCw className="h-4 w-4" /> Refresh
             </button>
-            <Link href="/admin/team" className="inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-4 text-base font-bold text-white shadow-lg shadow-brand/20 transition hover:bg-brand">
+            <Link href="/admin/team" className="inline-flex h-10 items-center gap-2 rounded-lg bg-brand px-4 text-base font-bold text-white shadow-lg shadow-brand/20 transition hover:bg-brand">
               <UserPlus className="h-4 w-4" /> Team directory
             </Link>
           </div>
@@ -165,14 +165,14 @@ export default function AdminDashboard() {
 
       <section className="grid gap-4 py-0 sm:grid-cols-2 xl:grid-cols-4" aria-label="Workspace metrics">
         {metricCards.map(({ label, value, detail, icon: Icon, tone, surface }) => (
-          <article key={label} className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.08] dark:bg-[#111827]">
+          <article key={label} className="group relative overflow-hidden rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.08] dark:bg-[#111827]">
             <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${tone}`} />
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-base font-semibold text-slate-500 dark:text-slate-400">{label}</p>
                 <p className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white">{value.toLocaleString()}</p>
               </div>
-              <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${surface}`}><Icon className="h-5 w-5" /></span>
+              <span className={`flex h-10 w-10 items-center justify-center rounded-lg ${surface}`}><Icon className="h-5 w-5" /></span>
             </div>
             <p className="mt-4 text-xs font-medium text-slate-400 dark:text-slate-500">{detail}</p>
           </article>
@@ -200,7 +200,7 @@ export default function AdminDashboard() {
                   const { icon: Icon, tone } = actionAppearance(item.action);
                   return (
                     <li key={item.id} className="flex gap-4">
-                      <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
+                      <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
                       <div className="min-w-0 flex-1 border-b border-slate-100 pb-5 last:border-0 last:pb-0 dark:border-white/[0.06]">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div>
@@ -216,7 +216,7 @@ export default function AdminDashboard() {
               </ol>
             ) : (
               <div className="flex min-h-60 flex-col items-center justify-center text-center">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 dark:bg-white/[0.06] dark:text-slate-500"><Activity className="h-5 w-5" /></span>
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 text-slate-400 dark:bg-white/[0.06] dark:text-slate-500"><Activity className="h-5 w-5" /></span>
                 <p className="mt-4 text-base font-bold text-slate-700 dark:text-white">No activity yet</p>
                 <p className="mt-1 max-w-xs text-base text-slate-500 dark:text-slate-400">New workspace actions will appear here as your team starts working.</p>
               </div>
@@ -234,8 +234,8 @@ export default function AdminDashboard() {
           </div>
           <div className="mt-5 space-y-2">
             {quickActions.map(({ label, description, href, icon: Icon, tone }) => (
-              <Link key={href} href={href} className="group flex items-center gap-3 rounded-2xl border border-slate-100 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-brand/[0.06]">
-                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 dark:bg-white/[0.06] ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
+              <Link key={href} href={href} className="group flex items-center gap-3 rounded-lg border border-slate-100 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-brand/[0.06]">
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-50 dark:bg-white/[0.06] ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-base font-bold text-slate-800 dark:text-slate-100">{label}</span>
                   <span className="mt-0.5 block truncate text-xs text-slate-500 dark:text-slate-400">{description}</span>
@@ -251,7 +251,7 @@ export default function AdminDashboard() {
         <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
           <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-brand/10 blur-3xl" />
           <div className="relative flex items-start gap-4">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ShieldCheck className="h-5 w-5" /></span>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ShieldCheck className="h-5 w-5" /></span>
             <div className="min-w-0 flex-1">
               <p className="text-base font-bold text-slate-900 dark:text-white">Access management</p>
               <p className="mt-1 text-base leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-white">{stats.totalAdmins.toLocaleString()}</span> operators currently have administrative workspace access.</p>
@@ -262,7 +262,7 @@ export default function AdminDashboard() {
         <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
           <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-amber-500/10 blur-3xl" />
           <div className="relative flex items-start gap-4">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300"><ClipboardList className="h-5 w-5" /></span>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300"><ClipboardList className="h-5 w-5" /></span>
             <div className="min-w-0 flex-1">
               <p className="text-base font-bold text-slate-900 dark:text-white">Service desk</p>
               <p className="mt-1 text-base leading-6 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-800 dark:text-white">{stats.supportTicketsCount.toLocaleString()}</span> tickets and <span className="font-bold text-slate-800 dark:text-white">{stats.serviceRequestsCount.toLocaleString()}</span> service requests are in the current snapshot.</p>

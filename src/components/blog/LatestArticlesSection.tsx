@@ -67,10 +67,10 @@ export function LatestArticlesSection({ articles }: LatestArticlesSectionProps) 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 w-full">
           {filteredArticles.map((article) => (
             <StaggerItem key={article.id} className="w-full">
-              <HoverCard className="h-full rounded-xl">
+              <HoverCard className="h-full rounded-lg">
                 <Link
                   href={`/blog/${article.slug}`}
-                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-xl overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
+                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
                 >
                   {/* Image */}
                   <ScrollReveal

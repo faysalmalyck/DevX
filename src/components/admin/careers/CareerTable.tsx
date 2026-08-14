@@ -111,7 +111,7 @@ export default function CareerTable({
 }: CareerTableProps) {
   if (careers.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center dark:border-slate-700 dark:bg-slate-900">
+      <div className="rounded-lg border border-dashed border-slate-300 bg-white p-12 text-center dark:border-slate-700 dark:bg-slate-900">
         <h3 className="text-xl font-semibold text-slate-900 dark:text-white">No jobs found</h3>
         <p className="mt-2 text-slate-500 dark:text-slate-400">Adjust your filters or add a new job.</p>
       </div>
@@ -119,7 +119,7 @@ export default function CareerTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead className="bg-slate-50 dark:bg-slate-800">

@@ -64,8 +64,8 @@ export default function ActivitiesPage() {
           { label: "Completed", value: activities.filter(a => a.status === "COMPLETED").length, icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
           { label: "Total", value: activities.length, icon: Clock, color: "text-zinc-400", bg: "bg-white/5 border-white/10" },
         ].map(({ label, value, icon: Icon, color, bg }) => (
-          <div key={label} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
-            <div className={`inline-flex rounded-xl border p-2.5 mb-3 ${bg}`}>
+          <div key={label} className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
+            <div className={`inline-flex rounded-lg border p-2.5 mb-3 ${bg}`}>
               <Icon className={`h-5 w-5 ${color}`} />
             </div>
             <p className="text-3xl font-black text-white">{loading ? "–" : value}</p>
@@ -75,7 +75,7 @@ export default function ActivitiesPage() {
       </div>
 
       {/* Filter bar */}
-      <div className="flex gap-2 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-3">
+      <div className="flex gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-3">
         {["ALL", "SCHEDULED", "COMPLETED", "CANCELLED"].map((f) => (
           <button
             key={f}
@@ -94,10 +94,10 @@ export default function ActivitiesPage() {
       {/* Activities list */}
       {loading ? (
         <div className="space-y-4 animate-pulse">
-          {[1, 2, 3, 4].map((i) => <div key={i} className="h-24 rounded-2xl bg-white/5 border border-white/5" />)}
+          {[1, 2, 3, 4].map((i) => <div key={i} className="h-24 rounded-lg bg-white/5 border border-white/5" />)}
         </div>
       ) : visible.length === 0 ? (
-        <div className="flex flex-col items-center py-16 text-center rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
+        <div className="flex flex-col items-center py-16 text-center rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
           <Calendar className="h-12 w-12 text-zinc-700 mb-4" />
           <p className="text-zinc-500">No activities found</p>
         </div>
@@ -110,7 +110,7 @@ export default function ActivitiesPage() {
             return (
               <div
                 key={activity.id}
-                className={`group flex gap-4 rounded-2xl border p-5 transition ${
+                className={`group flex gap-4 rounded-lg border p-5 transition ${
                   activity.status === "COMPLETED"
                     ? "border-emerald-500/10 bg-emerald-500/5"
                     : activity.status === "CANCELLED"

@@ -26,7 +26,7 @@ function FeaturedArticleSkeleton() {
 
 function FeaturedListItemSkeleton() {
   return (
-    <article className="flex flex-col items-start gap-4 rounded-xl px-2 py-2 sm:flex-row sm:gap-5 sm:p-2">
+    <article className="flex flex-col items-start gap-4 rounded-lg px-2 py-2 sm:flex-row sm:gap-5 sm:p-2">
       <ImageSkeleton className="w-full shrink-0 rounded-lg sm:w-32 lg:w-36" />
       <div className="w-full flex-1 space-y-3 pt-1">
         <HeadingSkeleton className="h-6 w-full" />
@@ -38,7 +38,7 @@ function FeaturedListItemSkeleton() {
 
 function ArticleCardSkeleton() {
   return (
-    <article className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800/80 dark:bg-[#1e2436]">
+    <article className="overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-800/80 dark:bg-[#1e2436]">
       <ImageSkeleton className="aspect-[16/10.5] rounded-none border-0" />
       <div className="p-6 sm:p-8">
         <HeadingSkeleton className="h-7 w-11/12" />

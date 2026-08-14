@@ -64,7 +64,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         <div className="border-t border-white/5 pt-4 space-y-4">
-          <Link href="/account/profile" className="flex items-center gap-3 group px-2 py-1.5 rounded-xl hover:bg-white/5 transition">
+          <Link href="/account/profile" className="flex items-center gap-3 group px-2 py-1.5 rounded-lg hover:bg-white/5 transition">
             <div className="h-10 w-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400">
               {user.avatar ? (
                 <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
@@ -82,7 +82,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
 
           <button
             onClick={logout}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 py-2.5 text-xs font-bold text-rose-500 hover:bg-rose-500 hover:text-white transition duration-200 cursor-pointer"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 py-2.5 text-xs font-bold text-rose-500 hover:bg-rose-500 hover:text-white transition duration-200 cursor-pointer"
           >
             <LogOut className="h-4 w-4" /> Sign Out
           </button>
@@ -123,7 +123,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                   setMobileMenuOpen(false);
                   logout();
                 }}
-                className="flex w-full items-center justify-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 py-2.5 text-xs font-bold text-rose-500 cursor-pointer"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 py-2.5 text-xs font-bold text-rose-500 cursor-pointer"
               >
                 <LogOut className="h-4 w-4" /> Sign Out
               </button>
@@ -209,7 +209,7 @@ function UserSidebarNav({ active, onNavItemClick }: { active: string; onNavItemC
             key={item.key}
             href={item.href}
             onClick={onNavItemClick}
-            className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-base font-bold transition duration-200 ${
+            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-bold transition duration-200 ${
               isActive
                 ? "bg-primary text-white shadow-lg shadow-primary/20"
                 : "text-zinc-400 hover:text-white hover:bg-white/5"

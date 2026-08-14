@@ -46,7 +46,7 @@ export function AdminSidebarNav({ active, collapsed = false, onNavigate, classNa
                   title={collapsed ? label : undefined}
                   aria-current={isActive ? "page" : undefined}
                   onClick={onNavigate}
-                  className={`group relative flex min-h-11 items-center rounded-xl text-base font-semibold transition-all duration-200 ${
+                  className={`group relative flex min-h-11 items-center rounded-lg text-base font-semibold transition-all duration-200 ${
                     isActive
                       ? "bg-gradient-to-r from-brand/25 to-violet-500/20 text-white shadow-[0_10px_24px_rgba(54,88,255,0.18)]"
                       : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
@@ -83,11 +83,11 @@ export function AdminSidebarAccount({ active, collapsed = false, onNavigate }: O
         href={profile.href}
         title={collapsed ? profile.label : undefined}
         onClick={onNavigate}
-        className={`group flex items-center rounded-2xl transition ${
+        className={`group flex items-center rounded-lg transition ${
           active === "profile" ? "bg-white/[0.09]" : "hover:bg-white/[0.06]"
         } ${collapsed ? "justify-center p-2" : "gap-3 p-2"}`}
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-blue-400 to-violet-500 text-xs font-black text-white shadow-lg shadow-blue-950/30">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-violet-500 text-xs font-black text-white shadow-lg shadow-blue-950/30">
           {user.avatar ? (
             <img src={user.avatar} alt="" className="h-full w-full object-cover" />
           ) : (
@@ -108,7 +108,7 @@ export function AdminSidebarAccount({ active, collapsed = false, onNavigate }: O
           title={security.label}
           aria-current={active === "security" ? "page" : undefined}
           onClick={onNavigate}
-          className={`flex h-10 items-center justify-center rounded-xl text-xs font-bold transition ${
+          className={`flex h-10 items-center justify-center rounded-lg text-xs font-bold transition ${
             active === "security"
               ? "bg-brand text-white shadow-lg shadow-blue-950/30"
               : "bg-white/[0.06] text-white hover:bg-white/[0.1] hover:text-white"
@@ -122,7 +122,7 @@ export function AdminSidebarAccount({ active, collapsed = false, onNavigate }: O
           onClick={signOut}
           title="Sign out"
           aria-label="Sign out"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-500/10 text-rose-300 transition hover:bg-rose-500/20 hover:text-rose-100"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-rose-500/10 text-rose-300 transition hover:bg-rose-500/20 hover:text-rose-100"
         >
           <LogOut className="h-4 w-4" />
         </button>
@@ -155,7 +155,7 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
       <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_20%_0%,rgba(54,88,255,0.28),transparent_48%),radial-gradient(circle_at_100%_30%,rgba(139,92,246,0.2),transparent_42%)]" />
       <div className="relative flex min-h-[72px] items-center border-b border-white/[0.08] px-4">
         <Link href="/admin" className={`flex min-w-0 items-center ${collapsed ? "mx-auto" : "gap-3"}`} aria-label="DevX operations home">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-base font-black tracking-tight text-white shadow-lg shadow-blue-950/30">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-base font-black tracking-tight text-white shadow-lg shadow-blue-950/30">
             DX
           </span>
           {collapsed ? null : (

@@ -171,7 +171,7 @@ export default function AdminSecurityPage() {
         {/* Left Side: Change Password & Multi Factor */}
         <div className="lg:col-span-5 space-y-8">
           {/* Change Password Card */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
             <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2 mb-6">
               <KeyRound className="h-5 w-5 text-primary" />
               Credentials Update
@@ -188,7 +188,7 @@ export default function AdminSecurityPage() {
                     required
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
+                    className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
                   />
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function AdminSecurityPage() {
                     required
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-black/20 pl-4 pr-11 py-3 text-white outline-none focus:border-primary/50"
+                    className="w-full rounded-lg border border-white/10 bg-black/20 pl-4 pr-11 py-3 text-white outline-none focus:border-primary/50"
                   />
                   <button
                     type="button"
@@ -224,19 +224,19 @@ export default function AdminSecurityPage() {
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
                 />
               </div>
 
               {passwordError && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
+                <div className="flex items-center gap-2.5 rounded-lg border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                   <p>{passwordError}</p>
                 </div>
               )}
 
               {passwordSuccess && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
+                <div className="flex items-center gap-2.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
                   <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                   <p>{passwordSuccess}</p>
                 </div>
@@ -245,7 +245,7 @@ export default function AdminSecurityPage() {
               <button
                 type="submit"
                 disabled={passwordLoading}
-                className="w-full rounded-xl bg-primary py-3 font-semibold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+                className="w-full rounded-lg bg-primary py-3 font-semibold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
               >
                 {passwordLoading ? "Updating credentials..." : "Change Password"}
               </button>
@@ -253,7 +253,7 @@ export default function AdminSecurityPage() {
           </div>
 
           {/* MFA Panel */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
             <div className="flex justify-between items-start gap-4">
               <div className="space-y-1">
                 <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
@@ -283,7 +283,7 @@ export default function AdminSecurityPage() {
 
         {/* Right Side: Active Sessions Auditor */}
         <div className="lg:col-span-7">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md space-y-6">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md space-y-6">
             <div className="flex items-center justify-between border-b border-white/5 pb-4">
               <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
                 <Monitor className="h-5 w-5 text-primary" />
@@ -300,14 +300,14 @@ export default function AdminSecurityPage() {
             </div>
 
             {sessionsError && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
+              <div className="flex items-center gap-2.5 rounded-lg border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                 <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                 <p>{sessionsError}</p>
               </div>
             )}
 
             {sessionsSuccess && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
+              <div className="flex items-center gap-2.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400 animate-fade-in">
                 <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                 <p>{sessionsSuccess}</p>
               </div>
@@ -317,14 +317,14 @@ export default function AdminSecurityPage() {
               {sessionsLoading ? (
                 <div className="space-y-3 animate-pulse">
                   {[1, 2].map((i) => (
-                    <div key={i} className="h-16 bg-white/5 rounded-xl border border-white/5"></div>
+                    <div key={i} className="h-16 bg-white/5 rounded-lg border border-white/5"></div>
                   ))}
                 </div>
               ) : sessions.length > 0 ? (
                 sessions.map((session) => (
                   <div
                     key={session.id}
-                    className="flex justify-between items-center rounded-xl border border-white/5 bg-black/20 p-4"
+                    className="flex justify-between items-center rounded-lg border border-white/5 bg-black/20 p-4"
                   >
                     <div className="flex items-start gap-3">
                       <div className="mt-1 rounded-lg bg-primary/10 border border-primary/20 p-2 text-primary">

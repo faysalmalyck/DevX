@@ -96,7 +96,7 @@ export default function UserProfilePage() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Avatar & Identity summary */}
         <div className="lg:col-span-4">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl text-center">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl text-center">
             <div className="relative mx-auto mb-4 h-24 w-24">
               <div className="h-full w-full rounded-full border border-emerald-500/30 bg-emerald-500/20 flex items-center justify-center font-black text-3xl text-emerald-400 overflow-hidden">
                 {avatar ? (
@@ -119,7 +119,7 @@ export default function UserProfilePage() {
                 placeholder="https://..."
                 value={avatar}
                 onChange={(e) => setAvatar(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-xs text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                className="w-full rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs text-white placeholder-zinc-600 outline-none focus:border-primary/50"
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function UserProfilePage() {
         {/* Profile form + Password */}
         <div className="lg:col-span-8 space-y-6">
           {/* Profile info */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
             <h3 className="mb-5 text-base font-bold text-white flex items-center gap-2">
               <User className="h-4 w-4 text-primary" /> Personal Information
             </h3>
@@ -142,7 +142,7 @@ export default function UserProfilePage() {
                       required
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white outline-none focus:border-primary/50"
                     />
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-600" />
                   </div>
@@ -155,7 +155,7 @@ export default function UserProfilePage() {
                       required
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white outline-none focus:border-primary/50"
                     />
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-600" />
                   </div>
@@ -169,7 +169,7 @@ export default function UserProfilePage() {
                     type="email"
                     value={user?.email || ""}
                     disabled
-                    className="w-full rounded-xl border border-white/5 bg-black/10 pl-11 pr-4 py-3 text-zinc-500 cursor-not-allowed"
+                    className="w-full rounded-lg border border-white/5 bg-black/10 pl-11 pr-4 py-3 text-zinc-500 cursor-not-allowed"
                   />
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
                 </div>
@@ -184,19 +184,19 @@ export default function UserProfilePage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+1 (555) 000-0000"
-                    className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                    className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                   />
                   <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-600" />
                 </div>
               </div>
 
               {profileError && (
-                <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
+                <div className="flex items-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-4 w-4" /> {profileError}
                 </div>
               )}
               {profileSuccess && (
-                <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400">
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400">
                   <CheckCircle2 className="h-4 w-4" /> {profileSuccess}
                 </div>
               )}
@@ -205,7 +205,7 @@ export default function UserProfilePage() {
                 <button
                   type="submit"
                   disabled={profileLoading}
-                  className="rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+                  className="rounded-lg bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
                 >
                   {profileLoading ? "Saving..." : "Save Changes"}
                 </button>
@@ -214,7 +214,7 @@ export default function UserProfilePage() {
           </div>
 
           {/* Change password */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
             <h3 className="mb-5 text-base font-bold text-white flex items-center gap-2">
               <KeyRound className="h-4 w-4 text-amber-400" /> Change Password
             </h3>
@@ -226,7 +226,7 @@ export default function UserProfilePage() {
                   required
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
                 />
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -238,7 +238,7 @@ export default function UserProfilePage() {
                       required
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 pl-4 pr-11 py-3 text-white outline-none focus:border-primary/50"
+                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-4 pr-11 py-3 text-white outline-none focus:border-primary/50"
                     />
                     <button
                       type="button"
@@ -256,18 +256,18 @@ export default function UserProfilePage() {
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
+                    className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
                   />
                 </div>
               </div>
 
               {passwordError && (
-                <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
+                <div className="flex items-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                   <ShieldAlert className="h-4 w-4" /> {passwordError}
                 </div>
               )}
               {passwordSuccess && (
-                <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400">
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 text-base font-semibold text-emerald-400">
                   <CheckCircle2 className="h-4 w-4" /> {passwordSuccess}
                 </div>
               )}
@@ -276,7 +276,7 @@ export default function UserProfilePage() {
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className="rounded-xl bg-amber-500 px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-amber-500/20 disabled:opacity-50 cursor-pointer"
+                  className="rounded-lg bg-amber-500 px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-amber-500/20 disabled:opacity-50 cursor-pointer"
                 >
                   {passwordLoading ? "Changing..." : "Change Password"}
                 </button>

@@ -71,7 +71,7 @@ noWrapText: " ",
 
           {/* Feature Image */}
           <ScrollReveal
-            className="relative w-full overflow-hidden rounded-2xl py-2 sm:py-10 mb-8 sm:mb-16"
+            className="relative w-full overflow-hidden rounded-lg py-2 sm:py-10 mb-8 sm:mb-16"
             preset="image"
           >
             <Image
@@ -79,7 +79,7 @@ noWrapText: " ",
               alt="Passionate Developers - Dev X Webflow Template"
               width={1220}
               height={686}
-              className="w-full h-auto object-cover rounded-2xl"
+              className="w-full h-auto object-cover rounded-lg"
               priority
             />
           </ScrollReveal>
@@ -96,7 +96,7 @@ noWrapText: " ",
               Contact us
             </Link>
             <Link
-              href="/about/team"
+              href="/team"
               className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-6 sm:py-6 text-lg font-semibold text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-white dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
             >
               Meet Our Team

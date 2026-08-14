@@ -27,7 +27,7 @@ export default function Loading() {
               <HeadingSkeleton className="mt-6 h-12 max-w-lg" />
               <div className="mt-8 space-y-4">
                 {[0, 1, 2, 3].map((item) => (
-                  <Skeleton key={item} className="h-20 rounded-2xl" />
+                  <Skeleton key={item} className="h-20 rounded-lg" />
                 ))}
               </div>
             </div>

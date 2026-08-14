@@ -7,7 +7,7 @@ import { useCart, formatCurrency, CartItem } from "@/contexts/CartContext";
 function CheckoutHeader() {
   return (
     <div className="flex gap-4">
-      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-500/15 text-emerald-500">
+      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-emerald-500/15 text-emerald-500">
         <CheckCircle2 className="h-6 w-6" />
       </div>
       <div>
@@ -26,7 +26,7 @@ function CheckoutHeader() {
 function OrderSummary({ items, total, itemCount }: { items: CartItem[]; total: number; itemCount: number }) {
   if (items.length === 0) {
     return (
-      <p className="mt-8 rounded-xl bg-slate-100 p-4 text-base text-slate-600 dark:bg-white/[0.05] dark:text-white/60">
+      <p className="mt-8 rounded-lg bg-slate-100 p-4 text-base text-slate-600 dark:bg-white/[0.05] dark:text-white/60">
         Your cart is currently empty. Select a plan to continue.
       </p>
     );

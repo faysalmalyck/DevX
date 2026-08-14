@@ -32,7 +32,7 @@ export default function SocialLinks() {
                   >
                     {/* Header with Icon and Arrow */}
                     <div className="flex items-center justify-between mb-6 sm:mb-8">
-                      <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-[#2a3449] border border-slate-200 dark:border-[#323d56] text-slate-700 dark:text-white group-hover:text-slate-900 dark:group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                      <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-[#2a3449] border border-slate-200 dark:border-[#323d56] text-slate-700 dark:text-white group-hover:text-slate-900 dark:group-hover:text-white group-hover:scale-110 transition-all duration-300">
                         <Icon className="w-6 h-6" strokeWidth={1.5} />
                       </div>
                       <div className="w-8 h-8 flex items-center justify-center rounded-full bg-transparent text-slate-400 group-hover:bg-slate-900 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-[#181d2b] transition-all duration-300 -translate-y-1 translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0">

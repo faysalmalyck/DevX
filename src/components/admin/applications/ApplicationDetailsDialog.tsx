@@ -310,7 +310,7 @@ export default function ApplicationDetailsDialog({
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="rounded-xl p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
             aria-label="Close application details"
           >
             <X className="h-5 w-5" />
@@ -325,7 +325,7 @@ export default function ApplicationDetailsDialog({
           )}
 
           {error && !application && (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
+            <div className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">
               {error}
             </div>
           )}
@@ -333,7 +333,7 @@ export default function ApplicationDetailsDialog({
           {application && (
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
               <div className="space-y-6">
-                <section className="rounded-2xl border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
+                <section className="rounded-lg border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <h3 className="font-bold text-slate-900 dark:text-white">
                       Candidate details
@@ -356,13 +356,13 @@ export default function ApplicationDetailsDialog({
                   </dl>
                 </section>
 
-                <section className="rounded-2xl border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
+                <section className="rounded-lg border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
                   <h3 className="font-bold text-slate-900 dark:text-white">
                     Resume and links
                   </h3>
                   <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand">
                         <FileText className="h-5 w-5" />
                       </span>
                       <div className="min-w-0">
@@ -376,7 +376,7 @@ export default function ApplicationDetailsDialog({
                     </div>
                     <a
                       href={resumeHref(application.id)}
-                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-base font-bold text-brand transition hover:bg-blue-100 dark:border-brand/20 dark:bg-brand/10 dark:text-brand dark:hover:bg-brand/20"
+                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-base font-bold text-brand transition hover:bg-blue-100 dark:border-brand/20 dark:bg-brand/10 dark:text-brand dark:hover:bg-brand/20"
                     >
                       <Download className="h-4 w-4" />
                       Download
@@ -408,7 +408,7 @@ export default function ApplicationDetailsDialog({
                   )}
                 </section>
 
-                <section className="rounded-2xl border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
+                <section className="rounded-lg border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
                   <h3 className="font-bold text-slate-900 dark:text-white">
                     Cover letter
                   </h3>
@@ -425,7 +425,7 @@ export default function ApplicationDetailsDialog({
                 </p>
               </div>
 
-              <aside className="h-fit rounded-2xl border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
+              <aside className="h-fit rounded-lg border border-slate-200 p-5 dark:border-white/10 dark:bg-white/[0.02]">
                 <h3 className="font-bold text-slate-900 dark:text-white">
                   Application review
                 </h3>
@@ -435,7 +435,7 @@ export default function ApplicationDetailsDialog({
                     value={status}
                     onChange={handleStatusChange}
                     disabled={saving}
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-base font-medium text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+                    className="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-base font-medium text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
                   >
                     {APPLICATION_STATUS_VALUES.map((statusValue) => (
                       <option key={statusValue} value={statusValue}>
@@ -454,7 +454,7 @@ export default function ApplicationDetailsDialog({
                     maxLength={10000}
                     rows={8}
                     placeholder="Visible only to administrators..."
-                    className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-base leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
+                    className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-base leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
                   />
                   <span className="mt-1 block text-right text-xs font-medium text-slate-400 dark:text-zinc-600">
                     {internalNotes.length}/10,000
@@ -464,7 +464,7 @@ export default function ApplicationDetailsDialog({
                 {error && (
                   <p
                     role="alert"
-                    className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
+                    className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2.5 text-base font-medium text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300"
                   >
                     {error}
                   </p>
@@ -474,7 +474,7 @@ export default function ApplicationDetailsDialog({
                   type="button"
                   onClick={() => void saveChanges()}
                   disabled={saving}
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-base font-bold text-white shadow-sm transition hover:bg-brand disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-base font-bold text-white shadow-sm transition hover:bg-brand disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saving ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

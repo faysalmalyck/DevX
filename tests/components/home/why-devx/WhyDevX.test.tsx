@@ -52,6 +52,11 @@ describe("WHY DEVX cards", () => {
       "Cost Efficient",
     ]);
     expect(whyDevxData.every((card) => card.description.length > 0)).toBe(true);
+    expect(
+      whyDevxData.every(
+        (card) => card.description.trim().split(/\s+/).length === 16,
+      ),
+    ).toBe(true);
   });
 
   it("renders an accessible, responsive equal-height carousel", () => {
@@ -78,12 +83,18 @@ describe("WHY DEVX cards", () => {
     const motionContainer = screen.getByTestId("why-devx-motion-container");
     expect(motionContainer.className).toContain("w-full");
     expect(motionContainer.className).toContain("overflow-x-auto");
-    expect(carousel.querySelectorAll("[data-card]")).toHaveLength(18);
+    const cards = Array.from(carousel.querySelectorAll("[data-card]"));
+    expect(cards).toHaveLength(18);
     expect(carousel.querySelectorAll("[data-card][aria-hidden='true']")).toHaveLength(12);
-    const card = carousel.querySelector("[data-card]");
-    expect(card?.parentElement?.className).toContain("sm:w-[48vw]");
-    expect(card?.parentElement?.className).toContain("md:w-[40vw]");
-    expect(card?.parentElement?.className).toContain("lg:w-[31vw]");
+    cards.forEach((carouselCard) => {
+      expect(carouselCard.parentElement?.classList.contains("h-full")).toBe(true);
+    });
+    const card = cards[0];
+    const cardItemClassName = card?.parentElement?.className ?? "";
+    expect(cardItemClassName).toContain("sm:w-[48vw]");
+    expect(cardItemClassName).toContain("md:w-[40vw]");
+    expect(cardItemClassName).toContain("lg:w-[31vw]");
+    expect(card?.className).toContain("h-full");
     expect(screen.getByRole("button", { name: "Previous reason" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "Next reason" })).toBeTruthy();
     expect(document.querySelectorAll("article.h-full.flex.flex-col")).toHaveLength(18);

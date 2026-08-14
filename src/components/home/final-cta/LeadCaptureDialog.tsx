@@ -12,14 +12,25 @@ import {
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
-export type LeadIntent = "consultation" | "project";
+export type LeadRequest = {
+  intent:
+    | "consultation"
+    | "project"
+    | "process"
+    | "software-improvement"
+    | "automation"
+    | "integration";
+  topics?: readonly string[];
+} | null;
+
+export type LeadIntent = NonNullable<LeadRequest>["intent"];
 
 type LeadCaptureDialogProps = {
-  intent: LeadIntent | null;
+  request: LeadRequest;
   onClose: () => void;
 };
 
-type LeadFormValues = {
+export type LeadFormValues = {
   name: string;
   email: string;
   phone: string;
@@ -59,6 +70,46 @@ const intentCopy: Record<
     emailSubject: "Project enquiry",
     submitLabel: "Prepare project email",
   },
+  process: {
+    title: "Let’s Fix Your Process",
+    description:
+      "Show us where work gets stuck, and we’ll help shape a clearer, faster way forward.",
+    messageLabel: "What should work better?",
+    messagePlaceholder:
+      "Tell us how the process works today, where delays happen, and what a better outcome would look like.",
+    emailSubject: "Business process improvement request",
+    submitLabel: "Prepare process email",
+  },
+  "software-improvement": {
+    title: "Improve My Software",
+    description:
+      "Share what is holding your current software back, and we’ll explore the most useful improvements.",
+    messageLabel: "What needs improving?",
+    messagePlaceholder:
+      "Tell us about the software, the issues your team faces, and the improvement you want to see.",
+    emailSubject: "Software improvement request",
+    submitLabel: "Prepare improvement email",
+  },
+  automation: {
+    title: "Automate My Business",
+    description:
+      "Tell us what your team repeats by hand, and we’ll identify where automation can make work flow better.",
+    messageLabel: "What would you like to automate?",
+    messagePlaceholder:
+      "Describe the repeated work, the people or systems involved, and the result you want automation to deliver.",
+    emailSubject: "Business automation request",
+    submitLabel: "Prepare automation email",
+  },
+  integration: {
+    title: "Discuss an Integration",
+    description:
+      "Show us which systems need to work together, and we’ll help map a dependable connection between them.",
+    messageLabel: "How should your systems connect?",
+    messagePlaceholder:
+      "Tell us what each system does today, what data needs to move, and where the connection breaks down.",
+    emailSubject: "System integration request",
+    submitLabel: "Prepare integration email",
+  },
 };
 
 const initialFormValues: LeadFormValues = {
@@ -73,7 +124,7 @@ const inputClassName =
   "w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-brand focus:ring-1 focus:ring-brand/40 hover:ring-1 hover:ring-slate-300 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/40 dark:hover:ring-slate-500/30 sm:px-5 sm:py-3 sm:text-base";
 
 const textareaClassName =
-  "w-full resize-y rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-brand focus:ring-1 focus:ring-brand/40 hover:ring-1 hover:ring-slate-300 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/40 dark:hover:ring-slate-500/30 sm:px-5 sm:text-base";
+  "w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-brand focus:ring-1 focus:ring-brand/40 hover:ring-1 hover:ring-slate-300 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/40 dark:hover:ring-slate-500/30 sm:px-5 sm:text-base";
 
 function getFocusableElements(container: HTMLElement): HTMLElement[] {
   return Array.from(
@@ -111,7 +162,31 @@ function getFirstErrorField(errors: FieldErrors): LeadFieldName | undefined {
   );
 }
 
-export default function LeadCaptureDialog({ intent, onClose }: LeadCaptureDialogProps) {
+export function buildLeadMailto(
+  request: NonNullable<LeadRequest>,
+  values: LeadFormValues,
+): string {
+  const copy = intentCopy[request.intent];
+  const topics = request.topics?.map((topic) => topic.trim()).filter(Boolean) ?? [];
+  const message = [
+    `Name: ${values.name.trim()}`,
+    `Email: ${values.email.trim()}`,
+    values.phone.trim() ? `Phone: ${values.phone.trim()}` : null,
+    values.company.trim() ? `Company: ${values.company.trim()}` : null,
+    topics.length > 0 ? "" : null,
+    topics.length > 0 ? "Selected topics:" : null,
+    ...topics.map((topic) => `- ${topic}`),
+    "",
+    copy.messageLabel,
+    values.message.trim(),
+  ]
+    .filter((line): line is string => line !== null)
+    .join("\n");
+
+  return `mailto:${contactEmail}?subject=${encodeURIComponent(`${copy.emailSubject} — ${values.name.trim()}`)}&body=${encodeURIComponent(message)}`;
+}
+
+export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialogProps) {
   const [hasMounted, setHasMounted] = useState(false);
   const [formValues, setFormValues] = useState<LeadFormValues>(initialFormValues);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
@@ -120,8 +195,9 @@ export default function LeadCaptureDialog({ intent, onClose }: LeadCaptureDialog
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
   const idPrefix = useId();
-  const isOpen = intent !== null;
-  const copy = intent ? intentCopy[intent] : null;
+  const isOpen = request !== null;
+  const copy = request ? intentCopy[request.intent] : null;
+  const topics = request?.topics?.map((topic) => topic.trim()).filter(Boolean) ?? [];
 
   useEffect(() => {
     setHasMounted(true);
@@ -132,7 +208,7 @@ export default function LeadCaptureDialog({ intent, onClose }: LeadCaptureDialog
 
     setFormValues(initialFormValues);
     setFieldErrors({});
-  }, [intent, isOpen]);
+  }, [request, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -203,7 +279,7 @@ export default function LeadCaptureDialog({ intent, onClose }: LeadCaptureDialog
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!intent || !copy) return;
+    if (!request || !copy) return;
 
     const errors = validateForm(formValues);
     if (Object.keys(errors).length > 0) {
@@ -217,18 +293,7 @@ export default function LeadCaptureDialog({ intent, onClose }: LeadCaptureDialog
       return;
     }
 
-    const message = [
-      `Name: ${formValues.name.trim()}`,
-      `Email: ${formValues.email.trim()}`,
-      formValues.phone.trim() ? `Phone: ${formValues.phone.trim()}` : null,
-      formValues.company.trim() ? `Company: ${formValues.company.trim()}` : null,
-      "",
-      copy.messageLabel,
-      formValues.message.trim(),
-    ]
-      .filter((line): line is string => line !== null)
-      .join("\n");
-    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(`${copy.emailSubject} — ${formValues.name.trim()}`)}&body=${encodeURIComponent(message)}`;
+    const mailto = buildLeadMailto(request, formValues);
 
     onClose();
     window.location.assign(mailto);
@@ -268,14 +333,34 @@ export default function LeadCaptureDialog({ intent, onClose }: LeadCaptureDialog
           </button>
 
           <div className="max-w-xl pr-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">Let&apos;s get started</p>
-            <h2 id={titleId} className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
+            <h2 id={titleId} className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
               {copy.title}
             </h2>
             <p id={descriptionId} className="mt-2 max-w-lg text-sm leading-6 text-slate-600 dark:text-slate-300">
               {copy.description}
             </p>
           </div>
+
+          {topics.length > 0 ? (
+            <div
+              aria-label="Selected topics"
+              className="mt-4 rounded-lg border border-brand/15 bg-brand/[0.06] p-3.5 dark:border-brand/25 dark:bg-brand/10"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-300">
+                Selected topics
+              </p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {topics.map((topic) => (
+                  <li
+                    key={topic}
+                    className="rounded-full border border-brand/20 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 dark:border-brand/30 dark:bg-[#192133] dark:text-slate-100"
+                  >
+                    {topic}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           <form className="mt-5 space-y-4" noValidate onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">

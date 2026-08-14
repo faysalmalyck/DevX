@@ -120,7 +120,7 @@ export default function SupportPage() {
         </div>
         <button
           onClick={() => setShowCreate(true)}
-          className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
         >
           <Plus className="h-4 w-4" /> New Ticket
         </button>
@@ -133,7 +133,7 @@ export default function SupportPage() {
           { label: "In Progress", value: inProgress, color: "text-brand", bg: "bg-brand/10 border-brand/20" },
           { label: "Resolved", value: resolved, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
         ].map(({ label, value, color, bg }) => (
-          <div key={label} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
+          <div key={label} className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl">
             <p className={`text-3xl font-black ${color}`}>{loading ? "–" : value}</p>
             <p className="mt-1 text-base font-semibold text-zinc-500">{label}</p>
           </div>
@@ -143,10 +143,10 @@ export default function SupportPage() {
       {/* Ticket list */}
       {loading ? (
         <div className="space-y-4 animate-pulse">
-          {[1, 2, 3].map((i) => <div key={i} className="h-24 rounded-2xl bg-white/5 border border-white/5" />)}
+          {[1, 2, 3].map((i) => <div key={i} className="h-24 rounded-lg bg-white/5 border border-white/5" />)}
         </div>
       ) : tickets.length === 0 ? (
-        <div className="flex flex-col items-center py-16 text-center rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
+        <div className="flex flex-col items-center py-16 text-center rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01]">
           <HelpCircle className="h-12 w-12 text-zinc-700 mb-4" />
           <p className="text-zinc-500 font-semibold">No support tickets yet</p>
           <p className="mt-1 text-xs text-zinc-600">Click "New Ticket" to get in touch with our team.</p>
@@ -162,7 +162,7 @@ export default function SupportPage() {
             return (
               <div
                 key={ticket.id}
-                className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] shadow-xl overflow-hidden"
+                className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] shadow-xl overflow-hidden"
               >
                 <button
                   onClick={() => setExpanded(isOpen ? null : ticket.id)}
@@ -209,7 +209,7 @@ export default function SupportPage() {
                           {msg.senderName[0]}
                         </div>
                         <div className={`max-w-[75%] space-y-1 ${msg.senderType === "user" ? "items-end" : "items-start"} flex flex-col`}>
-                          <div className={`rounded-xl px-4 py-3 text-base ${
+                          <div className={`rounded-lg px-4 py-3 text-base ${
                             msg.senderType === "admin"
                               ? "bg-white/5 border border-white/10 text-white"
                               : "bg-primary/15 border border-primary/20 text-white"
@@ -249,7 +249,7 @@ export default function SupportPage() {
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder="Brief description of your issue"
-                  className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
                 />
               </div>
 
@@ -259,7 +259,7 @@ export default function SupportPage() {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-[#0c1222] px-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+                    className="w-full rounded-lg border border-white/10 bg-[#0c1222] px-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
                   >
                     {["General", "Web", "Mobile", "SaaS", "AI", "Cloud", "Billing", "Security"].map((c) => (
                       <option key={c}>{c}</option>
@@ -271,7 +271,7 @@ export default function SupportPage() {
                   <select
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-[#0c1222] px-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+                    className="w-full rounded-lg border border-white/10 bg-[#0c1222] px-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
                   >
                     <option value="LOW">Low</option>
                     <option value="MEDIUM">Medium</option>
@@ -289,12 +289,12 @@ export default function SupportPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Describe your issue in detail..."
-                  className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50 resize-none"
+                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50 resize-none"
                 />
               </div>
 
               {createError && (
-                <p className="rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-base font-semibold text-rose-500">
+                <p className="rounded-lg border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-base font-semibold text-rose-500">
                   {createError}
                 </p>
               )}
@@ -303,14 +303,14 @@ export default function SupportPage() {
                 <button
                   type="button"
                   onClick={() => setShowCreate(false)}
-                  className="rounded-xl border border-white/10 px-5 py-2.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
+                  className="rounded-lg border border-white/10 px-5 py-2.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={creating}
-                  className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 disabled:opacity-50 transition shadow-lg shadow-primary/20 cursor-pointer"
+                  className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 disabled:opacity-50 transition shadow-lg shadow-primary/20 cursor-pointer"
                 >
                   <Send className="h-4 w-4" />
                   {creating ? "Submitting..." : "Submit Ticket"}

@@ -14,14 +14,14 @@ interface LoadingSkeletonProps {
 }
 
 function SkeletonPulse({ className }: { className: string }) {
-  return <div className={`animate-pulse rounded-2xl bg-white/5 border border-white/5 ${className}`} />;
+  return <div className={`animate-pulse rounded-lg bg-white/5 border border-white/5 ${className}`} />;
 }
 
 function CardSkeleton() {
   return (
-    <div className="animate-pulse rounded-2xl border border-white/5 bg-white/[0.02] p-6 space-y-4">
+    <div className="animate-pulse rounded-lg border border-white/5 bg-white/[0.02] p-6 space-y-4">
       <div className="flex items-center gap-3">
-        <div className="h-12 w-12 rounded-xl bg-white/5" />
+        <div className="h-12 w-12 rounded-lg bg-white/5" />
         <div className="flex-1 space-y-2">
           <div className="h-4 w-3/5 rounded-lg bg-white/5" />
           <div className="h-3 w-2/5 rounded-lg bg-white/5" />
@@ -54,7 +54,7 @@ function FormFieldSkeleton() {
   return (
     <div className="animate-pulse space-y-2">
       <div className="h-3 w-24 rounded bg-white/5" />
-      <div className="h-12 w-full rounded-xl bg-white/5 border border-white/5" />
+      <div className="h-12 w-full rounded-lg bg-white/5 border border-white/5" />
     </div>
   );
 }
@@ -112,7 +112,7 @@ export default function LoadingSkeleton({
 
   if (variant === "table-row") {
     return (
-      <div className={`rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] overflow-hidden ${className}`}>
+      <div className={`rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] overflow-hidden ${className}`}>
         {Array.from({ length: count }, (_, i) => (
           <div key={i}>{Skeleton()}</div>
         ))}

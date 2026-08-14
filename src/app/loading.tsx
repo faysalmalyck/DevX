@@ -43,8 +43,8 @@ export default function Loading() {
               aria-hidden="true"
               className="absolute inset-x-10 top-10 h-64 rounded-full bg-brand/10 blur-3xl dark:bg-brand/20"
             />
-            <ImageSkeleton className="relative aspect-[16/11] rounded-xl" />
-            <div className="relative mx-auto -mt-10 grid w-[88%] grid-cols-3 gap-3 rounded-xl border border-slate-200/80 bg-white/95 p-3 shadow-lg shadow-slate-950/5 dark:border-slate-700/70 dark:bg-[#243042]/95 dark:shadow-none">
+            <ImageSkeleton className="relative aspect-[16/11] rounded-lg" />
+            <div className="relative mx-auto -mt-10 grid w-[88%] grid-cols-3 gap-3 rounded-lg border border-slate-200/80 bg-white/95 p-3 shadow-lg shadow-slate-950/5 dark:border-slate-700/70 dark:bg-[#243042]/95 dark:shadow-none">
               <Skeleton className="h-16 rounded-lg" />
               <Skeleton className="h-16 rounded-lg" />
               <Skeleton className="h-16 rounded-lg" />

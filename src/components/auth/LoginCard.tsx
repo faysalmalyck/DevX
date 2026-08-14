@@ -174,7 +174,7 @@ export default function LoginCard() {
         </div>
 
         {/* Main Card Container */}
-        <div className="relative rounded-2xl border border-slate-700/50 bg-[#1f2535] p-6 sm:p-8 shadow-xl">
+        <div className="relative rounded-lg border border-slate-700/50 bg-[#1f2535] p-6 sm:p-8 shadow-xl">
           {role === "user" ? (
             <>
               {/* User Sub-Toggle: Login vs Sign Up */}

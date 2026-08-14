@@ -122,13 +122,13 @@ export default function UserDashboardPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/account/services"
-              className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 transition shadow-lg shadow-primary/20"
+              className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 transition shadow-lg shadow-primary/20"
             >
               <Zap className="h-4 w-4" /> View Services
             </Link>
             <Link
               href="/account/support"
-              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition"
+              className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition"
             >
               <HelpCircle className="h-4 w-4" /> Open Ticket
             </Link>
@@ -149,9 +149,9 @@ export default function UserDashboardPage() {
         ].map(({ label, value, icon: Icon, color, bg }) => (
           <div
             key={label}
-            className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl"
+            className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl"
           >
-            <div className={`inline-flex rounded-xl border p-2.5 ${bg}`}>
+            <div className={`inline-flex rounded-lg border p-2.5 ${bg}`}>
               <Icon className={`h-5 w-5 ${color}`} />
             </div>
             <p className="mt-4 text-3xl font-black text-white">
@@ -165,7 +165,7 @@ export default function UserDashboardPage() {
       {/* Main content grid */}
       <div className="grid gap-6 lg:grid-cols-5">
         {/* Active Services */}
-        <div className="lg:col-span-3 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
+        <div className="lg:col-span-3 rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
               <Heart className="h-5 w-5 text-primary" /> Active Solutions
@@ -177,7 +177,7 @@ export default function UserDashboardPage() {
 
           {loading ? (
             <div className="space-y-3 animate-pulse">
-              {[1, 2, 3].map((i) => <div key={i} className="h-20 rounded-xl bg-white/5" />)}
+              {[1, 2, 3].map((i) => <div key={i} className="h-20 rounded-lg bg-white/5" />)}
             </div>
           ) : services.length === 0 ? (
             <EmptyState icon={Heart} message="No service requests yet" action={{ label: "Contact Us", href: "/contact" }} />
@@ -190,7 +190,7 @@ export default function UserDashboardPage() {
                 const s = statusConfig[service.status] ?? { label: service.status, color: "bg-white/5 text-zinc-400 border-white/10" };
 
                 return (
-                  <div key={service.id} className={`rounded-xl border bg-gradient-to-br p-4 ${colorClass}`}>
+                  <div key={service.id} className={`rounded-lg border bg-gradient-to-br p-4 ${colorClass}`}>
                     <div className="mb-3 flex items-start justify-between">
                       <div>
                         <p className="font-bold text-white">{service.serviceName}</p>
@@ -222,7 +222,7 @@ export default function UserDashboardPage() {
         {/* Right column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Upcoming Activities */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-base font-bold text-white flex items-center gap-2">
                 <Activity className="h-4 w-4 text-purple-400" /> Upcoming
@@ -234,7 +234,7 @@ export default function UserDashboardPage() {
 
             {loading ? (
               <div className="space-y-3 animate-pulse">
-                {[1, 2].map((i) => <div key={i} className="h-16 rounded-xl bg-white/5" />)}
+                {[1, 2].map((i) => <div key={i} className="h-16 rounded-lg bg-white/5" />)}
               </div>
             ) : activities.filter(a => a.status === "SCHEDULED" && new Date(a.scheduledAt) > new Date()).length === 0 ? (
               <p className="py-4 text-center text-base text-zinc-600">Nothing scheduled</p>
@@ -244,7 +244,7 @@ export default function UserDashboardPage() {
                   .filter(a => a.status === "SCHEDULED" && new Date(a.scheduledAt) > new Date())
                   .slice(0, 3)
                   .map((act) => (
-                    <div key={act.id} className="flex items-start gap-3 rounded-xl border border-white/5 bg-black/20 p-3">
+                    <div key={act.id} className="flex items-start gap-3 rounded-lg border border-white/5 bg-black/20 p-3">
                       <span className="text-xl">{activityIcons[act.type] ?? "📌"}</span>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-base font-semibold text-white">{act.title}</p>
@@ -260,7 +260,7 @@ export default function UserDashboardPage() {
           </div>
 
           {/* Recent Notifications */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
+          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-base font-bold text-white flex items-center gap-2">
                 <Bell className="h-4 w-4 text-amber-400" /> Notifications
@@ -277,7 +277,7 @@ export default function UserDashboardPage() {
 
             {loading ? (
               <div className="space-y-3 animate-pulse">
-                {[1, 2].map((i) => <div key={i} className="h-14 rounded-xl bg-white/5" />)}
+                {[1, 2].map((i) => <div key={i} className="h-14 rounded-lg bg-white/5" />)}
               </div>
             ) : notifications.length === 0 ? (
               <p className="py-4 text-center text-base text-zinc-600">No notifications yet</p>
@@ -286,7 +286,7 @@ export default function UserDashboardPage() {
                 {notifications.slice(0, 3).map((notif) => (
                   <div
                     key={notif.id}
-                    className={`rounded-xl border p-3 ${!notif.read ? "border-primary/20 bg-primary/5" : "border-white/5 bg-black/20"}`}
+                    className={`rounded-lg border p-3 ${!notif.read ? "border-primary/20 bg-primary/5" : "border-white/5 bg-black/20"}`}
                   >
                     <p className="text-xs font-bold text-white">{notif.title}</p>
                     <p className="mt-0.5 text-[11px] text-zinc-500 line-clamp-2">{notif.message}</p>
@@ -309,7 +309,7 @@ export default function UserDashboardPage() {
           <Link
             key={label}
             href={href}
-            className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl hover:border-primary/30 hover:from-primary/5 transition-all duration-200"
+            className="group flex items-center gap-4 rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl hover:border-primary/30 hover:from-primary/5 transition-all duration-200"
           >
             <span className="text-2xl">{icon}</span>
             <div className="flex-1 min-w-0">
@@ -327,7 +327,7 @@ export default function UserDashboardPage() {
 function EmptyState({ icon: Icon, message, action }: { icon: any; message: string; action?: { label: string; href: string } }) {
   return (
     <div className="flex flex-col items-center py-10 text-center">
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-4 mb-3">
+      <div className="rounded-lg border border-white/10 bg-white/5 p-4 mb-3">
         <Icon className="h-8 w-8 text-zinc-600" />
       </div>
       <p className="text-base text-zinc-500">{message}</p>

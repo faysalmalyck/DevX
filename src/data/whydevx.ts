@@ -13,7 +13,7 @@ export const whyDevxData: WhyDevxCard[] = [
     id: "business-first",
     title: "Business First",
     description:
-      "We begin with your goals and measure every decision against real business value.",
+      "We align technology decisions with your strategic goals, organizational priorities, and measurable business outcomes from launch.",
     image: {
       src: "/images/whydevx/business-first(1).png",
       alt: "Business First illustration",
@@ -23,7 +23,7 @@ export const whyDevxData: WhyDevxCard[] = [
     id: "scalable-architecture",
     title: "Scalable Architecture",
     description:
-      "We design dependable foundations that can grow alongside your customers, team, and ambition.",
+      "We build strong foundations that grow smoothly with your customers, team, data, operations, and long-term ambitions.",
     image: {
       src: "/images/whydevx/scalable-architecture.png",
       alt: "Scalable Architecture illustration",
@@ -33,7 +33,7 @@ export const whyDevxData: WhyDevxCard[] = [
     id: "modern-technology",
     title: "Modern Technology",
     description:
-      "We choose proven modern tools that keep your product secure, maintainable, and ready for what is next.",
+      "We select dependable modern technologies that keep your product secure, maintainable, and ready for future growth.",
     image: {
       src: "/images/whydevx/modern-tech.png",
       alt: "Modern Technology illustration",
@@ -43,7 +43,7 @@ export const whyDevxData: WhyDevxCard[] = [
     id: "transparent-process",
     title: "Transparent Process",
     description:
-      "You get clear milestones, visible progress, and straightforward communication from discovery through delivery.",
+      "You get clear goals, visible progress, honest updates, and direct communication from discovery through final delivery.",
     image: {
       src: "/images/whydevx/transparent-process.png",
       alt: "Transparent Process illustration",
@@ -53,7 +53,7 @@ export const whyDevxData: WhyDevxCard[] = [
     id: "long-term-partnership",
     title: "Long-Term Partnership",
     description:
-      "We stay invested after launch to help your software evolve as new opportunities emerge.",
+      "We stay invested after launch, helping your software evolve with changing needs, users, markets, and opportunities.",
     image: {
       src: "/images/whydevx/long-term-partnership.png",
       alt: "Long-Term Partnership illustration",
@@ -63,7 +63,7 @@ export const whyDevxData: WhyDevxCard[] = [
     id: "cost-efficient",
     title: "Cost Efficient",
     description:
-      "We focus effort where it creates the most impact, helping you make smart use of every budget.",
+      "We concentrate development where it creates maximum impact, helping you allocate available budgets responsibly and confidently.",
     image: {
       src: "/images/whydevx/cost-efficient(1).png",
       alt: "Cost Efficient illustration",

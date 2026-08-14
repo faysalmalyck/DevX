@@ -101,13 +101,13 @@ export default function AdminManager() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer">
+          <button className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-black/20 px-4 py-2.5 text-base font-bold text-zinc-300 hover:text-white transition cursor-pointer">
             <Download className="h-4 w-4" />
             Export
           </button>
           <button
             onClick={() => setEditing(blank())}
-            className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
+            className="flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer"
           >
             <Plus className="h-4 w-4" />
             Add Administrator
@@ -133,7 +133,7 @@ export default function AdminManager() {
         ].map(([label, value]) => (
           <div
             key={String(label)}
-            className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-4 shadow-xl backdrop-blur-md"
+            className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-4 shadow-xl backdrop-blur-md"
           >
             <p className="text-2xl font-black text-white">{value}</p>
             <p className="mt-1 text-xs text-zinc-400 font-semibold">{label}</p>
@@ -142,20 +142,20 @@ export default function AdminManager() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-4 shadow-xl backdrop-blur-md sm:flex-row">
+      <div className="flex flex-col gap-3 rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-4 shadow-xl backdrop-blur-md sm:flex-row">
         <label className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search administrators..."
-            className="w-full rounded-xl border border-white/10 bg-black/20 py-2.5 pl-9 pr-3 text-base text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+            className="w-full rounded-lg border border-white/10 bg-black/20 py-2.5 pl-9 pr-3 text-base text-white placeholder-zinc-600 outline-none focus:border-primary/50"
           />
         </label>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="rounded-xl border border-white/10 bg-[#0c1222] px-4 py-2.5 text-base text-zinc-300 outline-none focus:border-primary/50"
+          className="rounded-lg border border-white/10 bg-[#0c1222] px-4 py-2.5 text-base text-zinc-300 outline-none focus:border-primary/50"
         >
           <option value="ALL">All statuses</option>
           <option value="ACTIVE">Active</option>
@@ -166,7 +166,7 @@ export default function AdminManager() {
       </div>
 
       {/* Table Container */}
-      <div className="overflow-x-auto rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] shadow-xl backdrop-blur-md">
+      <div className="overflow-x-auto rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] shadow-xl backdrop-blur-md">
         <table className="w-full min-w-[1100px] text-left text-base">
           <thead className="sticky top-0 border-b border-white/10 bg-[#0c1222] text-xs uppercase tracking-wider text-zinc-400">
             <tr>
@@ -325,7 +325,7 @@ function AdminForm({
         type={type}
         value={String(value[key] ?? "")}
         onChange={(e) => setValue({ ...value, [key]: e.target.value })}
-        className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50 transition placeholder-zinc-600"
+        className="mt-2 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50 transition placeholder-zinc-600"
       />
       {errors[key] && <span className="text-xs text-rose-500 mt-1 block">{errors[key]}</span>}
     </label>
@@ -372,7 +372,7 @@ function AdminForm({
               disabled={isProtectedCeo(value)}
               value={value.role}
               onChange={(e) => setValue({ ...value, role: e.target.value as AdminRole })}
-              className="mt-2 w-full rounded-xl border border-white/10 bg-[#0c1222] px-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+              className="mt-2 w-full rounded-lg border border-white/10 bg-[#0c1222] px-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
             >
               {roles.map((role) => (
                 <option key={role} value={role}>
@@ -390,7 +390,7 @@ function AdminForm({
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50 transition"
+                  className="mt-2 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50 transition"
                 />
                 {errors.password && (
                   <span className="text-xs text-rose-500 mt-1 block">{errors.password}</span>
@@ -402,7 +402,7 @@ function AdminForm({
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50 transition"
+                  className="mt-2 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50 transition"
                 />
               </label>
             </>
@@ -435,11 +435,11 @@ function AdminForm({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-white/10 px-5 py-2.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
+            className="rounded-lg border border-white/10 px-5 py-2.5 text-base font-bold text-zinc-400 hover:text-white transition cursor-pointer"
           >
             Cancel
           </button>
-          <button className="rounded-xl bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer">
+          <button className="rounded-lg bg-primary px-5 py-2.5 text-base font-bold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 cursor-pointer">
             Save Administrator
           </button>
         </div>

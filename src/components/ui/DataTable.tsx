@@ -83,7 +83,7 @@ export default function DataTable<T extends Record<string, any>>({
   }, [data, sortCol, sortDir]);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] overflow-hidden shadow-xl">
+    <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] overflow-hidden shadow-xl">
       <div className="overflow-x-auto">
         <table className="w-full text-left">
           {/* Header */}

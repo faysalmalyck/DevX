@@ -14,7 +14,7 @@ export default function Loading() {
             <TextSkeleton className="mx-auto mt-6 max-w-2xl" />
           </div>
 
-          <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-slate-200 shadow-xl md:grid-cols-3 md:rounded-lg dark:border-slate-600/80 dark:shadow-2xl">
+          <div className="grid grid-cols-1 overflow-hidden rounded-lg border border-slate-200 shadow-xl md:grid-cols-3 md:rounded-lg dark:border-slate-600/80 dark:shadow-2xl">
             {Array.from({ length: 3 }).map((_, index) => (
               <article
                 key={index}
@@ -56,7 +56,7 @@ export default function Loading() {
           <HeadingSkeleton className="mx-auto h-10 max-w-md" />
           <div className="mt-10 space-y-4">
             {Array.from({ length: 4 }).map((_, index) => (
-              <Skeleton key={index} className="h-20 rounded-2xl" />
+              <Skeleton key={index} className="h-20 rounded-lg" />
             ))}
           </div>
         </div>

@@ -30,11 +30,7 @@ const Testimonial = () => {
       <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(60,210,120,0.12),transparent_32rem)]' />
       <div className='container mx-auto max-w-6xl px-4'>
         <div className='relative text-center'>
-          <div className='premium-badge mx-auto w-fit'>
-            <Quote className='h-4 w-4' />
-            Client words
-          </div>
-          <h2 className='premium-heading mx-auto mt-6 max-w-3xl'>Trusted by teams that care about execution.</h2>
+          <h2 className='premium-heading mx-auto max-w-3xl'>Trusted by teams that care about execution.</h2>
           <div className='mt-12 grid grid-cols-1 gap-6 md:grid-cols-3'>
             {reviews.map((review, index) => (
               <article

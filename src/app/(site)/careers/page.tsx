@@ -126,7 +126,7 @@ className="block mx-auto sm:inline-block w-3/4 sm:w-auto text-center rounded-ful
               {benefitsData.map((benefit) => (
                 <StaggerItem key={benefit.title} className="h-full" preset="card">
                   <HoverCard className="h-full">
-                    <div className="flex h-full flex-col rounded-2xl bg-slate-50/50 p-6 transition-colors dark:bg-transparent">
+                    <div className="flex h-full flex-col rounded-lg bg-slate-50/50 p-6 transition-colors dark:bg-transparent">
                       <ScrollReveal className="mb-6 flex h-12 w-12 items-center justify-center" preset="image">
                         <Image
                           src={benefit.iconSrc}

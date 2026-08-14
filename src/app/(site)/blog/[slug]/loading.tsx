@@ -7,7 +7,7 @@ import {
 
 function RelatedArticleSkeleton() {
   return (
-    <article className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800/80 dark:bg-[#1e2436]">
+    <article className="overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-800/80 dark:bg-[#1e2436]">
       <ImageSkeleton className="aspect-[16/10.5] rounded-none border-0" />
       <div className="p-6 sm:p-8">
         <HeadingSkeleton className="h-7 w-11/12" />
@@ -47,7 +47,7 @@ export default function Loading() {
           </div>
         </header>
 
-        <ImageSkeleton className="mb-12 aspect-[16/9] rounded-2xl sm:mb-16" />
+        <ImageSkeleton className="mb-12 aspect-[16/9] rounded-lg sm:mb-16" />
 
         <section className="mx-auto max-w-4xl space-y-5 px-2 sm:px-6">
           <HeadingSkeleton className="h-9 w-3/5" />

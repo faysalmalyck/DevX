@@ -151,7 +151,7 @@ export default function ResetPasswordCard() {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-11 py-3.5 text-white placeholder-zinc-600 outline-none transition duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
+                  className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-11 py-3.5 text-white placeholder-zinc-600 outline-none transition duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
                 />
                 <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-600" />
                 <button
@@ -191,14 +191,14 @@ export default function ResetPasswordCard() {
                   placeholder="••••••••"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-black/20 pl-11 pr-4 py-3.5 text-white placeholder-zinc-600 outline-none transition duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
+                  className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3.5 text-white placeholder-zinc-600 outline-none transition duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
                 />
                 <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-600" />
               </div>
             </div>
 
             {error && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
+              <div className="flex items-center gap-2.5 rounded-lg border border-rose-500/20 bg-rose-500/10 p-3 text-base font-semibold text-rose-500">
                 <ShieldAlert className="h-5 w-5 flex-shrink-0" />
                 <p>{error}</p>
               </div>
@@ -207,7 +207,7 @@ export default function ResetPasswordCard() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-primary py-3.5 text-lg font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.99] shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+              className="w-full rounded-lg bg-primary py-3.5 text-lg font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.99] shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
             >
               {loading ? "Resetting password..." : "Reset Password"}
             </button>

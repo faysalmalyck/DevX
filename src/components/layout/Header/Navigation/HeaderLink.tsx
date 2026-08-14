@@ -4,17 +4,21 @@ import { useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HeaderItem } from '../../../../types/menu';
+import {
+  isNavigationHrefActive,
+  isNavigationParentActive,
+  splitNavigationHref,
+  useLocationHash,
+} from '@/components/layout/Header/Navigation/navigationState';
 
 const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const path = usePathname();
+  const hash = useLocationHash();
   const submenuId = useId();
 
-  const itemPath = (item.href || '').split("#")[0];
-  const isActive =
-    path === itemPath ||
-    (item.submenu?.some((subItem) => path === (subItem.href || '').split("#")[0]) ?? false);
+  const isActive = isNavigationParentActive(item, path);
 
   const handleMouseEnter = () => {
     if (closeTimer.current) {
@@ -68,6 +72,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         aria-expanded={item.submenu ? submenuOpen : undefined}
         aria-haspopup={item.submenu ? "true" : undefined}
         aria-controls={item.submenu ? submenuId : undefined}
+        aria-current={isActive ? "page" : undefined}
         className={`group flex items-center gap-1 whitespace-nowrap rounded-lg py-2 text-lg font-semibold no-underline transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
           isActive
             ? "text-brand dark:text-brand"
@@ -104,7 +109,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
         <div className="absolute left-1/2 top-full z-50 w-72 max-w-[calc(100vw-2rem)] -translate-x-1/2 pt-3">
           <div
             id={submenuId}
-            className="relative max-h-[70vh] overflow-y-auto overflow-x-hidden rounded-2xl border border-white/70 bg-transparent p-2.5 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl animate-reveal-up dark:border-white/[0.16] dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06]"
+            className="relative max-h-[70vh] overflow-y-auto overflow-x-hidden rounded-lg border border-white/70 bg-transparent p-2.5 shadow-[0_24px_80px_rgba(15,23,42,0.16)] ring-1 ring-slate-950/[0.05] backdrop-blur-3xl animate-reveal-up dark:border-white/[0.16] dark:shadow-[0_28px_90px_rgba(2,6,23,0.55)] dark:ring-white/[0.06]"
           >
             <div
               aria-hidden="true"
@@ -113,13 +118,27 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
 
             <div className="relative space-y-1">
               {item.submenu.map((subItem, index) => {
-                const isSubActive = path === (subItem.href || '').split("#")[0];
+                const isSubActive = isNavigationHrefActive(
+                  subItem.href,
+                  path,
+                  hash,
+                );
+                const { hash: subItemHash } = splitNavigationHref(
+                  subItem.href,
+                );
 
                 return (
                   <Link
                     key={`${subItem.href}-${index}`}
                     href={subItem.href}
-                    className={`group flex items-center justify-between rounded-xl border px-4 py-3 text-base font-medium no-underline transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
+                    aria-current={
+                      isSubActive
+                        ? subItemHash
+                          ? "location"
+                          : "page"
+                        : undefined
+                    }
+                    className={`group flex items-center justify-between rounded-lg border px-4 py-3 text-base font-medium no-underline transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
                       isSubActive
                         ? "border-brand/20 bg-gradient-to-r from-brand/15 via-violet-500/10 to-cyan-400/10 font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/25 dark:from-brand/25 dark:via-violet-500/15 dark:to-cyan-400/10 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                         : "border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 dark:text-white dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white"

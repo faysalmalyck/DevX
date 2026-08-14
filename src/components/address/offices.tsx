@@ -72,7 +72,7 @@ export default function OfficesSection() {
 
             {/* Right Column: Section Image */}
             <div className="lg:col-span-6 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-[732px] aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+              <div className="relative w-full max-w-[732px] aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src="https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/623f5025b3c798dec3d11b40_image-offices-dev-webflow-template.png"
                   alt="Offices Worldwide - Dev X Webflow Template"

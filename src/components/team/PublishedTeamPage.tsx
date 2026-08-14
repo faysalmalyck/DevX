@@ -122,11 +122,7 @@ export default function PublishedTeamPage({ members }: { members: PublicTeamMemb
       <section className="premium-shell premium-mesh relative pb-16 pt-32 md:pb-24 md:pt-44">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
         <div className="container relative z-10 mx-auto max-w-6xl px-4 text-center">
-          <ScrollReveal className="premium-badge mx-auto mb-6 w-fit" preset="copy">
-            <span className="h-2 w-2 rounded-full bg-success" />
-            Vertex studio
-          </ScrollReveal>
-          <ScrollReveal className="mx-auto mt-7 max-w-4xl" delay={0.08} preset="hero">
+          <ScrollReveal className="mx-auto max-w-4xl" delay={0.08} preset="hero">
             <h1 className="premium-heading">Meet the Professionals Behind Vertex</h1>
           </ScrollReveal>
           <ScrollReveal className="mx-auto mt-6 max-w-3xl" delay={0.16} preset="copy">

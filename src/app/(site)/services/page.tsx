@@ -1,27 +1,23 @@
-import React from "react";
-import HeroSub from "@/components/shared/HeroSub";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Development from "@/components/home/development/Development";
+import FinalCTA from "@/components/home/final-cta/FinalCTA";
+import HeroSub from "@/components/shared/HeroSub";
 
 export const metadata: Metadata = {
-    title: "Services",
-    description: "Explore DevX digital solution services across web, SaaS, AI, cloud, and product engineering.",
+  title: "Services",
+  description:
+    "Explore DevX digital solution services across web, SaaS, AI, cloud, and product engineering.",
 };
 
-const page = () => {
+export default function ServicesPage() {
   return (
     <>
       <HeroSub
-  title="Our|Services"
-  description="Empowering businesses with innovative digital solutions that accelerate growth, enhance efficiency, and create lasting competitive advantage."
-/> 
-      
-      <div className="">
-        <Development />
-      
-      </div>
+        title="Our|Services"
+        description="Empowering businesses with innovative digital solutions that accelerate growth, enhance efficiency, and create lasting competitive advantage."
+      />
+      <Development showImprovementCta={false} />
+      <FinalCTA />
     </>
   );
-};
-
-export default page;
+}

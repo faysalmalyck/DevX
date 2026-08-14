@@ -126,7 +126,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-white dark:bg-darkmode" suppressHydrationWarning>
+    <html
+      lang="en"
+      className="bg-white dark:bg-darkmode"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <script
           id="vertex-intro-state"

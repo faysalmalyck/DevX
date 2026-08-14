@@ -200,7 +200,7 @@ export default function ContactHeroSection() {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Please type your message here..."
-                    className="w-full px-5 py-4 rounded-2xl bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in resize-y"
+                    className="w-full px-5 py-4 rounded-lg bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in resize-y"
                   />
                 </div>
 
