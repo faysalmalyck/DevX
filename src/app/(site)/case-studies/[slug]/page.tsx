@@ -57,7 +57,7 @@
     }
 
     return (
-      <div className="bg-[#0B0F17] text-white min-h-screen selection:bg-brand selection:text-white">
+      <div className="bg-white text-slate-900 dark:bg-[#181d2b] dark:text-white min-h-screen selection:bg-brand selection:text-white">
         {/* Section 1 — Hero */}
         <CaseStudyHero study={study} />
 

@@ -7,7 +7,7 @@ import { ScrollReveal } from '@/components/motion';
 
 export default function CaseStudyHero({ study }: { study: CaseStudy }) {
   return (
-    <section className="relative overflow-hidden bg-[#0B0F17] pt-28 pb-16 lg:pt-36 lg:pb-24 text-white">
+    <section className="relative overflow-hidden bg-white dark:bg-[#181d2b] pt-28 pb-16 lg:pt-36 lg:pb-24 text-slate-900 dark:text-white">
       {/* Decorative Vector Arches Background */}
       <div className="pointer-events-none absolute inset-0 -z-0 overflow-hidden" aria-hidden="true">
         <svg
@@ -50,7 +50,7 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
         <ScrollReveal className="mb-8" preset="left">
           <Link
             href="/case-studies"
-            className="inline-flex items-center text-base font-medium text-slate-400 hover:text-brand transition-colors"
+            className="inline-flex items-center text-base font-medium text-slate-500 dark:text-slate-400 hover:text-brand transition-colors"
           >
             <span className="mr-2">←</span> Back to Case Studies
           </Link>
@@ -70,14 +70,14 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
                 alt=""
                 fill
                 sizes="(max-width: 640px) 160px, 192px"
-                className="object-contain object-center brightness-[2.5] dark:brightness-100"
+                className="object-contain object-center brightness-0 dark:brightness-100"
               />
             </div>
           </ScrollReveal>
 
           {/* Centered Title without Bold */}
           <ScrollReveal preset="hero" delay={0.18}>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.15]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-medium text-slate-900 dark:text-white tracking-tight leading-[1.15]">
               {study.title}
             </h1>
           </ScrollReveal>

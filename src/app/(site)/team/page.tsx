@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import PublishedTeamPage from "@/components/team/PublishedTeamPage";
+import TeamSection from "@/components/team/TeamPage";
 import { getPublishedTeamMembers } from "@/lib/team/queries";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Team",
-  description: "Meet the focused Vertex team building modern digital products for growing businesses.",
+  title: "Team | DevX Solutions",
+  description: "Meet the team behind DevX Solutions",
 };
 
 export default async function TeamPage() {
   const members = await getPublishedTeamMembers();
 
-  return <PublishedTeamPage members={members} />;
+  return <TeamSection members={members} />;
 }
+

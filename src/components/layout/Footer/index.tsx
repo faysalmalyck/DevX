@@ -60,13 +60,13 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li><Link href="/" className="transition hover:text-white">Home</Link></li>
                 <li><Link href="/about" className="transition hover:text-white">About</Link></li>
-                <li><Link href="/contact" className="transition hover:text-white">Contact</Link></li>
+                <li><Link href="/business-problem" className="transition hover:text-white">Business Problem</Link></li>
                 <li><Link href="/services" className="transition hover:text-white">Services</Link></li>
                 <li><Link href="/team" className="transition hover:text-white">DevX Team</Link></li>
               </ul>
               <ul className="space-y-2">
                 <li><Link href="/core-values" className="transition hover:text-white">Core Values</Link></li>
-                <li><Link href="/case-studies" className="transition hover:text-white">Case Studies</Link></li>
+                <li><Link href="/services/system-integration" className="transition hover:text-white">System Integration</Link></li>
                 <li><Link href="/case-studies/how-we-helped-studio-improve-its-search-engine-speed" className="transition hover:text-white">Case Study Single</Link></li>
               </ul>
               <ul className="space-y-2">

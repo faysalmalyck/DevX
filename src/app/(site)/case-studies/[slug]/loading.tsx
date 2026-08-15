@@ -25,7 +25,7 @@ export default function Loading() {
     <main
       aria-busy="true"
       aria-label="Loading case study"
-      className="min-h-screen bg-[#0B0F17] text-white"
+      className="min-h-screen bg-white text-slate-900 dark:bg-[#181d2b] dark:text-white"
     >
       <section className="relative overflow-hidden pb-16 pt-28 lg:pb-24 lg:pt-36">
         <div className="pointer-events-none absolute left-1/2 top-1/4 h-[350px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[140px]" />

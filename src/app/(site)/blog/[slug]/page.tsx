@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
     .slice(0, 2);
 
   return (
-    <article className="min-h-screen bg-slate-50 dark:bg-[#181d2b] text-slate-900 dark:text-white transition-colors duration-300 py-8 sm:py-12 lg:py-16">
+    <article className="min-h-screen bg-white dark:bg-[#181d2b] text-slate-900 dark:text-white transition-colors duration-300 py-8 sm:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <ScrollReveal className="mt-4 mb-8 sm:mt-8" preset="left">

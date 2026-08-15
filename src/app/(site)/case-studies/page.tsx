@@ -11,8 +11,9 @@ import {
 
 export default function CaseStudy() {
   return (
-    <section className="mt-15 mb-16 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
-      {/* Header Container */}
+    <main className="min-h-screen bg-white dark:bg-[#181d2b] text-slate-900 dark:text-white transition-colors duration-300">
+      <section className="mt-15 mb-16 relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent">
+        {/* Header Container */}
       <div className="max-w-2xl mx-auto text-center py-15 mb-2">
         <ScrollReveal preset="hero">
           <h2 className="text-5xl md:text-7xl tracking-tight text-gray-900 dark:text-white leading-tight ">
@@ -74,5 +75,6 @@ export default function CaseStudy() {
       <div className="my-34 h-[1px] w-full bg-gray-200 dark:bg-gray-800" />
       <CtaSection />
     </section>
+    </main>
   );
 }

@@ -71,9 +71,9 @@ const intentCopy: Record<
     submitLabel: "Prepare project email",
   },
   process: {
-    title: "Let’s Fix Your Process",
+    title: "Turn Your Business Challenges Into Better Processes",
     description:
-      "Show us where work gets stuck, and we’ll help shape a clearer, faster way forward.",
+      "Show us what’s slowing your business down, and we’ll build a smarter, faster way to move forward.",
     messageLabel: "What should work better?",
     messagePlaceholder:
       "Tell us how the process works today, where delays happen, and what a better outcome would look like.",

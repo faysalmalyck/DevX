@@ -2,14 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import {
   ScrollReveal,
   StaggerContainer,
   StaggerItem,
 } from "@/components/motion";
-import AmbientFlare from "@/components/shared/AmbientFlare";
+import LeadCaptureDialog, {
+  type LeadRequest,
+} from "@/components/home/final-cta/LeadCaptureDialog";
 
 export default function HeroSection() {
+  const [leadRequest, setLeadRequest] = useState<LeadRequest>(null);
+
   const logos = [
     {
       src: "https://cdn.prod.website-files.com/6217ab51d0be6929e3513ef6/655252e496e7f416a92204d0_application-logo-dev-x-webflow-template.svg",
@@ -34,111 +39,121 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative isolate overflow-hidden bg-white pb-12 pt-28 transition-colors duration-300 dark:bg-[#181d2b] sm:pb-20 sm:pt-36 lg:pb-32 lg:pt-44">
-      {/* Background Graphic Element */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-16 z-[1] w-[175vw] max-w-none -translate-x-1/2 opacity-[0.18] dark:opacity-[0.48] sm:top-20 sm:w-[108vw] sm:max-w-[860px] sm:opacity-[0.16] sm:dark:opacity-[0.4] lg:left-auto lg:-right-[475px] lg:top-[52%] lg:w-[1971.5px] lg:max-w-none lg:-translate-y-1/2 lg:translate-x-0 lg:origin-right lg:scale-80 lg:opacity-100 lg:dark:opacity-100"
-      >
-        <ScrollReveal className="w-full" preset="image">
-          <div className="w-full animate-float-slow motion-reduce:animate-none">
-            <Image
-              src="/images/hero/hero.png"
-              alt=""
-              width={3943}
-              height={2653}
-              priority
-              sizes="(max-width: 639px) 175vw, (max-width: 1023px) 860px, 1972px"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </ScrollReveal>
-      </div>
-
-      <AmbientFlare className="-right-[38%] top-20 sm:-right-[24%] sm:top-16 md:-right-[14%] md:top-14 lg:-right-[6%] lg:top-12" />
-
-      {/* Hero Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-start">
-          <div className="w-full lg:w-[677px] text-center lg:text-left pt-2 sm:pt-6 lg:pt-24">
-            <div className="max-w-[550px] mx-auto lg:mx-0">
-              
-              {/* Main Heading */}
-              <ScrollReveal preset="hero">
-                <h1 className="text-balance text-4xl leading-[1.15] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-                 We Build the Technology Behind{" "}
-                   <span className="text-brand dark:text-brand">Growing Businesses</span>.
-                </h1>
-              </ScrollReveal>
-
-              {/* Subtitle / Paragraph */}
-              <ScrollReveal
-                className="mt-4 sm:mt-6 max-w-[591px]"
-                delay={0.12}
-                preset="copy"
-              >
-                <p className="mb-6 text-balance text-base leading-relaxed text-gray-600 dark:text-white sm:mb-8">
-                  From strategy and design to scalable development, we help ambitious businesses turn complex ideas into reliable digital products that drive measurable growth.
-                </p>
-              </ScrollReveal>
-
-              {/* Action Buttons */}
-              <ScrollReveal
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4"
-                delay={0.24}
-                preset="copy"
-              >
-                <Link
-                  href="/contact"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-lg font-semibold text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95"
-                >
-                  Book a Free Consultation
-                </Link>
-                <Link
-                  href="/services"
-                  className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-white dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
-                >
-                  Our services
-                </Link>
-              </ScrollReveal>
-
+    <>
+      <section className="relative isolate overflow-hidden bg-white pb-12 pt-28 transition-colors duration-300 dark:bg-[#181d2b] sm:pb-20 sm:pt-36 lg:pb-32 lg:pt-44">
+        {/* Background Graphic Element */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-16 z-[1] w-[175vw] max-w-none -translate-x-1/2 opacity-[0.18] dark:opacity-[0.48] sm:top-20 sm:w-[108vw] sm:max-w-[860px] sm:opacity-[0.16] sm:dark:opacity-[0.4] lg:left-auto lg:-right-[475px] lg:top-[52%] lg:w-[1971.5px] lg:max-w-none lg:-translate-y-1/2 lg:translate-x-0 lg:origin-right lg:scale-80 lg:opacity-100 lg:dark:opacity-100"
+        >
+          <ScrollReveal className="w-full" preset="image">
+            <div className="w-full animate-float-slow motion-reduce:animate-none">
+              <Image
+                src="/images/hero/hero.png"
+                alt=""
+                width={3943}
+                height={2653}
+                priority
+                sizes="(max-width: 639px) 175vw, (max-width: 1023px) 860px, 1972px"
+                className="w-full h-auto object-contain"
+              />
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
-        {/* Logo Strip Below Hero */}
-        <ScrollReveal
-          className="mt-16 sm:mt-36 lg:mt-52 pt-8 sm:pt-16 border-t border-gray-200 dark:border-gray-800/60"
-          delay={0.36}
-          preset="copy"
-        >
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
-            <div className="text-center lg:text-left shrink-0">
-              <p className="text-base sm:text-base font-bold text-gray-900 dark:text-white tracking-wide">
-                Trusted by{" "}
-                <span className="whitespace-nowrap">amazing clients</span>
-              </p>
-            </div>
+        {/* Hero Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-start">
+            <div className="w-full lg:w-[677px] text-center lg:text-left pt-2 sm:pt-6 lg:pt-24">
+              <div className="max-w-[550px] mx-auto lg:mx-0">
+                {/* Main Heading */}
+                <ScrollReveal preset="hero">
+                  <h1 className="text-balance text-4xl leading-[1.15] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+                    We Build the Technology Behind{" "}
+                    <span className="text-brand dark:text-brand">
+                      Growing Businesses
+                    </span>
+                    .
+                  </h1>
+                </ScrollReveal>
 
-            <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center w-full lg:w-auto">
-              {logos.map((logo) => (
-                <StaggerItem
-                  key={logo.src}
-                  className="relative h-7 sm:h-8 w-24 sm:w-32 flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity duration-200 dark:invert-0 invert"
-                  preset="image"
+                {/* Subtitle / Paragraph */}
+                <ScrollReveal
+                  className="mt-4 sm:mt-6 max-w-[591px]"
+                  delay={0.12}
+                  preset="copy"
                 >
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain"
-                  />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  <p className="mb-6 text-balance text-base leading-relaxed text-gray-600 dark:text-white sm:mb-8">
+                    From strategy and design to scalable development, we help
+                    ambitious businesses turn complex ideas into reliable
+                    digital products that drive measurable growth.
+                  </p>
+                </ScrollReveal>
+
+                {/* Action Buttons */}
+                <ScrollReveal
+                  className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4"
+                  delay={0.24}
+                  preset="copy"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setLeadRequest({ intent: "consultation" })}
+                    className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-lg font-semibold text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95 cursor-pointer"
+                  >
+                    Book a Free Consultation
+                  </button>
+                  <Link
+                    href="/services"
+                    className="w-full max-w-[280px] sm:w-auto sm:max-w-none text-center rounded-full border border-slate-300 bg-white px-6 sm:px-10 py-5 sm:py-6 text-lg font-semibold text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 dark:border-slate-800 dark:bg-[#121623] dark:text-white dark:hover:border-slate-700 dark:hover:bg-[#1a2032] dark:hover:text-white active:scale-95"
+                  >
+                    Our services
+                  </Link>
+                </ScrollReveal>
+              </div>
+            </div>
           </div>
-        </ScrollReveal>
-      </div>
-    </section>
+
+          {/* Logo Strip Below Hero */}
+          <ScrollReveal
+            className="mt-16 sm:mt-36 lg:mt-52 pt-8 sm:pt-16 border-t border-gray-200 dark:border-gray-800/60"
+            delay={0.36}
+            preset="copy"
+          >
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
+              <div className="text-center lg:text-left shrink-0">
+                <p className="text-base sm:text-base font-bold text-gray-900 dark:text-white tracking-wide">
+                  Trusted by{" "}
+                  <span className="whitespace-nowrap">amazing clients</span>
+                </p>
+              </div>
+
+              <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center w-full lg:w-auto">
+                {logos.map((logo) => (
+                  <StaggerItem
+                    key={logo.src}
+                    className="relative h-7 sm:h-8 w-24 sm:w-32 flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity duration-200 dark:invert-0 invert"
+                    preset="image"
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      fill
+                      className="object-contain"
+                    />
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <LeadCaptureDialog
+        request={leadRequest}
+        onClose={() => setLeadRequest(null)}
+      />
+    </>
   );
 }
+

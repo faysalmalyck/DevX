@@ -21,8 +21,8 @@ const page = async () => {
   return (
     <>
       <HeroSub
-  title="About our|Company"
-  description="We partner with businesses of all sizes to transform ideas into powerful digital experiences. Through innovation, collaboration, and technical excellence, we build reliable solutions that help organizations stay ahead in a competitive market."
+  title="About our|agency"
+  description="We turn business ideas into reliable digital solutions that drive growth, efficiency, and competitive advantage."
 /> 
       
 <div className="mx-auto max-w-8xl pt-32 pb-24 px-2">
