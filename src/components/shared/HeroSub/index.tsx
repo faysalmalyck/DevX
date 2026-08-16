@@ -13,21 +13,20 @@ const HeroSub: FC<HeroSubProps> = ({
   const [whiteTitle, blueTitle] = title.split('|')
 
   return (
-   <section className="relative bg-white px-4 pb-2 pt-28 text-center dark:bg-darkmode sm:pb-16 sm:pt-36 md:pb-15 md:pt-44">
-  <ScrollReveal preset="hero">
-    <h1 className="mb-2 max-w-xs sm:max-w-none mx-auto text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-      <span className="text-gray-900 dark:text-white">{whiteTitle}</span>{' '}
-      <span className="text-brand dark:text-brand">{blueTitle}</span>
-    </h1>
-  </ScrollReveal>
+    <section className="relative bg-white px-4 pb-12 pt-20 text-center dark:bg-[#181d2c] sm:pb-16 sm:pt-36 md:pb-15 md:pt-44">
+      <ScrollReveal preset="hero">
+        <h1 className="mx-auto mt-8 sm:mt-0 max-w-4xl text-5xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
+          <span className="text-gray-900 dark:text-white">{whiteTitle}</span>{' '}
+          <span className="text-brand dark:text-brand">{blueTitle}</span>
+        </h1>
+      </ScrollReveal>
 
-  <ScrollReveal delay={0.15} preset="copy">
-    <p className="mt-4 mx-auto my-1 max-w-xl text-lg text-gray-700 dark:text-white">
-      {description}
-    </p>
-  </ScrollReveal>
-
-</section>
+      <ScrollReveal delay={0.15} preset="copy">
+        <p className="mx-auto mt-4 max-w-xl text-base text-gray-700 dark:text-white sm:text-lg">
+          {description}
+        </p>
+      </ScrollReveal>
+    </section>
   )
 }
 

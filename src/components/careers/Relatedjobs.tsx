@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useInView } from '@/hooks/useInView';
 import { Career, careersData } from '@/data/careers';
+import { HoverCard } from '@/components/motion';
 
 interface RelatedJobsProps {
   currentCareer: Career;
@@ -15,28 +16,30 @@ function JobCard({ job, index }: { job: Career; index: number }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${index * 100}ms` }}
-      className={`transition-all duration-500 ease-out ${
+      className={`h-full transition-all duration-500 ease-out ${
         isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      <Link
-        href={`/careers/${job.slug}`}
-        className="group relative flex flex-col justify-between h-full min-h-[240px] sm:min-h-[260px] rounded-lg border border-slate-200 dark:border-slate-700/50 bg-gradient-to-b from-white to-slate-100 dark:from-[#262F43] dark:to-[#191F32] px-5 sm:px-8 py-6 sm:py-9 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-300 hover:border-indigo-500/50 dark:hover:border-slate-600 hover:shadow-xl dark:hover:shadow-2xl mx-auto w-full max-w-sm md:max-w-none"
-      >
-        <div className="space-y-4 sm:space-y-6">
-          <div className="space-y-3 sm:space-y-6 px-1 sm:px-8">
-            <p className="text-xs font-medium tracking-wider text-brand dark:text-white">
-              {job.location} | {job.type}
-            </p>
-            <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
-              {job.title}
-            </h3>
-            <p className="text-base font-light text-slate-600 dark:text-white leading-relaxed line-clamp-3 pt-1">
-              {job.description}
-            </p>
+      <HoverCard className="h-full">
+        <Link
+          href={`/careers/${job.slug}`}
+          className="group relative flex flex-col justify-between h-full min-h-[240px] sm:min-h-[260px] rounded-lg border border-gray-300 bg-gray-50/50 dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] px-5 sm:px-8 py-6 sm:py-9 transition-all duration-400 ease-out mx-auto w-full max-w-sm md:max-w-none"
+        >
+          <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-3 sm:space-y-6 px-1 sm:px-8">
+              <p className="text-xs font-medium tracking-wider text-brand dark:text-white">
+                {job.location} | {job.type}
+              </p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand transition-colors">
+                {job.title}
+              </h3>
+              <p className="text-base font-light text-slate-600 dark:text-white leading-relaxed line-clamp-3 pt-1">
+                {job.description}
+              </p>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </HoverCard>
     </div>
   );
 }

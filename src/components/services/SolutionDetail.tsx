@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, CircleDot } from "lucide-react";
 import {
+  HoverCard,
   ScrollReveal,
   StaggerContainer,
   StaggerItem,
@@ -237,22 +238,24 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
           <StaggerContainer className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
             {solution.capabilities.map((capability, index) => (
               <StaggerItem key={capability.title} className="h-full" preset="card">
-                <article
-                  data-testid="solution-capability-card"
-                  className="flex h-full gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#1e2436] dark:shadow-none dark:hover:border-blue-400/50 sm:p-7"
-                >
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand text-sm font-semibold text-white">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
-                      {capability.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base sm:leading-7">
-                      {capability.description}
-                    </p>
-                  </div>
-                </article>
+                <HoverCard className="h-full">
+                  <article
+                    data-testid="solution-capability-card"
+                    className="flex h-full gap-5 rounded-lg border border-gray-300 bg-gray-50/50 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-7"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand text-sm font-semibold text-white">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                        {capability.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base sm:leading-7">
+                        {capability.description}
+                      </p>
+                    </div>
+                  </article>
+                </HoverCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -270,20 +273,22 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
           <StaggerContainer className="mt-10 grid grid-cols-1 items-stretch gap-5 md:grid-cols-3">
             {solution.outcomes.map((outcome) => (
               <StaggerItem key={outcome.title} className="h-full" preset="card">
-                <article
-                  data-testid="solution-outcome-card"
-                  className="h-full rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#1e2436] dark:shadow-none dark:hover:border-blue-400/50 sm:p-8"
-                >
-                  <span className="grid h-10 w-10 place-items-center rounded-full border border-brand/40 bg-brand/10 text-brand">
-                    <Check className="h-5 w-5" strokeWidth={2} />
-                  </span>
-                  <h3 className="mt-6 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
-                    {outcome.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base sm:leading-7">
-                    {outcome.description}
-                  </p>
-                </article>
+                <HoverCard className="h-full">
+                  <article
+                    data-testid="solution-outcome-card"
+                    className="h-full rounded-lg border border-gray-300 bg-gray-50/50 p-7 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-8"
+                  >
+                    <span className="grid h-10 w-10 place-items-center rounded-full border border-brand/40 bg-brand/10 text-brand">
+                      <Check className="h-5 w-5" strokeWidth={2} />
+                    </span>
+                    <h3 className="mt-6 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                      {outcome.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base sm:leading-7">
+                      {outcome.description}
+                    </p>
+                  </article>
+                </HoverCard>
               </StaggerItem>
             ))}
           </StaggerContainer>

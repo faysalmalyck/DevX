@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { teamMembers, TeamMember } from "@/data/team";
+import { HoverCard } from "@/components/motion";
 
 export default function TeamDirectory() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,34 +52,34 @@ export default function TeamDirectory() {
       {/* Grid */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredMembers.map((member: TeamMember) => (
-          <div
-            key={member.id}
-            className="flex flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-6 dark:border-[#2f384f] dark:bg-[#242D40]"
-          >
-            <div>
-              <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg">
-                <Image
-                  src={member.imageUrl}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
+          <HoverCard key={member.id} className="h-full">
+            <article className="group relative flex h-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
+              <div>
+                <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={member.imageUrl}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {member.name}
+                </h3>
+                <p className="text-base text-brand font-medium">{member.role}</p>
+                <p className="mt-2 text-base text-gray-600 dark:text-gray-300">
+                  {member.bio}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                {member.name}
-              </h3>
-              <p className="text-base text-brand font-medium">{member.role}</p>
-              <p className="mt-2 text-base text-gray-600 dark:text-gray-300">
-                {member.bio}
-              </p>
-            </div>
-            <Link
-              href={`/team/${member.slug}`}
-              className="mt-4 inline-block text-base font-medium text-brand hover:underline dark:text-brand no-underline"
-            >
-              View Profile &rarr;
-            </Link>
-          </div>
+              <Link
+                href={`/team/${member.slug}`}
+                className="mt-4 inline-flex items-center gap-1.5 text-base font-medium text-brand dark:text-brand no-underline"
+              >
+                <span>View Profile</span>
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+              </Link>
+            </article>
+          </HoverCard>
         ))}
       </div>
     </div>

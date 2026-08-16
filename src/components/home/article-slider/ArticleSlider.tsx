@@ -124,7 +124,7 @@ export default function ArticleSlider() {
               <HoverCard className="h-full">
                 <Link
                   href={`/blog/${article.slug}`}
-                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-brand/40 shadow-sm dark:shadow-none transition-[border-color,box-shadow] duration-300"
+                  className="group relative flex flex-col h-full bg-gray-50/50 dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] border border-gray-300 dark:border-[#2f384f] rounded-lg overflow-hidden transition-all duration-400 ease-out"
                 >
                   {/* Image Wrapper (Adjusted Aspect Ratio for Height) */}
                   <div className="relative aspect-[16/10.5] w-full bg-slate-200 dark:bg-slate-800 overflow-hidden">

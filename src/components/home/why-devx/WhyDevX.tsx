@@ -105,7 +105,7 @@ export default function WhyDevX() {
             >
               <div data-card aria-hidden={setIndex !== 1} className="h-full">
                 <HoverCard className="h-full">
-                  <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-gradient-to-b dark:from-[#2A3147] dark:via-[#232B40] dark:to-[#1B2235] dark:shadow-none dark:hover:border-blue-400/50">
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-gray-50/50 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
                     <div className="relative flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 dark:bg-transparent sm:aspect-square">
                       <div
                         aria-hidden="true"

@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import { getImgPath } from "@/utils/image";
+import { HoverCard } from "@/components/motion";
 
 const BlogCard = ({ blog }: { blog: Blog }) => {
     const { title, coverImage, excerpt, date, slug } = blog;
@@ -13,13 +14,14 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
     const postImage = coverImage ?? "";
     const postDate = date ? new Date(date) : new Date();
     return (
-        <article className="glass-card group relative h-full overflow-hidden rounded-[1.75rem] p-3 transition-all duration-500 hover:-translate-y-2 hover:border-primary/30 hover:shadow-[0_30px_90px_rgba(47,115,242,0.16)]">
+        <HoverCard className="h-full">
+            <article className="glass-card group relative h-full overflow-hidden rounded-[1.75rem] p-3 transition-all duration-500 hover:border-primary/30">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] bg-slate-900">
                     <Link href={`/blog/${postSlug}`} aria-label="blog cover" className="block h-full">
                         <Image
                             src={getImgPath(`/${postImage}`)}
                             alt={postTitle}
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             width={408}
                             height={272}
                             quality={100}
@@ -45,11 +47,12 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
                     </h3>
                     <p className="line-clamp-3 text-base leading-7 text-secondary dark:text-white/55">{excerpt}</p>
                     <Link href={`/blog/${postSlug}`} className="mt-6 inline-flex items-center gap-2 text-base font-bold text-primary">
-                        Read more
+                        <span>Read more</span>
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </Link>
                 </div>
             </article>
+        </HoverCard>
     );
 };
 

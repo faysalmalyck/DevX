@@ -1,5 +1,6 @@
 import React from 'react'
 import { Quote, Star } from 'lucide-react'
+import { HoverCard } from '@/components/motion'
 
 const Testimonial = () => {
   const reviews = [
@@ -33,26 +34,27 @@ const Testimonial = () => {
           <h2 className='premium-heading mx-auto max-w-3xl'>Trusted by teams that care about execution.</h2>
           <div className='mt-12 grid grid-cols-1 gap-6 md:grid-cols-3'>
             {reviews.map((review, index) => (
-              <article
-                key={review.name}
-                className='glass-card group flex h-full flex-col rounded-[1.75rem] p-7 text-left transition-all duration-500 hover:-translate-y-2 hover:border-primary/30'
-                data-aos='fade-up'
-                data-aos-delay={index * 120}
-              >
-                <div className='mb-6 flex items-center justify-between'>
-                  <div className='flex gap-1 text-amber-400'>
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <Star key={starIndex} className='h-4 w-4 fill-current' />
-                    ))}
+              <HoverCard key={review.name} className="h-full">
+                <article
+                  className='relative flex h-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-7 text-left transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]'
+                  data-aos='fade-up'
+                  data-aos-delay={index * 120}
+                >
+                  <div className='mb-6 flex items-center justify-between'>
+                    <div className='flex gap-1 text-amber-400'>
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <Star key={starIndex} className='h-4 w-4 fill-current' />
+                      ))}
+                    </div>
+                    <Quote className='h-8 w-8 text-primary/40 transition-transform duration-500 group-hover:scale-110' />
                   </div>
-                  <Quote className='h-8 w-8 text-primary/40 transition-transform duration-500 group-hover:scale-110' />
-                </div>
-                <p className='flex-1 text-base leading-8 text-secondary dark:text-white/65'>{review.quote}</p>
-                <div className='mt-8 border-t border-slate-200/70 pt-5 dark:border-white/10'>
-                  <strong className='text-lg font-black text-midnight_text dark:text-white'>{review.name}</strong>
-                  <p className='mt-1 text-base text-gray dark:text-white/50'>{review.role}</p>
-                </div>
-              </article>
+                  <p className='flex-1 text-base leading-8 text-secondary dark:text-white/65'>{review.quote}</p>
+                  <div className='mt-8 border-t border-slate-200/70 pt-5 dark:border-white/10'>
+                    <strong className='text-lg font-black text-midnight_text dark:text-white'>{review.name}</strong>
+                    <p className='mt-1 text-base text-gray dark:text-white/50'>{review.role}</p>
+                  </div>
+                </article>
+              </HoverCard>
             ))}
           </div>
         </div>

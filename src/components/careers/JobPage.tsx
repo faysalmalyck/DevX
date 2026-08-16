@@ -82,7 +82,7 @@ className={`px-5 py-2 rounded-full text-base font-medium transition-all duration
               <HoverCard className="h-full">
                 <Link
                   href={`/careers/${position.slug}`}
-                  className="group flex h-full min-h-[260px] flex-col justify-between rounded-md border border-slate-200/80 bg-slate-50 p-8 transition-all duration-200 hover:border-slate-400 hover:shadow-lg sm:p-10 dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-slate-500"
+                  className="group relative flex h-full min-h-[260px] flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-8 transition-all duration-400 ease-out sm:p-10 dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]"
                 >
                   <div>
                     <div className="mb-4 flex items-center space-x-2 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-white">

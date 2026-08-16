@@ -37,7 +37,7 @@ export default function CaseStudiesSection() {
               <HoverCard className="h-full">
                 <Link
                   href={`/case-studies/${study.slug}`}
-                  className="group relative h-full bg-gray-100/80 dark:bg-[#252d41] rounded-lg border border-gray-200/80 dark:border-slate-700/80 py-20 px-14 md:py-16 md:px-12 min-h-[350px] shadow-sm dark:shadow-none transition-[border-color,box-shadow] duration-200 ease-in-out flex flex-col justify-between hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)]"
+                  className="group relative flex h-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 py-20 px-14 md:py-16 md:px-12 min-h-[350px] transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]"
                 >
                   <div>
                     <ScrollReveal

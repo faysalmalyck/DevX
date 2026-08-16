@@ -70,7 +70,7 @@ export default function ProcessSection() {
                   }
                 >
                   <HoverCard className="w-full max-w-sm">
-                    <div className="group relative bg-[#243042] rounded-lg border border-slate-700 shadow-md transition-[border-color,box-shadow] duration-300 hover:border-brand/50 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[450px] w-full max-w-sm">
+                    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border border-gray-300 bg-gray-50/50 min-h-[380px] sm:min-h-[450px] w-full max-w-sm transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
 
                       <div className="relative h-[220px] sm:h-[280px] w-full bg-slate-800 overflow-hidden">
                         <ScrollReveal className="absolute inset-0" preset="image">

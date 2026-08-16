@@ -70,7 +70,7 @@ export function LatestArticlesSection({ articles }: LatestArticlesSectionProps) 
               <HoverCard className="h-full rounded-lg">
                 <Link
                   href={`/blog/${article.slug}`}
-                  className="group flex flex-col h-full bg-white dark:bg-[#1e2436] border border-slate-200 dark:border-slate-800/80 rounded-lg overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
+                  className="group relative flex flex-col h-full bg-gray-50/50 dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] border border-gray-300 dark:border-[#2f384f] rounded-lg overflow-hidden transition-all duration-400 ease-out"
                 >
                   {/* Image */}
                   <ScrollReveal

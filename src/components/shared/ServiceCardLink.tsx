@@ -33,7 +33,7 @@ export default function ServiceCardLink({
         href={href}
         data-service-card-link={id}
         data-testid={testId}
-        className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:border-slate-700/80 dark:bg-gradient-to-b dark:from-[#2A3147] dark:via-[#232B40] dark:to-[#1B2235] dark:shadow-none dark:hover:border-blue-400/50"
+        className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-gray-50/50 transition-all duration-400 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]"
       >
         <div className="relative flex h-52 w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 dark:bg-transparent sm:h-56 md:h-64">
           <div

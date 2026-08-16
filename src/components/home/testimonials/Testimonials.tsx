@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
                       preset="card"
                     >
                       <HoverCard>
-                        <div className="rounded-lg border border-slate-700 bg-slate-800 p-6 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-brand/50 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)]">
+                        <div className="rounded-lg border border-gray-300 bg-gray-50/50 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <ScrollReveal

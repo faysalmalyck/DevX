@@ -15,7 +15,7 @@ function RelatedProjectCard({ study }: { study: CaseStudy }) {
     <HoverCard className="h-full rounded-lg">
       <Link
         href={`/case-studies/${study.slug}`}
-        className="group bg-slate-50/80 dark:bg-[#1e2436]/60 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 rounded-lg flex h-full flex-col justify-between min-h-[280px] hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-lg dark:hover:shadow-[0_0_25px_rgba(148,163,184,0.15)] hover:bg-slate-100 dark:hover:bg-[#1e2436] transition-all duration-300 backdrop-blur-sm"
+        className="group relative flex h-full flex-col justify-between min-h-[280px] rounded-lg border border-gray-300 bg-gray-50/50 p-8 sm:p-10 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]"
       >
         <div>
           <ScrollReveal

@@ -44,7 +44,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
           <StaggerItem className="lg:col-span-10 w-full">
             <HoverCard className="h-full rounded-lg">
               <Link
-                className="group flex flex-col h-full overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm dark:shadow-none"
+                className="group relative flex flex-col h-full bg-gray-50/50 dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] border border-gray-300 dark:border-[#2f384f] rounded-lg overflow-hidden transition-all duration-400 ease-out"
                 href={`/blog/${featuredMain.slug}`}
               >
                 <ScrollReveal
@@ -57,7 +57,7 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
                     width={1600}
                     height={1050}
                     priority
-                    className="w-full h-auto object-contain group-hover:scale-102 transition-transform duration-500"
+                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </ScrollReveal>
                 <div className="p-6 sm:p-8 flex flex-col flex-grow">
@@ -86,9 +86,9 @@ export function FeaturedPostsSection({ articles }: FeaturedPostsSectionProps) {
               <StaggerItem key={article.id} preset="right">
                 <HoverCard className="rounded-lg">
                   <Link
-                key={article.id}
-                href={`/blog/${article.slug}`}
-                    className="group flex flex-col sm:flex-row gap-4 sm:gap-5 py-2 px-2 sm:p-2 items-start rounded-lg transition-all duration-300"
+                    key={article.id}
+                    href={`/blog/${article.slug}`}
+                    className="group relative flex flex-col sm:flex-row gap-4 sm:gap-5 py-3 px-3 items-start rounded-lg bg-gray-50/50 dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] border border-gray-300 dark:border-[#2f384f] transition-all duration-400 ease-out"
                   >
                     <ScrollReveal
                       preset="image"
