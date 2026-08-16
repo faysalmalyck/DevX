@@ -118,7 +118,7 @@ describe("SolutionDetail", () => {
       ),
     ).toEqual([
       "Frontend Development - Dev X Webflow Template",
-      "Databases & Data Science - Dev X Webflow Template",
+      "Connected cloud, database, application, and server systems",
       "Business Automation illustration",
     ]);
     expect(
@@ -127,7 +127,6 @@ describe("SolutionDetail", () => {
           "rounded-lg",
           "border-slate-200",
           "shadow-sm",
-          "hover:border-brand/40",
           "dark:border-slate-700/80",
         ].every((token) => link.className.includes(token)),
       ),

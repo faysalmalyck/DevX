@@ -36,7 +36,7 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="relative w-full py-6 sm:py-10 px-4 md:px-8 dark:bg-[#181d2b] overflow-hidden transition-colors duration-200">
+    <section className="relative w-full pt-6 sm:pt-10 pb-36 sm:pb-48 px-4 md:px-8 dark:bg-[#181d2b] overflow-hidden transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <ScrollReveal
@@ -50,6 +50,98 @@ export default function ProcessSection() {
           </h2>
         </ScrollReveal>
 
+     {/* Bottom Left Circular Flare Arc */}
+<svg
+  className="pointer-events-none absolute -left-5 bottom-24 rotate-270 hidden h-[500px] w-[500px] sm:block"
+  viewBox="0 0 500 500"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="flareArcGradient"
+      x1="70"
+      y1="400"
+      x2="400"
+      y2="70"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#4360cbff" stopOpacity="0" />
+      <stop offset="20%" stopColor="#4360cbff" stopOpacity="0.15" />
+      <stop offset="45%" stopColor="#4f6df5" stopOpacity="0.8" />
+      <stop offset="70%" stopColor="#4360cbff" stopOpacity="0.35" />
+      <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M 100 400 A 200 200 0 0 1 400 100"
+    stroke="url(#flareArcGradient)"
+    strokeWidth="4"
+    strokeLinecap="round"
+    fill="none"
+  />
+</svg>
+
+
+
+      {/* Top Right L Shape */}
+<svg
+  className="pointer-events-none absolute right-[-20] top-[70px] z-0 rotate-[-25deg] hidden h-[420px] w-[420px] sm:block"
+  viewBox="0 0 420 420"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="processTopRightLGradient"
+      x1="50"
+      y1="70"
+      x2="350"
+      y2="370"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#3154d8" stopOpacity="0" />
+      <stop offset="20%" stopColor="#3154d8" stopOpacity="0.25" />
+      <stop offset="50%" stopColor="#4f6df5" stopOpacity="1" />
+      <stop offset="80%" stopColor="#3154d8" stopOpacity="0.25" />
+      <stop offset="100%" stopColor="#3154d8" stopOpacity="0" />
+    </linearGradient>
+
+    <filter
+      id="processTopRightLGlow"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="160%"
+    >
+      <feGaussianBlur stdDeviation="2" result="blur" />
+
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <path
+    d="
+      M 50 70
+      H 300
+      Q 350 70 350 120
+      V 370
+    "
+    stroke="url(#processTopRightLGradient)"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    fill="none"
+    filter="url(#processTopRightLGlow)"
+    className="animate-[pulse_5s_ease-in-out_infinite]"
+  />
+</svg>
+
+
         <div className="relative">
           <StaggerContainer
             className="relative z-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-3 lg:gap-2 lg:pb-16"
@@ -62,10 +154,10 @@ export default function ProcessSection() {
               >
                 <div
                   data-process-step={step.id}
-                  className="flex w-full justify-center [transform:translateY(0)] lg:[transform:translateY(var(--process-step-offset))]"
+                  className="flex w-full justify-center [transform:translateY(0)] xl:[transform:translateY(var(--process-step-offset))]"
                   style={
                     {
-                      '--process-step-offset': `${index * 32}px`,
+                      '--process-step-offset': `${index * 75}px`,
                     } as CSSProperties
                   }
                 >

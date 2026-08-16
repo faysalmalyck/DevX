@@ -48,7 +48,7 @@ describe("service solution route", () => {
       titles.add(String(metadata.title));
     }
 
-    expect(titles.size).toBe(8);
+    expect(titles.size).toBe(10);
   });
 
   it("awaits route params and passes the matching record to the template", async () => {

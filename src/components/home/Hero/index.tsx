@@ -12,6 +12,8 @@ import LeadCaptureDialog, {
   type LeadRequest,
 } from "@/components/home/final-cta/LeadCaptureDialog";
 
+import AmbientFlare from "@/components/shared/AmbientFlare";
+
 export default function HeroSection() {
   const [leadRequest, setLeadRequest] = useState<LeadRequest>(null);
 
@@ -41,6 +43,7 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-white pb-12 pt-28 transition-colors duration-300 dark:bg-[#181d2b] sm:pb-20 sm:pt-36 lg:pb-32 lg:pt-44">
+        <AmbientFlare variant="hero" className="pointer-events-none absolute -top-[10%] lg:-right-[6%]" />
         {/* Background Graphic Element */}
         <div
           aria-hidden="true"
@@ -60,6 +63,39 @@ export default function HeroSection() {
             </div>
           </ScrollReveal>
         </div>
+
+        {/* Top Left Circular Flare Arc */}
+        <svg
+          className="pointer-events-none absolute -left-15 top-20 hidden h-[500px] w-[500px] sm:block"
+          viewBox="0 0 500 500"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="flareArcGradient"
+              x1="70"
+              y1="400"
+              x2="400"
+              y2="70"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#4360cbff" stopOpacity="0" />
+              <stop offset="20%" stopColor="#4360cbff" stopOpacity="0.15" />
+              <stop offset="45%" stopColor="#4f6df5" stopOpacity="0.8" />
+              <stop offset="70%" stopColor="#4360cbff" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          <path
+            d="M 100 400 A 200 200 0 0 1 400 100"
+            stroke="url(#flareArcGradient)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
 
         {/* Hero Content Container */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">

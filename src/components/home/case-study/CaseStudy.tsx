@@ -10,7 +10,7 @@ import {
 
 export default function CaseStudiesSection() {
   return (
-    <section className="relative py-6 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent transition-colors duration-300">
+    <section className="relative py-6 px-1 sm:px-8 max-w-none mx-auto overflow-hidden bg-transparent transition-colors duration-300">
       <div>
         {/* Header Container */}
         <ScrollReveal
@@ -25,9 +25,100 @@ export default function CaseStudiesSection() {
           </h2>
         </ScrollReveal>
 
+ {/* Top Left Circular Flare Arc */}
+<svg
+  className="pointer-events-none absolute -right-8 top-16 rotate-[90deg] hidden h-[500px] w-[500px] sm:block"
+  viewBox="0 0 500 500"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="flareArcGradient"
+      x1="70"
+      y1="400"
+      x2="400"
+      y2="70"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#4360cbff" stopOpacity="0" />
+      <stop offset="20%" stopColor="#4360cbff" stopOpacity="0.15" />
+      <stop offset="45%" stopColor="#4f6df5" stopOpacity="0.8" />
+      <stop offset="70%" stopColor="#4360cbff" stopOpacity="0.35" />
+      <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M 100 400 A 200 200 0 0 1 400 100"
+    stroke="url(#flareArcGradient)"
+    strokeWidth="4"
+    strokeLinecap="round"
+    fill="none"
+  />
+</svg>
+
+
+
+        {/* Bottom Left L Shape */}
+<svg
+  className="pointer-events-none absolute bottom-[250px] left-[-50px] z-[1] hidden h-[420px] w-[420px] sm:block"
+  viewBox="0 0 420 420"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="bottomLeftLGradient"
+      x1="70"
+      y1="50"
+      x2="370"
+      y2="350"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#3154d8" stopOpacity="0" />
+      <stop offset="20%" stopColor="#3154d8" stopOpacity="0.25" />
+      <stop offset="50%" stopColor="#4f6df5" stopOpacity="1" />
+      <stop offset="80%" stopColor="#3154d8" stopOpacity="0.25" />
+      <stop offset="100%" stopColor="#3154d8" stopOpacity="0" />
+    </linearGradient>
+
+    <filter
+      id="bottomLeftLGlow"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="160%"
+    >
+      <feGaussianBlur stdDeviation="2" result="blur" />
+
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <path
+    d="
+      M 70 50
+      V 300
+      Q 70 350 120 350
+      H 370
+    "
+    stroke="url(#bottomLeftLGradient)"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    fill="none"
+    filter="url(#bottomLeftLGlow)"
+    className="animate-[pulse_5s_ease-in-out_infinite]"
+  />
+</svg>
+
         {/* Grid Container */}
         <div className="relative">
-        <StaggerContainer className="grid grid-cols-1 py-10 md:grid-cols-2 gap-4 relative z-10">
+        <StaggerContainer className="grid grid-cols-1 py-10 px-15 md:grid-cols-2 gap-4 relative z-10">
           {caseStudiesData.slice(0, 2).map((study) => (
             <StaggerItem
               key={study.id}

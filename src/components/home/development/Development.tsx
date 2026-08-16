@@ -16,8 +16,12 @@ type DevelopmentProps = {
 export default function Development({
   showImprovementCta = true,
 }: DevelopmentProps) {
+  const bottomFlarePosClass = showImprovementCta
+    ? "bottom-6"
+    : "-bottom-24 sm:-bottom-32 lg:-bottom-36";
+
   return (
-    <section className="relative overflow-hidden bg-white py-8 text-slate-900 transition-colors duration-200 dark:bg-darkmode dark:text-white sm:py-6 md:py-6 lg:py-6">
+    <section className="relative overflow-hidden bg-white pt-8 pb-16 text-slate-900 transition-colors duration-200 dark:bg-darkmode dark:text-white sm:pt-6 sm:pb-24 md:pt-6 md:pb-28 lg:pt-6 lg:pb-32">
       {/* Background Decorative Arc */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-[250px] w-[350px] sm:h-[600px] sm:w-[900px] rounded-full border border-brand/20 opacity-40 blur-2xl dark:border-brand/10 dark:opacity-30"></div>
@@ -35,6 +39,96 @@ export default function Development({
             <span className="text-brand dark:text-brand">platforms</span>.
           </h2>
         </ScrollReveal>
+
+        {/* Top Left Circular Flare Arc */}
+        <svg
+          className="pointer-events-none absolute -left-40 top-20 hidden h-[500px] w-[500px] sm:block"
+          viewBox="0 0 500 500"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="flareArcGradient"
+              x1="70"
+              y1="400"
+              x2="400"
+              y2="70"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#4360cbff" stopOpacity="0" />
+              <stop offset="20%" stopColor="#4360cbff" stopOpacity="0.15" />
+              <stop offset="45%" stopColor="#4f6df5" stopOpacity="0.8" />
+              <stop offset="70%" stopColor="#4360cbff" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          <path
+            d="M 100 400 A 200 200 0 0 1 400 100"
+            stroke="url(#flareArcGradient)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+
+        {/* Bottom Right L Shape */}
+        <svg
+          className={`pointer-events-none absolute -right-20 hidden h-[420px] w-[420px] sm:block ${bottomFlarePosClass}`}
+          viewBox="0 0 420 420"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {/* Gradient */}
+            <linearGradient
+              id="bottomRightLGradient"
+              x1="40"
+              y1="350"
+              x2="350"
+              y2="80"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#3154d8" stopOpacity="0" />
+              <stop offset="20%" stopColor="#3154d8" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="#4f6df5" stopOpacity="1" />
+              <stop offset="80%" stopColor="#3154d8" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#3154d8" stopOpacity="0" />
+            </linearGradient>
+
+            {/* Soft Glow */}
+            <filter
+              id="bottomRightLGlow"
+              x="-30%"
+              y="-30%"
+              width="160%"
+              height="160%"
+            >
+              <feGaussianBlur stdDeviation="2" result="blur" />
+
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <path
+            d="
+              M 40 350
+              H 320
+              Q 370 350 370 300
+              V 40
+            "
+            stroke="url(#bottomRightLGradient)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            filter="url(#bottomRightLGlow)"
+            className="animate-[pulse_5s_ease-in-out_infinite]"
+          />
+        </svg>
 
         {/* Cards Grid Section */}
         <StaggerContainer className="grid items-stretch grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
@@ -90,7 +184,6 @@ export default function Development({
           </ScrollReveal>
         )}
       </div>
-
     </section>
   );
 }

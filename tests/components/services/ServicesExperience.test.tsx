@@ -113,14 +113,10 @@ describe("ServicesExperience", () => {
     expect(comparison.className).toContain("dark:border-slate-700/80");
 
     const manualCard = screen.getByTestId("manual-process-card");
-    expect(manualCard.className).toContain("rounded-lg");
-    expect(manualCard.className).toContain("border-amber-200");
-    expect(manualCard.className).toContain("shadow-sm");
+    expect(manualCard.className).toContain("bg-rose-50/60");
 
     const automatedCard = screen.getByTestId("automated-process-card");
-    expect(automatedCard.className).toContain("rounded-lg");
-    expect(automatedCard.className).toContain("border-brand/25");
-    expect(automatedCard.className).toContain("shadow-sm");
+    expect(automatedCard.className).toContain("bg-emerald-50/60");
   });
 
   it("carries selected business problems into the process form", async () => {
@@ -140,7 +136,7 @@ describe("ServicesExperience", () => {
     );
 
     const dialog = screen.getByRole("dialog", {
-      name: "Let’s Fix Your Process",
+      name: "Turn Your Business Challenges Into Better Processes",
     });
     const topics = within(dialog).getByLabelText("Selected topics");
     expect(topics.textContent).toContain("Manual Processes");

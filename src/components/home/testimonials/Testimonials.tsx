@@ -32,6 +32,45 @@ export default function TestimonialsSection() {
             </Link>
           </ScrollReveal>
 
+
+          Top left arc
+
+
+ {/* Bottom Left Circular Flare Arc */}
+<svg
+  className="pointer-events-none absolute -left-5 bottom-24 rotate-270 hidden h-[500px] w-[500px] sm:block"
+  viewBox="0 0 500 500"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="flareArcGradient"
+      x1="70"
+      y1="400"
+      x2="400"
+      y2="70"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#4360cbff" stopOpacity="0" />
+      <stop offset="20%" stopColor="#4360cbff" stopOpacity="0.15" />
+      <stop offset="45%" stopColor="#4f6df5" stopOpacity="0.8" />
+      <stop offset="70%" stopColor="#4360cbff" stopOpacity="0.35" />
+      <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M 100 400 A 200 200 0 0 1 400 100"
+    stroke="url(#flareArcGradient)"
+    strokeWidth="4"
+    strokeLinecap="round"
+    fill="none"
+  />
+</svg>
+
+
+
           {/* Testimonials Grid */}
           <div className="relative">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

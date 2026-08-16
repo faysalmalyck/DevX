@@ -46,12 +46,12 @@ describe('Process staircase', () => {
     expect(steps).toHaveLength(3);
     expect(
       steps.map((step) => step.style.getPropertyValue('--process-step-offset')),
-    ).toEqual(['0px', '32px', '64px']);
+    ).toEqual(['0px', '75px', '150px']);
 
     steps.forEach((step) => {
       expect(step.className).toContain('[transform:translateY(0)]');
       expect(step.className).toContain(
-        'lg:[transform:translateY(var(--process-step-offset))]',
+        'xl:[transform:translateY(var(--process-step-offset))]',
       );
       expect(step.className).not.toContain('mt-');
     });

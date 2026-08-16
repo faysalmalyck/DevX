@@ -16,15 +16,15 @@ describe("FinalCTA", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Ready to Fix What's Slowing Your Business Down?",
+        name: /Your Business Problem Deserves a/i,
       }),
     ).toBeTruthy();
     expect(screen.queryByText("Start with the problem")).toBeNull();
     expect(
       screen
-        .getByRole("link", { name: /explore our services/i })
+        .getByRole("link", { name: /explore business solutions/i })
         .getAttribute("href"),
-    ).toBe("/services#business-problems");
+    ).toBe("/services/business-problems");
     const ctaCard = screen.getByTestId("final-cta-card");
     for (const token of [
       "rounded-lg",
@@ -38,10 +38,10 @@ describe("FinalCTA", () => {
       expect(ctaCard.className).toContain(token);
     }
 
-    await user.click(screen.getByRole("button", { name: /fix your process/i }));
+    await user.click(screen.getByRole("button", { name: /discuss your business challenge/i }));
 
     expect(
-      screen.getByRole("dialog", { name: "Let’s Fix Your Process" }),
+      screen.getByRole("dialog", { name: "Turn Your Business Challenges Into Better Processes" }),
     ).toBeTruthy();
     expect(screen.getByLabelText(/^name/i)).toBeTruthy();
     expect(screen.getByLabelText(/^email/i)).toBeTruthy();
@@ -56,7 +56,7 @@ describe("FinalCTA", () => {
     const user = userEvent.setup();
     render(<FinalCTA />);
 
-    await user.click(screen.getByRole("button", { name: /fix your process/i }));
+    await user.click(screen.getByRole("button", { name: /discuss your business challenge/i }));
     await user.click(screen.getByRole("button", { name: "Close enquiry form" }));
 
     expect(screen.queryByRole("dialog")).toBeNull();
@@ -66,7 +66,7 @@ describe("FinalCTA", () => {
     const user = userEvent.setup();
     render(<FinalCTA />);
 
-    await user.click(screen.getByRole("button", { name: /fix your process/i }));
+    await user.click(screen.getByRole("button", { name: /discuss your business challenge/i }));
     await user.click(screen.getByRole("button", { name: "Prepare process email" }));
 
     expect(screen.getByText("Enter your name (2–120 characters).")).toBeTruthy();

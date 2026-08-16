@@ -241,7 +241,7 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
                 <HoverCard className="h-full">
                   <article
                     data-testid="solution-capability-card"
-                    className="flex h-full gap-5 rounded-lg border border-gray-300 bg-gray-50/50 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-7"
+                    className="flex h-full gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#1d2436] dark:hover:border-blue-400/50 sm:p-7"
                   >
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand text-sm font-semibold text-white">
                       {String(index + 1).padStart(2, "0")}
@@ -276,7 +276,7 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
                 <HoverCard className="h-full">
                   <article
                     data-testid="solution-outcome-card"
-                    className="h-full rounded-lg border border-gray-300 bg-gray-50/50 p-7 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-8"
+                    className="h-full rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#1d2436] dark:hover:border-blue-400/50 sm:p-8"
                   >
                     <span className="grid h-10 w-10 place-items-center rounded-full border border-brand/40 bg-brand/10 text-brand">
                       <Check className="h-5 w-5" strokeWidth={2} />

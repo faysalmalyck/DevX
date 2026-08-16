@@ -6,7 +6,7 @@ import {
 } from "@/data/service-solutions";
 
 describe("service solutions data", () => {
-  it("defines exactly the eight ordered solution routes", () => {
+  it("defines exactly the ten ordered solution routes", () => {
     expect(serviceSolutionSlugs).toEqual([
       "custom-software",
       "web-applications",
@@ -16,12 +16,14 @@ describe("service solutions data", () => {
       "ai-solutions",
       "system-integration",
       "legacy-modernization",
+      "saas",
+      "databases-data-science",
     ]);
-    expect(serviceSolutions).toHaveLength(8);
+    expect(serviceSolutions).toHaveLength(10);
     expect(serviceSolutions.map(({ slug }) => slug)).toEqual(
       serviceSolutionSlugs,
     );
-    expect(new Set(serviceSolutionSlugs).size).toBe(8);
+    expect(new Set(serviceSolutionSlugs).size).toBe(10);
   });
 
   it("provides complete rich-page content and valid related links", () => {

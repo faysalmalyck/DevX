@@ -11,7 +11,7 @@ describe("LeadCaptureDialog", () => {
   >([
     ["consultation", "Book a Free Consultation", "Prepare consultation email"],
     ["project", "Tell Us About Your Project", "Prepare project email"],
-    ["process", "Let’s Fix Your Process", "Prepare process email"],
+    ["process", "Turn Your Business Challenges Into Better Processes", "Prepare process email"],
     ["software-improvement", "Improve My Software", "Prepare improvement email"],
     ["automation", "Automate My Business", "Prepare automation email"],
     ["integration", "Discuss an Integration", "Prepare integration email"],

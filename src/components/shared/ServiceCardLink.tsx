@@ -33,7 +33,7 @@ export default function ServiceCardLink({
         href={href}
         data-service-card-link={id}
         data-testid={testId}
-        className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-gray-50/50 transition-all duration-400 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]"
+        className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_12px_30px_#1c2b47] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:border-slate-700/80 dark:bg-[#1d2436]"
       >
         <div className="relative flex h-52 w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 dark:bg-transparent sm:h-56 md:h-64">
           <div
@@ -48,7 +48,7 @@ export default function ServiceCardLink({
           <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-100 dark:from-brand/5" />
 
           <ScrollReveal className="absolute inset-0" preset="image">
-            <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
+            <div className="relative h-full w-full">
               <Image
                 src={image.src}
                 alt={image.alt}

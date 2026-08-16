@@ -89,12 +89,12 @@ describe("Development service cards", () => {
       "/services/custom-software",
       "/services/web-applications",
       "/services/mobile-applications",
-      "/services/web-applications",
+      "/services/saas",
       "/services/ai-solutions",
       "/services/legacy-modernization",
       "/services/crm-erp",
       "/services/business-automation",
-      "/services/system-integration",
+      "/services/databases-data-science",
     ]);
     for (const service of servicesData) {
       const slug = service.href?.replace("/services/", "");
@@ -122,7 +122,7 @@ describe("Development service cards", () => {
     expect(screen.getByText("Already Using Software? We Can Make It Better.")).toBeTruthy();
     expect(
       screen.getByRole("link", { name: "Improve My Software" }).getAttribute("href"),
-    ).toBe("/services");
+    ).toBe("/services/business-problems");
 
     expect(grid?.className).toContain("grid-cols-1");
     expect(grid?.className).toContain("sm:grid-cols-2");

@@ -19,8 +19,14 @@ export const headerData: HeaderItem[] = [
     href: "/services",
     submenu: [
       { label: "Services", href: "/services" },
-      { label: "Business Problem", href: "/services/business-problems" },
-      { label: "System Integration", href: "/services/system-integration" },
+      {
+        label: "Business Problems",
+        href: "/services#business-problems",
+      },
+      { label: "Modernization", href: "/services#modernization" },
+      { label: "Automation", href: "/services#automation" },
+      { label: "Integration", href: "/services#integration" },
+      { label: "Pricing", href: "/pricing" },
     ],
   },
   {

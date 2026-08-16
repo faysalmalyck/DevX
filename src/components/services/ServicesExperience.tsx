@@ -221,6 +221,7 @@ function useActiveSection(ids: readonly string[]) {
       .filter((el): el is HTMLElement => el !== null);
 
     if (elements.length === 0) return;
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -320,9 +321,9 @@ const selectableSurface = cva(
   {
     variants: {
       selected: {
-        true: "border-emerald-500 bg-emerald-500/[0.05] shadow-[0_14px_36px_rgba(16,185,129,0.12)] dark:border-emerald-400/70 dark:bg-emerald-400/[0.08] dark:shadow-[0_14px_36px_rgba(52,211,153,0.1)]",
+        true: "border-brand bg-brand/[0.05] shadow-[0_14px_36px_rgba(54,88,255,0.12)] dark:border-blue-400/70 dark:bg-blue-400/[0.08] dark:shadow-[0_14px_36px_rgba(54,88,255,0.12)]",
         false:
-          "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-[0_12px_30px_rgba(16,185,129,0.14)] dark:border-slate-700/80 dark:bg-[#202638] dark:shadow-none dark:hover:border-emerald-400/50",
+          "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#202638] dark:shadow-none dark:hover:border-blue-400/50",
       },
     },
     defaultVariants: { selected: false },
@@ -749,7 +750,7 @@ function AutomationSection({
             aria-labelledby={`automation-tab-${activeOption.id}`}
             tabIndex={0}
             data-testid="automation-comparison-card"
-            className="overflow-hidden rounded-2xl border-2 border-brand/70 bg-white shadow-sm dark:border-blue-400/60 dark:bg-[#151a27] dark:shadow-none"
+            className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/80 dark:bg-[#151a27] dark:shadow-none"
           >
             <div className="grid divide-y divide-slate-200 dark:divide-white/10 md:grid-cols-2 md:divide-x md:divide-y-0">
               <div
