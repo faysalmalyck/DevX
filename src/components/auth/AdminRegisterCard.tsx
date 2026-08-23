@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { User, Mail, Lock, ShieldAlert, ArrowLeft } from "lucide-react";
+import { getClientCsrfToken } from "@/lib/auth/client-csrf";
 
 export default function AdminRegisterCard() {
   const router = useRouter();
@@ -22,9 +23,27 @@ export default function AdminRegisterCard() {
     setLoading(true);
 
     try {
+      let csrfToken = getClientCsrfToken();
+      if (!csrfToken) {
+        const csrfResponse = await fetch("/api/auth/csrf", {
+          credentials: "same-origin",
+        });
+        if (!csrfResponse.ok) {
+          throw new Error("Unable to verify this request. Please try again.");
+        }
+        csrfToken = getClientCsrfToken();
+      }
+
+      if (!csrfToken) {
+        throw new Error("Unable to verify this request. Please try again.");
+      }
+
       const res = await fetch("/api/auth/admin/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken,
+        },
         body: JSON.stringify({
           firstName,
           lastName,

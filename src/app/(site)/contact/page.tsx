@@ -15,7 +15,7 @@ export default function ContactHeroSection() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   // Force scroll position to top when page mounts
@@ -30,15 +30,45 @@ export default function ContactHeroSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(false);
-    
-    setTimeout(() => {
-      setLoading(false);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/leads/capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          company: formData.company || undefined,
+          message: formData.message || undefined,
+          formType: 'CONTACT',
+        }),
+      });
+
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(
+          typeof payload?.error === 'string'
+            ? payload.error
+            : 'We could not send your message. Please try again.'
+        );
+      }
+
       setSubmitted(true);
-    }, 1000);
+      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+    } catch (submitError) {
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : 'We could not send your message. Please try again.'
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -133,6 +163,7 @@ export default function ContactHeroSection() {
                       id="name"
                       name="name"
                       value={formData.name}
+                      required
                       onChange={handleChange}
                       placeholder="John Carter"
                       className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
@@ -149,6 +180,7 @@ export default function ContactHeroSection() {
                       id="email"
                       name="email"
                       value={formData.email}
+                      required
                       onChange={handleChange}
                       placeholder="example@email.com"
                       className="w-full px-5 py-3.5 rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300"
@@ -206,6 +238,11 @@ export default function ContactHeroSection() {
 
                 {/* Submit Button */}
                 <div className="pt-2">
+                  {error ? (
+                    <p role="alert" className="mb-3 text-sm font-medium text-rose-600 dark:text-rose-400">
+                      {error}
+                    </p>
+                  ) : null}
                   <button
                     type="submit"
                     disabled={loading}

@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { ChevronRight, Globe2, Menu, Moon, Sun, X } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import AdminBrandLogo from "@/components/admin/AdminBrandLogo";
 import AdminSidebar, { AdminSidebarAccount, AdminSidebarNav } from "@/components/admin/AdminSidebar";
 import { getAdminRouteInfo } from "@/components/admin/admin-navigation";
 
@@ -81,8 +82,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F6F8FC] px-6 dark:bg-[#090E19]">
         <div className="text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-violet-500 text-base font-black text-white shadow-xl shadow-brand/20">
-            DX
+          <div className="mx-auto flex h-14 items-center justify-center">
+            <AdminBrandLogo surface="light" className="h-10 w-auto dark:hidden" />
+            <AdminBrandLogo surface="dark" className="hidden h-10 w-auto dark:block" />
           </div>
           <div className="mx-auto mt-5 h-1.5 w-32 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
             <div className="h-full w-2/3 animate-pulse rounded-full bg-brand" />
@@ -116,9 +118,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             <div className="flex min-h-[72px] items-center justify-between border-b border-white/[0.08] px-5">
               <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3" aria-label="DevX operations home">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-base font-black text-white shadow-lg shadow-blue-950/30">DX</span>
+                <AdminBrandLogo surface="dark" alt="" className="h-8 w-auto shrink-0" />
                 <span>
-                  <span className="block text-base font-black tracking-tight">DevX Operations</span>
+                  <span className="block text-base font-black tracking-tight">Operations</span>
                   <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/80">Control workspace</span>
                 </span>
               </Link>

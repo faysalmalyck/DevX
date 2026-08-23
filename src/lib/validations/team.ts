@@ -120,6 +120,9 @@ const optionalDraftSlug = z.preprocess(
 );
 
 export const teamMemberDepartmentSchema = z.enum(TEAM_MEMBER_DEPARTMENT_VALUES);
+export const teamMemberSalesRoleSchema = z.enum(["SALES_MANAGER", "SALES_AGENT"] as const);
+export const teamMemberAccessRoleSchema = z.enum(["ADMINISTRATOR", "SALES_MANAGER", "SALES_AGENT"] as const);
+export const teamMemberAccessChoiceSchema = z.enum(["NONE", "ADMINISTRATOR", "SALES_MANAGER", "SALES_AGENT"] as const);
 
 const optionalDraftDepartment = z.preprocess((value) => {
   const normalized = normalizeTeamMemberDepartment(value);
@@ -183,6 +186,8 @@ export const teamMemberDraftSchema = z.object({
   bio: optionalDraftText("Biography", 10, 5_000),
   image: optionalImage,
   email: optionalEmail,
+  accessRole: z.preprocess(blankToNull, teamMemberAccessChoiceSchema.nullable()).default("NONE"),
+  salesRole: z.preprocess(blankToNull, teamMemberSalesRoleSchema.nullable()),
   phone: optionalText(60),
   linkedinUrl: optionalHttpUrl,
   facebookUrl: optionalHttpUrl,
@@ -191,6 +196,26 @@ export const teamMemberDraftSchema = z.object({
   displayOrder: z.number().int("Display order must be a whole number.").min(0, "Display order cannot be negative.").max(1_000_000, "Display order is too large.").optional().default(0),
   featured: z.boolean().optional().default(false),
   status: teamMemberStatusSchema.optional().default("DRAFT"),
+}).superRefine((value, context) => {
+  const effectiveAccessRole = value.accessRole ?? (value.salesRole === "SALES_MANAGER" ? "SALES_MANAGER" : value.salesRole === "SALES_AGENT" ? "SALES_AGENT" : "NONE");
+  if (effectiveAccessRole === "SALES_AGENT" || effectiveAccessRole === "SALES_MANAGER") {
+    if (value.department !== "SALES") {
+      context.addIssue({ code: "custom", path: ["department"], message: "Sales access requires the Sales department." });
+    }
+    if (!value.email) {
+      context.addIssue({ code: "custom", path: ["email"], message: "Email is required for Sales team access." });
+    }
+    if (value.salesRole !== effectiveAccessRole) {
+      context.addIssue({ code: "custom", path: ["salesRole"], message: "Sales Role must match the selected access role." });
+    }
+    if (effectiveAccessRole === "SALES_AGENT" && value.role !== "Business Development Executive") {
+      context.addIssue({ code: "custom", path: ["role"], message: "Sales Agent access requires the Business Development Executive title." });
+    } else if (effectiveAccessRole === "SALES_MANAGER" && value.role !== "Sales Manager") {
+      context.addIssue({ code: "custom", path: ["role"], message: "Sales Manager access requires the Sales Manager title." });
+    }
+  } else if (value.salesRole) {
+    context.addIssue({ code: "custom", path: ["salesRole"], message: "Sales Role is only available for the Sales category." });
+  }
 });
 
 // Preserve the existing export name for callers while allowing incomplete

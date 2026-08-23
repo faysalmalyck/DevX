@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db/prisma";
 import { hashPassword } from "@/lib/auth/hash";
 import { getActiveSession } from "@/lib/auth/session";
+import { hasValidAdminCsrf } from "@/lib/auth/admin-authorization";
 import { getClientIp } from "@/lib/auth/rate-limit";
 import { z } from "zod";
 
@@ -33,20 +34,35 @@ export async function POST(request: Request) {
 
     // Check if any admin exists in the database
     const adminCount = await prisma.admin.count();
+    let actorSession: Awaited<ReturnType<typeof getActiveSession>> = null;
 
     if (adminCount > 0) {
       // If admins exist, only a Super Admin (CEO / isSuperAdmin) can register new ones
-      const session = await getActiveSession();
-      if (!session || session.userType !== "admin") {
+      actorSession = await getActiveSession();
+      if (!actorSession || actorSession.userType !== "admin") {
         return NextResponse.json(
           { error: "Access denied. Only authenticated administrators can register new accounts." },
           { status: 401 }
         );
       }
 
+      // The initial bootstrap registration is intentionally unauthenticated.
+      // Every later account creation is an authenticated state change and must
+      // use the shared double-submit CSRF protection.
+      if (!hasValidAdminCsrf(request)) {
+        return NextResponse.json(
+          { error: "Invalid request token.", code: "CSRF_INVALID" },
+          { status: 403 }
+        );
+      }
+
       const activeAdmin = await prisma.admin.findUnique({
-        where: { id: session.id },
-        include: { role: true },
+        where: { id: actorSession.id },
+        select: {
+          role: {
+            select: { isSuperAdmin: true },
+          },
+        },
       });
 
       if (!activeAdmin || !activeAdmin.role.isSuperAdmin) {
@@ -60,6 +76,7 @@ export async function POST(request: Request) {
     // Check if email or username is already in use
     const duplicateEmail = await prisma.admin.findFirst({
       where: { email },
+      select: { id: true },
     });
     if (duplicateEmail) {
       return NextResponse.json(
@@ -70,6 +87,7 @@ export async function POST(request: Request) {
 
     const duplicateUsername = await prisma.admin.findFirst({
       where: { username },
+      select: { id: true },
     });
     if (duplicateUsername) {
       return NextResponse.json(
@@ -112,12 +130,18 @@ export async function POST(request: Request) {
         status: "ACTIVE",
         requirePasswordChange: adminCount > 0, // Force change password for admins added by others
       },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        username: true,
+      },
     });
 
     // Log the registration event in audit logs
-    const session = await getActiveSession();
-    const actorId = session?.id || newAdmin.id; // self if bootstrap
-    const actorName = session ? `${session.firstName} ${session.lastName}` : "System Bootstrap";
+    const actorId = actorSession?.id || newAdmin.id; // self if bootstrap
+    const actorName = actorSession ? `${actorSession.firstName} ${actorSession.lastName}` : "System Bootstrap";
 
     await prisma.adminActivity.create({
       data: {

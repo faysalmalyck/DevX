@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db/prisma";
 import { verifyPassword, hashPassword } from "@/lib/auth/hash";
+import {
+  adminLoginDestination,
+  adminPasswordChangeDestination,
+  isSalesReturnPath,
+  roleHasSalesAccess,
+  safeReturnTo,
+  userLoginDestination,
+} from "@/lib/auth/login-redirect";
 import { createSession } from "@/lib/auth/session";
 import { checkLoginRateLimit, getClientIp } from "@/lib/auth/rate-limit";
 
@@ -54,6 +62,7 @@ async function ensureBootstrapAdmin() {
           { username: bootstrapAdmin.username },
         ],
       },
+      select: { id: true },
     });
 
     if (existingAdmin) return;
@@ -70,6 +79,7 @@ async function ensureBootstrapAdmin() {
         twoFactorEnabled: false,
         requirePasswordChange: true,
       },
+      select: { id: true },
     });
   } catch {
     // A bootstrap race or unavailable database must not disclose configuration details.
@@ -103,7 +113,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { email, password, role, rememberMe } = body;
+    const { email, password, role, portal, rememberMe, returnTo } = body;
 
     if (!email || !password || !role) {
       return NextResponse.json(
@@ -114,6 +124,23 @@ export async function POST(request: Request) {
 
     const cleanIdentifier = email.trim().toLowerCase();
     const cleanPassword = password.trim();
+    const requestedPortal = portal === undefined
+      ? (isSalesReturnPath(safeReturnTo(returnTo)) ? "sales" : "admin")
+      : portal;
+
+    if (requestedPortal !== "admin" && requestedPortal !== "sales") {
+      return NextResponse.json(
+        { error: "Invalid login portal specified" },
+        { status: 400 }
+      );
+    }
+
+    if (role !== "admin" && requestedPortal === "sales") {
+      return NextResponse.json(
+        { error: "Sales login is available only for Admin identities" },
+        { status: 400 }
+      );
+    }
 
     const ua = request.headers.get("user-agent") || "";
     const { browser, device } = parseUserAgent(ua);
@@ -129,8 +156,33 @@ export async function POST(request: Request) {
           ],
           deletedAt: null,
         },
-        include: {
-          role: true,
+        select: {
+          id: true,
+          email: true,
+          username: true,
+          firstName: true,
+          lastName: true,
+          password: true,
+          status: true,
+          requirePasswordChange: true,
+          failedLoginAttempts: true,
+          lockedUntil: true,
+          role: {
+            select: {
+              name: true,
+              isSuperAdmin: true,
+              permissions: {
+                select: {
+                  permission: {
+                    select: {
+                      module: true,
+                      action: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
       });
 
@@ -150,9 +202,14 @@ export async function POST(request: Request) {
         );
       }
 
-      if (admin.status === "SUSPENDED") {
+      if (admin.status !== "ACTIVE") {
         return NextResponse.json(
-          { error: "This administrator account is suspended" },
+          {
+            error:
+              admin.status === "SUSPENDED"
+                ? "This administrator account is suspended"
+                : "This administrator account is not active. Complete account setup or contact an administrator.",
+          },
           { status: 403 }
         );
       }
@@ -169,6 +226,7 @@ export async function POST(request: Request) {
             failedLoginAttempts: newAttempts,
             lockedUntil,
           },
+          select: { id: true },
         });
 
         await prisma.auditLog.create({
@@ -195,7 +253,21 @@ export async function POST(request: Request) {
           lockedUntil: null,
           lastLogin: new Date(),
         },
+        select: { id: true },
       });
+
+      const liveRole = {
+        name: admin.role.name,
+        isSuperAdmin: admin.role.isSuperAdmin,
+        permissions: admin.role.permissions.map(({ permission }) => permission),
+      };
+
+      if (requestedPortal === "sales" && !roleHasSalesAccess(liveRole)) {
+        return NextResponse.json(
+          { error: "This account is not authorized for Sales access." },
+          { status: 403 }
+        );
+      }
 
       // Create Session
       const session = await createSession({
@@ -231,8 +303,13 @@ export async function POST(request: Request) {
         },
       });
 
+      const redirectTo = admin.requirePasswordChange
+        ? adminPasswordChangeDestination(liveRole)
+        : adminLoginDestination(liveRole, returnTo, requestedPortal);
+
       return NextResponse.json({
         success: true,
+        redirectTo,
         user: {
           email: admin.email,
           username: admin.username,
@@ -324,6 +401,7 @@ export async function POST(request: Request) {
 
       return NextResponse.json({
         success: true,
+        redirectTo: userLoginDestination(returnTo),
         user: {
           email: user.email,
           username: user.username,

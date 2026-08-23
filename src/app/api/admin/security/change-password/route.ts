@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db/prisma";
 import { getActiveSession } from "@/lib/auth/session";
+import { hasValidAdminCsrf } from "@/lib/auth/admin-authorization";
 import { changePasswordSchema } from "@/lib/auth/validation";
 import { verifyPassword, hashPassword } from "@/lib/auth/hash";
 import { getClientIp } from "@/lib/auth/rate-limit";
@@ -14,6 +15,13 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Access denied. Operator login required." },
         { status: 401 }
+      );
+    }
+
+    if (!hasValidAdminCsrf(request)) {
+      return NextResponse.json(
+        { error: "Invalid request token.", code: "CSRF_INVALID" },
+        { status: 403 }
       );
     }
 
@@ -58,6 +66,7 @@ export async function POST(request: Request) {
         password: hashedNewPassword,
         failedLoginAttempts: 0,
         lockedUntil: null,
+        requirePasswordChange: false,
       },
     });
 

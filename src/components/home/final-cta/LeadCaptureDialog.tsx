@@ -41,8 +41,6 @@ export type LeadFormValues = {
 type LeadFieldName = keyof LeadFormValues;
 type FieldErrors = Partial<Record<LeadFieldName, string>>;
 
-const contactEmail = "faysal.malick@icloud.com";
-
 const intentCopy: Record<
   LeadIntent,
   {
@@ -50,7 +48,6 @@ const intentCopy: Record<
     description: string;
     messageLabel: string;
     messagePlaceholder: string;
-    emailSubject: string;
     submitLabel: string;
   }
 > = {
@@ -59,16 +56,14 @@ const intentCopy: Record<
     description: "Share the challenge, and we’ll prepare for a useful first conversation.",
     messageLabel: "What would you like to solve?",
     messagePlaceholder: "Tell us what is slowing your business down or what you want to improve.",
-    emailSubject: "Consultation request",
-    submitLabel: "Prepare consultation email",
+    submitLabel: "Request consultation",
   },
   project: {
     title: "Tell Us About Your Project",
     description: "Give us the essentials and we’ll start understanding the right next step.",
     messageLabel: "Project details",
     messagePlaceholder: "Tell us about your goals, timeline, and the kind of solution you need.",
-    emailSubject: "Project enquiry",
-    submitLabel: "Prepare project email",
+    submitLabel: "Send project enquiry",
   },
   process: {
     title: "Turn Your Business Challenges Into Better Processes",
@@ -77,8 +72,7 @@ const intentCopy: Record<
     messageLabel: "What should work better?",
     messagePlaceholder:
       "Tell us how the process works today, where delays happen, and what a better outcome would look like.",
-    emailSubject: "Business process improvement request",
-    submitLabel: "Prepare process email",
+    submitLabel: "Send process enquiry",
   },
   "software-improvement": {
     title: "Improve My Software",
@@ -87,8 +81,7 @@ const intentCopy: Record<
     messageLabel: "What needs improving?",
     messagePlaceholder:
       "Tell us about the software, the issues your team faces, and the improvement you want to see.",
-    emailSubject: "Software improvement request",
-    submitLabel: "Prepare improvement email",
+    submitLabel: "Send improvement enquiry",
   },
   automation: {
     title: "Automate My Business",
@@ -97,8 +90,7 @@ const intentCopy: Record<
     messageLabel: "What would you like to automate?",
     messagePlaceholder:
       "Describe the repeated work, the people or systems involved, and the result you want automation to deliver.",
-    emailSubject: "Business automation request",
-    submitLabel: "Prepare automation email",
+    submitLabel: "Send automation enquiry",
   },
   integration: {
     title: "Discuss an Integration",
@@ -107,8 +99,7 @@ const intentCopy: Record<
     messageLabel: "How should your systems connect?",
     messagePlaceholder:
       "Tell us what each system does today, what data needs to move, and where the connection breaks down.",
-    emailSubject: "System integration request",
-    submitLabel: "Prepare integration email",
+    submitLabel: "Send integration enquiry",
   },
 };
 
@@ -162,34 +153,12 @@ function getFirstErrorField(errors: FieldErrors): LeadFieldName | undefined {
   );
 }
 
-export function buildLeadMailto(
-  request: NonNullable<LeadRequest>,
-  values: LeadFormValues,
-): string {
-  const copy = intentCopy[request.intent];
-  const topics = request.topics?.map((topic) => topic.trim()).filter(Boolean) ?? [];
-  const message = [
-    `Name: ${values.name.trim()}`,
-    `Email: ${values.email.trim()}`,
-    values.phone.trim() ? `Phone: ${values.phone.trim()}` : null,
-    values.company.trim() ? `Company: ${values.company.trim()}` : null,
-    topics.length > 0 ? "" : null,
-    topics.length > 0 ? "Selected topics:" : null,
-    ...topics.map((topic) => `- ${topic}`),
-    "",
-    copy.messageLabel,
-    values.message.trim(),
-  ]
-    .filter((line): line is string => line !== null)
-    .join("\n");
-
-  return `mailto:${contactEmail}?subject=${encodeURIComponent(`${copy.emailSubject} — ${values.name.trim()}`)}&body=${encodeURIComponent(message)}`;
-}
-
 export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialogProps) {
   const [hasMounted, setHasMounted] = useState(false);
   const [formValues, setFormValues] = useState<LeadFormValues>(initialFormValues);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -208,6 +177,8 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
 
     setFormValues(initialFormValues);
     setFieldErrors({});
+    setSubmitError(null);
+    setSubmitting(false);
   }, [request, isOpen]);
 
   useEffect(() => {
@@ -269,6 +240,7 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
   const updateField = (field: LeadFieldName) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = event.target.value;
     setFormValues((current) => ({ ...current, [field]: value }));
+    setSubmitError(null);
     setFieldErrors((current) => {
       if (!current[field]) return current;
       const next = { ...current };
@@ -277,7 +249,7 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
     });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!request || !copy) return;
 
@@ -293,10 +265,44 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
       return;
     }
 
-    const mailto = buildLeadMailto(request, formValues);
+    const topicSummary = topics.length > 0 ? `\n\nSelected topics:\n${topics.map((topic) => `- ${topic}`).join("\n")}` : "";
 
-    onClose();
-    window.location.assign(mailto);
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/leads/capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formValues.name,
+          email: formValues.email,
+          phone: formValues.phone || undefined,
+          company: formValues.company || undefined,
+          message: `${formValues.message.trim()}${topicSummary}`,
+          formType: request.intent === "consultation" ? "CONSULTATION" : "CONTACT",
+        }),
+      });
+
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(
+          typeof payload?.error === "string"
+            ? payload.error
+            : "We could not send your enquiry. Please try again."
+        );
+      }
+
+      onClose();
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "We could not send your enquiry. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (!hasMounted || !isOpen || !copy) return null;
@@ -442,14 +448,22 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
             </FormField>
 
             <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="max-w-xs text-xs leading-5 text-slate-500 dark:text-slate-400">
-                This opens your default email app. Nothing is sent until you choose Send there.
-              </p>
+              <div className="max-w-xs">
+                <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                  Your details are sent securely to our team. We’ll be in touch soon.
+                </p>
+                {submitError ? (
+                  <p role="alert" className="mt-2 text-xs font-medium text-rose-600 dark:text-rose-400">
+                    {submitError}
+                  </p>
+                ) : null}
+              </div>
               <button
                 type="submit"
+                disabled={submitting}
                 className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-brand to-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:from-brand hover:to-indigo-500 hover:shadow-brand/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[0.98] sm:w-auto"
               >
-                {copy.submitLabel}
+                {submitting ? "Sending…" : copy.submitLabel}
               </button>
             </div>
           </form>

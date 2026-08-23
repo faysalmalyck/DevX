@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db/prisma";
+import { hasValidAdminCsrf } from "@/lib/auth/admin-authorization";
 import { getActiveSession } from "@/lib/auth/session";
 import { profileUpdateSchema } from "@/lib/auth/validation";
 import { getClientIp } from "@/lib/auth/rate-limit";
@@ -13,6 +14,13 @@ export async function PATCH(request: Request) {
       return NextResponse.json(
         { error: "Access denied. Operator login required." },
         { status: 401 }
+      );
+    }
+
+    if (!hasValidAdminCsrf(request)) {
+      return NextResponse.json(
+        { error: "Invalid request token.", code: "CSRF_INVALID" },
+        { status: 403 }
       );
     }
 

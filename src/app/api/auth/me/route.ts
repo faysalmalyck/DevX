@@ -16,12 +16,33 @@ export async function GET() {
     if (session.userType === "admin") {
       const admin = await prisma.admin.findUnique({
         where: { id: session.id, deletedAt: null },
-        include: {
+        select: {
+          id: true,
+          email: true,
+          username: true,
+          firstName: true,
+          lastName: true,
+          avatar: true,
+          phone: true,
+          designation: true,
+          department: true,
+          bio: true,
+          status: true,
+          twoFactorEnabled: true,
+          lastLogin: true,
+          createdAt: true,
           role: {
-            include: {
+            select: {
+              name: true,
+              isSuperAdmin: true,
               permissions: {
-                include: {
-                  permission: true,
+                select: {
+                  permission: {
+                    select: {
+                      module: true,
+                      action: true,
+                    },
+                  },
                 },
               },
             },
@@ -29,7 +50,7 @@ export async function GET() {
         },
       });
 
-      if (!admin || admin.status === "SUSPENDED") {
+      if (!admin || admin.status !== "ACTIVE") {
         return NextResponse.json(
           { error: "Account suspended or not found" },
           { status: 403 }
@@ -66,7 +87,7 @@ export async function GET() {
         where: { id: session.id, deletedAt: null },
       });
 
-      if (!user || user.status === "SUSPENDED") {
+      if (!user || user.status !== "ACTIVE") {
         return NextResponse.json(
           { error: "Account suspended or not found" },
           { status: 403 }

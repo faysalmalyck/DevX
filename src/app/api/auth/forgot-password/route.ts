@@ -27,6 +27,7 @@ export async function POST(request: Request) {
     // Lookup in both tables
     const admin = await prisma.admin.findUnique({
       where: { email, deletedAt: null },
+      select: { id: true },
     });
 
     const user = await prisma.user.findUnique({
@@ -45,7 +46,7 @@ export async function POST(request: Request) {
     }
 
     // Generate secure token & hash
-    const { token, hashedToken } = generateSecureToken();
+    const { hashedToken } = generateSecureToken();
     const expiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour expiry
 
     // Save token in DB
@@ -56,6 +57,7 @@ export async function POST(request: Request) {
           passwordResetToken: hashedToken,
           passwordResetExpires: expiry,
         },
+        select: { id: true },
       });
     } else if (user) {
       await prisma.user.update({
@@ -78,13 +80,9 @@ export async function POST(request: Request) {
       },
     });
 
-    // Simulate sending email (print to console in development)
-    const host = request.headers.get("host") || "localhost:3000";
-    const protocol = request.headers.get("x-forwarded-proto") || "http";
-    const resetUrl = `${protocol}://${host}/reset-password?token=${token}`;
-
-    console.log(`[MAILER] Password reset requested for: ${email}`);
-    console.log(`[MAILER] Reset Link: ${resetUrl}`);
+    // Never write the raw reset token or a token-bearing URL to application
+    // logs, including in development. A configured delivery service must keep
+    // the token outside application logging.
 
     return successResponse;
   } catch (error) {

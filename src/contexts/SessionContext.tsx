@@ -72,11 +72,11 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
   }, []);
 
-  const login = async ({ email, password, role, rememberMe }: any) => {
+  const login = async ({ email, password, role, portal, rememberMe, returnTo }: any) => {
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, role, rememberMe }),
+      body: JSON.stringify({ email, password, role, portal, rememberMe, returnTo }),
     });
     const data = await res.json();
     if (!res.ok) {

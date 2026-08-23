@@ -2,7 +2,10 @@ import { timingSafeEqual } from "node:crypto";
 
 import { NextRequest, NextResponse } from "next/server";
 
-import { pruneApplicationRateLimits } from "@/lib/auth/rate-limit";
+import {
+  pruneApplicationRateLimits,
+  pruneLeadCaptureRateLimits,
+} from "@/lib/auth/rate-limit";
 import { processCareerResumeCleanups } from "@/lib/storage/career-resume-cleanup";
 
 export const runtime = "nodejs";
@@ -27,11 +30,17 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const [result, expiredRateLimits] = await Promise.all([
+    const [result, expiredRateLimits, expiredLeadCaptureRateLimits] = await Promise.all([
       processCareerResumeCleanups(),
       pruneApplicationRateLimits(),
+      pruneLeadCaptureRateLimits(),
     ]);
-    return NextResponse.json({ success: true, ...result, expiredRateLimits });
+    return NextResponse.json({
+      success: true,
+      ...result,
+      expiredRateLimits,
+      expiredLeadCaptureRateLimits,
+    });
   } catch {
     return NextResponse.json(
       { error: "Resume cleanup could not run." },

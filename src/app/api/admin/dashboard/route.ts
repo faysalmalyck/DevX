@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
+
+import { authorizeOperationsWorkspace } from "@/lib/auth/sales-governance";
 import { prisma } from "@/lib/db/prisma";
-import { getActiveSession } from "@/lib/auth/session";
 
 export async function GET() {
   try {
-    const session = await getActiveSession();
-    if (!session || session.userType !== "admin") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const authorization = await authorizeOperationsWorkspace();
+    if (!authorization.ok) {
+      return NextResponse.json(
+        { error: authorization.status === 401 ? "Unauthorized" : "Forbidden" },
+        { status: authorization.status }
+      );
     }
 
     // Attempt to read stats for SupportTicket and ServiceRequest if the models are migrated,

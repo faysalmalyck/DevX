@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, LogOut, ShieldCheck } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import AdminBrandLogo from "@/components/admin/AdminBrandLogo";
 import {
   adminAccountNavigation,
   adminNavigationSections,
@@ -24,9 +25,17 @@ function operatorInitials(firstName?: string, lastName?: string) {
 }
 
 export function AdminSidebarNav({ active, collapsed = false, onNavigate, className = "" }: SidebarNavigationProps) {
+  const { user } = useSession();
+  // This only controls navigation visibility. The nested /admin/sales layout
+  // performs the authoritative server-side governance check.
+  const canSeeSalesManagement = user?.isCeo === true || user?.role === "CEO";
+  const visibleSections = adminNavigationSections.filter(
+    (section) => !section.requiresSalesGovernance || canSeeSalesManagement
+  );
+
   return (
     <nav aria-label="Admin navigation" className={`space-y-6 ${className}`}>
-      {adminNavigationSections.map((section, sectionIndex) => (
+      {visibleSections.map((section, sectionIndex) => (
         <div key={section.label}>
           {collapsed ? (
             sectionIndex > 0 ? <div className="mx-auto mb-3 h-px w-8 bg-white/10" /> : null
@@ -153,14 +162,16 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
       }`}
     >
       <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_20%_0%,rgba(54,88,255,0.28),transparent_48%),radial-gradient(circle_at_100%_30%,rgba(139,92,246,0.2),transparent_42%)]" />
-      <div className="relative flex min-h-[72px] items-center border-b border-white/[0.08] px-4">
+      <div className={`relative flex min-h-[72px] items-center border-b border-white/[0.08] ${collapsed ? "px-2" : "px-4"}`}>
         <Link href="/admin" className={`flex min-w-0 items-center ${collapsed ? "mx-auto" : "gap-3"}`} aria-label="DevX operations home">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 via-brand to-violet-500 text-base font-black tracking-tight text-white shadow-lg shadow-blue-950/30">
-            DX
-          </span>
+          <AdminBrandLogo
+            surface="dark"
+            alt=""
+            className={`w-auto shrink-0 ${collapsed ? "h-6" : "h-8"}`}
+          />
           {collapsed ? null : (
             <span className="min-w-0">
-              <span className="block truncate text-base font-black tracking-tight text-white">DevX Operations</span>
+              <span className="block truncate text-base font-black tracking-tight text-white">Operations</span>
               <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/80">Control workspace</span>
             </span>
           )}

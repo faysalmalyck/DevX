@@ -9,6 +9,7 @@ import {
 } from "@/lib/team/profile-status";
 import { serializeTeamMember } from "@/lib/team/types";
 import { teamMemberSchema } from "@/lib/validations/team";
+import { synchronizeTeamMemberSalesAccess, TeamSalesSyncError } from "@/lib/team/sales-sync";
 
 function validationErrorResponse(issues: { path: PropertyKey[]; message: string }[]) {
   const fieldErrors: Record<string, string[]> = {};
@@ -86,13 +87,35 @@ export async function POST(request: NextRequest) {
     if (existing?.slug === parsed.data.slug) return conflictResponse("slug");
     if (existing?.email === parsed.data.email) return conflictResponse("email");
 
-    const member = await prisma.teamMember.create({
-      data: { ...parsed.data, profileStatus },
+    const { member, salesAccess } = await prisma.$transaction(async (tx) => {
+      const { accessRole, ...teamMemberData } = parsed.data;
+      const member = await tx.teamMember.create({
+        data: { ...teamMemberData, accessRole: accessRole === "NONE" ? null : accessRole, profileStatus },
+      });
+      const salesAccess = await synchronizeTeamMemberSalesAccess(tx, {
+        actorId: authorized.session.id,
+        teamMemberId: member.id,
+        department: member.department,
+        accessRole: parsed.data.accessRole,
+        salesRole: member.salesRole,
+        email: member.email,
+        name: member.name,
+        title: member.role,
+      });
+      await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_CREATED", entity: "TeamMember", entityId: member.id, metadata: { slug: member.slug, salesRole: member.salesRole ?? null } } });
+      return { member, salesAccess };
     });
-    await prisma.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_CREATED", entity: "TeamMember", entityId: member.id, metadata: { slug: member.slug } } });
     revalidateTeamPaths();
-    return NextResponse.json({ data: serializeTeamMember(member) }, { status: 201 });
+    return NextResponse.json({
+      data: serializeTeamMember(member),
+      salesAccess: salesAccess.activationToken
+        ? { status: salesAccess.action, activationUrl: new URL(`/reset-password?token=${encodeURIComponent(salesAccess.activationToken)}`, request.url).toString() }
+        : { status: salesAccess.action },
+    }, { status: 201 });
   } catch (error) {
+    if (error instanceof TeamSalesSyncError) {
+      return NextResponse.json({ error: error.message, code: "SALES_SYNC_FAILED" }, { status: error.status });
+    }
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
       return conflictResponse(duplicateField(error));
     }

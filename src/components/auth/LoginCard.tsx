@@ -6,10 +6,23 @@ import Link from "next/link";
 import { useSession } from "@/contexts/SessionContext";
 import { Eye, EyeOff, Lock, Mail, User, ShieldAlert, ArrowRight, Loader2, Sparkles, Shield, UserCheck } from "lucide-react";
 
-export default function LoginCard() {
+type LoginCardProps = {
+  initialRole?: "user" | "admin";
+  initialPortal?: "admin" | "sales";
+  returnTo?: string;
+};
+
+export default function LoginCard({
+  initialRole = "user",
+  initialPortal,
+  returnTo,
+}: LoginCardProps) {
   const router = useRouter();
   const { login, signup } = useSession();
-  const [role, setRole] = useState<"user" | "admin">("user");
+  const [role, setRole] = useState<"user" | "admin">(initialRole);
+  const [portal, setPortal] = useState<"admin" | "sales">(
+    initialPortal ?? "admin",
+  );
   const [userMode, setUserMode] = useState<"login" | "signup">("login");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,15 +55,16 @@ export default function LoginCard() {
     setUserLoginLoading(true);
 
     try {
-      await login({
+      const result = await login({
         email: userEmail,
         password: userPassword,
         role: "user",
         rememberMe: userRememberMe,
+        returnTo,
       });
 
       window.dispatchEvent(new Event("DevX-auth-change"));
-      router.push("/dashboard");
+      router.replace(result.redirectTo || "/dashboard");
     } catch (err: any) {
       setUserLoginError(err.message || "An unexpected error occurred");
     } finally {
@@ -96,15 +110,17 @@ export default function LoginCard() {
     setAdminLoading(true);
 
     try {
-      await login({
+      const result = await login({
         email: adminEmail,
         password: adminPassword,
         role: "admin",
+        portal,
         rememberMe: adminRememberMe,
+        returnTo,
       });
 
       window.dispatchEvent(new Event("DevX-auth-change"));
-      router.push("/admin");
+      router.replace(result.redirectTo || "/admin");
     } catch (err: any) {
       setAdminError(err.message || "Authentication failed");
     } finally {
@@ -117,31 +133,36 @@ export default function LoginCard() {
       <div className="relative mx-auto w-full max-w-md my-auto">
         {/* Header Section */}
         <div className="mb-6 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-[#1f2535] px-3 py-1 text-xs font-medium text-white mb-4">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-[#1f2535] px-3 py-1 text-xs font-medium text-white">
             <Sparkles className="h-3.5 w-3.5 text-brand" />
             <span>DevX Digital Platform</span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
             {role === "admin"
-              ? "Operator Terminal"
+              ? portal === "sales"
+                ? "Sales access"
+                : "Operator Terminal"
               : userMode === "login"
               ? "Welcome Back"
               : "Get Started"}
           </h1>
           <p className="mt-2 text-base text-slate-400">
             {role === "admin"
-              ? "Secure credentials required for operator access"
+              ? portal === "sales"
+                ? "Sign in with your existing DevX administrator credentials."
+                : "Secure credentials required for operator access"
               : "Secure portal for DevX Digital client solutions"}
           </p>
         </div>
 
-        {/* Separate Compact Floating Role Switcher */}
         <div className="mb-4 flex justify-center">
           <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/60 bg-[#1f2535] p-1 shadow-md">
             <button
               type="button"
+              aria-pressed={role === "user"}
               onClick={() => {
                 setRole("user");
+                setPortal("admin");
                 setUserLoginError("");
                 setAdminError("");
               }}
@@ -156,8 +177,10 @@ export default function LoginCard() {
             </button>
             <button
               type="button"
+              aria-pressed={role === "admin"}
               onClick={() => {
                 setRole("admin");
+                setPortal("admin");
                 setUserLoginError("");
                 setAdminError("");
               }}
@@ -411,14 +434,50 @@ export default function LoginCard() {
             </>
           ) : (
             /* ADMINISTRATOR LOGIN FORM */
-            <form onSubmit={handleAdminLogin} className="space-y-4">
-              <div className="border-b border-slate-700/50 pb-3 mb-4">
-                <h2 className="text-base font-semibold text-white tracking-tight">
-                  Secure Operator Terminal
-                </h2>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  Authorized credentials required for administrative systems.
-                </p>
+            <form
+              id="admin-login-panel"
+              role="tabpanel"
+              aria-labelledby={portal === "sales" ? "sales-login-tab" : "admin-login-tab"}
+              onSubmit={handleAdminLogin}
+              className="space-y-4"
+            >
+              <div role="tablist" aria-label="Administrator login type" className="-mt-1 flex border-b border-slate-700/50 text-lg">
+                <button
+                  id="admin-login-tab"
+                  role="tab"
+                  type="button"
+                  aria-selected={portal === "admin"}
+                  aria-controls="admin-login-panel"
+                  tabIndex={portal === "admin" ? 0 : -1}
+                  onClick={() => {
+                    setPortal("admin");
+                    setAdminError("");
+                  }}
+                  className={`relative pb-3 pr-6 font-medium transition-all duration-200 ${
+                    portal === "admin" ? "font-semibold text-white" : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Admin Login
+                  {portal === "admin" ? <span className="absolute bottom-0 left-0 h-0.5 w-20 rounded-full bg-brand shadow-[0_0_8px_rgba(54,88,255,0.8)]" /> : null}
+                </button>
+                <button
+                  id="sales-login-tab"
+                  role="tab"
+                  type="button"
+                  aria-selected={portal === "sales"}
+                  aria-controls="admin-login-panel"
+                  tabIndex={portal === "sales" ? 0 : -1}
+                  onClick={() => {
+                    setPortal("sales");
+                    setAdminError("");
+                  }}
+                  className={`relative px-6 pb-3 font-medium transition-all duration-200 ${
+                    portal === "sales" ? "font-semibold text-white" : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Sales Login
+                  {portal === "sales" ? <span className="absolute bottom-0 left-6 h-0.5 w-20 rounded-full bg-brand shadow-[0_0_8px_rgba(54,88,255,0.8)]" /> : null}
+                </button>
               </div>
 
               <div>
@@ -486,13 +545,15 @@ export default function LoginCard() {
                   >
                     Forgot?
                   </Link>
-                  <span className="text-slate-600">|</span>
-                  <Link
-                    href="/register/admin"
-                    className="text-white hover:text-white transition font-medium"
-                  >
-                    Register
-                  </Link>
+                  {portal !== "sales" ? <>
+                    <span className="text-slate-600">|</span>
+                    <Link
+                      href="/register/admin"
+                      className="text-white hover:text-white transition font-medium"
+                    >
+                      Register
+                    </Link>
+                  </> : null}
                 </div>
               </div>
 

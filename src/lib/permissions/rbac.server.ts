@@ -17,12 +17,20 @@ export async function checkPermission(
         id: adminId,
         deletedAt: null,
       },
-      include: {
+      select: {
+        status: true,
         role: {
-          include: {
+          select: {
+            isSuperAdmin: true,
+            name: true,
             permissions: {
-              include: {
-                permission: true,
+              select: {
+                permission: {
+                  select: {
+                    module: true,
+                    action: true,
+                  },
+                },
               },
             },
           },

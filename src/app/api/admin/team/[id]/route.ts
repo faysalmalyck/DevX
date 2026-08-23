@@ -8,6 +8,7 @@ import {
 } from "@/lib/team/profile-status";
 import { serializeTeamMember } from "@/lib/team/types";
 import { teamMemberSchema } from "@/lib/validations/team";
+import { synchronizeTeamMemberSalesAccess, TeamSalesSyncError } from "@/lib/team/sales-sync";
 import { revalidateTeamPaths } from "../route";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -90,20 +91,46 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
     if (duplicate?.slug === parsed.data.slug) return conflictResponse("slug");
     if (duplicate?.email === parsed.data.email) return conflictResponse("email");
 
-    const member = await prisma.teamMember.update({
-      where: { id },
-      data: {
-        ...parsed.data,
-        profileStatus,
-        legacyDepartment: parsed.data.department ? null : existing.legacyDepartment,
-      },
+    const { member, salesAccess } = await prisma.$transaction(async (tx) => {
+      const { accessRole, ...teamMemberData } = parsed.data;
+      const member = await tx.teamMember.update({
+        where: { id },
+        data: {
+          ...teamMemberData,
+          accessRole: accessRole === "NONE" ? null : accessRole,
+          profileStatus,
+          legacyDepartment: parsed.data.department ? null : existing.legacyDepartment,
+        },
+      });
+      const salesAccess = await synchronizeTeamMemberSalesAccess(tx, {
+        actorId: authorized.session.id,
+        teamMemberId: member.id,
+        department: member.department,
+        accessRole: member.accessRole,
+        salesRole: member.salesRole,
+        email: member.email,
+        name: member.name,
+        title: member.role,
+      });
+      await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_UPDATED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug, salesRole: member.salesRole ?? null } } });
+      return { member, salesAccess };
     });
-    await prisma.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_UPDATED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug } } });
     revalidateTeamPaths();
-    return NextResponse.json({ data: serializeTeamMember(member) });
+    return NextResponse.json({
+      data: serializeTeamMember(member),
+      salesAccess: salesAccess.activationToken
+        ? { status: salesAccess.action, activationUrl: new URL(`/reset-password?token=${encodeURIComponent(salesAccess.activationToken)}`, request.url).toString() }
+        : { status: salesAccess.action },
+    });
   } catch (error) {
+    if (error instanceof TeamSalesSyncError) {
+      return NextResponse.json({ error: error.message, code: "SALES_SYNC_FAILED" }, { status: error.status });
+    }
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
       return conflictResponse(duplicateField(error));
+    }
+    if (error instanceof Prisma.PrismaClientKnownRequestError && (error.code === "P2021" || error.code === "P2022")) {
+      return NextResponse.json({ error: "The database schema is missing the latest Team/Sales fields. Apply the pending Prisma migrations, then retry.", code: "DATABASE_SCHEMA_OUTDATED" }, { status: 503 });
     }
     return NextResponse.json({ error: "Unable to update this team member.", code: "TEAM_UPDATE_FAILED" }, { status: 500 });
   }
@@ -118,11 +145,26 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
     const { id } = await params;
     const member = await prisma.teamMember.findFirst({ where: { id, deletedAt: null } });
     if (!member) return NextResponse.json({ error: "Team member not found.", code: "TEAM_MEMBER_NOT_FOUND" }, { status: 404 });
-    await prisma.teamMember.update({ where: { id }, data: { deletedAt: new Date() } });
-    await prisma.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_DELETED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug } } });
+    await prisma.$transaction(async (tx) => {
+      await synchronizeTeamMemberSalesAccess(tx, {
+        actorId: authorized.session.id,
+        teamMemberId: id,
+        department: null,
+        accessRole: "NONE",
+        salesRole: null,
+        email: member.email,
+        name: member.name,
+        title: member.role,
+      });
+      await tx.teamMember.update({ where: { id }, data: { deletedAt: new Date() } });
+      await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_DELETED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug } } });
+    });
     revalidateTeamPaths();
     return NextResponse.json({ data: { id, deleted: true } });
-  } catch {
+  } catch (error) {
+    if (error instanceof TeamSalesSyncError) {
+      return NextResponse.json({ error: error.message, code: "SALES_SYNC_FAILED" }, { status: error.status });
+    }
     return NextResponse.json({ error: "Unable to delete this team member.", code: "TEAM_DELETE_FAILED" }, { status: 500 });
   }
 }

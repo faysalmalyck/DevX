@@ -46,9 +46,9 @@ describe("FinalCTA", () => {
     expect(screen.getByLabelText(/^name/i)).toBeTruthy();
     expect(screen.getByLabelText(/^email/i)).toBeTruthy();
     expect(screen.getByLabelText(/what should work better/i)).toBeTruthy();
-    expect(screen.getByRole("button", { name: "Prepare process email" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Send process enquiry" })).toBeTruthy();
     expect(
-      screen.getByText("This opens your default email app. Nothing is sent until you choose Send there."),
+      screen.getByText("Your details are sent securely to our team. We’ll be in touch soon."),
     ).toBeTruthy();
   });
 
@@ -62,12 +62,12 @@ describe("FinalCTA", () => {
     expect(screen.queryByRole("dialog")).toBeNull();
   });
 
-  it("validates required form fields before preparing an email", async () => {
+  it("validates required form fields before submitting an enquiry", async () => {
     const user = userEvent.setup();
     render(<FinalCTA />);
 
     await user.click(screen.getByRole("button", { name: /discuss your business challenge/i }));
-    await user.click(screen.getByRole("button", { name: "Prepare process email" }));
+    await user.click(screen.getByRole("button", { name: "Send process enquiry" }));
 
     expect(screen.getByText("Enter your name (2–120 characters).")).toBeTruthy();
     expect(screen.getByText("Enter a valid email address.")).toBeTruthy();

@@ -1,3 +1,5 @@
+import type { Prisma } from "@prisma/client";
+
 import { prisma } from "@/lib/db/prisma";
 import {
   createTokenPair,
@@ -27,6 +29,7 @@ export interface SessionUser {
   role: string;
   userType: UserType;
   sessionId: string;
+  requirePasswordChange?: boolean;
 }
 
 interface CreateSessionInput {
@@ -106,6 +109,21 @@ export async function getActiveSession(): Promise<SessionUser | null> {
     if (!accessToken) return null;
 
     const payload = await verifyToken(accessToken, "access");
+
+    // A valid signed access token is not sufficient after an administrator is
+    // suspended, removed, or explicitly signed out. Check that its backing
+    // session still exists on every protected request so session revocation is
+    // effective immediately rather than waiting for the 15-minute JWT expiry.
+    const sessionExists = await verifyDbSession(
+      payload.sessionId,
+      payload.userType
+    );
+
+    if (!sessionExists) {
+      await clearAuthCookies();
+      return null;
+    }
+
     return await fetchSessionUser(payload);
   } catch {
     // Access token expired or invalid — try refresh
@@ -171,7 +189,19 @@ async function fetchSessionUser(
   if (payload.userType === "admin") {
     const admin = await prisma.admin.findUnique({
       where: { id: payload.sub!, deletedAt: null },
-      include: { role: true },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        username: true,
+        avatar: true,
+        status: true,
+        requirePasswordChange: true,
+        role: {
+          select: { name: true },
+        },
+      },
     });
 
     if (!admin || admin.status !== "ACTIVE") return null;
@@ -186,6 +216,7 @@ async function fetchSessionUser(
       role: admin.role.name,
       userType: "admin",
       sessionId: payload.sessionId,
+      requirePasswordChange: admin.requirePasswordChange,
     };
   } else {
     const user = await prisma.user.findUnique({
@@ -265,6 +296,25 @@ export async function destroyAllSessions(
   }
 
   await clearAuthCookies();
+}
+
+/**
+ * Revoke every persisted admin session without touching the caller's cookies.
+ * This is intentionally separate from `destroyAllSessions`, which is useful
+ * for the signed-in account but unsuitable when a manager suspends someone
+ * else inside a database transaction.
+ */
+type AdminSessionStore = Pick<Prisma.TransactionClient, "adminSession">;
+
+export async function revokeAdminSessions(
+  adminId: string,
+  store: AdminSessionStore = prisma
+): Promise<number> {
+  const result = await store.adminSession.deleteMany({
+    where: { adminId },
+  });
+
+  return result.count;
 }
 
 // ──────────────────────────────────────────────

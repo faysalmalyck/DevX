@@ -2,6 +2,8 @@ import type {
   Prisma,
   TeamMemberDepartment,
   TeamMemberProfileStatus,
+  SalesTeamRole,
+  TeamMemberAccessRole,
 } from "@prisma/client";
 import { teamMemberDepartmentLabel } from "@/lib/validations/team";
 
@@ -15,6 +17,9 @@ export type TeamMemberRecord = {
   bio: string | null;
   image: string | null;
   email: string | null;
+  accessRole?: TeamMemberAccessRole | null;
+  salesRole?: SalesTeamRole | null;
+  adminId?: string | null;
   phone: string | null;
   linkedinUrl: string | null;
   facebookUrl: string | null;
@@ -92,6 +97,9 @@ export function serializeTeamMember(member: {
   bio: string | null;
   image: string | null;
   email: string | null;
+  salesRole: SalesTeamRole | null;
+  accessRole: TeamMemberAccessRole | null;
+  adminId: string | null;
   phone: string | null;
   linkedinUrl: string | null;
   facebookUrl: string | null;

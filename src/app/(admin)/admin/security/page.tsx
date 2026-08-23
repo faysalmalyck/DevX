@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, type FormEvent } from "react";
 import { Lock, Eye, EyeOff, ShieldAlert, CheckCircle2, Trash2, KeyRound, Monitor, Globe, Compass, Shield } from "lucide-react";
+import { getClientCsrfToken } from "@/lib/auth/client-csrf";
 
 interface UserSession {
   id: string;
@@ -61,6 +62,25 @@ export default function AdminSecurityPage() {
     }
   }
 
+  async function ensureCsrfToken(): Promise<string> {
+    let token = getClientCsrfToken();
+    if (token) return token;
+
+    const response = await fetch("/api/auth/csrf", {
+      credentials: "same-origin",
+    });
+    if (!response.ok) {
+      throw new Error("Unable to verify this request. Please try again.");
+    }
+
+    token = getClientCsrfToken();
+    if (!token) {
+      throw new Error("Unable to verify this request. Please try again.");
+    }
+
+    return token;
+  }
+
   useEffect(() => {
     loadSessions();
     loadProfile();
@@ -79,9 +99,13 @@ export default function AdminSecurityPage() {
     setPasswordLoading(true);
 
     try {
+      const csrfToken = await ensureCsrfToken();
       const res = await fetch("/api/admin/security/change-password", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken,
+        },
         body: JSON.stringify({ currentPassword, newPassword, confirmPassword }),
       });
 
@@ -105,8 +129,10 @@ export default function AdminSecurityPage() {
   async function handleRevokeSession(sessionId: string) {
     setSessionsSuccess("");
     try {
+      const csrfToken = await ensureCsrfToken();
       const res = await fetch(`/api/admin/sessions?id=${sessionId}`, {
         method: "DELETE",
+        headers: { "X-CSRF-Token": csrfToken },
       });
 
       const data = await res.json();
@@ -123,8 +149,10 @@ export default function AdminSecurityPage() {
     if (!confirm("Are you sure you want to terminate all other operator connections?")) return;
     setSessionsSuccess("");
     try {
+      const csrfToken = await ensureCsrfToken();
       const res = await fetch("/api/admin/sessions?all=true", {
         method: "DELETE",
+        headers: { "X-CSRF-Token": csrfToken },
       });
 
       const data = await res.json();
@@ -141,9 +169,13 @@ export default function AdminSecurityPage() {
     setTwoFactorLoading(true);
     try {
       // Toggle 2FA status in the database via the profile update API
+      const csrfToken = await ensureCsrfToken();
       const res = await fetch("/api/admin/profile", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken,
+        },
         body: JSON.stringify({ twoFactorEnabled: !twoFactor }),
       });
       if (res.ok) {

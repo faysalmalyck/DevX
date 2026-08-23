@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
   const wasMobileMenuOpen = useRef(false);
 
-  const isAuthOrAdminPage = pathUrl?.startsWith("/admin") || pathUrl?.startsWith("/login") || pathUrl?.startsWith("/register") || pathUrl?.startsWith("/forgot-password") || pathUrl?.startsWith("/reset-password");
+  const isAuthOrAdminPage = pathUrl?.startsWith("/admin") || pathUrl?.startsWith("/sales") || pathUrl?.startsWith("/login") || pathUrl?.startsWith("/register") || pathUrl?.startsWith("/forgot-password") || pathUrl?.startsWith("/reset-password");
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
@@ -412,11 +412,11 @@ const Header: React.FC = () => {
 
                 <div className="mt-4 flex flex-col gap-3 border-t border-slate-950/10 pt-4 dark:border-white/10">
                   <Link
-                    href="/contact"
+                    href="/login"
                     className="w-full rounded-[2rem] border border-white/75 bg-transparent py-4 text-center text-lg font-semibold text-slate-900 backdrop-blur-xl transition-colors hover:border-slate-950/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.16] dark:text-white dark:hover:border-white/30 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
                     onClick={closeMobileMenu}
                   >
-                    Contact us
+                    Login
                   </Link>
                   <Link
                     href="/portfolio"

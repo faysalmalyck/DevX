@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, type FormEvent } from "react";
 import { useSession } from "@/contexts/SessionContext";
+import { getClientCsrfToken } from "@/lib/auth/client-csrf";
 import { User, Mail, Phone, Award, Briefcase, Globe, Clock, CheckCircle2, ShieldAlert, FileText, Camera } from "lucide-react";
 
 export default function AdminProfilePage() {
@@ -47,9 +48,21 @@ export default function AdminProfilePage() {
     setLoading(true);
 
     try {
+      let csrfToken = getClientCsrfToken();
+      if (!csrfToken) {
+        const csrfResponse = await fetch("/api/auth/csrf", { credentials: "same-origin" });
+        if (!csrfResponse.ok) {
+          throw new Error("Unable to verify this request. Please try again.");
+        }
+        csrfToken = getClientCsrfToken();
+      }
+      if (!csrfToken) {
+        throw new Error("Unable to verify this request. Please try again.");
+      }
+
       const res = await fetch("/api/admin/profile", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-CSRF-Token": csrfToken },
         body: JSON.stringify({
           firstName,
           lastName,

@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  BarChart3,
   BriefcaseBusiness,
   Building2,
   ClipboardList,
@@ -18,10 +19,15 @@ export type AdminArea =
   | "careers"
   | "applications"
   | "admins"
+  | "team-access"
   | "roles"
   | "permissions"
   | "activity"
   | "sessions"
+  | "sales"
+  | "sales-leads"
+  | "sales-team"
+  | "sales-access"
   | "profile"
   | "security";
 
@@ -36,6 +42,7 @@ export type AdminNavigationItem = {
 export type AdminNavigationSection = {
   label: string;
   items: AdminNavigationItem[];
+  requiresSalesGovernance?: boolean;
 };
 
 export const adminNavigationSections: AdminNavigationSection[] = [
@@ -43,6 +50,26 @@ export const adminNavigationSections: AdminNavigationSection[] = [
     label: "Workspace",
     items: [
       { label: "Overview", href: "/admin", key: "dashboard", icon: LayoutDashboard, description: "Workspace health and activity" },
+    ],
+  },
+  {
+    label: "Sales Management",
+    requiresSalesGovernance: true,
+    items: [
+      {
+        label: "Overview",
+        href: "/admin/sales",
+        key: "sales",
+        icon: BarChart3,
+        description: "Sales pipeline and performance oversight",
+      },
+      {
+        label: "Leads",
+        href: "/admin/sales/leads",
+        key: "sales-leads",
+        icon: ClipboardList,
+        description: "Lead records and pipeline oversight",
+      },
     ],
   },
   {
@@ -57,7 +84,7 @@ export const adminNavigationSections: AdminNavigationSection[] = [
   {
     label: "Administration",
     items: [
-      { label: "Administrators", href: "/admin/administration/admins", key: "admins", icon: Users, description: "Operator access" },
+      { label: "Team Access", href: "/admin/administration/access", key: "team-access", icon: KeyRound, description: "Grant Administrator or Sales access from TeamMembers" },
       { label: "Roles", href: "/admin/administration/roles", key: "roles", icon: ShieldCheck, description: "Workspace roles" },
       { label: "Permissions", href: "/admin/administration/permissions", key: "permissions", icon: KeyRound, description: "Access policies" },
       { label: "Activity log", href: "/admin/administration/activity", key: "activity", icon: ClipboardList, description: "Audited changes" },

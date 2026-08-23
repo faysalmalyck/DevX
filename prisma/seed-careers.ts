@@ -1,5 +1,6 @@
 import { CareerStatus, PrismaClient } from "@prisma/client";
 import { careersData } from "../src/data/careers.ts";
+import { seedSalesPortal } from "./seed-sales-portal.ts";
 
 const prisma = new PrismaClient();
 
@@ -55,6 +56,11 @@ async function main() {
   }
 
   console.log(`✅ Seeded ${careersData.length} careers.`);
+
+  const salesSeed = await seedSalesPortal(prisma);
+  console.log(
+    `✅ Seeded sales portal roles and permissions (${salesSeed.agentsPromoted} explicit sales agent promotion${salesSeed.agentsPromoted === 1 ? "" : "s"}, ${salesSeed.agentCodesBackfilled} referral code backfill${salesSeed.agentCodesBackfilled === 1 ? "" : "s"}${salesSeed.managerPromoted ? ", Sales Manager confirmed" : ""}).`
+  );
 }
 
 main()

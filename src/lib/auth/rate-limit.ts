@@ -291,6 +291,157 @@ export async function pruneApplicationRateLimits(): Promise<number> {
   return result.count;
 }
 
+// ──────────────────────────────────────────────
+// Public sales lead capture limiter
+// ──────────────────────────────────────────────
+
+const LEAD_CAPTURE_RATE_LIMIT_MAX_ATTEMPTS = 5;
+const LEAD_CAPTURE_RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const LEAD_CAPTURE_RATE_LIMIT_RETRY_ATTEMPTS = 4;
+const LEAD_CAPTURE_RATE_LIMIT_RETENTION_MS = 48 * 60 * 60 * 1000;
+
+export type LeadCaptureRateLimitDimension = "ip" | "email";
+
+function leadCaptureRateLimitKey(
+  dimension: LeadCaptureRateLimitDimension,
+  identifier: string
+): string {
+  const normalizedIdentifier =
+    dimension === "email"
+      ? identifier.trim().toLowerCase().slice(0, 320)
+      : identifier.trim().slice(0, 256);
+
+  const identifierHash = process.env.JWT_SECRET
+    ? createHmac("sha256", process.env.JWT_SECRET)
+        .update(normalizedIdentifier)
+        .digest("hex")
+    : createHash("sha256").update(normalizedIdentifier).digest("hex");
+
+  return `lead-capture:${dimension}:${identifierHash}`;
+}
+
+/**
+ * Database-backed lead capture limiter. It deliberately follows the
+ * application limiter's compare-and-update algorithm rather than a
+ * read-then-write counter, so concurrent requests cannot lose increments.
+ */
+export async function checkLeadCaptureRateLimit(
+  dimension: LeadCaptureRateLimitDimension,
+  identifier: string
+): Promise<RateLimitResult> {
+  const key = leadCaptureRateLimitKey(dimension, identifier);
+  const now = new Date();
+
+  for (let attempt = 0; attempt < LEAD_CAPTURE_RATE_LIMIT_RETRY_ATTEMPTS; attempt += 1) {
+    const existingLimit = await prisma.leadCaptureRateLimit.findUnique({
+      where: { key },
+      select: {
+        count: true,
+        windowStartedAt: true,
+      },
+    });
+
+    if (!existingLimit) {
+      try {
+        await prisma.leadCaptureRateLimit.create({
+          data: {
+            key,
+            count: 1,
+            windowStartedAt: now,
+          },
+        });
+
+        return {
+          allowed: true,
+          remaining: LEAD_CAPTURE_RATE_LIMIT_MAX_ATTEMPTS - 1,
+          retryAfterMs: 0,
+        };
+      } catch (error) {
+        if (isPrismaUniqueConstraintError(error)) continue;
+        throw error;
+      }
+    }
+
+    const windowExpiresAt = new Date(
+      existingLimit.windowStartedAt.getTime() + LEAD_CAPTURE_RATE_LIMIT_WINDOW_MS
+    );
+
+    if (windowExpiresAt <= now) {
+      const resetWindow = await prisma.leadCaptureRateLimit.updateMany({
+        where: {
+          key,
+          windowStartedAt: existingLimit.windowStartedAt,
+        },
+        data: {
+          count: 1,
+          windowStartedAt: now,
+        },
+      });
+
+      if (resetWindow.count === 1) {
+        return {
+          allowed: true,
+          remaining: LEAD_CAPTURE_RATE_LIMIT_MAX_ATTEMPTS - 1,
+          retryAfterMs: 0,
+        };
+      }
+
+      continue;
+    }
+
+    if (existingLimit.count >= LEAD_CAPTURE_RATE_LIMIT_MAX_ATTEMPTS) {
+      return {
+        allowed: false,
+        remaining: 0,
+        retryAfterMs: Math.max(windowExpiresAt.getTime() - now.getTime(), 1_000),
+      };
+    }
+
+    const incremented = await prisma.leadCaptureRateLimit.updateMany({
+      where: {
+        key,
+        count: existingLimit.count,
+        windowStartedAt: existingLimit.windowStartedAt,
+      },
+      data: {
+        count: {
+          increment: 1,
+        },
+      },
+    });
+
+    if (incremented.count === 1) {
+      return {
+        allowed: true,
+        remaining: Math.max(
+          LEAD_CAPTURE_RATE_LIMIT_MAX_ATTEMPTS - existingLimit.count - 1,
+          0
+        ),
+        retryAfterMs: 0,
+      };
+    }
+  }
+
+  return {
+    allowed: false,
+    remaining: 0,
+    retryAfterMs: 1_000,
+  };
+}
+
+export async function pruneLeadCaptureRateLimits(): Promise<number> {
+  const expiredBefore = new Date(
+    Date.now() - LEAD_CAPTURE_RATE_LIMIT_RETENTION_MS
+  );
+  const result = await prisma.leadCaptureRateLimit.deleteMany({
+    where: {
+      windowStartedAt: { lt: expiredBefore },
+    },
+  });
+
+  return result.count;
+}
+
 /**
  * Extract client IP from request headers.
  */

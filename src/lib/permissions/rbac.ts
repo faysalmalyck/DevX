@@ -37,6 +37,10 @@ export const permissionModules = [
   "Permissions",
   "Audit Logs",
   "System Settings",
+  "Leads",
+  "Sales Agents",
+  "Lead Emails",
+  "Vendor Outreach",
 ] as const;
 
 export const permissionActions = [
@@ -61,6 +65,7 @@ export type AdminRole =
   | "Marketing Manager"
   | "HR Manager"
   | "Sales Manager"
+  | "Sales Agent"
   | "Finance Manager"
   | "Project Manager"
   | "Support Manager"

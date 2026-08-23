@@ -2,6 +2,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 import { COOKIE_NAMES } from "@/lib/auth/cookies";
+import {
+  adminLoginDestination,
+  isSalesReturnPath,
+  safeReturnTo,
+  userLoginDestination,
+} from "@/lib/auth/login-redirect";
 
 // ──────────────────────────────────────────────
 // Route definitions
@@ -9,7 +15,8 @@ import { COOKIE_NAMES } from "@/lib/auth/cookies";
 
 const ADMIN_ROUTES = ["/admin"];
 const USER_ROUTES = ["/account"];
-const AUTH_ROUTES = ["/login", "/forgot-password", "/reset-password", "/register"];
+const SALES_ROUTES = ["/sales"];
+const AUTH_ROUTES = ["/login", "/sales/login", "/forgot-password", "/reset-password", "/register"];
 const PUBLIC_ROUTES = [
   "/",
   "/about",
@@ -92,7 +99,10 @@ export async function proxy(request: NextRequest) {
       }
 
       const loginUrl = new URL("/login", request.url);
-      loginUrl.searchParams.set("redirect", pathname);
+      loginUrl.searchParams.set(
+        "returnTo",
+        `${pathname}${request.nextUrl.search}`
+      );
       loginUrl.searchParams.set("portal", "admin");
       return NextResponse.redirect(loginUrl);
     }
@@ -106,7 +116,27 @@ export async function proxy(request: NextRequest) {
       }
 
       const loginUrl = new URL("/login", request.url);
-      loginUrl.searchParams.set("redirect", pathname);
+      loginUrl.searchParams.set(
+        "returnTo",
+        `${pathname}${request.nextUrl.search}`
+      );
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // ── Protected sales routes ─────────────────
+  if (pathname !== "/sales/login" && matchesRoute(pathname, SALES_ROUTES)) {
+    if (!user || user.userType !== "admin") {
+      if (refreshToken && !user) {
+        return NextResponse.next();
+      }
+
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set(
+        "returnTo",
+        `${pathname}${request.nextUrl.search}`
+      );
+      loginUrl.searchParams.set("portal", "sales");
       return NextResponse.redirect(loginUrl);
     }
   }
@@ -114,9 +144,46 @@ export async function proxy(request: NextRequest) {
   // ── Redirect authenticated users away from auth pages ──
   if (matchesRoute(pathname, AUTH_ROUTES) && user) {
     if (user.userType === "admin") {
-      return NextResponse.redirect(new URL("/admin", request.url));
+      const requestedReturnTo =
+        request.nextUrl.searchParams.get("returnTo") ??
+        request.nextUrl.searchParams.get("redirect") ??
+        (pathname === "/sales/login" ? "/sales" : null);
+
+      // Proxy has only the signed role name, not the live role flags and
+      // permissions used by the canonical login handler. Preserve an
+      // authenticated request for a sales destination and let the server
+      // layout perform the authoritative database-backed access check.
+      const safeSalesReturnTo = safeReturnTo(requestedReturnTo);
+      const requestedPortal = request.nextUrl.searchParams.get("portal");
+      if (
+        pathname === "/sales/login" ||
+        requestedPortal === "sales" ||
+        isSalesReturnPath(safeSalesReturnTo)
+      ) {
+        return NextResponse.redirect(
+          new URL(safeSalesReturnTo ?? "/sales", request.url)
+        );
+      }
+
+      return NextResponse.redirect(
+        new URL(
+          adminLoginDestination(
+            { name: user.role },
+            requestedReturnTo
+          ),
+          request.url
+        )
+      );
     } else {
-      return NextResponse.redirect(new URL("/account", request.url));
+      return NextResponse.redirect(
+        new URL(
+          userLoginDestination(
+            request.nextUrl.searchParams.get("returnTo") ??
+              request.nextUrl.searchParams.get("redirect")
+          ),
+          request.url
+        )
+      );
     }
   }
 

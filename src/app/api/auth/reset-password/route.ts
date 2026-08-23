@@ -41,7 +41,10 @@ export async function POST(request: Request) {
         passwordResetExpires: { gt: new Date() },
         deletedAt: null,
       },
-      include: { role: true },
+      select: {
+        id: true,
+        status: true,
+      },
     });
 
     // Look up User
@@ -72,7 +75,10 @@ export async function POST(request: Request) {
           passwordResetExpires: null,
           failedLoginAttempts: 0,
           lockedUntil: null,
+          status: admin.status === "INVITED" ? "ACTIVE" : admin.status,
+          requirePasswordChange: false,
         },
+        select: { id: true },
       });
 
       // Revoke all active sessions for security
