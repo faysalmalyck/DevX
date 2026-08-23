@@ -132,7 +132,7 @@ export default function LoginCard({
   return (
     <div className="fixed inset-0 h-screen w-screen overflow-y-auto bg-[#181d2b] px-4 py-8 text-white sm:px-6 lg:flex lg:items-center lg:justify-center lg:py-10">
       <div className="relative my-auto w-full max-w-md lg:mx-0 lg:max-w-6xl">
-        <aside className="mb-10 hidden max-w-md lg:absolute lg:right-4 lg:top-1/2 lg:block lg:-translate-y-1/2">
+        <aside className="mb-10 hidden max-w-md lg:absolute lg:left-4 lg:top-1/2 lg:block lg:-translate-y-1/2">
           <div className="mb-8 inline-flex">
             <AdminBrandLogo surface="dark" className="h-12 w-auto" />
           </div>
@@ -168,7 +168,7 @@ export default function LoginCard({
           </p>
         </div>
 
-        <div className="mb-4 flex justify-center lg:w-[520px]">
+        <div className="mb-4 flex justify-center lg:ml-auto lg:w-[620px]">
           <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/60 bg-[#1f2535] p-1 shadow-md">
             <button
               type="button"
@@ -210,7 +210,7 @@ export default function LoginCard({
         </div>
 
         {/* Main Card Container */}
-        <div className="relative rounded-2xl border border-slate-700/50 bg-[#1f2535] p-6 shadow-xl sm:p-8 lg:w-[520px]">
+        <div className="relative rounded-2xl border border-slate-700/50 bg-[#1f2535] p-6 shadow-xl sm:p-8 lg:ml-auto lg:w-[620px]">
           {role === "user" ? (
             <>
               {/* User Sub-Toggle: Login vs Sign Up */}
