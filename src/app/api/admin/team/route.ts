@@ -1,6 +1,5 @@
 import { Prisma, TeamMemberStatus } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 import { authorizeAdmin, hasValidAdminCsrf } from "@/lib/auth/admin-authorization";
 import { prisma } from "@/lib/db/prisma";
 import {
@@ -10,6 +9,7 @@ import {
 import { serializeTeamMember } from "@/lib/team/types";
 import { teamMemberSchema } from "@/lib/validations/team";
 import { synchronizeTeamMemberSalesAccess, TeamSalesSyncError } from "@/lib/team/sales-sync";
+import { revalidateTeamPaths } from "@/lib/team/revalidate";
 
 function validationErrorResponse(issues: { path: PropertyKey[]; message: string }[]) {
   const fieldErrors: Record<string, string[]> = {};
@@ -121,12 +121,4 @@ export async function POST(request: NextRequest) {
     }
     return NextResponse.json({ error: "Unable to create this team member.", code: "TEAM_CREATE_FAILED" }, { status: 500 });
   }
-}
-
-export function revalidateTeamPaths() {
-  revalidatePath("/team");
-  revalidatePath("/about");
-  revalidatePath("/about/team");
-  revalidatePath("/about/our-team");
-  revalidatePath("/admin/team");
 }

@@ -9,7 +9,7 @@ import {
 import { serializeTeamMember } from "@/lib/team/types";
 import { teamMemberSchema } from "@/lib/validations/team";
 import { synchronizeTeamMemberSalesAccess, TeamSalesSyncError } from "@/lib/team/sales-sync";
-import { revalidateTeamPaths } from "../route";
+import { revalidateTeamPaths } from "@/lib/team/revalidate";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
