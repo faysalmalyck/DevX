@@ -131,9 +131,9 @@ export default function LoginCard({
 
   return (
     <div className="fixed inset-0 h-screen w-screen overflow-y-auto bg-[#181d2b] px-4 py-8 text-white sm:px-6 lg:flex lg:items-center lg:justify-center lg:py-10">
-      <div className="relative mx-auto my-auto w-full max-w-md lg:max-w-6xl">
+      <div className="relative my-auto w-full max-w-md lg:mx-0 lg:max-w-6xl">
         <aside className="mb-10 hidden max-w-md lg:absolute lg:right-4 lg:top-1/2 lg:block lg:-translate-y-1/2">
-          <div className="mb-8 inline-flex rounded-2xl border border-slate-700/60 bg-[#1f2535] p-5 shadow-xl shadow-black/20">
+          <div className="mb-8 inline-flex">
             <AdminBrandLogo surface="dark" className="h-12 w-auto" />
           </div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-brand">DevX Digital Platform</p>
