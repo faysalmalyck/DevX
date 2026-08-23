@@ -210,7 +210,7 @@ export default function LoginCard({
         </div>
 
         {/* Main Card Container */}
-        <div className="relative rounded-2xl border border-slate-700/50 bg-[#1f2535] p-6 shadow-xl sm:p-8 lg:ml-auto lg:w-[620px]">
+        <div className="relative rounded-l border border-slate-700/50 bg-[#232c3e] p-6 shadow-xl sm:p-8 md:p-12 lg:ml-auto lg:w-[620px]">
           {role === "user" ? (
             <>
               {/* User Sub-Toggle: Login vs Sign Up */}
@@ -251,7 +251,7 @@ export default function LoginCard({
 
               {userMode === "login" ? (
                 /* USER LOGIN FORM */
-                <form onSubmit={handleUserLogin} className="space-y-4">
+                <form onSubmit={handleUserLogin} className="space-y-6">
                   <div>
                     <label className="mb-1.5 block text-xs font-medium text-white">
                       Email Address or Username
@@ -340,7 +340,7 @@ export default function LoginCard({
                 </form>
               ) : (
                 /* USER SIGNUP FORM */
-                <form onSubmit={handleUserSignup} className="space-y-4">
+                <form onSubmit={handleUserSignup} className="space-y-6">
                   <div>
                     <label className="mb-1.5 block text-xs font-medium text-white">
                       Full Name
@@ -452,7 +452,7 @@ export default function LoginCard({
               role="tabpanel"
               aria-labelledby={portal === "sales" ? "sales-login-tab" : "admin-login-tab"}
               onSubmit={handleAdminLogin}
-              className="space-y-4"
+              className="space-y-6"
             >
               <div role="tablist" aria-label="Administrator login type" className="-mt-1 flex border-b border-slate-700/50 text-lg">
                 <button
