@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSession } from "@/contexts/SessionContext";
+import AdminBrandLogo from "@/components/admin/AdminBrandLogo";
 import { Eye, EyeOff, Lock, Mail, User, ShieldAlert, ArrowRight, Loader2, Sparkles, Shield, UserCheck } from "lucide-react";
 
 type LoginCardProps = {
@@ -129,10 +130,22 @@ export default function LoginCard({
   }
 
   return (
-    <div className="fixed inset-0 w-screen h-screen bg-[#181d2b] flex items-center justify-center p-4 overflow-y-auto">
-      <div className="relative mx-auto w-full max-w-md my-auto">
+    <div className="fixed inset-0 h-screen w-screen overflow-y-auto bg-[#181d2b] px-4 py-8 text-white sm:px-6 lg:flex lg:items-center lg:justify-center lg:py-10">
+      <div className="relative mx-auto my-auto w-full max-w-md lg:max-w-6xl">
+        <aside className="mb-10 hidden max-w-md lg:absolute lg:right-4 lg:top-1/2 lg:block lg:-translate-y-1/2">
+          <div className="mb-8 inline-flex rounded-2xl border border-slate-700/60 bg-[#1f2535] p-5 shadow-xl shadow-black/20">
+            <AdminBrandLogo surface="dark" className="h-12 w-auto" />
+          </div>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-brand">DevX Digital Platform</p>
+          <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white xl:text-5xl">
+            Build what moves your business forward.
+          </h2>
+          <p className="mt-5 max-w-lg text-lg leading-relaxed text-slate-400">
+            Sign in to manage your workspace, access your sales portal, and keep every important project moving from one secure place.
+          </p>
+        </aside>
         {/* Header Section */}
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center lg:hidden">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-[#1f2535] px-3 py-1 text-xs font-medium text-white">
             <Sparkles className="h-3.5 w-3.5 text-brand" />
             <span>DevX Digital Platform</span>
@@ -155,7 +168,7 @@ export default function LoginCard({
           </p>
         </div>
 
-        <div className="mb-4 flex justify-center">
+        <div className="mb-4 flex justify-center lg:w-[520px]">
           <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/60 bg-[#1f2535] p-1 shadow-md">
             <button
               type="button"
@@ -197,7 +210,7 @@ export default function LoginCard({
         </div>
 
         {/* Main Card Container */}
-        <div className="relative rounded-lg border border-slate-700/50 bg-[#1f2535] p-6 sm:p-8 shadow-xl">
+        <div className="relative rounded-2xl border border-slate-700/50 bg-[#1f2535] p-6 shadow-xl sm:p-8 lg:w-[520px]">
           {role === "user" ? (
             <>
               {/* User Sub-Toggle: Login vs Sign Up */}
