@@ -168,7 +168,7 @@ export default function LoginCard({
           </p>
         </div>
 
-        <div className="mb-4 flex justify-center lg:ml-auto lg:w-[620px]">
+        <div className="mb-4 flex justify-center lg:ml-auto lg:w-[540px]">
           <div className="inline-flex items-center gap-1 rounded-full border border-slate-700/60 bg-[#1f2535] p-1 shadow-md">
             <button
               type="button"
@@ -210,7 +210,7 @@ export default function LoginCard({
         </div>
 
         {/* Main Card Container */}
-        <div className="relative rounded-l border border-slate-700/50 bg-[#232c3e] p-6 shadow-xl sm:p-8 md:p-12 lg:ml-auto lg:w-[620px]">
+        <div className="relative flex min-h-[700px] flex-col rounded-l border border-slate-700/50 bg-[#232c3e] p-6 shadow-xl sm:p-8 md:p-12 lg:ml-auto lg:w-[540px]">
           {role === "user" ? (
             <>
               {/* User Sub-Toggle: Login vs Sign Up */}
