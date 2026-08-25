@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import TeamAdmin from "@/components/team/TeamAdmin";
+import TeamManagementWorkspace from "@/components/team/TeamManagementWorkspace";
 import { authorizeAdmin } from "@/lib/auth/admin-authorization";
 import { prisma } from "@/lib/db/prisma";
 import { serializeTeamMember } from "@/lib/team/types";
 
 export const metadata: Metadata = { title: "Team management", robots: { index: false, follow: false } };
 
-export default async function TeamAdminPage() {
+export default async function TeamAdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string | string[] }>;
+}) {
   const authorized = await authorizeAdmin("Team Members", "VIEW");
 
   if (!authorized.ok) {
@@ -19,15 +22,8 @@ export default async function TeamAdminPage() {
     where: { deletedAt: null },
     orderBy: [{ displayOrder: "asc" }, { createdAt: "desc" }],
   });
+  const tab = (await searchParams).tab;
+  const initialTab = tab === "access" ? "access" : "profiles";
 
-  return (
-    <div className="space-y-8">
-      <div className="flex justify-end">
-        <Link href="/admin/administration/access" className="rounded-lg border border-brand/30 bg-brand/10 px-4 py-2.5 text-sm font-bold text-brand hover:bg-brand/15 dark:text-cyan-200">
-          Manage login access
-        </Link>
-      </div>
-      <TeamAdmin initialMembers={members.map(serializeTeamMember)} />
-    </div>
-  );
+  return <TeamManagementWorkspace initialMembers={members.map(serializeTeamMember)} initialTab={initialTab} />;
 }

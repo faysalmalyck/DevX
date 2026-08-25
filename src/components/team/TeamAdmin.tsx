@@ -304,10 +304,10 @@ export default function TeamAdmin({ initialMembers = [] }: { initialMembers?: Te
   }
 
   return (
-    <div className="space-y-6 pb-10">
+    <div className="space-y-6">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">Team Management</h1>
+          <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Team Profiles</h2>
           <p className="mt-2 text-base text-slate-500 dark:text-zinc-400">Manage your team directory, roles, and public profiles.</p>
         </div>
         <button onClick={openCreate} className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-base font-bold text-white shadow-sm transition hover:bg-brand">

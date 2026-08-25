@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function SalesAccessPage() {
-  redirect("/admin/administration/access");
+  redirect("/admin/team?tab=access");
 }

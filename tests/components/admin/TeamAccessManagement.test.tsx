@@ -23,6 +23,19 @@ describe("TeamAccessManagement CEO presentation", () => {
     salesRole: null,
     admin: null,
   };
+  const gulfamWithAccess = {
+    ...gulfam,
+    accessRole: "SALES_MANAGER",
+    salesRole: "SALES_MANAGER",
+    admin: {
+      id: "admin-gulfam",
+      email: "gulfam@example.com",
+      status: "ACTIVE",
+      lastLogin: null,
+      agentCode: "GULFAM-001",
+      role: { name: "Sales Manager", isSuperAdmin: false },
+    },
+  };
 
   beforeEach(() => {
     postResponse = null;
@@ -136,5 +149,68 @@ describe("TeamAccessManagement CEO presentation", () => {
     expect(screen.getByRole("link", { name: "Sales login" }).getAttribute("href")).toBe("https://example.com/login?portal=sales");
     const postCall = fetchMock.mock.calls.find(([, init]) => init?.method === "POST");
     expect(postCall?.[1]?.body).toBe(JSON.stringify({ teamMemberId: "team-gulfam", accessRole: "SALES_MANAGER" }));
+  });
+
+  it("requires confirmation before removing a member's login access", async () => {
+    let removed = false;
+    postResponse = jsonResponse({
+      success: true,
+      accessRole: "NONE",
+      adminId: "admin-gulfam",
+      status: "removed",
+      credentials: null,
+    });
+    fetchMock.mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = typeof input === "string" ? input : input.toString();
+      if (url === "/api/admin/team-access" && init?.method === "POST") {
+        removed = true;
+        return postResponse!;
+      }
+      if (url === "/api/admin/team-access") {
+        return jsonResponse({ members: [removed ? gulfam : gulfamWithAccess] });
+      }
+      if (url === "/api/auth/csrf") return jsonResponse({ success: true });
+      throw new Error(`Unexpected request: ${url}`);
+    });
+
+    render(<TeamAccessManagement />);
+    const row = await screen.findByRole("row", { name: /Gulfam Afzal/ });
+    fireEvent.click(within(row).getByRole("button", { name: "Manage Access" }));
+
+    const accessDialog = screen.getByRole("dialog", { name: /Manage access for Gulfam Afzal/ });
+    fireEvent.click(within(accessDialog).getByRole("button", { name: "Remove access" }));
+
+    const confirmation = screen.getByRole("dialog", { name: /Remove login access/ });
+    fireEvent.click(within(confirmation).getByRole("button", { name: "Cancel" }));
+    expect(fetchMock.mock.calls.some(([, init]) => init?.method === "POST")).toBe(false);
+
+    fireEvent.click(within(accessDialog).getByRole("button", { name: "Remove access" }));
+    fireEvent.click(within(screen.getByRole("dialog", { name: /Remove login access/ })).getByRole("button", { name: "Remove access" }));
+
+    await waitFor(() => expect(screen.getByRole("status").textContent).toContain("Login access was removed for Gulfam Afzal."));
+    const postCall = fetchMock.mock.calls.find(([, init]) => init?.method === "POST");
+    expect(postCall?.[1]?.body).toBe(JSON.stringify({ teamMemberId: "team-gulfam", accessRole: "NONE" }));
+  });
+
+  it("keeps the access dialog open when removal is blocked", async () => {
+    postResponse = jsonResponse({ error: "Reassign active Sales work before removing access from this TeamMember." }, 422);
+    fetchMock.mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = typeof input === "string" ? input : input.toString();
+      if (url === "/api/admin/team-access" && init?.method === "POST") return postResponse!;
+      if (url === "/api/admin/team-access") return jsonResponse({ members: [gulfamWithAccess] });
+      if (url === "/api/auth/csrf") return jsonResponse({ success: true });
+      throw new Error(`Unexpected request: ${url}`);
+    });
+
+    render(<TeamAccessManagement />);
+    const row = await screen.findByRole("row", { name: /Gulfam Afzal/ });
+    fireEvent.click(within(row).getByRole("button", { name: "Manage Access" }));
+
+    const accessDialog = screen.getByRole("dialog", { name: /Manage access for Gulfam Afzal/ });
+    fireEvent.click(within(accessDialog).getByRole("button", { name: "Remove access" }));
+    fireEvent.click(within(screen.getByRole("dialog", { name: /Remove login access/ })).getByRole("button", { name: "Remove access" }));
+
+    expect((await within(accessDialog).findByRole("alert")).textContent).toContain("Reassign active Sales work");
+    expect(screen.queryByRole("dialog", { name: /Remove login access/ })).toBeNull();
   });
 });

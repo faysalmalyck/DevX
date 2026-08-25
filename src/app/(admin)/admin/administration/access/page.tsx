@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-
-import TeamAccessManagement from "@/components/admin/TeamAccessManagement";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = { title: "Team Access", robots: { index: false, follow: false } };
 
 export default function TeamAccessPage() {
-  return <TeamAccessManagement />;
+  redirect("/admin/team?tab=access");
 }

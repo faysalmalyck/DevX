@@ -7,7 +7,6 @@ import {
   KeyRound,
   LayoutDashboard,
   Settings,
-  ShieldCheck,
   UserRound,
   Users,
 } from "lucide-react";
@@ -19,7 +18,6 @@ export type AdminArea =
   | "careers"
   | "applications"
   | "admins"
-  | "team-access"
   | "roles"
   | "permissions"
   | "activity"
@@ -84,9 +82,6 @@ export const adminNavigationSections: AdminNavigationSection[] = [
   {
     label: "Administration",
     items: [
-      { label: "Team Access", href: "/admin/administration/access", key: "team-access", icon: KeyRound, description: "Grant Administrator or Sales access from TeamMembers" },
-      { label: "Roles", href: "/admin/administration/roles", key: "roles", icon: ShieldCheck, description: "Workspace roles" },
-      { label: "Permissions", href: "/admin/administration/permissions", key: "permissions", icon: KeyRound, description: "Access policies" },
       { label: "Activity log", href: "/admin/administration/activity", key: "activity", icon: ClipboardList, description: "Audited changes" },
       { label: "Login sessions", href: "/admin/administration/sessions", key: "sessions", icon: KeyRound, description: "Operator sessions" },
     ],
