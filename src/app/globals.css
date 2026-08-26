@@ -113,6 +113,130 @@ body {
     linear-gradient(135deg, rgba(34, 211, 238, 0.06), transparent 26rem);
 }
 
+/*
+  Workspace UI stays explicitly scoped to authenticated admin and sales
+  surfaces so the public marketing system can evolve independently.
+*/
+@layer components {
+  .workspace-shell {
+    --workspace-canvas: #f6f8fc;
+    --workspace-surface: rgba(255, 255, 255, 0.92);
+    --workspace-surface-muted: rgba(248, 250, 252, 0.92);
+    --workspace-surface-command: linear-gradient(135deg, rgba(54, 88, 255, 0.1), rgba(139, 92, 246, 0.1));
+    --workspace-border: rgba(148, 163, 184, 0.3);
+    --workspace-text: #0f172a;
+    --workspace-muted: #64748b;
+    --workspace-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+
+    color: var(--workspace-text);
+    background: var(--workspace-canvas);
+  }
+
+  .dark .workspace-shell {
+    --workspace-canvas: #090e19;
+    --workspace-surface: rgba(17, 26, 45, 0.92);
+    --workspace-surface-muted: rgba(15, 23, 42, 0.88);
+    --workspace-surface-command: linear-gradient(135deg, rgba(54, 88, 255, 0.2), rgba(139, 92, 246, 0.16));
+    --workspace-border: rgba(148, 163, 184, 0.16);
+    --workspace-text: #f8fafc;
+    --workspace-muted: #94a3b8;
+    --workspace-shadow: 0 24px 65px rgba(0, 0, 0, 0.3);
+  }
+
+  .workspace-shell section {
+    padding-block: 0;
+  }
+
+  .workspace-page-header {
+    position: relative;
+  }
+
+  .workspace-kicker {
+    @apply text-[11px] font-black uppercase tracking-[0.18em] text-brand dark:text-cyan-200;
+  }
+
+  .workspace-page-title {
+    @apply mt-2 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl;
+  }
+
+  .workspace-page-description {
+    @apply mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400 sm:text-base;
+  }
+
+  .workspace-surface {
+    border: 1px solid var(--workspace-border);
+    background: var(--workspace-surface);
+    box-shadow: var(--workspace-shadow);
+    border-radius: 1.25rem;
+  }
+
+  .workspace-surface-muted {
+    background: var(--workspace-surface-muted);
+  }
+
+  .workspace-surface-command {
+    background: var(--workspace-surface-command);
+  }
+
+  .workspace-metric-card {
+    border: 1px solid var(--workspace-border);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.11), transparent 38%),
+      var(--workspace-surface);
+    box-shadow: var(--workspace-shadow);
+    border-radius: 1.25rem;
+    padding: 1.125rem;
+  }
+
+  .workspace-metric-label {
+    @apply text-[10px] font-black uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400;
+  }
+
+  .workspace-metric-value {
+    @apply mt-5 text-3xl font-black tracking-tight text-slate-950 dark:text-white;
+  }
+
+  .workspace-metric-detail {
+    @apply mt-1 text-xs font-medium leading-5 text-slate-500 dark:text-slate-400;
+  }
+
+  .workspace-metric-icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl ring-1;
+  }
+
+  .workspace-accent-brand { @apply bg-brand/10 text-brand ring-brand/15 dark:bg-brand/15 dark:text-cyan-200 dark:ring-cyan-300/15; }
+  .workspace-accent-cyan { @apply bg-cyan-400/10 text-cyan-700 ring-cyan-500/15 dark:bg-cyan-400/15 dark:text-cyan-200 dark:ring-cyan-300/15; }
+  .workspace-accent-violet { @apply bg-violet-500/10 text-violet-700 ring-violet-500/15 dark:bg-violet-400/15 dark:text-violet-200 dark:ring-violet-300/15; }
+  .workspace-accent-emerald { @apply bg-emerald-500/10 text-emerald-700 ring-emerald-500/15 dark:bg-emerald-400/15 dark:text-emerald-200 dark:ring-emerald-300/15; }
+  .workspace-accent-amber { @apply bg-amber-500/10 text-amber-700 ring-amber-500/15 dark:bg-amber-400/15 dark:text-amber-200 dark:ring-amber-300/15; }
+
+  .workspace-button-primary {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand to-violet-500 px-4 text-sm font-bold text-white shadow-lg shadow-brand/20 transition hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-[#090e19] disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .workspace-button-secondary {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-white/[0.1] dark:bg-white/[0.05] dark:text-slate-100 dark:hover:bg-white/[0.1] dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-[#090e19] disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .workspace-icon-button {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-white/[0.1] dark:bg-white/[0.05] dark:text-slate-200 dark:hover:bg-white/[0.1] dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-[#090e19];
+  }
+
+  .workspace-dialog {
+    border: 1px solid var(--workspace-border);
+    background: var(--workspace-surface);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+  }
+
+  .workspace-dialog-title {
+    @apply text-xl font-black tracking-tight text-slate-950 dark:text-white;
+  }
+
+  .workspace-dialog-description {
+    @apply mt-1 text-sm leading-6 text-slate-600 dark:text-slate-400;
+  }
+}
+
 @layer utilities {
   .premium-shell {
     @apply relative overflow-hidden bg-white dark:bg-darkmode;

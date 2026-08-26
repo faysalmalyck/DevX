@@ -134,19 +134,6 @@ export default function Footer() {
     </svg>
   </a>
 
-  {/* X (Twitter) */}
-  <a
-    href="https://x.com/"
-    target="_blank"
-    rel="noreferrer"
-    aria-label="X"
-    className="group relative flex h-11 w-11 items-center justify-center rounded-lg border border-slate-700/60 bg-gradient-to-b from-slate-800/90 to-slate-900/90 text-slate-400 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-slate-400/50 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]"
-  >
-    <svg className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.9 2H22l-6.77 7.73L23 22h-6.2l-4.86-6.34L6.38 22H3.28l7.24-8.27L1 2h6.36l4.39 5.78L18.9 2ZM17.8 20h1.72L6.23 4H4.4Z" />
-    </svg>
-  </a>
-
   {/* Instagram */}
   <a
     href="https://www.instagram.com/development.experience/"
