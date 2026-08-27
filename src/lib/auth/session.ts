@@ -2,6 +2,7 @@ import type { Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/db/prisma";
 import {
+  AuthConfigurationError,
   createTokenPair,
   verifyToken,
   getRefreshExpiry,
@@ -103,32 +104,42 @@ export async function createSession(
 // ──────────────────────────────────────────────
 
 export async function getActiveSession(): Promise<SessionUser | null> {
-  try {
-    const { accessToken } = await getAuthCookies();
+  const { accessToken } = await getAuthCookies();
 
-    if (!accessToken) return null;
-
-    const payload = await verifyToken(accessToken, "access");
-
-    // A valid signed access token is not sufficient after an administrator is
-    // suspended, removed, or explicitly signed out. Check that its backing
-    // session still exists on every protected request so session revocation is
-    // effective immediately rather than waiting for the 15-minute JWT expiry.
-    const sessionExists = await verifyDbSession(
-      payload.sessionId,
-      payload.userType
-    );
-
-    if (!sessionExists) {
-      await clearAuthCookies();
-      return null;
-    }
-
-    return await fetchSessionUser(payload);
-  } catch {
+  // Browsers stop sending a max-age expired access cookie. A valid refresh
+  // cookie must still restore the session instead of making a remembered user
+  // appear anonymous after fifteen minutes.
+  if (!accessToken) {
     // Access token expired or invalid — try refresh
     return tryRefreshSession();
   }
+
+  let payload: AuthTokenPayload;
+  try {
+    payload = await verifyToken(accessToken, "access");
+  } catch (error) {
+    if (error instanceof AuthConfigurationError) throw error;
+
+    return tryRefreshSession();
+  }
+
+  // A valid signed access token is not sufficient after an administrator is
+  // suspended, removed, or explicitly signed out. Check that its backing
+  // session still exists on every protected request so session revocation is
+  // effective immediately rather than waiting for the 15-minute JWT expiry.
+  // Deliberately let database failures propagate: they are operational errors,
+  // not unauthenticated sessions.
+  const sessionExists = await verifyDbSession(
+    payload.sessionId,
+    payload.userType
+  );
+
+  if (!sessionExists) {
+    await clearAuthCookies();
+    return null;
+  }
+
+  return fetchSessionUser(payload);
 }
 
 // ──────────────────────────────────────────────
@@ -136,47 +147,51 @@ export async function getActiveSession(): Promise<SessionUser | null> {
 // ──────────────────────────────────────────────
 
 async function tryRefreshSession(): Promise<SessionUser | null> {
+  const { refreshToken } = await getAuthCookies();
+
+  if (!refreshToken) return null;
+
+  let payload: AuthTokenPayload;
   try {
-    const { refreshToken } = await getAuthCookies();
+    payload = await verifyToken(refreshToken, "refresh");
+  } catch (error) {
+    if (error instanceof AuthConfigurationError) throw error;
 
-    if (!refreshToken) return null;
-
-    const payload = await verifyToken(refreshToken, "refresh");
-
-    // Verify session still exists in DB
-    const sessionExists = await verifyDbSession(
-      payload.sessionId,
-      payload.userType
-    );
-
-    if (!sessionExists) {
-      await clearAuthCookies();
-      return null;
-    }
-
-    // Rotate tokens
-    const tokens = await createTokenPair({
-      sub: payload.sub!,
-      email: payload.email,
-      role: payload.role,
-      userType: payload.userType,
-      sessionId: payload.sessionId,
-    });
-
-    try {
-      await setAuthCookies(tokens.accessToken, tokens.refreshToken);
-    } catch (error) {
-      // A server component can authenticate from a valid refresh token but
-      // cannot rotate response cookies. A subsequent route-handler request
-      // performs the rotation.
-      if (!isCookieMutationUnavailable(error)) throw error;
-    }
-
-    return fetchSessionUser(payload);
-  } catch {
     await clearAuthCookies();
     return null;
   }
+
+  // Verify session still exists in DB. Do not turn a database outage into a
+  // 401 or clear otherwise valid cookies.
+  const sessionExists = await verifyDbSession(
+    payload.sessionId,
+    payload.userType
+  );
+
+  if (!sessionExists) {
+    await clearAuthCookies();
+    return null;
+  }
+
+  // Rotate tokens
+  const tokens = await createTokenPair({
+    sub: payload.sub!,
+    email: payload.email,
+    role: payload.role,
+    userType: payload.userType,
+    sessionId: payload.sessionId,
+  });
+
+  try {
+    await setAuthCookies(tokens.accessToken, tokens.refreshToken);
+  } catch (error) {
+    // A server component can authenticate from a valid refresh token but
+    // cannot rotate response cookies. A subsequent route-handler request
+    // performs the rotation.
+    if (!isCookieMutationUnavailable(error)) throw error;
+  }
+
+  return fetchSessionUser(payload);
 }
 
 // ──────────────────────────────────────────────

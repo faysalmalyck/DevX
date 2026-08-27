@@ -1,22 +1,41 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db/prisma";
-import { verifyToken, createTokenPair } from "@/lib/auth/jwt";
+import {
+  AuthConfigurationError,
+  verifyToken,
+  createTokenPair,
+  type AuthTokenPayload,
+} from "@/lib/auth/jwt";
 import { getAuthCookies, setAuthCookies, clearAuthCookies } from "@/lib/auth/cookies";
 
-export async function POST() {
-  try {
-    const { refreshToken } = await getAuthCookies();
+function unauthenticatedResponse(message: string) {
+  return NextResponse.json({ error: message }, { status: 401 });
+}
 
-    if (!refreshToken) {
+export async function POST() {
+  const { refreshToken } = await getAuthCookies();
+
+  if (!refreshToken) {
+    return unauthenticatedResponse("Refresh token missing");
+  }
+
+  let payload: AuthTokenPayload;
+  try {
+    payload = await verifyToken(refreshToken, "refresh");
+  } catch (error) {
+    if (error instanceof AuthConfigurationError) {
+      console.error("Token refresh configuration error:", error);
       return NextResponse.json(
-        { error: "Refresh token missing" },
-        { status: 401 }
+        { error: "Authentication service is temporarily unavailable" },
+        { status: 500 }
       );
     }
 
-    // Verify token
-    const payload = await verifyToken(refreshToken, "refresh");
+    await clearAuthCookies();
+    return unauthenticatedResponse("Session invalid or expired");
+  }
 
+  try {
     // Verify that the token's session belongs to its subject and that the
     // account is still active. A session ID alone must never be enough to
     // refresh a suspended, deleted, or different account's credentials.
@@ -60,10 +79,7 @@ export async function POST() {
 
     if (!refreshedUser) {
       await clearAuthCookies();
-      return NextResponse.json(
-        { error: "Session has expired or is invalid" },
-        { status: 401 }
-      );
+      return unauthenticatedResponse("Session has expired or is invalid");
     }
 
     // Update session expiration in database (slide window)
@@ -94,10 +110,7 @@ export async function POST() {
     }
     if (!sessionExtended) {
       await clearAuthCookies();
-      return NextResponse.json(
-        { error: "Session has expired or is invalid" },
-        { status: 401 }
-      );
+      return unauthenticatedResponse("Session has expired or is invalid");
     }
 
     // Generate new claims only after the owned, active session has been
@@ -123,10 +136,9 @@ export async function POST() {
     });
   } catch (error) {
     console.error("Token refresh error:", error);
-    await clearAuthCookies();
     return NextResponse.json(
-      { error: "Session invalid or expired" },
-      { status: 401 }
+      { error: "Authentication service is temporarily unavailable" },
+      { status: 500 }
     );
   }
 }

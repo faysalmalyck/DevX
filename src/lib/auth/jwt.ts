@@ -7,6 +7,18 @@ import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 export type TokenType = "access" | "refresh";
 export type UserType = "admin" | "user";
 
+/**
+ * Raised for server configuration problems that must not be treated like an
+ * expired browser session. Callers can return a 500 and preserve cookies so a
+ * transient deployment problem does not sign a user out.
+ */
+export class AuthConfigurationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "AuthConfigurationError";
+  }
+}
+
 export interface AuthTokenPayload extends JWTPayload {
   sub: string;        // userId or adminId
   email: string;
@@ -23,7 +35,7 @@ export interface AuthTokenPayload extends JWTPayload {
 function getSecret(): Uint8Array {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
-    throw new Error("JWT_SECRET environment variable is not set");
+    throw new AuthConfigurationError("JWT_SECRET environment variable is not set");
   }
   return new TextEncoder().encode(secret);
 }
@@ -105,6 +117,10 @@ export async function verifyToken(
 
     return authPayload;
   } catch (error) {
+    if (error instanceof AuthConfigurationError) {
+      throw error;
+    }
+
     throw new Error(
       `Token verification failed: ${error instanceof Error ? error.message : "Invalid token"}`
     );
