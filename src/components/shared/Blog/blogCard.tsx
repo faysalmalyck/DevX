@@ -24,7 +24,6 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             width={408}
                             height={272}
-                            quality={100}
                         />
                     </Link>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-70" />

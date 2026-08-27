@@ -27,9 +27,9 @@ export type CareerContent = {
   featured: boolean;
   displayOrder: number;
   status: CareerStatus;
-  publishedAt: Date | null;
-  createdAt: Date;
-  updatedAt: Date;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 /**
@@ -120,9 +120,9 @@ export function toCareerContent(career: Career): CareerContent {
     featured: career.featured,
     displayOrder: career.displayOrder,
     status: career.status,
-    publishedAt: career.publishedAt,
-    createdAt: career.createdAt,
-    updatedAt: career.updatedAt,
+    publishedAt: career.publishedAt ? career.publishedAt.toISOString() : null,
+    createdAt: career.createdAt.toISOString(),
+    updatedAt: career.updatedAt.toISOString(),
   };
 }
 

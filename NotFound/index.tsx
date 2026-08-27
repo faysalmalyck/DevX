@@ -15,7 +15,6 @@ const NotFound = () => {
                 width={500}
                 height={500}
                 layout="responsive"
-                quality={100}
                 style={{width:"100%"}}
                 className="max-w-full"
               />

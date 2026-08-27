@@ -5,7 +5,7 @@ import CounterSection from '@/components/about/Counter';
 import OfficesSection from "@/components/about/OfficesSection";
 import TeamSection from "@/components/team/TeamPage";
 import { getPublishedTeamMembers } from "@/lib/team/queries";
-import CoreValuesPage from "./core-value/page";
+import CoreValues from "@/components/core-values/CoreValue";
 import ReadyToStart from "@/components/home/ready-to-contact/Ready";
 import { ScrollReveal } from "@/components/motion";
 
@@ -46,7 +46,7 @@ const page = async () => {
 
 <CounterSection/>
 <TeamSection members={members}/>
-<CoreValuesPage/>
+<CoreValues/>
 <OfficesSection/>
 <ReadyToStart/>
 

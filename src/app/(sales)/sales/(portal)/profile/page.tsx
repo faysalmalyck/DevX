@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import AdminProfilePage from "@/app/(admin)/admin/profile/page";
+import AdminProfileWorkspace from "@/components/admin/profile/AdminProfileWorkspace";
 
 export const metadata: Metadata = {
   title: "Sales profile",
@@ -13,5 +13,5 @@ export const metadata: Metadata = {
  * updates only the active session's own Admin record.
  */
 export default function SalesProfilePage() {
-  return <AdminProfilePage />;
+  return <AdminProfileWorkspace />;
 }

@@ -29,7 +29,6 @@ const Logo: React.FC = () => {
         alt="DevX logo"
         width={150}
         height={50}
-        quality={100}
         priority
         className="h-10 w-auto max-w-[180px] transition-opacity duration-300 ease-in-out group-hover:opacity-75 sm:h-12"
       />

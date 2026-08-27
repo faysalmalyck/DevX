@@ -30,7 +30,6 @@ export default function AdminBrandLogo({
       alt={alt}
       width={117}
       height={45}
-      quality={100}
       className={className}
     />
   );

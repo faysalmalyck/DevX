@@ -1,5 +1,5 @@
-import CaseStudy from "@/app/(site)/case-studies/page";
 import React from "react";
+import CaseStudyList from "@/components/case-studies/CaseStudyList";
 
 export const metadata = {
   title: "Case Study | DevX",
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function CaseStudyPage() {
-  return <CaseStudy />;
+  return <CaseStudyList />;
 }

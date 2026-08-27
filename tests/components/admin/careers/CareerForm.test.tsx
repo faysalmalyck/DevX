@@ -33,8 +33,8 @@ function career(overrides: Partial<CareerContent> = {}): CareerContent {
     displayOrder: 0,
     status: "DRAFT",
     publishedAt: null,
-    createdAt: new Date("2026-08-11T00:00:00.000Z"),
-    updatedAt: new Date("2026-08-11T00:00:00.000Z"),
+    createdAt: "2026-08-11T00:00:00.000Z",
+    updatedAt: "2026-08-11T00:00:00.000Z",
     ...overrides,
   };
 }

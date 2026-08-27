@@ -69,7 +69,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
               {user.avatar ? (
                 <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
               ) : (
-                user.firstName[0]
+                user.firstName?.[0] ?? "U"
               )}
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -110,7 +110,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                   {user.avatar ? (
                     <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
                   ) : (
-                    user.firstName[0]
+                    user.firstName?.[0] ?? "U"
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -168,7 +168,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                 {user.avatar ? (
                   <img src={user.avatar} alt="avatar" className="h-full w-full rounded-full object-cover" />
                 ) : (
-                  user.firstName[0]
+                  user.firstName?.[0] ?? "U"
                 )}
               </div>
               <div className="hidden text-left sm:block">

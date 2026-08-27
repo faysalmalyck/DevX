@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import AdminSecurityPage from "@/app/(admin)/admin/security/page";
+import AdminSecurityWorkspace from "@/components/admin/security/AdminSecurityWorkspace";
 
 export const metadata: Metadata = {
   title: "Sales security",
@@ -12,5 +12,5 @@ export const metadata: Metadata = {
  * backing routes are scoped to the active session's own Admin account.
  */
 export default function SalesSecurityPage() {
-  return <AdminSecurityPage />;
+  return <AdminSecurityWorkspace />;
 }

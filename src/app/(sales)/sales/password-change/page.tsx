@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import AdminSecurityPage from "@/app/(admin)/admin/security/page";
+import AdminSecurityWorkspace from "@/components/admin/security/AdminSecurityWorkspace";
 import { getActiveSession } from "@/lib/auth/session";
 import { isSalesRole } from "@/lib/auth/sales-governance";
 
@@ -32,7 +32,7 @@ export default async function SalesPasswordChangePage() {
           <h1 className="mt-1 text-2xl font-black tracking-tight">Set a private password to continue</h1>
           <p className="mt-2 text-sm leading-6 text-cyan-50/80">Your account was created with an initial credential. Change it now before accessing Sales leads and follow-ups.</p>
         </section>
-        <AdminSecurityPage />
+        <AdminSecurityWorkspace />
       </div>
     </main>
   );
