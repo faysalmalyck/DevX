@@ -12,7 +12,7 @@ import { ScrollReveal } from "@/components/motion";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Services",
+    title: "About Us | DevX",
     description: "Explore DevX digital solution services across web, SaaS, AI, cloud, and product engineering.",
 };
 
