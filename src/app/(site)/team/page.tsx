@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function TeamPage() {
-  const members = await getPublishedTeamMembers();
+  const team = await getPublishedTeamMembers();
 
-  return <TeamSection members={members} />;
+  return <TeamSection team={team} />;
 }
-

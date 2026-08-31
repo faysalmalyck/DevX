@@ -8,12 +8,18 @@ vi.mock("@/components/shared/HeroSub", () => ({
 
 vi.mock("@/components/home/development/Development", () => ({
   default: ({
+    showCornerFlares,
+    showHeading,
     showImprovementCta,
   }: {
+    showCornerFlares?: boolean;
+    showHeading?: boolean;
     showImprovementCta?: boolean;
   }) => (
     <section
       data-testid="development-grid"
+      data-show-corner-flares={String(showCornerFlares)}
+      data-show-heading={String(showHeading)}
       data-show-improvement-cta={String(showImprovementCta)}
     />
   ),
@@ -45,6 +51,12 @@ describe("ServicesPage composition", () => {
       screen
         .getByTestId("development-grid")
         .getAttribute("data-show-improvement-cta"),
+    ).toBe("false");
+    expect(screen.getByTestId("development-grid").getAttribute("data-show-heading")).toBe(
+      "false",
+    );
+    expect(
+      screen.getByTestId("development-grid").getAttribute("data-show-corner-flares"),
     ).toBe("false");
   });
 });

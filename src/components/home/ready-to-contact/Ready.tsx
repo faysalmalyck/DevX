@@ -57,37 +57,37 @@ export default function CtaSection() {
                   />
                 </svg>
 
-                <div className="relative z-10 grid min-h-[28rem] items-center gap-10 px-7 py-14 sm:px-10 sm:py-16 lg:h-[414px] lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-14 lg:px-16 lg:py-0">
-                  <ScrollReveal className="max-w-[650px]" delay={0.1} preset="left">
-                    <h2
-                      id="ready-to-connect-heading"
-                      className="text-3xl font-normal leading-[1.14] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.5rem]"
-                    >
-                      Ready to start working
-                      <br className="hidden lg:block" />{" "}
-                      <span className="text-brand">together</span> with our team?
-                    </h2>
-                  </ScrollReveal>
+                <div className="relative z-10 grid min-h-[28rem] items-center justify-items-center text-center gap-10 px-7 py-14 sm:justify-center sm:py-16 lg:h-[414px] lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:justify-items-start lg:text-left lg:gap-14 lg:px-16 lg:py-0">
+  <ScrollReveal className="max-w-[650px]" delay={0.1} preset="left">
+    <h2
+      id="ready-to-connect-heading"
+      className="text-3xl font-base leading-[1.14] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.5rem]"
+    >
+      Ready to start working
+      <br className="hidden lg:block" />{" "}
+      <span className="text-brand">together</span> with our team?
+    </h2>
+  </ScrollReveal>
 
-                  <ScrollReveal
-                    className="flex flex-col items-center gap-4 sm:flex-row sm:items-center lg:justify-end lg:gap-9"
-                    delay={0.2}
-                    preset="right"
-                  >
-                    <Link
-                      href="/contact"
-                      className="inline-flex h-[4.25rem] w-full max-w-[280px] items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,99,235,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:translate-y-0 sm:w-40 sm:max-w-none"
-                    >
-                      Contact us
-                    </Link>
-                    <Link
-                      href="/services"
-                      className="inline-flex h-[4.25rem] w-full max-w-[280px] items-center justify-center rounded-full bg-[#252e46] px-8 text-lg font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#303b58] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:translate-y-0 sm:w-44 sm:max-w-none"
-                    >
-                      Our services
-                    </Link>
-                  </ScrollReveal>
-                </div>
+  <ScrollReveal
+    className="flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row sm:items-center lg:justify-end lg:gap-9"
+    delay={0.2}
+    preset="right"
+  >
+    <Link
+      href="/contact"
+      className="inline-flex h-[4.25rem] w-full max-w-[280px] items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-8 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,99,235,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:translate-y-0 sm:w-40 sm:max-w-none"
+    >
+      Contact us
+    </Link>
+    <Link
+      href="/services"
+      className="inline-flex h-[4.25rem] w-full max-w-[280px] items-center justify-center rounded-full bg-[#252e46] px-8 text-lg font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#303b58] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:translate-y-0 sm:w-44 sm:max-w-none"
+    >
+      Our services
+    </Link>
+  </ScrollReveal>
+</div>
               </div>
             </div>
           </ScrollReveal>

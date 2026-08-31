@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
-import type { PublicTeamMember } from "@/lib/team/types";
+import type { PublicTeamMember, PublicTeamMembersResult } from "@/lib/team/types";
 import { getImgPath } from "@/utils/image";
 
 type SocialNetwork = "Facebook" | "X" | "GitHub" | "LinkedIn";
@@ -113,9 +113,63 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
   );
 }
 
-export default function TeamSection({ members }: { members: PublicTeamMember[] }) {
+export default function TeamSection({ team }: { team: PublicTeamMembersResult }) {
+  const { members } = team;
+
   return (
     <section className="relative overflow-hidden bg-white pb-4 pt-36 dark:bg-[#181d2b] sm:pb-16 sm:pt-40 lg:pb-24 lg:pt-48">
+      <svg
+  aria-hidden="true"
+  className="pointer-events-none absolute -right-0 bottom-40 h-[400px] w-[400px] rotate-350 sm:block"
+  viewBox="0 0 480 480"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="teamDiagonalGlowGradient"
+      x1="400"
+      y1="80"
+      x2="80"
+      y2="400"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#4f6df5" stopOpacity="0" />
+      <stop offset="25%" stopColor="#4f6df5" stopOpacity="0.3" />
+      <stop offset="50%" stopColor="#4360cbff" stopOpacity="0.9" />
+      <stop offset="75%" stopColor="#4f6df5" stopOpacity="0.4" />
+      <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+    </linearGradient>
+
+    <filter
+      id="teamDiagonalGlowFilter"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="160%"
+    >
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <path
+    d="
+      M 400 80
+      A 200 200 0 0 1 80 400
+    "
+    stroke="url(#teamDiagonalGlowGradient)"
+    strokeWidth="4"
+    strokeLinecap="round"
+    fill="none"
+    filter="url(#teamDiagonalGlowFilter)"
+    className="animate-[pulse_6s_ease-in-out_infinite]"
+  />
+</svg>
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-8 max-w-[650px] text-center sm:mb-12">
           <ScrollReveal preset="hero">
@@ -130,7 +184,9 @@ export default function TeamSection({ members }: { members: PublicTeamMember[] }
           </ScrollReveal>
         </div>
 
-        {members.length > 0 ? (
+        {team.status === "unavailable" ? (
+          <p role="status" className="py-12 text-center text-gray-600 dark:text-gray-400">Team profiles are temporarily unavailable. Please try again shortly.</p>
+        ) : members.length > 0 ? (
           <div className="mx-auto w-full max-w-[1220px]">
             <StaggerContainer className="grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-2">
               {members.map((member) => <TeamMemberCard key={member.id} member={member} />)}

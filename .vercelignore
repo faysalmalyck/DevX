@@ -1,0 +1,2 @@
+# Local environment files must never be uploaded by direct Vercel CLI deploys.
+.env*

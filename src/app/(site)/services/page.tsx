@@ -17,7 +17,11 @@ export default function ServicesPage() {
         title="Our|Services"
         description="Empowering businesses with innovative digital solutions that accelerate growth, enhance efficiency, and create lasting competitive advantage."
       />
-      <Development showImprovementCta={false} />
+      <Development
+        showCornerFlares={false}
+        showHeading={false}
+        showImprovementCta={false}
+      />
       <ServicesExperience />
       <FinalCTA />
     </>

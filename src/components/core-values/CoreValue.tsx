@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 
 interface ValueItem {
   id: string;
@@ -85,26 +85,24 @@ export default function CoreValues() {
         {/* Grid Container */}
         <StaggerContainer className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-3">
           {valuesData.map((item) => (
-            <StaggerItem key={item.id} className="h-full max-w-md" preset="card">
-              <HoverCard className="h-full">
-                <div className="flex h-full flex-col items-start rounded-lg border border-gray-300 bg-gray-50/50 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
-                  <ScrollReveal className="mb-6 flex h-16 w-16 items-center justify-center dark:invert-0 invert" preset="image">
-                    <Image
-                      src={item.iconSrc}
-                      alt={item.title}
-                      width={64}
-                      height={64}
-                      className="h-auto w-auto"
-                    />
-                  </ScrollReveal>
-                  <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-base leading-relaxed text-slate-600 dark:text-white">
-                    {item.description}
-                  </p>
-                </div>
-              </HoverCard>
+            <StaggerItem key={item.id} className="h-full max-w-md" preset="copy">
+              <div className="flex h-full flex-col items-start">
+                <ScrollReveal className="mb-6 flex h-16 w-16 items-center justify-center dark:invert-0 invert" preset="image">
+                  <Image
+                    src={item.iconSrc}
+                    alt={item.title}
+                    width={64}
+                    height={64}
+                    className="h-auto w-auto"
+                  />
+                </ScrollReveal>
+                <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  {item.title}
+                </h3>
+                <p className="text-base leading-relaxed text-slate-600 dark:text-white">
+                  {item.description}
+                </p>
+              </div>
             </StaggerItem>
           ))}
         </StaggerContainer>

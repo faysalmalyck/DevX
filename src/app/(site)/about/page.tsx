@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  const members = await getPublishedTeamMembers();
+  const team = await getPublishedTeamMembers();
   return (
     <>
       <HeroSub
@@ -43,9 +43,59 @@ const page = async () => {
     </ScrollReveal>
   </div>
  
+<svg
+  className="pointer-events-none absolute -left-40 -bottom-140 rotate-[270deg] hidden h-[380px] w-[380px] sm:block"
+  viewBox="0 0 480 480"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient
+      id="diagonalGlowGradient"
+      x1="400"
+      y1="80"
+      x2="80"
+      y2="400"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#4f6df5" stopOpacity="0" />
+      <stop offset="25%" stopColor="#4f6df5" stopOpacity="0.3" />
+      <stop offset="50%" stopColor="#4360cbff" stopOpacity="0.9" />
+      <stop offset="75%" stopColor="#4f6df5" stopOpacity="0.4" />
+      <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+    </linearGradient>
+
+    <filter
+      id="diagonalGlowFilter"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="160%"
+    >
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <path
+    d="
+      M 400 80
+      A 200 200 0 0 1 80 400
+    "
+    stroke="url(#diagonalGlowGradient)"
+    strokeWidth="3"
+    strokeLinecap="round"
+    fill="none"
+    filter="url(#diagonalGlowFilter)"
+    className="animate-[pulse_6s_ease-in-out_infinite]"
+  />
+</svg>
 
 <CounterSection/>
-<TeamSection members={members}/>
+<TeamSection team={team}/>
 <CoreValues/>
 <OfficesSection/>
 <ReadyToStart/>

@@ -3,10 +3,10 @@ import { prisma } from "@/lib/db/prisma";
 import {
   publicTeamMemberSelect,
   serializePublicTeamMember,
-  type PublicTeamMember,
+  type PublicTeamMembersResult,
 } from "./types";
 
-export async function getPublishedTeamMembers(): Promise<PublicTeamMember[]> {
+export async function getPublishedTeamMembers(): Promise<PublicTeamMembersResult> {
   try {
     const members = await prisma.teamMember.findMany({
       where: {
@@ -18,13 +18,15 @@ export async function getPublishedTeamMembers(): Promise<PublicTeamMember[]> {
       select: publicTeamMemberSelect,
     });
 
-    return members.flatMap((member) => {
+    const publishedMembers = members.flatMap((member) => {
       const serialized = serializePublicTeamMember(member);
       return serialized ? [serialized] : [];
     });
+
+    return { status: "success", members: publishedMembers };
   } catch (error) {
     console.error("Failed to fetch published team members:", error);
-    return [];
+    return { status: "unavailable", members: [] };
   }
 }
 

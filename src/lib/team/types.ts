@@ -69,6 +69,14 @@ export type PublicTeamMember = Omit<
   bio: string;
 };
 
+/**
+ * Separates a successfully empty public directory from a failed database
+ * request, so callers never present an outage as an empty team.
+ */
+export type PublicTeamMembersResult =
+  | { status: "success"; members: PublicTeamMember[] }
+  | { status: "unavailable"; members: [] };
+
 export function serializePublicTeamMember(member: PublicTeamMemberSource): PublicTeamMember | null {
   if (!member.name || !member.slug || !member.role || !member.department || !member.bio) {
     return null;

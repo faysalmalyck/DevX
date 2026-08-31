@@ -118,7 +118,7 @@ export default function CaseStudiesSection() {
 
         {/* Grid Container */}
         <div className="relative">
-        <StaggerContainer className="grid grid-cols-1 py-10 px-15 md:grid-cols-2 gap-4 relative z-10">
+        <StaggerContainer className="grid grid-cols-1 py-10 px-6 md:grid-cols-2 gap-4 relative z-10">
           {caseStudiesData.slice(0, 2).map((study) => (
             <StaggerItem
               key={study.id}

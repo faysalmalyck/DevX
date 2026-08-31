@@ -119,6 +119,12 @@ describe("Development service cards", () => {
       Array.from(serviceLinks).map((link) => link.getAttribute("href")),
     ).toEqual(servicesData.map((service) => service.href));
     expect(screen.getAllByRole("link")).toHaveLength(10);
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /We Deliver Business Solutions Across all technologies & platforms\./i,
+      }),
+    ).toBeTruthy();
     expect(screen.getByText("Already Using Software? We Can Make It Better.")).toBeTruthy();
     expect(
       screen.getByRole("link", { name: "Improve My Software" }).getAttribute("href"),
@@ -129,6 +135,8 @@ describe("Development service cards", () => {
     expect(grid?.className).toContain("lg:grid-cols-3");
     expect(grid?.className).toContain("items-stretch");
     expect(document.querySelectorAll(".h-full.flex.flex-col")).toHaveLength(9);
+    expect(document.getElementById("flareArcGradient")).toBeTruthy();
+    expect(document.getElementById("bottomRightLGradient")).toBeTruthy();
   });
 
   it("can hide the embedded modernization CTA without changing the service grid", () => {
@@ -143,5 +151,25 @@ describe("Development service cards", () => {
     ).toBeNull();
     expect(document.querySelectorAll("[data-service-card-link]")).toHaveLength(9);
     expect(screen.getAllByRole("link")).toHaveLength(9);
+  });
+
+  it("can hide page-specific heading and corner flares without changing the service grid", () => {
+    render(
+      <Development
+        showCornerFlares={false}
+        showHeading={false}
+        showImprovementCta={false}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("heading", {
+        level: 2,
+        name: /We Deliver Business Solutions Across all technologies & platforms\./i,
+      }),
+    ).toBeNull();
+    expect(document.querySelectorAll("[data-service-card-link]")).toHaveLength(9);
+    expect(document.getElementById("flareArcGradient")).toBeNull();
+    expect(document.getElementById("bottomRightLGradient")).toBeNull();
   });
 });
