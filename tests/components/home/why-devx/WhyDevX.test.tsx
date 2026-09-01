@@ -82,19 +82,24 @@ describe("WHY DEVX cards", () => {
     const carousel = screen.getByTestId("why-devx-carousel");
     const motionContainer = screen.getByTestId("why-devx-motion-container");
     expect(motionContainer.className).toContain("w-full");
+    expect(motionContainer.className).toContain("items-stretch");
     expect(motionContainer.className).toContain("overflow-x-auto");
     const cards = Array.from(carousel.querySelectorAll("[data-card]"));
     expect(cards).toHaveLength(18);
     expect(carousel.querySelectorAll("[data-card][aria-hidden='true']")).toHaveLength(12);
     cards.forEach((carouselCard) => {
-      expect(carouselCard.parentElement?.classList.contains("h-full")).toBe(true);
+      expect(carouselCard.parentElement?.classList.contains("self-stretch")).toBe(true);
+      expect(carouselCard.classList.contains("h-full")).toBe(true);
+      expect(carouselCard.classList.contains("w-full")).toBe(true);
     });
     const card = cards[0];
     const cardItemClassName = card?.parentElement?.className ?? "";
     expect(cardItemClassName).toContain("sm:w-[48vw]");
     expect(cardItemClassName).toContain("md:w-[40vw]");
     expect(cardItemClassName).toContain("lg:w-[31vw]");
+    expect(cardItemClassName).toContain("self-stretch");
     expect(card?.className).toContain("h-full");
+    expect(card?.className).toContain("w-full");
     expect(screen.getByRole("button", { name: "Previous reason" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "Next reason" })).toBeTruthy();
     expect(document.querySelectorAll("article.h-full.flex.flex-col")).toHaveLength(18);

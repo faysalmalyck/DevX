@@ -26,7 +26,12 @@ vi.mock("@/components/home/development/Development", () => ({
 }));
 
 vi.mock("@/components/services/ServicesExperience", () => ({
-  default: () => <section data-testid="services-experience" />,
+  default: ({ businessProblemsSkin }: { businessProblemsSkin?: string }) => (
+    <section
+      data-testid="services-experience"
+      data-business-problems-skin={businessProblemsSkin}
+    />
+  ),
 }));
 
 vi.mock("@/components/home/final-cta/FinalCTA", () => ({
@@ -58,5 +63,8 @@ describe("ServicesPage composition", () => {
     expect(
       screen.getByTestId("development-grid").getAttribute("data-show-corner-flares"),
     ).toBe("false");
+    expect(
+      screen.getByTestId("services-experience").getAttribute("data-business-problems-skin"),
+    ).toBe("cart");
   });
 });
