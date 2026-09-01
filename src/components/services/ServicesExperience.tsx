@@ -1220,13 +1220,9 @@ function IntegrationSection({
 
 export type ServicesExperienceProps = Readonly<{
   skin?: ServicesExperienceSkin;
-  businessProblemsSkin?: ServicesExperienceSkin;
 }>;
 
-export default function ServicesExperience({
-  skin = "default",
-  businessProblemsSkin,
-}: ServicesExperienceProps) {
+export default function ServicesExperience({ skin = "default" }: ServicesExperienceProps) {
   useServicesAnchorSync();
 
   const [selection, setSelection] = useState<SelectionState>({
@@ -1249,7 +1245,7 @@ export default function ServicesExperience({
           setSelection((s) => ({ ...s, problems: toggleTitle(s.problems, title) }))
         }
         onEnquire={() => enquire("process")}
-        skin={businessProblemsSkin ?? skin}
+        skin={skin}
       />
 
       <ModernizationSection

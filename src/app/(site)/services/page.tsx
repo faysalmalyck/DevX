@@ -24,7 +24,7 @@ export default function ServicesPage() {
         showHeading={false}
         showImprovementCta={false}
       />
-      <ServicesExperience businessProblemsSkin="cart" />
+      <ServicesExperience skin="cart" />
       <FinalCTA />
     </>
   );

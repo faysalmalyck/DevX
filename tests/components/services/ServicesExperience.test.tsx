@@ -119,7 +119,7 @@ describe("ServicesExperience", () => {
     expect(automatedCard.className).toContain("bg-emerald-50/60");
   });
 
-  it("applies the add-to-cart skin to every business-problems card family when requested", async () => {
+  it("applies the add-to-cart skin to every Services Experience card family when requested", async () => {
     const user = userEvent.setup();
     render(<ServicesExperience skin="cart" />);
 
@@ -197,24 +197,6 @@ describe("ServicesExperience", () => {
     for (const hub of screen.getAllByText("Connected Business")) {
       expectCartSelectedSurface(hub.parentElement);
     }
-  });
-
-  it("can apply the add-to-cart skin to only the business-problems section", () => {
-    render(<ServicesExperience businessProblemsSkin="cart" />);
-
-    const businessProblemCard = screen.getAllByTestId("business-problem-card")[0];
-    expect(businessProblemCard.className).toContain("border-[#414b62]");
-    expect(businessProblemCard.className).toContain(
-      "bg-[linear-gradient(180deg,#222a40_0%,#131927_100%)]",
-    );
-    expect(businessProblemCard.className).toContain(
-      "shadow-[0_14px_36px_rgba(2,6,23,0.32)]",
-    );
-
-    const modernizationCard = screen.getAllByTestId("modernization-card")[0];
-    expect(modernizationCard.className).toContain("border-slate-200");
-    expect(modernizationCard.className).toContain("dark:bg-[#202638]");
-    expect(modernizationCard.className).not.toContain("border-[#414b62]");
   });
 
   it("carries selected business problems into the process form", async () => {
