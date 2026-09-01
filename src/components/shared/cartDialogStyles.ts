@@ -20,7 +20,7 @@ export const cartDialogStyles = {
   input:
     "w-full rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300 sm:px-5 sm:py-3 sm:text-base",
   textarea:
-    "w-full resize-y rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300 sm:px-5 sm:text-base",
+    "w-full resize-y rounded-3xl bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300 sm:px-5 sm:text-base",
   closeButton:
     "grid h-9 w-9 place-items-center rounded-lg text-white transition hover:bg-white/[0.09] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300",
   primaryButton:
