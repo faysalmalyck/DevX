@@ -22,7 +22,7 @@ const page = async () => {
     <>
       <HeroSub
   title="About our|agency"
-  description="We turn business ideas into reliable digital solutions that drive growth, efficiency, and competitive advantage."
+  description="We turn business ideas into reliable, scalable digital solutions that drive growth, improve operational efficiency, enhance performance, and create a lasting competitive advantage."
 /> 
       
 <div className="mx-auto max-w-8xl pt-32 pb-24 px-2">
