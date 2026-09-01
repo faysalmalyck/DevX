@@ -39,7 +39,6 @@ import {
 } from "react";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { cva } from "class-variance-authority";
 import {
   ScrollReveal,
   StaggerContainer,
@@ -49,6 +48,8 @@ import LeadCaptureDialog, {
   type LeadIntent,
   type LeadRequest,
 } from "@/components/home/final-cta/LeadCaptureDialog";
+import { cartDialogStyles } from "@/components/shared/cartDialogStyles";
+import { teamCardStyles } from "@/components/shared/teamCardStyles";
 import {
   automationOptions,
   businessProblems,
@@ -314,21 +315,32 @@ function ProgressRail() {
 // Shared visual primitives
 // ---------------------------------------------------------------------------
 
+type ServicesExperienceSkin = "default" | "cart" | "team";
+
 // Single source of truth for the "selected surface" look, previously
 // duplicated near-verbatim across SelectableCard and the integration node.
-const selectableSurface = cva(
-  "relative overflow-hidden rounded-lg border shadow-sm transition-[transform,border-color,box-shadow,background-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:focus-visible:outline-blue-400",
-  {
-    variants: {
-      selected: {
-        true: "border-brand bg-brand/[0.05] shadow-[0_14px_36px_rgba(54,88,255,0.12)] dark:border-blue-400/70 dark:bg-blue-400/[0.08] dark:shadow-[0_14px_36px_rgba(54,88,255,0.12)]",
-        false:
-          "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#202638] dark:shadow-none dark:hover:border-blue-400/50",
-      },
-    },
-    defaultVariants: { selected: false },
-  },
-);
+const selectableSurfaceBase =
+  "relative overflow-hidden rounded-lg border shadow-sm transition-[transform,border-color,box-shadow,background-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:focus-visible:outline-blue-400";
+
+function selectableSurface(selected: boolean, skin: ServicesExperienceSkin): string {
+  const cartSkin = skin === "cart";
+  const teamSkin = skin === "team";
+
+  return cn(
+    selectableSurfaceBase,
+    cartSkin
+      ? selected
+        ? `${cartDialogStyles.selectedSurface} focus-visible:outline-cyan-300`
+        : `${cartDialogStyles.surface} hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(54,88,255,0.22)] focus-visible:outline-cyan-300`
+      : teamSkin
+        ? selected
+          ? `${teamCardStyles.selectedSurface} ${teamCardStyles.hover}`
+          : `${teamCardStyles.surface} ${teamCardStyles.hover}`
+      : selected
+        ? "border-brand bg-brand/[0.05] shadow-[0_14px_36px_rgba(54,88,255,0.12)] dark:border-blue-400/70 dark:bg-blue-400/[0.08] dark:shadow-[0_14px_36px_rgba(54,88,255,0.12)]"
+        : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#202638] dark:shadow-none dark:hover:border-blue-400/50",
+  );
+}
 
 function SectionHeading({
   eyebrow,
@@ -397,7 +409,13 @@ function DiffGutter({ selected }: Readonly<{ selected: boolean }>) {
   );
 }
 
-function SelectionMark({ selected }: Readonly<{ selected: boolean }>) {
+function SelectionMark({
+  selected,
+  skin = "default",
+}: Readonly<{ selected: boolean; skin?: ServicesExperienceSkin }>) {
+  const cartSkin = skin === "cart";
+  const teamSkin = skin === "team";
+
   return (
     <span
       aria-hidden="true"
@@ -405,7 +423,11 @@ function SelectionMark({ selected }: Readonly<{ selected: boolean }>) {
         "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors",
         selected
           ? "border-emerald-500 bg-emerald-500 text-white dark:border-emerald-400 dark:bg-emerald-400 dark:text-slate-900"
-          : "border-slate-300 text-transparent group-hover:border-emerald-500/60 dark:border-white/20",
+          : cartSkin
+            ? "border-[#414b62] text-transparent"
+            : teamSkin
+              ? "border-gray-300 text-transparent dark:border-[#2f384f]"
+            : "border-slate-300 text-transparent group-hover:border-emerald-500/60 dark:border-white/20",
       )}
     >
       <Check className="h-4 w-4" strokeWidth={2.5} />
@@ -418,15 +440,18 @@ function SelectableCard({
   selected,
   onToggle,
   compact = false,
+  skin = "default",
   testId,
 }: Readonly<{
   item: SelectableServiceItem;
   selected: boolean;
   onToggle: () => void;
   compact?: boolean;
+  skin?: ServicesExperienceSkin;
   testId?: string;
 }>) {
   const Icon = experienceIconMap[item.icon];
+  const cartSkin = skin === "cart";
 
   return (
     <button
@@ -435,8 +460,9 @@ function SelectableCard({
       data-testid={testId}
       onClick={onToggle}
       className={cn(
-        selectableSurface({ selected }),
+        selectableSurface(selected, skin),
         "group flex h-full w-full text-left",
+        cartSkin && "text-white",
         compact ? "items-center gap-4 px-4 py-4 sm:px-5" : "flex-col p-5 sm:p-6",
       )}
     >
@@ -453,36 +479,58 @@ function SelectableCard({
             compact ? "h-10 w-10" : "h-12 w-12",
             selected
               ? "bg-emerald-500 text-white dark:bg-emerald-400 dark:text-slate-900"
-              : "bg-brand/10 text-brand dark:bg-white/[0.07]",
+              : cartSkin
+                ? "bg-brand/15 text-cyan-200"
+                : "bg-brand/10 text-brand dark:bg-white/[0.07]",
           )}
         >
           <Icon className={compact ? "h-5 w-5" : "h-6 w-6"} strokeWidth={1.7} />
         </span>
         {compact ? (
           <div className="min-w-0 flex-1">
-            <h3 className="font-semibold tracking-tight text-slate-900 dark:text-white">
+            <h3
+              className={cn(
+                "font-semibold tracking-tight",
+                cartSkin ? "text-white" : "text-slate-900 dark:text-white",
+              )}
+            >
               {item.title}
             </h3>
-            <p className="mt-1 text-sm leading-5 text-slate-500 dark:text-slate-400">
+            <p
+              className={cn(
+                "mt-1 text-sm leading-5",
+                cartSkin ? "text-[#c9d0e1]" : "text-slate-500 dark:text-slate-400",
+              )}
+            >
               {item.description}
             </p>
           </div>
         ) : (
-          <SelectionMark selected={selected} />
+          <SelectionMark selected={selected} skin={skin} />
         )}
       </div>
 
       {!compact ? (
         <div className="mt-7">
-          <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+          <h3
+            className={cn(
+              "text-xl font-semibold tracking-tight",
+              cartSkin ? "text-white" : "text-slate-900 dark:text-white",
+            )}
+          >
             {item.title}
           </h3>
-          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+          <p
+            className={cn(
+              "mt-2 text-sm leading-6",
+              cartSkin ? "text-[#c9d0e1]" : "text-slate-600 dark:text-slate-300",
+            )}
+          >
             {item.description}
           </p>
         </div>
       ) : (
-        <SelectionMark selected={selected} />
+        <SelectionMark selected={selected} skin={skin} />
       )}
     </button>
   );
@@ -499,6 +547,7 @@ function SelectionAction({
   buttonLabel,
   emptyLabel,
   onClick,
+  skin = "default",
 }: Readonly<{
   mode?: "multi" | "single";
   selectedCount: number;
@@ -506,7 +555,10 @@ function SelectionAction({
   buttonLabel: string;
   emptyLabel: string;
   onClick: () => void;
+  skin?: ServicesExperienceSkin;
 }>) {
+  const cartSkin = skin === "cart";
+  const teamSkin = skin === "team";
   const copy =
     mode === "single"
       ? activeLabel ?? ""
@@ -516,16 +568,33 @@ function SelectionAction({
 
   return (
     <ScrollReveal
-      className="mt-10 flex flex-col items-center justify-between gap-5 rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700/80 dark:bg-[#171c2a] dark:shadow-none sm:flex-row sm:px-7"
+      className={cn(
+        "mt-10 flex flex-col items-center justify-between gap-5 rounded-lg border p-5 sm:flex-row sm:px-7",
+        cartSkin
+          ? cartDialogStyles.mutedSurface
+          : teamSkin
+            ? teamCardStyles.surface
+          : "border-slate-200 bg-white shadow-sm dark:border-slate-700/80 dark:bg-[#171c2a] dark:shadow-none",
+      )}
       preset="copy"
     >
-      <p className="text-center text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-left">
+      <p
+        className={cn(
+          "text-center text-sm leading-6 sm:text-left",
+          cartSkin ? "text-[#c9d0e1]" : "text-slate-600 dark:text-slate-300",
+        )}
+      >
         {copy}
       </p>
       <button
         type="button"
         onClick={onClick}
-        className="group inline-flex w-full max-w-[280px] shrink-0 items-center justify-center rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(54,88,255,0.25)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-auto sm:max-w-none"
+        className={cn(
+          "group w-full max-w-[280px] shrink-0 px-7 py-3.5 sm:w-auto sm:max-w-none",
+          cartSkin
+            ? cartDialogStyles.primaryButton
+            : "inline-flex items-center justify-center rounded-full bg-brand text-sm font-semibold text-white shadow-[0_10px_28px_rgba(54,88,255,0.25)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand",
+        )}
       >
         {buttonLabel}
         <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -542,10 +611,12 @@ function BusinessProblemsSection({
   selected,
   onToggle,
   onEnquire,
+  skin,
 }: Readonly<{
   selected: readonly string[];
   onToggle: (title: string) => void;
   onEnquire: () => void;
+  skin: ServicesExperienceSkin;
 }>) {
   return (
     <section
@@ -568,6 +639,7 @@ function BusinessProblemsSection({
                 item={problem}
                 selected={selected.includes(problem.title)}
                 onToggle={() => onToggle(problem.title)}
+                skin={skin}
                 testId="business-problem-card"
               />
             </StaggerItem>
@@ -579,6 +651,7 @@ function BusinessProblemsSection({
           emptyLabel="Choose any relevant problems, or open the form and describe something different."
           buttonLabel="Let’s Fix Your Process"
           onClick={onEnquire}
+          skin={skin}
         />
       </div>
     </section>
@@ -589,11 +662,16 @@ function ModernizationSection({
   selected,
   onToggle,
   onEnquire,
+  skin,
 }: Readonly<{
   selected: readonly string[];
   onToggle: (title: string) => void;
   onEnquire: () => void;
+  skin: ServicesExperienceSkin;
 }>) {
+  const cartSkin = skin === "cart";
+  const teamSkin = skin === "team";
+
   return (
     <section
       id="modernization"
@@ -612,9 +690,23 @@ function ModernizationSection({
               accent="We Can Make It Better."
               description="Modernization can be focused and incremental. Select the improvements that matter now, while protecting useful workflows and business knowledge."
             />
-            <div className="mt-8 hidden rounded-lg border border-brand/20 bg-brand/[0.06] p-6 dark:bg-brand/10 lg:block">
-              <Gauge className="h-7 w-7 text-brand" />
-              <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
+            <div
+              className={cn(
+                "mt-8 hidden rounded-lg border p-6 lg:block",
+                cartSkin
+                  ? cartDialogStyles.surface
+                  : teamSkin
+                    ? teamCardStyles.surface
+                  : "border-brand/20 bg-brand/[0.06] dark:bg-brand/10",
+              )}
+            >
+              <Gauge className={cn("h-7 w-7", cartSkin ? "text-cyan-200" : "text-brand")} />
+              <p
+                className={cn(
+                  "mt-4 text-sm leading-6",
+                  cartSkin ? "text-[#c9d0e1]" : "text-slate-600 dark:text-slate-300",
+                )}
+              >
                 We begin with the current system, its users, and its constraints—then prioritize changes around business value and delivery risk.
               </p>
             </div>
@@ -628,6 +720,7 @@ function ModernizationSection({
                   selected={selected.includes(capability.title)}
                   onToggle={() => onToggle(capability.title)}
                   compact
+                  skin={skin}
                   testId="modernization-card"
                 />
               </StaggerItem>
@@ -640,6 +733,7 @@ function ModernizationSection({
           emptyLabel="Select the areas you want to improve, or tell us about the system in your own words."
           buttonLabel="Improve My Software"
           onClick={onEnquire}
+          skin={skin}
         />
       </div>
     </section>
@@ -650,11 +744,15 @@ function AutomationSection({
   activeId,
   onSelect,
   onEnquire,
+  skin,
 }: Readonly<{
   activeId: string;
   onSelect: (id: string) => void;
   onEnquire: () => void;
+  skin: ServicesExperienceSkin;
 }>) {
+  const cartSkin = skin === "cart";
+  const teamSkin = skin === "team";
   const activeOption =
     automationOptions.find((option) => option.id === activeId) ??
     automationOptions[0];
@@ -726,8 +824,16 @@ function AutomationSection({
                 className={cn(
                   "flex items-center gap-3 rounded-lg border px-4 py-3.5 text-left text-sm font-semibold shadow-sm transition-[border-color,box-shadow,background-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand dark:focus-visible:outline-blue-400",
                   isActive
-                    ? "border-brand bg-brand text-white shadow-[0_10px_24px_rgba(54,88,255,0.2)] dark:border-blue-400/70 dark:shadow-[0_10px_24px_rgba(54,88,255,0.2)]"
-                    : "border-slate-200 bg-slate-50 text-slate-700 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#202638] dark:text-slate-200 dark:shadow-none dark:hover:border-blue-400/50",
+                    ? cartSkin
+                      ? `${cartDialogStyles.selectedSurface} text-white focus-visible:outline-cyan-300`
+                      : teamSkin
+                        ? `${teamCardStyles.selectedSurface} ${teamCardStyles.hover} ${teamCardStyles.title}`
+                      : "border-brand bg-brand text-white shadow-[0_10px_24px_rgba(54,88,255,0.2)] dark:border-blue-400/70 dark:shadow-[0_10px_24px_rgba(54,88,255,0.2)]"
+                    : cartSkin
+                      ? `${cartDialogStyles.surface} text-[#c9d0e1] hover:shadow-[0_18px_42px_rgba(54,88,255,0.22)] focus-visible:outline-cyan-300`
+                      : teamSkin
+                        ? `${teamCardStyles.surface} ${teamCardStyles.hover} ${teamCardStyles.title}`
+                      : "border-slate-200 bg-slate-50 text-slate-700 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#202638] dark:text-slate-200 dark:shadow-none dark:hover:border-blue-400/50",
                 )}
               >
                 <Icon className="h-5 w-5 shrink-0" strokeWidth={1.8} />
@@ -750,49 +856,121 @@ function AutomationSection({
             aria-labelledby={`automation-tab-${activeOption.id}`}
             tabIndex={0}
             data-testid="automation-comparison-card"
-            className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/80 dark:bg-[#151a27] dark:shadow-none"
+            className={cn(
+              "overflow-hidden border",
+              cartSkin || teamSkin ? "rounded-lg" : "rounded-2xl",
+              cartSkin
+                ? cartDialogStyles.surface
+                : teamSkin
+                  ? teamCardStyles.surface
+                : "border-slate-200 bg-white shadow-sm dark:border-slate-700/80 dark:bg-[#151a27] dark:shadow-none",
+            )}
           >
-            <div className="grid divide-y divide-slate-200 dark:divide-white/10 md:grid-cols-2 md:divide-x md:divide-y-0">
+            <div
+              className={cn(
+                "grid divide-y md:grid-cols-2 md:divide-x md:divide-y-0",
+                cartSkin
+                  ? "divide-[#414b62]"
+                  : teamSkin
+                    ? "divide-gray-300 dark:divide-[#2f384f]"
+                    : "divide-slate-200 dark:divide-white/10",
+              )}
+            >
               <div
                 data-testid="manual-process-card"
-                className="relative bg-rose-50/60 p-6 dark:bg-rose-500/[0.06] sm:p-7"
+                className={cn(
+                  "relative p-6 sm:p-7",
+                  cartSkin
+                    ? "bg-[linear-gradient(180deg,rgba(244,63,94,0.16)_0%,#131927_100%)]"
+                    : teamSkin
+                      ? teamCardStyles.manualSurface
+                    : "bg-rose-50/60 dark:bg-rose-500/[0.06]",
+                )}
               >
                 <span
                   aria-hidden="true"
                   className="absolute inset-y-0 left-0 w-[3px] bg-rose-500 dark:bg-rose-400"
                 />
-                <p className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-rose-700 dark:text-rose-300">
+                <p
+                  className={cn(
+                    "flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em]",
+                    cartSkin ? "text-rose-300" : "text-rose-700 dark:text-rose-300",
+                  )}
+                >
                   <span aria-hidden="true">−</span> Manual Process
                 </p>
-                <h3 className="mt-4 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                <h3
+                  className={cn(
+                    "mt-4 text-xl font-semibold tracking-tight",
+                    cartSkin ? "text-white" : "text-slate-900 dark:text-white",
+                  )}
+                >
                   {activeOption.title}
                 </h3>
-                <p data-testid="manual-process" className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                <p
+                  data-testid="manual-process"
+                  className={cn(
+                    "mt-3 text-sm leading-6",
+                    cartSkin ? "text-[#c9d0e1]" : "text-slate-600 dark:text-slate-300",
+                  )}
+                >
                   {activeOption.manual}
                 </p>
               </div>
 
               <div
                 data-testid="automated-process-card"
-                className="relative bg-emerald-50/60 p-6 dark:bg-emerald-400/[0.06] sm:p-7"
+                className={cn(
+                  "relative p-6 sm:p-7",
+                  cartSkin
+                    ? "bg-[linear-gradient(180deg,rgba(52,211,153,0.16)_0%,#131927_100%)]"
+                    : teamSkin
+                      ? teamCardStyles.automatedSurface
+                    : "bg-emerald-50/60 dark:bg-emerald-400/[0.06]",
+                )}
               >
                 <span
                   aria-hidden="true"
                   className="absolute inset-y-0 left-0 w-[3px] bg-emerald-500 dark:bg-emerald-400"
                 />
-                <p className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
+                <p
+                  className={cn(
+                    "flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em]",
+                    cartSkin ? "text-emerald-300" : "text-emerald-700 dark:text-emerald-300",
+                  )}
+                >
                   <span aria-hidden="true">+</span> Automated Process
                 </p>
-                <h3 className="mt-4 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                <h3
+                  className={cn(
+                    "mt-4 text-xl font-semibold tracking-tight",
+                    cartSkin ? "text-white" : "text-slate-900 dark:text-white",
+                  )}
+                >
                   {automatedTitle}
                 </h3>
-                <p data-testid="automated-process" className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                <p
+                  data-testid="automated-process"
+                  className={cn(
+                    "mt-3 text-sm leading-6",
+                    cartSkin ? "text-[#c9d0e1]" : "text-slate-600 dark:text-slate-300",
+                  )}
+                >
                   {activeOption.automated}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 border-t border-slate-200 bg-slate-50 py-2.5 font-mono text-xs text-slate-400 dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-500">
+            <div
+              className={cn(
+                "flex items-center justify-center gap-2 border-t py-2.5 font-mono text-xs",
+                cartSkin
+                  ? "border-[#414b62] bg-[#111725]/65 text-slate-400"
+                  : teamSkin
+                    ? `${teamCardStyles.divider} bg-gray-100/70 text-slate-500 dark:bg-[#1D2336] dark:text-slate-400`
+                  : "border-slate-200 bg-slate-50 text-slate-400 dark:border-white/10 dark:bg-white/[0.02] dark:text-slate-500",
+              )}
+            >
               <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
               <span>applies to your process</span>
             </div>
@@ -808,6 +986,7 @@ function AutomationSection({
           emptyLabel=""
           buttonLabel="Automate My Business"
           onClick={onEnquire}
+          skin={skin}
         />
       </div>
     </section>
@@ -818,12 +997,16 @@ function IntegrationSection({
   selected,
   onToggle,
   onEnquire,
+  skin,
 }: Readonly<{
   selected: readonly string[];
   onToggle: (title: string) => void;
   onEnquire: () => void;
+  skin: ServicesExperienceSkin;
 }>) {
   const selectedSet = useMemo(() => new Set(selected), [selected]);
+  const cartSkin = skin === "cart";
+  const teamSkin = skin === "team";
 
   return (
     <section
@@ -846,8 +1029,17 @@ function IntegrationSection({
             the whole diagram below md (the old behavior) broke the section's
             core promise ("the visual builds your map") for mobile users. */}
         <div className="relative mx-auto mt-10 max-w-sm md:hidden">
-          <div className="flex flex-col items-center gap-2 rounded-lg border border-brand/30 bg-brand px-5 py-5 text-center text-white shadow-[0_18px_50px_rgba(54,88,255,0.28)]">
-            <Waypoints className="h-6 w-6" strokeWidth={1.8} />
+          <div
+            className={cn(
+              "flex flex-col items-center gap-2 rounded-lg border px-5 py-5 text-center text-white",
+              cartSkin
+                ? cartDialogStyles.selectedSurface
+                : teamSkin
+                  ? `${teamCardStyles.selectedSurface} ${teamCardStyles.title}`
+                : "border-brand/30 bg-brand shadow-[0_18px_50px_rgba(54,88,255,0.28)]",
+            )}
+          >
+            <Waypoints className={cn("h-6 w-6", teamSkin && "text-brand")} strokeWidth={1.8} />
             <p className="text-base font-semibold">Connected Business</p>
           </div>
           <div
@@ -867,8 +1059,9 @@ function IntegrationSection({
                   data-testid="integration-node-mobile"
                   onClick={() => onToggle(integration.title)}
                   className={cn(
-                    selectableSurface({ selected: isSelected }),
+                    selectableSurface(isSelected, skin),
                     "flex flex-col items-center gap-2 px-3 py-4 text-center text-sm font-semibold",
+                    cartSkin && "text-white",
                   )}
                 >
                   <DiffGutter selected={isSelected} />
@@ -877,6 +1070,8 @@ function IntegrationSection({
                       "flex h-9 w-9 items-center justify-center rounded-full",
                       isSelected
                         ? "bg-emerald-500 text-white dark:bg-emerald-400 dark:text-slate-900"
+                        : cartSkin
+                          ? "bg-brand/15 text-cyan-200"
                         : "bg-brand/10 text-brand dark:bg-white/[0.07]",
                     )}
                   >
@@ -921,10 +1116,26 @@ function IntegrationSection({
           </svg>
 
           <div className="relative z-10 grid grid-cols-3 grid-rows-3 gap-6">
-            <div className="col-span-1 col-start-2 row-start-2 flex min-h-32 flex-col items-center justify-center rounded-lg border border-brand/30 bg-brand px-5 py-6 text-center text-white shadow-[0_18px_50px_rgba(54,88,255,0.28)]">
-              <Waypoints className="h-7 w-7" strokeWidth={1.8} />
+            <div
+              className={cn(
+                "col-span-1 col-start-2 row-start-2 flex min-h-32 flex-col items-center justify-center rounded-lg border px-5 py-6 text-center text-white",
+                cartSkin
+                  ? cartDialogStyles.selectedSurface
+                  : teamSkin
+                    ? `${teamCardStyles.selectedSurface} ${teamCardStyles.title}`
+                    : "border-brand/30 bg-brand shadow-[0_18px_50px_rgba(54,88,255,0.28)]",
+              )}
+            >
+              <Waypoints className={cn("h-7 w-7", teamSkin && "text-brand")} strokeWidth={1.8} />
               <p className="mt-3 text-lg font-semibold">Connected Business</p>
-              <p className="mt-1 text-xs leading-5 text-white/80">One dependable flow of information</p>
+              <p
+                className={cn(
+                  "mt-1 text-xs leading-5",
+                  teamSkin ? teamCardStyles.description : "text-white/80",
+                )}
+              >
+                One dependable flow of information
+              </p>
             </div>
 
             {integrations.map((integration, index) => {
@@ -939,7 +1150,7 @@ function IntegrationSection({
                   data-testid="integration-node"
                   onClick={() => onToggle(integration.title)}
                   className={cn(
-                    selectableSurface({ selected: isSelected }),
+                    selectableSurface(isSelected, skin),
                     "group flex min-h-32 flex-col items-center justify-center px-3 py-5 text-center",
                     integrationPositions[index],
                   )}
@@ -955,14 +1166,24 @@ function IntegrationSection({
                   >
                     <Icon className="h-5 w-5" strokeWidth={1.8} />
                   </span>
-                  <span className="mt-3 text-sm font-semibold text-slate-900 dark:text-white">
+                  <span
+                    className={cn(
+                      "mt-3 text-sm font-semibold",
+                      cartSkin ? "text-white" : "text-slate-900 dark:text-white",
+                    )}
+                  >
                     {integration.title}
                   </span>
                   {/* Previously `hidden sm:block` — description now always
                       renders on the desktop diagram; the mobile stack above
                       has its own compact layout instead of hiding this text
                       outright. */}
-                  <span className="mt-1 text-xs leading-4 text-slate-500 dark:text-slate-400">
+                  <span
+                    className={cn(
+                      "mt-1 text-xs leading-4",
+                      cartSkin ? "text-[#c9d0e1]" : "text-slate-500 dark:text-slate-400",
+                    )}
+                  >
                     {integration.description}
                   </span>
                 </button>
@@ -986,6 +1207,7 @@ function IntegrationSection({
           emptyLabel="Choose two or more systems to sketch the connection you need, or describe it in the form."
           buttonLabel="Discuss an Integration"
           onClick={onEnquire}
+          skin={skin}
         />
       </div>
     </section>
@@ -996,7 +1218,11 @@ function IntegrationSection({
 // Root
 // ---------------------------------------------------------------------------
 
-export default function ServicesExperience() {
+export type ServicesExperienceProps = Readonly<{
+  skin?: ServicesExperienceSkin;
+}>;
+
+export default function ServicesExperience({ skin = "default" }: ServicesExperienceProps) {
   useServicesAnchorSync();
 
   const [selection, setSelection] = useState<SelectionState>({
@@ -1006,7 +1232,6 @@ export default function ServicesExperience() {
     integrations: [],
   });
   const [leadRequest, setLeadRequest] = useState<LeadRequest>(null);
-
   const enquire = (intent: LeadIntent) =>
     setLeadRequest({ intent, topics: buildLeadTopics(selection) });
 
@@ -1020,6 +1245,7 @@ export default function ServicesExperience() {
           setSelection((s) => ({ ...s, problems: toggleTitle(s.problems, title) }))
         }
         onEnquire={() => enquire("process")}
+        skin={skin}
       />
 
       <ModernizationSection
@@ -1031,12 +1257,14 @@ export default function ServicesExperience() {
           }))
         }
         onEnquire={() => enquire("software-improvement")}
+        skin={skin}
       />
 
       <AutomationSection
         activeId={selection.automationId}
         onSelect={(id) => setSelection((s) => ({ ...s, automationId: id }))}
         onEnquire={() => enquire("automation")}
+        skin={skin}
       />
 
       <IntegrationSection
@@ -1048,6 +1276,7 @@ export default function ServicesExperience() {
           }))
         }
         onEnquire={() => enquire("integration")}
+        skin={skin}
       />
 
       <LeadCaptureDialog request={leadRequest} onClose={() => setLeadRequest(null)} />

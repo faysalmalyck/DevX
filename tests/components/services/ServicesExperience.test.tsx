@@ -119,6 +119,86 @@ describe("ServicesExperience", () => {
     expect(automatedCard.className).toContain("bg-emerald-50/60");
   });
 
+  it("applies the add-to-cart skin to every business-problems card family when requested", async () => {
+    const user = userEvent.setup();
+    render(<ServicesExperience skin="cart" />);
+
+    const cartSurfaceTokens = [
+      "border-[#414b62]",
+      "bg-[linear-gradient(180deg,#222a40_0%,#131927_100%)]",
+      "shadow-[0_14px_36px_rgba(2,6,23,0.32)]",
+    ];
+    const cartSelectedSurfaceTokens = [
+      "border-brand",
+      "bg-[linear-gradient(180deg,rgba(54,88,255,0.32)_0%,#131927_100%)]",
+      "shadow-[0_14px_36px_rgba(54,88,255,0.28)]",
+    ];
+    const expectCartSurface = (element: Element | null) => {
+      expect(element).not.toBeNull();
+      const className = element?.getAttribute("class") ?? "";
+      for (const token of cartSurfaceTokens) {
+        expect(className).toContain(token);
+      }
+    };
+    const expectCartSelectedSurface = (element: Element | null) => {
+      expect(element).not.toBeNull();
+      const className = element?.getAttribute("class") ?? "";
+      for (const token of cartSelectedSurfaceTokens) {
+        expect(className).toContain(token);
+      }
+    };
+
+    const cartCards = [
+      screen.getAllByTestId("business-problem-card")[0],
+      screen.getAllByTestId("modernization-card")[0],
+      screen.getAllByTestId("automation-option")[1],
+      screen.getAllByTestId("integration-node")[0],
+      screen.getAllByTestId("integration-node-mobile")[0],
+    ];
+
+    for (const card of cartCards) {
+      expectCartSurface(card);
+      expect(card.className).toContain("rounded-lg");
+      expect(card.className).toContain("focus-visible:outline-cyan-300");
+      expect(card.className).not.toContain("hover:border-");
+    }
+    expect(cartCards[4].className).toContain("text-white");
+
+    await user.click(cartCards[0]);
+    expectCartSelectedSurface(cartCards[0]);
+    expect(cartCards[0].getAttribute("aria-pressed")).toBe("true");
+    expect(
+      cartCards[0].querySelector('span[aria-hidden="true"]')?.className,
+    ).toContain("bg-emerald-500");
+
+    await user.click(cartCards[2]);
+    expect(cartCards[2].getAttribute("aria-selected")).toBe("true");
+    expectCartSelectedSurface(cartCards[2]);
+
+    const actionPanel = screen.getByRole("button", { name: "Let’s Fix Your Process" }).parentElement;
+    expect(actionPanel?.className).toContain("border-[#414b62]");
+    expect(actionPanel?.className).toContain("bg-[#111725]/65");
+
+    const modernizationCallout = screen.getByText(
+      /We begin with the current system, its users, and its constraints/i,
+    ).parentElement;
+    expectCartSurface(modernizationCallout);
+
+    const comparison = screen.getByTestId("automation-comparison-card");
+    expectCartSurface(comparison);
+    expect(comparison.className).toContain("rounded-lg");
+    expect(screen.getByTestId("manual-process-card").className).toContain(
+      "bg-[linear-gradient(180deg,rgba(244,63,94,0.16)_0%,#131927_100%)]",
+    );
+    expect(screen.getByTestId("automated-process-card").className).toContain(
+      "bg-[linear-gradient(180deg,rgba(52,211,153,0.16)_0%,#131927_100%)]",
+    );
+
+    for (const hub of screen.getAllByText("Connected Business")) {
+      expectCartSelectedSurface(hub.parentElement);
+    }
+  });
+
   it("carries selected business problems into the process form", async () => {
     const user = userEvent.setup();
     render(<ServicesExperience />);

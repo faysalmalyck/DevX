@@ -11,6 +11,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { cartDialogStyles } from "@/components/shared/cartDialogStyles";
 
 export type LeadRequest = {
   intent:
@@ -112,10 +113,10 @@ const initialFormValues: LeadFormValues = {
 };
 
 const inputClassName =
-  "w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-brand focus:ring-1 focus:ring-brand/40 hover:ring-1 hover:ring-slate-300 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/40 dark:hover:ring-slate-500/30 sm:px-5 sm:py-3 sm:text-base";
+  cartDialogStyles.input;
 
 const textareaClassName =
-  "w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-brand focus:ring-1 focus:ring-brand/40 hover:ring-1 hover:ring-slate-300 dark:border-[#2e3850] dark:bg-[#232b3e] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/40 dark:hover:ring-slate-500/30 sm:px-5 sm:text-base";
+  cartDialogStyles.textarea;
 
 function getFocusableElements(container: HTMLElement): HTMLElement[] {
   return Array.from(
@@ -314,7 +315,7 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
     <div className="fixed inset-0 z-[10003] flex items-end justify-center p-4 sm:items-center" role="presentation">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
+        className={`absolute inset-0 ${cartDialogStyles.backdrop}`}
         onClick={onClose}
       />
 
@@ -325,7 +326,7 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
         tabIndex={-1}
-        className="relative z-10 max-h-[min(40rem,calc(100dvh-2rem))] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-lg border border-slate-200 bg-slate-50 shadow-2xl dark:border-[#273046] dark:bg-[#232c3e]"
+        className={`relative z-10 max-h-[min(40rem,calc(100dvh-2rem))] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-lg ${cartDialogStyles.panel}`}
       >
         <div className="relative p-5 sm:p-6 md:p-7">
           <button
@@ -333,33 +334,35 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
             type="button"
             onClick={onClose}
             aria-label="Close enquiry form"
-            className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full text-slate-500 transition hover:bg-white hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white sm:right-4 sm:top-4"
+            className={`absolute right-3 top-3 ${cartDialogStyles.closeButton} sm:right-4 sm:top-4`}
           >
             <X className="h-5 w-5" />
           </button>
 
-          <div className="max-w-xl pr-10">
-            <h2 id={titleId} className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
-              {copy.title}
-            </h2>
-            <p id={descriptionId} className="mt-2 max-w-lg text-sm leading-6 text-slate-600 dark:text-slate-300">
-              {copy.description}
-            </p>
+              <div className="pb-5 pr-10">
+            <div className="max-w-xl">
+              <h2 id={titleId} className={`text-2xl font-semibold tracking-tight sm:text-3xl ${cartDialogStyles.title}`}>
+                {copy.title}
+              </h2>
+              <p id={descriptionId} className={`mt-2 max-w-lg text-sm leading-6 ${cartDialogStyles.description}`}>
+                {copy.description}
+              </p>
+            </div>
           </div>
 
           {topics.length > 0 ? (
             <div
               aria-label="Selected topics"
-              className="mt-4 rounded-lg border border-brand/15 bg-brand/[0.06] p-3.5 dark:border-brand/25 dark:bg-brand/10"
+              className={`mt-4 rounded-lg border ${cartDialogStyles.divider} bg-[#111725]/65 p-3.5`}
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-300">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c9d0e1]">
                 Selected topics
               </p>
               <ul className="mt-2 flex flex-wrap gap-2">
                 {topics.map((topic) => (
                   <li
                     key={topic}
-                    className="rounded-full border border-brand/20 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 dark:border-brand/30 dark:bg-[#192133] dark:text-slate-100"
+                    className="rounded-full border border-[#414b62] bg-[#1e2538] px-3 py-1.5 text-xs font-medium text-slate-100"
                   >
                     {topic}
                   </li>
@@ -449,11 +452,11 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
 
             <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-xs">
-                <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                <p className="text-xs leading-5 text-slate-400">
                   Your details are sent securely to our team. We’ll be in touch soon.
                 </p>
                 {submitError ? (
-                  <p role="alert" className="mt-2 text-xs font-medium text-rose-600 dark:text-rose-400">
+                  <p role="alert" className="mt-2 text-xs font-medium text-rose-300">
                     {submitError}
                   </p>
                 ) : null}
@@ -461,7 +464,7 @@ export default function LeadCaptureDialog({ request, onClose }: LeadCaptureDialo
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-brand to-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:from-brand hover:to-indigo-500 hover:shadow-brand/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[0.98] sm:w-auto"
+                className={`${cartDialogStyles.primaryButton} w-full px-6 py-3.5 sm:w-auto`}
               >
                 {submitting ? "Sending…" : copy.submitLabel}
               </button>
@@ -496,15 +499,15 @@ function FormField({
   return (
     <div className={`space-y-2 ${className}`}>
       <div className="flex items-center justify-between gap-2">
-        <label htmlFor={id} className="text-base font-semibold text-slate-700 dark:text-white">
+        <label htmlFor={id} className={`text-base font-semibold ${cartDialogStyles.fieldLabel}`}>
           {label}
           {required ? <span aria-hidden="true" className="ml-1 text-brand">*</span> : null}
         </label>
-        {optional ? <span className="text-xs text-slate-500 dark:text-slate-400">Optional</span> : null}
+        {optional ? <span className={`text-xs ${cartDialogStyles.optionalLabel}`}>Optional</span> : null}
       </div>
       {children}
       {error ? (
-        <p id={`${id}-error`} className="text-xs font-medium text-rose-600 dark:text-rose-400">
+        <p id={`${id}-error`} className="text-xs font-medium text-rose-300">
           {error}
         </p>
       ) : null}

@@ -8,12 +8,12 @@ import {
 describe("services navigation state", () => {
   const servicesItem = headerData.find((item) => item.href === "/services");
 
-  it("exposes the overview, four section anchors, and pricing in order", () => {
+  it("exposes the overview, dedicated business-problems page, section anchors, and pricing in order", () => {
     expect(servicesItem?.submenu).toEqual([
       { label: "Services", href: "/services" },
       {
         label: "Business Problems",
-        href: "/services#business-problems",
+        href: "/services/business-problems",
       },
       { label: "Modernization", href: "/services#modernization" },
       { label: "Automation", href: "/services#automation" },
@@ -35,6 +35,13 @@ describe("services navigation state", () => {
     expect(
       isNavigationHrefActive("/services", "/services", "#automation"),
     ).toBe(false);
+    expect(
+      isNavigationHrefActive(
+        "/services/business-problems",
+        "/services/business-problems",
+        "",
+      ),
+    ).toBe(true);
   });
 
   it("keeps the Services parent active on solution detail routes", () => {

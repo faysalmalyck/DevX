@@ -18,7 +18,7 @@ export default function BusinessProblemsPage() {
         title="Business Problems|& Solutions"
         description="Select your operational challenges, legacy constraints, automation goals, and integration needs to build a custom solution blueprint."
       />
-      <ServicesExperience />
+      <ServicesExperience skin="cart" />
     </>
   );
 }
