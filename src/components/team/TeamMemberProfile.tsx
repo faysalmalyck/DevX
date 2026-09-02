@@ -99,25 +99,26 @@ export default function TeamMemberProfile({ member }: { member: PublicTeamMember
   const links = socialLinks(member);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-white pb-16 pt-28 text-slate-900 dark:bg-[#181d2b] dark:text-white sm:pb-32 sm:pt-36 lg:pt-40">
+    <main className="relative min-h-screen overflow-hidden bg-white pb-24 pt-28 text-slate-900 dark:bg-[#181d2b] dark:text-white sm:pb-32 sm:pt-24 lg:pt-28">
       <DecorativeCurve />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Link
           href="/team"
-          className="mt-8 mb-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 no-underline transition-all duration-300 hover:-translate-x-1 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:text-white dark:hover:text-brand sm:mt-12 sm:mb-8 sm:text-base"
+          className="mt-12 mb-10 inline-flex items-center gap-2 text-base font-semibold text-slate-700 no-underline transition-all duration-300 hover:-translate-x-1 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:text-white dark:hover:text-brand sm:mt-20 sm:mb-20"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Back to team
         </Link>
 
-        <div className="mx-auto max-w-5xl px-0 sm:px-6 lg:px-16">
+        <div className="mx-auto max-w-5xl px-0 sm:px-10 lg:px-16">
           <article
             aria-labelledby="team-member-name"
             data-testid="team-member-profile-card"
-            className={`mx-auto max-w-5xl rounded-xl border px-5 py-6 text-white ${cartDialogStyles.panel} sm:px-12 sm:py-12 lg:px-20 lg:py-16`}
+            className={`mx-auto max-w-5xl rounded-xl border px-6 py-8 text-white ${cartDialogStyles.panel} sm:px-16 sm:py-14 lg:px-24 lg:py-20`}
           >
-            <header className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:gap-10 sm:text-left lg:gap-14">
+            {/* On mobile: centered column layout. On sm+: original row layout */}
+            <header className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:gap-10 sm:text-left lg:gap-14">
               <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-[#414b62] bg-[#131927] sm:h-32 sm:w-32">
                 <img
                   src={teamImageSource(member.image)}
@@ -128,10 +129,10 @@ export default function TeamMemberProfile({ member }: { member: PublicTeamMember
               </div>
 
               <div className="min-w-0 flex-1">
-                <h1 id="team-member-name" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                <h1 id="team-member-name" className="mt-2 text-2xl font-bold tracking-tight text-white sm:mt-4 sm:text-3xl">
                   {member.name}
                 </h1>
-                <p className="mt-1 text-lg font-semibold text-[#c9d0e1] sm:text-2xl">
+                <p className="mt-1 text-xl font-semibold text-[#c9d0e1] sm:text-2xl">
                   {member.role}
                 </p>
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 sm:text-sm">
@@ -140,7 +141,7 @@ export default function TeamMemberProfile({ member }: { member: PublicTeamMember
               </div>
 
               {links.length > 0 ? (
-                <div className="flex flex-wrap justify-center gap-2.5 text-[#c9d0e1] sm:justify-end sm:gap-3">
+                <div className="flex flex-wrap justify-center gap-3 text-[#c9d0e1] sm:justify-end">
                   {links.map(({ label, href, Icon }) => (
                     <a
                       key={label}
@@ -148,31 +149,31 @@ export default function TeamMemberProfile({ member }: { member: PublicTeamMember
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${member.name}'s ${label}`}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#414b62] bg-white/[0.06] transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:text-white sm:h-11 sm:w-11"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#414b62] bg-white/[0.06] transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:text-white"
                     >
-                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+                      <Icon className="h-5 w-5" aria-hidden="true" />
                     </a>
                   ))}
                 </div>
               ) : null}
             </header>
 
-            <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-8">
+            <div className="mt-2 space-y-2 sm:mt-1">
               <section aria-labelledby="team-member-about">
                 <h2 id="team-member-about" className="text-xl font-bold tracking-tight text-white sm:text-2xl">
                   About {member.name}
                 </h2>
-                <p className="mt-3 whitespace-pre-line text-base leading-7 text-white sm:mt-4 sm:text-xl sm:leading-9">
+                <p className="mt-4 whitespace-pre-line text-base leading-7 text-white sm:mt-8 sm:text-xl sm:leading-9">
                   {about}
                 </p>
               </section>
 
               {highlights.length > 0 ? (
                 <section aria-labelledby="team-member-highlights">
-                  <h2 id="team-member-highlights" className="text-xl font-semibold tracking-tight text-white sm:text-3xl">
+                  <h2 id="team-member-highlights" className="mt-6 text-xl font-semibold tracking-tight text-white sm:mt-8 sm:text-3xl">
                     Highlights
                   </h2>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-7 text-[#c9d0e1] marker:text-brand sm:mt-4 sm:space-y-3 sm:pl-6 sm:text-lg sm:leading-9">
+                  <ul className="mt-4 list-disc space-y-3 pl-6 text-base leading-8 text-[#c9d0e1] marker:text-brand sm:text-lg sm:leading-9">
                     {highlights.map((highlight, index) => (
                       <li key={`${highlight}-${index}`}>{highlight}</li>
                     ))}
@@ -182,10 +183,10 @@ export default function TeamMemberProfile({ member }: { member: PublicTeamMember
 
               {experience ? (
                 <section aria-labelledby="team-member-experience">
-                  <h2 id="team-member-experience" className="text-xl font-semibold tracking-tight text-white sm:text-3xl">
+                  <h2 id="team-member-experience" className="mt-6 text-xl font-semibold tracking-tight text-white sm:mt-8 sm:text-3xl">
                     {member.name}&rsquo;s Experience
                   </h2>
-                  <p className="mt-3 whitespace-pre-line text-base leading-7 text-[#c9d0e1] sm:mt-4 sm:text-lg sm:leading-9">
+                  <p className="mt-4 whitespace-pre-line text-base leading-8 text-[#c9d0e1] sm:text-lg sm:leading-9">
                     {experience}
                   </p>
                 </section>
