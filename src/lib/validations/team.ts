@@ -54,6 +54,19 @@ const optionalText = (max: number) =>
     .nullable()
     .transform((value) => value || null);
 
+const optionalHighlights = z.preprocess(
+  (value) => value === null || value === undefined ? [] : value,
+  z
+    .array(
+      z
+        .string()
+        .trim()
+        .min(1, "Highlights cannot be empty.")
+        .max(300, "Highlights must be 300 characters or fewer."),
+    )
+    .max(12, "Add no more than 12 highlights."),
+);
+
 const optionalHttpUrl = z
   .string()
   .trim()
@@ -178,12 +191,15 @@ export const teamMemberStatusSchema = z.enum(["DRAFT", "PUBLISHED"]);
  * that are present and invalid. The profile status is derived separately from
  * the stricter `teamMemberProfileSchema`.
  */
-export const teamMemberDraftSchema = z.object({
+const teamMemberDraftShape = {
   name: optionalDraftText("Name", 2, 160),
   slug: optionalDraftSlug,
   role: optionalDraftText("Role", 2, 160),
   department: optionalDraftDepartment,
   bio: optionalDraftText("Biography", 10, 5_000),
+  about: optionalText(5_000),
+  highlights: optionalHighlights,
+  experience: optionalText(5_000),
   image: optionalImage,
   email: optionalEmail,
   accessRole: z.preprocess(blankToNull, teamMemberAccessChoiceSchema.nullable()).default("NONE"),
@@ -196,7 +212,18 @@ export const teamMemberDraftSchema = z.object({
   displayOrder: z.number().int("Display order must be a whole number.").min(0, "Display order cannot be negative.").max(1_000_000, "Display order is too large.").optional().default(0),
   featured: z.boolean().optional().default(false),
   status: teamMemberStatusSchema.optional().default("DRAFT"),
-}).superRefine((value, context) => {
+};
+
+function validateTeamMemberAccess(
+  value: {
+    accessRole: "NONE" | "ADMINISTRATOR" | "SALES_MANAGER" | "SALES_AGENT" | null;
+    salesRole: "SALES_MANAGER" | "SALES_AGENT" | null;
+    department: TeamMemberDepartment | null;
+    email: string | null;
+    role: string | null;
+  },
+  context: z.RefinementCtx,
+) {
   const effectiveAccessRole = value.accessRole ?? (value.salesRole === "SALES_MANAGER" ? "SALES_MANAGER" : value.salesRole === "SALES_AGENT" ? "SALES_AGENT" : "NONE");
   if (effectiveAccessRole === "SALES_AGENT" || effectiveAccessRole === "SALES_MANAGER") {
     if (value.department !== "SALES") {
@@ -216,10 +243,38 @@ export const teamMemberDraftSchema = z.object({
   } else if (value.salesRole) {
     context.addIssue({ code: "custom", path: ["salesRole"], message: "Sales Role is only available for the Sales category." });
   }
-});
+}
+
+export const teamMemberDraftSchema = z
+  .object(teamMemberDraftShape)
+  .superRefine(validateTeamMemberAccess);
+
+/**
+ * Sales managers can maintain the Sales directory fields, but the richer
+ * public profile content belongs to Team administrators. Explicitly reject
+ * those keys while continuing to strip unrelated response-only fields (such
+ * as `admin`) that the Sales editor may round-trip.
+ */
+const salesRestrictedProfileField = z
+  .unknown()
+  .optional()
+  .refine(
+    (value) => value === undefined,
+    "Only Team administrators can edit detailed profile content.",
+  );
+
+export const teamMemberSalesSchema = z
+  .object({
+    ...teamMemberDraftShape,
+    about: salesRestrictedProfileField,
+    highlights: salesRestrictedProfileField,
+    experience: salesRestrictedProfileField,
+  })
+  .superRefine(validateTeamMemberAccess);
 
 // Preserve the existing export name for callers while allowing incomplete
 // drafts to be saved deliberately.
 export const teamMemberSchema = teamMemberDraftSchema;
 
 export type TeamMemberFormValues = z.infer<typeof teamMemberDraftSchema>;
+export type TeamMemberSalesFormValues = z.infer<typeof teamMemberSalesSchema>;

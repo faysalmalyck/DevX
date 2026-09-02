@@ -56,6 +56,9 @@ function emptyForm(): TeamForm {
     role: null,
     department: null,
     bio: null,
+    about: null,
+    highlights: [],
+    experience: null,
     image: null,
     email: null,
     phone: null,
@@ -392,7 +395,232 @@ function MemberTable({ members, onEdit, onDelete }: { members: TeamMemberRecord[
   return <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#111827]"><div className="overflow-x-auto"><table className="w-full text-left text-base"><thead className="bg-slate-50 text-xs font-bold uppercase text-slate-500 dark:bg-zinc-900"><tr><th className="px-6 py-4">Team Member</th><th className="px-6 py-4">Department</th><th className="px-6 py-4">Profile status</th><th className="px-6 py-4">Publication</th><th className="px-6 py-4 text-right">Actions</th></tr></thead><tbody>{members.map((member) => <tr key={member.id} className="border-t border-slate-100 dark:border-white/5"><td className="px-6 py-4"><div className="flex items-center gap-3"><img src={member.image || imageFallback(member.name)} alt="" onError={(event) => { event.currentTarget.src = imageFallback(member.name); }} className="h-10 w-10 rounded-full object-cover" /><div><p className="font-bold text-slate-900 dark:text-white">{displayName(member)}</p><p className="text-slate-500">{member.role || "Role not set"}</p></div></div></td><td className="px-6 py-4">{displayDepartment(member)}</td><td className="px-6 py-4"><ProfileStatusBadge status={member.profileStatus} /></td><td className="px-6 py-4"><PublicationStatus status={member.status} /></td><td className="px-6 py-4 text-right"><button aria-label={`Edit ${displayName(member)}`} onClick={() => onEdit(member)} className="p-2 text-brand"><Pencil className="h-4 w-4" /></button><button aria-label={`Delete ${displayName(member)}`} onClick={() => onDelete(member)} className="p-2 text-rose-500"><Trash2 className="h-4 w-4" /></button></td></tr>)}</tbody></table></div></div>;
 }
 
-function MemberModal({ draft, editing, legacyDepartment, error, fieldErrors, submitting, onClose, onSubmit, onChange }: { draft: TeamForm; editing: boolean; legacyDepartment: string | null; error: string | null; fieldErrors: FieldErrors; submitting: boolean; onClose: () => void; onSubmit: (event: FormEvent<HTMLFormElement>) => void; onChange: <K extends keyof TeamForm>(key: K, value: TeamForm[K]) => void }) {
+type TeamMemberModalProps = {
+  draft: TeamForm;
+  editing: boolean;
+  legacyDepartment: string | null;
+  error: string | null;
+  fieldErrors: FieldErrors;
+  submitting: boolean;
+  onClose: () => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onChange: <K extends keyof TeamForm>(key: K, value: TeamForm[K]) => void;
+};
+
+function MemberModal({
+  draft,
+  editing,
+  legacyDepartment,
+  error,
+  fieldErrors,
+  submitting,
+  onClose,
+  onSubmit,
+  onChange,
+}: TeamMemberModalProps) {
+  const input = "mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-white/10 dark:bg-zinc-900";
+  const fieldError = (field: string) => fieldErrors[field]?.[0];
+  const inputClass = (field: string) => `${input} ${fieldError(field) ? "border-rose-500 focus:border-rose-500" : ""}`;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm">
+      <form
+        onSubmit={onSubmit}
+        noValidate
+        className="flex max-h-full w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-[#111827]"
+      >
+        <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4 dark:border-white/5">
+          <div>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+              {editing ? "Edit team member" : "Add team member"}
+            </h2>
+            <p className="mt-1 text-sm text-slate-500">
+              Profile details and login access are managed together.
+            </p>
+          </div>
+          <button type="button" aria-label="Close profile form" disabled={submitting} onClick={onClose}>
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-6">
+          <p className="mb-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-200">
+            Required profile fields are marked with <span aria-hidden="true">*</span>. Login access is granted from the controlled Access &amp; Role selector.
+          </p>
+          {legacyDepartment ? (
+            <p className="mb-5 rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
+              Legacy department “{legacyDepartment}” is not supported. Select a department below.
+            </p>
+          ) : null}
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Full name" field="name" required error={fieldError("name")}>
+              <input
+                id="team-member-name"
+                value={draft.name ?? ""}
+                onChange={(event) => {
+                  const name = event.target.value || null;
+                  onChange("name", name);
+                  if (!editing) onChange("slug", name ? slugify(name) || null : null);
+                }}
+                className={inputClass("name")}
+              />
+            </Field>
+            <Field label="Public title" field="role" required error={fieldError("role")}>
+              <input id="team-member-role" value={draft.role ?? ""} onChange={(event) => onChange("role", event.target.value || null)} className={inputClass("role")} />
+            </Field>
+            <Field label="Access & Role" field="accessRole" required error={fieldError("accessRole")}>
+              <select
+                id="team-member-accessRole"
+                value={draft.accessRole ?? "NONE"}
+                onChange={(event) => {
+                  const value = event.target.value as TeamAccessChoice;
+                  onChange("accessRole", value);
+                  if (value === "SALES_MANAGER") {
+                    onChange("department", "SALES");
+                    onChange("salesRole", "SALES_MANAGER");
+                    onChange("role", "Sales Manager");
+                  } else if (value === "SALES_AGENT") {
+                    onChange("department", "SALES");
+                    onChange("salesRole", "SALES_AGENT");
+                    onChange("role", "Business Development Executive");
+                  } else {
+                    onChange("salesRole", null);
+                  }
+                }}
+                className={inputClass("accessRole")}
+              >
+                <option value="NONE">No Login Access</option>
+                <option value="ADMINISTRATOR">Administrator</option>
+                <option value="SALES_MANAGER">Sales Manager</option>
+                <option value="SALES_AGENT">Business Development Executive</option>
+              </select>
+            </Field>
+            <Field label="Slug" field="slug" required error={fieldError("slug")}>
+              <input id="team-member-slug" value={draft.slug ?? ""} onChange={(event) => onChange("slug", slugify(event.target.value) || null)} className={inputClass("slug")} />
+            </Field>
+            <Field label="Department" field="department" required error={fieldError("department")}>
+              <select id="team-member-department" value={draft.department ?? ""} onChange={(event) => onChange("department", (event.target.value || null) as TeamForm["department"])} className={inputClass("department")}>
+                <option value="">Choose a department</option>
+                {TEAM_MEMBER_DEPARTMENTS.map((department) => <option key={department.value} value={department.value}>{department.label}</option>)}
+              </select>
+            </Field>
+            <Field label="Email" field="email" error={fieldError("email")}>
+              <input id="team-member-email" type="email" value={draft.email ?? ""} onChange={(event) => onChange("email", event.target.value || null)} className={inputClass("email")} />
+            </Field>
+            <Field label="Phone" field="phone" error={fieldError("phone")}>
+              <input id="team-member-phone" value={draft.phone ?? ""} onChange={(event) => onChange("phone", event.target.value || null)} className={inputClass("phone")} />
+            </Field>
+            <Field label="LinkedIn URL" field="linkedinUrl" error={fieldError("linkedinUrl")}>
+              <input id="team-member-linkedin" type="url" value={draft.linkedinUrl ?? ""} onChange={(event) => onChange("linkedinUrl", event.target.value || null)} className={inputClass("linkedinUrl")} />
+            </Field>
+            <Field label="Facebook URL" field="facebookUrl" error={fieldError("facebookUrl")}>
+              <input id="team-member-facebook" type="url" value={draft.facebookUrl ?? ""} onChange={(event) => onChange("facebookUrl", event.target.value || null)} className={inputClass("facebookUrl")} />
+            </Field>
+            <Field label="Twitter URL" field="twitterUrl" error={fieldError("twitterUrl")}>
+              <input id="team-member-twitter" type="url" value={draft.twitterUrl ?? ""} onChange={(event) => onChange("twitterUrl", event.target.value || null)} className={inputClass("twitterUrl")} />
+            </Field>
+            <Field label="GitHub URL" field="githubUrl" error={fieldError("githubUrl")}>
+              <input id="team-member-github" type="url" value={draft.githubUrl ?? ""} onChange={(event) => onChange("githubUrl", event.target.value || null)} className={inputClass("githubUrl")} />
+            </Field>
+            <Field label="Display order" field="displayOrder" error={fieldError("displayOrder")}>
+              <input id="team-member-display-order" type="number" min="0" value={draft.displayOrder} onChange={(event) => onChange("displayOrder", Number(event.target.value) || 0)} className={inputClass("displayOrder")} />
+            </Field>
+            <Field label="Image URL" field="image" error={fieldError("image")}>
+              <input id="team-member-image" type="url" value={draft.image ?? ""} onChange={(event) => onChange("image", event.target.value || null)} className={inputClass("image")} />
+            </Field>
+            <Field label="Public status" field="status" error={fieldError("status")}>
+              <select id="team-member-status" value={draft.status} onChange={(event) => onChange("status", event.target.value as TeamForm["status"])} className={inputClass("status")}>
+                <option value="DRAFT">Draft</option>
+                <option value="PUBLISHED">Published</option>
+              </select>
+            </Field>
+            <label className="flex items-center gap-3 text-base font-bold text-slate-700 dark:text-zinc-300">
+              <input aria-label="Feature this member" type="checkbox" checked={draft.featured} onChange={(event) => onChange("featured", event.target.checked)} className="h-5 w-5" />
+              Feature this member
+            </label>
+            <Field label="Biography (directory teaser)" field="bio" required error={fieldError("bio")} wide>
+              <textarea id="team-member-bio" rows={4} value={draft.bio ?? ""} onChange={(event) => onChange("bio", event.target.value || null)} className={inputClass("bio")} />
+            </Field>
+            <Field label="About" field="about" error={fieldError("about")} wide>
+              <textarea id="team-member-about" rows={6} value={draft.about ?? ""} onChange={(event) => onChange("about", event.target.value || null)} className={inputClass("about")} />
+            </Field>
+            <HighlightsEditor
+              highlights={draft.highlights}
+              error={fieldError("highlights")}
+              inputClass={inputClass("highlights")}
+              onChange={(highlights) => onChange("highlights", highlights)}
+            />
+            <Field label="Experience" field="experience" error={fieldError("experience")} wide>
+              <textarea id="team-member-experience" rows={6} value={draft.experience ?? ""} onChange={(event) => onChange("experience", event.target.value || null)} className={inputClass("experience")} />
+            </Field>
+          </div>
+
+          {error ? <p role="alert" className="mt-4 text-base text-rose-600">{error}</p> : null}
+        </div>
+
+        <div className="flex justify-end gap-3 border-t border-slate-100 bg-slate-50 px-6 py-4 dark:border-white/5 dark:bg-zinc-900/50">
+          <button type="button" onClick={onClose} disabled={submitting} className="rounded-lg px-5 py-2.5 font-bold">Cancel</button>
+          <button disabled={submitting} className="rounded-lg bg-brand px-5 py-2.5 font-bold text-white disabled:opacity-60">{submitting ? "Saving…" : "Save Profile"}</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function HighlightsEditor({
+  highlights,
+  error,
+  inputClass,
+  onChange,
+}: {
+  highlights: string[];
+  error?: string;
+  inputClass: string;
+  onChange: (highlights: string[]) => void;
+}) {
+  const updateHighlight = (index: number, value: string) => {
+    onChange(highlights.map((highlight, currentIndex) => currentIndex === index ? value : highlight));
+  };
+  const moveHighlight = (index: number, destination: number) => {
+    const next = [...highlights];
+    const [highlight] = next.splice(index, 1);
+    next.splice(destination, 0, highlight);
+    onChange(next);
+  };
+
+  return (
+    <fieldset className="sm:col-span-2">
+      <legend className="text-base font-bold text-slate-700 dark:text-zinc-300">Highlights</legend>
+      <p className="mt-1 text-sm font-normal text-slate-500 dark:text-zinc-400">Add ordered bullet points for this member’s profile page.</p>
+      <div className="mt-3 space-y-3">
+        {highlights.map((highlight, index) => (
+          <div key={index} className="flex items-start gap-2">
+            <input
+              id={`team-member-highlight-${index}`}
+              aria-label={`Highlight ${index + 1}`}
+              value={highlight}
+              onChange={(event) => updateHighlight(index, event.target.value)}
+              className={inputClass}
+            />
+            <div className="mt-2 flex shrink-0 gap-1">
+              <button type="button" aria-label={`Move highlight ${index + 1} up`} disabled={index === 0} onClick={() => moveHighlight(index, index - 1)} className="rounded-lg border border-slate-200 px-2 py-1 text-sm disabled:opacity-40 dark:border-white/10">↑</button>
+              <button type="button" aria-label={`Move highlight ${index + 1} down`} disabled={index === highlights.length - 1} onClick={() => moveHighlight(index, index + 1)} className="rounded-lg border border-slate-200 px-2 py-1 text-sm disabled:opacity-40 dark:border-white/10">↓</button>
+              <button type="button" aria-label={`Remove highlight ${index + 1}`} onClick={() => onChange(highlights.filter((_, currentIndex) => currentIndex !== index))} className="rounded-lg border border-rose-200 px-2 py-1 text-sm text-rose-600 dark:border-rose-500/30">Remove</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button type="button" onClick={() => onChange([...highlights, ""])} className="mt-3 inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-bold text-slate-700 dark:border-white/10 dark:text-zinc-200">
+        <Plus className="h-4 w-4" />
+        Add highlight
+      </button>
+      {error ? <p role="alert" className="mt-1 text-xs font-medium text-rose-600 dark:text-rose-300">{error}</p> : null}
+    </fieldset>
+  );
+}
+
+function LegacyMemberModal({ draft, editing, legacyDepartment, error, fieldErrors, submitting, onClose, onSubmit, onChange }: { draft: TeamForm; editing: boolean; legacyDepartment: string | null; error: string | null; fieldErrors: FieldErrors; submitting: boolean; onClose: () => void; onSubmit: (event: FormEvent<HTMLFormElement>) => void; onChange: <K extends keyof TeamForm>(key: K, value: TeamForm[K]) => void }) {
   const input = "mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-white/10 dark:bg-zinc-900";
   const fieldError = (field: string) => fieldErrors[field]?.[0];
   const inputClass = (field: string) => `${input} ${fieldError(field) ? "border-rose-500 focus:border-rose-500" : ""}`;

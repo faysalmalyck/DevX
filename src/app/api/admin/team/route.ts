@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
       await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_CREATED", entity: "TeamMember", entityId: member.id, metadata: { slug: member.slug, salesRole: member.salesRole ?? null } } });
       return { member, salesAccess };
     });
-    revalidateTeamPaths();
+    revalidateTeamPaths(member.slug);
     return NextResponse.json({
       data: serializeTeamMember(member),
       salesAccess: salesAccess.activationToken

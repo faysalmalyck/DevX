@@ -18,18 +18,31 @@ afterEach(() => {
 });
 
 describe("services header links", () => {
-  it("marks only the current desktop section link active", () => {
-    window.history.replaceState(null, "", "/services#automation");
+  it("renders the three desktop menu choices and marks Business Problems active", () => {
+    currentPathname = "/services/business-problems";
+    window.history.replaceState(null, "", currentPathname);
     render(<HeaderLink item={servicesItem} />);
 
-    fireEvent.mouseEnter(screen.getByRole("link", { name: /Services/i }).parentElement!);
+    const trigger = screen.getByRole("link", { name: "Services" });
+    fireEvent.mouseEnter(trigger.parentElement!);
+
+    expect(trigger.getAttribute("aria-expanded")).toBe("true");
+    const links = screen.getAllByRole("link");
+    expect(links.map((link) => link.textContent)).toEqual([
+      "Services",
+      "Services",
+      "Business Problems",
+      "Pricing",
+    ]);
+    expect(links.slice(1).map((link) => link.getAttribute("href"))).toEqual([
+      "/services",
+      "/services/business-problems",
+      "/pricing",
+    ]);
 
     expect(
-      screen.getByRole("link", { name: "Automation" }).getAttribute("aria-current"),
-    ).toBe("location");
-    expect(
-      screen.getByRole("link", { name: "Modernization" }).getAttribute("aria-current"),
-    ).toBeNull();
+      screen.getByRole("link", { name: "Business Problems" }).getAttribute("aria-current"),
+    ).toBe("page");
   });
 
   it("keeps the mobile Services parent active on a solution detail route", () => {
@@ -48,19 +61,36 @@ describe("services header links", () => {
     ).toBeNull();
   });
 
-  it("uses the current hash for an expanded mobile submenu", () => {
-    window.history.replaceState(null, "", "/services#integration");
+  it("renders the three mobile menu choices and marks Pricing active", () => {
+    currentPathname = "/pricing";
+    window.history.replaceState(null, "", currentPathname);
     render(<MobileHeaderLink item={servicesItem} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Services" }));
+    const disclosure = screen.getByRole("button", { name: "Services" });
+    expect(disclosure.getAttribute("aria-expanded")).toBe("false");
+    expect(disclosure.getAttribute("aria-current")).toBe("page");
+    fireEvent.click(disclosure);
+
+    expect(disclosure.getAttribute("aria-expanded")).toBe("true");
+    const links = screen.getAllByRole("link");
+    expect(links.map((link) => link.textContent)).toEqual([
+      "Services",
+      "Business Problems",
+      "Pricing",
+    ]);
+    expect(links.map((link) => link.getAttribute("href"))).toEqual([
+      "/services",
+      "/services/business-problems",
+      "/pricing",
+    ]);
 
     expect(
-      screen
-        .getByRole("link", { name: "Integration" })
-        .getAttribute("aria-current"),
-    ).toBe("location");
+      screen.getByRole("link", { name: "Pricing" }).getAttribute("aria-current"),
+    ).toBe("page");
     expect(
-      screen.getByRole("link", { name: "Automation" }).getAttribute("aria-current"),
+      screen
+        .getByRole("link", { name: "Business Problems" })
+        .getAttribute("aria-current"),
     ).toBeNull();
   });
 });

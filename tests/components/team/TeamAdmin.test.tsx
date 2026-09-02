@@ -23,6 +23,9 @@ function member(overrides: Partial<TeamMemberRecord> = {}): TeamMemberRecord {
     department: "EXECUTIVE",
     legacyDepartment: null,
     bio: "An existing complete team member used to keep the initial list rendered.",
+    about: null,
+    highlights: [],
+    experience: null,
     image: null,
     email: null,
     phone: null,
@@ -148,6 +151,35 @@ describe("TeamAdmin profile status refresh", () => {
     expect(updateRequest).toBeDefined();
     expect(JSON.parse(String(updateRequest?.[1]?.body))).toMatchObject({
       department: "ENGINEERING",
+    });
+  });
+
+  it("submits the dedicated profile-page content with ordered highlights", async () => {
+    const user = userEvent.setup();
+    render(<TeamAdmin initialMembers={storedMembers} />);
+
+    await user.click(screen.getByRole("button", { name: "Add Member" }));
+    await user.type(screen.getByLabelText(/Full name/), "Ada Lovelace");
+    await user.type(screen.getByLabelText(/Public title/), "Principal Engineer");
+    await user.selectOptions(screen.getByLabelText(/Department/), "ENGINEERING");
+    await user.type(screen.getByLabelText(/Biography/), "Ada leads the engineering team and maintains the developer platform.");
+    await user.type(screen.getByLabelText("About"), "Ada builds the engineering foundations behind DevX.");
+    await user.click(screen.getByRole("button", { name: "Add highlight" }));
+    await user.type(screen.getByLabelText("Highlight 1"), "Leads the platform team");
+    await user.click(screen.getByRole("button", { name: "Add highlight" }));
+    await user.type(screen.getByLabelText("Highlight 2"), "Improves delivery systems");
+    await user.click(screen.getByRole("button", { name: "Move highlight 2 up" }));
+    await user.type(screen.getByLabelText("Experience"), "Ada has led technical teams across product and platform delivery.");
+    await user.click(screen.getByRole("button", { name: "Save Profile" }));
+
+    await waitFor(() => {
+      const createRequest = fetchMock.mock.calls.find(([, init]) => init?.method === "POST");
+      expect(createRequest).toBeDefined();
+      expect(JSON.parse(String(createRequest?.[1]?.body))).toMatchObject({
+        about: "Ada builds the engineering foundations behind DevX.",
+        highlights: ["Improves delivery systems", "Leads the platform team"],
+        experience: "Ada has led technical teams across product and platform delivery.",
+      });
     });
   });
 });

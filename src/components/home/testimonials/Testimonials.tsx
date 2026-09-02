@@ -33,9 +33,6 @@ export default function TestimonialsSection() {
           </ScrollReveal>
 
 
-          Top left arc
-
-
  {/* Bottom Left Circular Flare Arc */}
 <svg
   className="pointer-events-none absolute -left-5 bottom-24 rotate-270 hidden h-[500px] w-[500px] sm:block"

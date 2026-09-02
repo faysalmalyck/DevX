@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Development from "@/components/home/development/Development";
-import ServicesExperience from "@/components/services/ServicesExperience";
-import FinalCTA from "@/components/home/final-cta/FinalCTA";
+import SolutionLeadCTA from "@/components/services/SolutionLeadCTA";
 import HeroSub from "@/components/shared/HeroSub";
 
 export const metadata: Metadata = {
@@ -24,8 +23,7 @@ export default function ServicesPage() {
         showHeading={false}
         showImprovementCta={false}
       />
-      <ServicesExperience skin="cart" />
-      <FinalCTA />
+      <SolutionLeadCTA solutionTitle="Digital Solution" />
     </>
   );
 }

@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { teamMemberSchema } from "@/lib/validations/team";
+import {
+  teamMemberSalesSchema,
+  teamMemberSchema,
+} from "@/lib/validations/team";
 
 const base = {
   name: "Avery Patel",
@@ -37,5 +40,33 @@ describe("TeamMember Access & Role validation", () => {
     const result = teamMemberSchema.safeParse({ ...base, department: "ENGINEERING" });
     expect(result.success).toBe(false);
     expect(result.error?.issues.some((issue) => issue.path[0] === "department")).toBe(true);
+  });
+
+  it("accepts optional profile-page content for Team administrator requests", () => {
+    const result = teamMemberSchema.safeParse({
+      ...base,
+      about: "  Avery leads early discovery and relationships with new partners.  ",
+      highlights: ["  Pipeline strategy  ", "Client discovery"],
+      experience: "  Avery has supported sales teams across several markets.  ",
+    });
+
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data).toMatchObject({
+        about: "Avery leads early discovery and relationships with new partners.",
+        highlights: ["Pipeline strategy", "Client discovery"],
+        experience: "Avery has supported sales teams across several markets.",
+      });
+    }
+  });
+
+  it("rejects detailed profile content submitted through the Sales editor", () => {
+    const result = teamMemberSalesSchema.safeParse({
+      ...base,
+      about: "Sales users must not replace the team-authored About section.",
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.some((issue) => issue.path[0] === "about")).toBe(true);
   });
 });

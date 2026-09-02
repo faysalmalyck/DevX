@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db/prisma";
 import {
   publicTeamMemberSelect,
   serializePublicTeamMember,
+  type PublicTeamMemberResult,
   type PublicTeamMembersResult,
 } from "./types";
 
@@ -27,6 +28,35 @@ export async function getPublishedTeamMembers(): Promise<PublicTeamMembersResult
   } catch (error) {
     console.error("Failed to fetch published team members:", error);
     return { status: "unavailable", members: [] };
+  }
+}
+
+/**
+ * Loads one profile for the public site. The publication predicate lives in
+ * the database query so a draft, incomplete, or soft-deleted record cannot
+ * be revealed by guessing its slug.
+ */
+export async function getPublishedTeamMemberBySlug(
+  slug: string,
+): Promise<PublicTeamMemberResult> {
+  try {
+    const member = await prisma.teamMember.findFirst({
+      where: {
+        slug,
+        status: TeamMemberStatus.PUBLISHED,
+        profileStatus: TeamMemberProfileStatus.COMPLETE,
+        deletedAt: null,
+      },
+      select: publicTeamMemberSelect,
+    });
+
+    return {
+      status: "success",
+      member: member ? serializePublicTeamMember(member) : null,
+    };
+  } catch (error) {
+    console.error(`Failed to fetch published team member "${slug}":`, error);
+    return { status: "unavailable", member: null };
   }
 }
 

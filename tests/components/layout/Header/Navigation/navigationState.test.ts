@@ -5,36 +5,40 @@ import {
   isNavigationParentActive,
 } from "@/components/layout/Header/Navigation/navigationState";
 
+describe("about navigation menu", () => {
+  const aboutItem = headerData.find((item) => item.href === "/about");
+
+  it("keeps only About us, Careers, Case studies, and Blog in order", () => {
+    expect(aboutItem?.submenu).toEqual([
+      { label: "About us", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "Case studies", href: "/case-studies" },
+      { label: "Blog", href: "/blog" },
+    ]);
+    expect(aboutItem?.submenu).not.toContainEqual({ label: "Team", href: "/team" });
+    expect(aboutItem?.submenu).not.toContainEqual({
+      label: "Core values",
+      href: "/core-values",
+    });
+  });
+});
+
 describe("services navigation state", () => {
   const servicesItem = headerData.find((item) => item.href === "/services");
 
-  it("exposes the overview, dedicated business-problems page, section anchors, and pricing in order", () => {
+  it("exposes Services, Business Problems, and Pricing in order", () => {
     expect(servicesItem?.submenu).toEqual([
       { label: "Services", href: "/services" },
       {
         label: "Business Problems",
         href: "/services/business-problems",
       },
-      { label: "Modernization", href: "/services#modernization" },
-      { label: "Automation", href: "/services#automation" },
-      { label: "Integration", href: "/services#integration" },
       { label: "Pricing", href: "/pricing" },
     ]);
   });
 
-  it("matches only the current hash target on the services overview", () => {
-    const sectionHrefs = servicesItem?.submenu
-      ?.map((item) => item.href)
-      .filter((href) => href.includes("#"));
-
-    expect(
-      sectionHrefs?.filter((href) =>
-        isNavigationHrefActive(href, "/services", "#automation"),
-      ),
-    ).toEqual(["/services#automation"]);
-    expect(
-      isNavigationHrefActive("/services", "/services", "#automation"),
-    ).toBe(false);
+  it("matches each direct Services menu route", () => {
+    expect(isNavigationHrefActive("/services", "/services", "")).toBe(true);
     expect(
       isNavigationHrefActive(
         "/services/business-problems",
@@ -42,9 +46,14 @@ describe("services navigation state", () => {
         "",
       ),
     ).toBe(true);
+    expect(isNavigationHrefActive("/pricing", "/pricing", "")).toBe(true);
+    expect(
+      isNavigationHrefActive("/services", "/services/business-problems", ""),
+    ).toBe(false);
+    expect(isNavigationHrefActive("/pricing", "/services", "")).toBe(false);
   });
 
-  it("keeps the Services parent active on solution detail routes", () => {
+  it("keeps the Services parent active on solution detail routes and Pricing", () => {
     expect(servicesItem).toBeDefined();
     expect(
       isNavigationParentActive(
@@ -52,6 +61,7 @@ describe("services navigation state", () => {
         "/services/custom-software",
       ),
     ).toBe(true);
+    expect(isNavigationParentActive(servicesItem!, "/pricing")).toBe(true);
     expect(isNavigationParentActive(servicesItem!, "/portfolio")).toBe(false);
   });
 });

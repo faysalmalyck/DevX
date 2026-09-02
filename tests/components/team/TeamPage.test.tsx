@@ -24,6 +24,9 @@ function member(overrides: Partial<PublicTeamMember> = {}): PublicTeamMember {
     role: "Principal Engineer",
     department: "Engineering",
     bio: "Ada leads the engineering team and maintains the developer platform.",
+    about: null,
+    highlights: [],
+    experience: null,
     image: "/images/team/ada.jpg",
     linkedinUrl: "https://www.linkedin.com/in/ada-lovelace",
     facebookUrl: null,
@@ -48,6 +51,9 @@ describe("TeamSection", () => {
     expect(screen.getByText("Principal Engineer")).toBeTruthy();
     expect(screen.getByText("Engineering")).toBeTruthy();
     expect(screen.getByText(/Ada leads the engineering team/)).toBeTruthy();
+    expect(
+      screen.getByRole("link", { name: "View Ada Lovelace's profile" }).getAttribute("href"),
+    ).toBe("/team/ada-lovelace");
     expect(screen.queryByText("Our team profiles will be available soon.")).toBeNull();
     expect(screen.queryByRole("status")).toBeNull();
     const glow = document.getElementById("teamDiagonalGlowGradient")?.closest("svg");

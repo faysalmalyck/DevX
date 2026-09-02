@@ -25,18 +25,14 @@ vi.mock("@/components/home/development/Development", () => ({
   ),
 }));
 
-vi.mock("@/components/services/ServicesExperience", () => ({
-  default: ({ skin }: { skin?: string }) => (
-    <section data-testid="services-experience" data-skin={skin} />
+vi.mock("@/components/services/SolutionLeadCTA", () => ({
+  default: ({ solutionTitle }: { solutionTitle: string }) => (
+    <section data-testid="solution-lead-cta" data-solution-title={solutionTitle} />
   ),
 }));
 
-vi.mock("@/components/home/final-cta/FinalCTA", () => ({
-  default: () => <section data-testid="final-cta" />,
-}));
-
 describe("ServicesPage composition", () => {
-  it("keeps the grid, adds the interactive experience, and ends with FinalCTA", () => {
+  it("keeps only the nine-card service grid and ends with a Solution Lead CTA", () => {
     const { container } = render(<ServicesPage />);
 
     expect(
@@ -46,9 +42,13 @@ describe("ServicesPage composition", () => {
     ).toEqual([
       "services-hero",
       "development-grid",
-      "services-experience",
-      "final-cta",
+      "solution-lead-cta",
     ]);
+    expect(screen.queryByTestId("services-experience")).toBeNull();
+    expect(screen.queryByTestId("final-cta")).toBeNull();
+    expect(screen.getByTestId("solution-lead-cta").getAttribute("data-solution-title")).toBe(
+      "Digital Solution",
+    );
     expect(
       screen
         .getByTestId("development-grid")
@@ -60,8 +60,5 @@ describe("ServicesPage composition", () => {
     expect(
       screen.getByTestId("development-grid").getAttribute("data-show-corner-flares"),
     ).toBe("false");
-    expect(
-      screen.getByTestId("services-experience").getAttribute("data-skin"),
-    ).toBe("cart");
   });
 });

@@ -115,7 +115,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
       await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_UPDATED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug, salesRole: member.salesRole ?? null } } });
       return { member, salesAccess };
     });
-    revalidateTeamPaths();
+    revalidateTeamPaths(existing.slug, member.slug);
     return NextResponse.json({
       data: serializeTeamMember(member),
       salesAccess: salesAccess.activationToken
@@ -159,7 +159,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
       await tx.teamMember.update({ where: { id }, data: { deletedAt: new Date() } });
       await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_DELETED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug } } });
     });
-    revalidateTeamPaths();
+    revalidateTeamPaths(member.slug);
     return NextResponse.json({ data: { id, deleted: true } });
   } catch (error) {
     if (error instanceof TeamSalesSyncError) {

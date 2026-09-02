@@ -107,6 +107,15 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
           <p className="mt-4 text-base font-normal leading-relaxed text-gray-600 dark:text-white sm:mt-6 sm:text-base">
             {member.bio}
           </p>
+
+          <Link
+            href={`/team/${member.slug}`}
+            aria-label={`View ${member.name}'s profile`}
+            className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand no-underline transition-colors duration-200 hover:text-slate-950 dark:hover:text-white"
+          >
+            View profile
+            <span aria-hidden="true">→</span>
+          </Link>
         </article>
       </HoverCard>
     </StaggerItem>

@@ -719,6 +719,9 @@ model TeamMember {
   department       TeamMemberDepartment?
   legacyDepartment String?
   bio              String?
+  about            String?
+  highlights       String[]                @default([])
+  experience       String?
   image            String?
   email            String?                 @unique
   accessRole       TeamMemberAccessRole?
