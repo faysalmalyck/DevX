@@ -14,8 +14,8 @@ export default function ServicesPage() {
     <>
       <HeroSub
         title="Our|Services"
-        description="Empowering businesses with innovative digital solutions that drive growth, improve efficiency, enhance performance, and create lasting competitive advantage in a rapidly evolving digital world.
-
+        description="
+Learn more about our services and find the right solution for your business. Have a project in mind or need guidance? Contact us today for a consultation.
 "
       />
       <Development

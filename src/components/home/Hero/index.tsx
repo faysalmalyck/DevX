@@ -137,7 +137,7 @@ export default function HeroSection() {
                     onClick={() => setLeadRequest({ intent: "consultation" })}
                     className="w-full max-w-[280px] sm:w-auto sm:max-w-none inline-flex items-center justify-center px-6 sm:px-10 py-5 sm:py-5.5 text-lg font-semibold text-white bg-brand hover:bg-brand rounded-full transition-all duration-200 shadow-lg shadow-brand/25 active:scale-95 cursor-pointer"
                   >
-                    Book a Free Consultation
+                    Get Consultation
                   </button>
                   <Link
                     href="/services"

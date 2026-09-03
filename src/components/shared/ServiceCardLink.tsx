@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { HoverCard, ScrollReveal } from "@/components/motion";
 
 type ServiceCardLinkProps = Readonly<{
@@ -64,19 +63,17 @@ export default function ServiceCardLink({
         <div className="mb-4 h-px bg-slate-200 transition-colors duration-300 group-hover:bg-brand/40 dark:bg-slate-700/80 sm:mb-6" />
 
         <div className="flex flex-1 flex-col px-5 pb-6 sm:px-6 md:px-8">
-          <div className="flex items-start justify-between gap-4">
-            <h3 className="text-lg font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-brand dark:text-white dark:group-hover:text-brand sm:text-xl">
-              {title}
-            </h3>
-            <ArrowUpRight
-              aria-hidden="true"
-              className="mt-1 h-4 w-4 shrink-0 text-brand transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </div>
+          <h3 className="text-lg font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-brand dark:text-white dark:group-hover:text-brand sm:text-xl">
+            {title}
+          </h3>
 
           <p className="mt-2 text-base leading-6 text-slate-600 dark:text-white sm:leading-7">
             {description}
           </p>
+
+          <div className="mt-4 inline-flex items-center text-sm font-semibold text-brand transition-colors duration-200 group-hover:text-brand-dark dark:group-hover:text-white">
+            <span>Explore Service</span>
+          </div>
         </div>
       </Link>
     </HoverCard>
