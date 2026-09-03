@@ -50,10 +50,9 @@ describe("TeamSection", () => {
 
     expect(screen.getByRole("heading", { level: 2, name: "Ada Lovelace" })).toBeTruthy();
     expect(screen.getByText("Principal Engineer")).toBeTruthy();
-    expect(screen.getByText("Engineering")).toBeTruthy();
     expect(screen.getByText(/Ada leads the engineering team/)).toBeTruthy();
     expect(
-      screen.getByRole("link", { name: "View Ada Lovelace's profile" }).getAttribute("href"),
+      screen.getByRole("link", { name: "Ada Lovelace" }).getAttribute("href"),
     ).toBe("/team/ada-lovelace");
     expect(screen.queryByText("Our team profiles will be available soon.")).toBeNull();
     expect(screen.queryByRole("status")).toBeNull();

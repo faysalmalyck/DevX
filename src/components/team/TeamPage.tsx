@@ -56,7 +56,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
   return (
     <StaggerItem className="w-full max-w-[596px]" preset="card">
       <HoverCard className="h-full">
-        <article className="relative flex h-full w-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-8 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-10 lg:p-12">
+        <article className="relative flex h-full w-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-10 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-12 lg:p-16">
           {member.featured ? (
             <span className="absolute right-5 top-5 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-brand dark:bg-brand/15 dark:text-brand">
               Featured
@@ -77,12 +77,16 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
               </div>
               <div className="min-w-0 flex-1">
                 <h2 className="font-semibold tracking-tight text-gray-900 dark:text-white" style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.25rem)", lineHeight: "1.2" }}>
-                  {member.name}
+                  <Link
+                    href={`/team/${member.slug}`}
+                    className="no-underline transition-colors duration-200 hover:text-brand dark:hover:text-brand"
+                  >
+                    {member.name}
+                  </Link>
                 </h2>
-                <p className="mt-0.5 font-normal text-gray-500 dark:text-slate-400" style={{ fontSize: "clamp(0.7rem, 2vw, 1rem)", lineHeight: "1.2" }}>
+                <p className="mt-0.5 font-medium text-gray-500 dark:text-slate-400" style={{ fontSize: "clamp(0.7rem, 2vw, 1rem)", lineHeight: "1.2" }}>
                   {member.role}
                 </p>
-                <p className="mt-1 text-xs font-medium text-brand dark:text-brand">{member.department}</p>
               </div>
             </div>
 
@@ -104,18 +108,9 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
             ) : null}
           </div>
 
-          <p className="mt-4 text-base font-normal leading-relaxed text-gray-600 dark:text-white sm:mt-6 sm:text-base">
+          <p className="mt-2 text-lg font-normal leading-relaxed text-gray-600 dark:text-white sm:mt-6 sm:text-lg">
             {member.bio}
           </p>
-
-          <Link
-            href={`/team/${member.slug}`}
-            aria-label={`View ${member.name}'s profile`}
-            className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand no-underline transition-colors duration-200 hover:text-slate-950 dark:hover:text-white"
-          >
-            View profile
-            <span aria-hidden="true">→</span>
-          </Link>
         </article>
       </HoverCard>
     </StaggerItem>
@@ -128,56 +123,56 @@ export default function TeamSection({ team }: { team: PublicTeamMembersResult })
   return (
     <section className="relative overflow-hidden bg-white pb-4 pt-36 dark:bg-[#181d2b] sm:pb-16 sm:pt-40 lg:pb-24 lg:pt-48">
       <svg
-  aria-hidden="true"
-  className="pointer-events-none absolute -right-0 bottom-40 h-[400px] w-[400px] rotate-350 sm:block"
-  viewBox="0 0 480 480"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <defs>
-    <linearGradient
-      id="teamDiagonalGlowGradient"
-      x1="400"
-      y1="80"
-      x2="80"
-      y2="400"
-      gradientUnits="userSpaceOnUse"
-    >
-      <stop offset="0%" stopColor="#4f6df5" stopOpacity="0" />
-      <stop offset="25%" stopColor="#4f6df5" stopOpacity="0.3" />
-      <stop offset="50%" stopColor="#4360cbff" stopOpacity="0.9" />
-      <stop offset="75%" stopColor="#4f6df5" stopOpacity="0.4" />
-      <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
-    </linearGradient>
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-0 bottom-40 h-[400px] w-[400px] rotate-350 sm:block"
+        viewBox="0 0 480 480"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient
+            id="teamDiagonalGlowGradient"
+            x1="400"
+            y1="80"
+            x2="80"
+            y2="400"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#4f6df5" stopOpacity="0" />
+            <stop offset="25%" stopColor="#4f6df5" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#4360cbff" stopOpacity="0.9" />
+            <stop offset="75%" stopColor="#4f6df5" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#4360cbff" stopOpacity="0" />
+          </linearGradient>
 
-    <filter
-      id="teamDiagonalGlowFilter"
-      x="-30%"
-      y="-30%"
-      width="160%"
-      height="160%"
-    >
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
+          <filter
+            id="teamDiagonalGlowFilter"
+            x="-30%"
+            y="-30%"
+            width="160%"
+            height="160%"
+          >
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
-  <path
-    d="
-      M 400 80
-      A 200 200 0 0 1 80 400
-    "
-    stroke="url(#teamDiagonalGlowGradient)"
-    strokeWidth="4"
-    strokeLinecap="round"
-    fill="none"
-    filter="url(#teamDiagonalGlowFilter)"
-    className="animate-[pulse_6s_ease-in-out_infinite]"
-  />
-</svg>
+        <path
+          d="
+            M 400 80
+            A 200 200 0 0 1 80 400
+          "
+          stroke="url(#teamDiagonalGlowGradient)"
+          strokeWidth="4"
+          strokeLinecap="round"
+          fill="none"
+          filter="url(#teamDiagonalGlowFilter)"
+          className="animate-[pulse_6s_ease-in-out_infinite]"
+        />
+      </svg>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-8 max-w-[650px] text-center sm:mb-12">
