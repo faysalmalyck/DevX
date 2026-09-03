@@ -57,6 +57,7 @@ function emptyForm(): TeamForm {
     department: null,
     bio: null,
     about: null,
+    aboutParagraph2: null,
     highlights: [],
     experience: null,
     image: null,
@@ -544,6 +545,9 @@ function MemberModal({
             </Field>
             <Field label="About" field="about" error={fieldError("about")} wide>
               <textarea id="team-member-about" rows={6} value={draft.about ?? ""} onChange={(event) => onChange("about", event.target.value || null)} className={inputClass("about")} />
+            </Field>
+            <Field label="About Paragraph 2" field="aboutParagraph2" error={fieldError("aboutParagraph2")} wide>
+              <textarea id="team-member-aboutParagraph2" rows={6} value={draft.aboutParagraph2 ?? ""} onChange={(event) => onChange("aboutParagraph2", event.target.value || null)} className={inputClass("aboutParagraph2")} />
             </Field>
             <HighlightsEditor
               highlights={draft.highlights}

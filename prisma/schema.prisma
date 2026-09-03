@@ -720,6 +720,7 @@ model TeamMember {
   legacyDepartment String?
   bio              String?
   about            String?
+  aboutParagraph2   String?
   highlights       String[]                @default([])
   experience       String?
   image            String?

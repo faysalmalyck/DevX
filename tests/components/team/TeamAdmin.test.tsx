@@ -24,6 +24,7 @@ function member(overrides: Partial<TeamMemberRecord> = {}): TeamMemberRecord {
     legacyDepartment: null,
     bio: "An existing complete team member used to keep the initial list rendered.",
     about: null,
+    aboutParagraph2: null,
     highlights: [],
     experience: null,
     image: null,
@@ -164,6 +165,7 @@ describe("TeamAdmin profile status refresh", () => {
     await user.selectOptions(screen.getByLabelText(/Department/), "ENGINEERING");
     await user.type(screen.getByLabelText(/Biography/), "Ada leads the engineering team and maintains the developer platform.");
     await user.type(screen.getByLabelText("About"), "Ada builds the engineering foundations behind DevX.");
+    await user.type(screen.getByLabelText("About Paragraph 2"), "Ada also contributes to open-source computing research.");
     await user.click(screen.getByRole("button", { name: "Add highlight" }));
     await user.type(screen.getByLabelText("Highlight 1"), "Leads the platform team");
     await user.click(screen.getByRole("button", { name: "Add highlight" }));
@@ -177,6 +179,7 @@ describe("TeamAdmin profile status refresh", () => {
       expect(createRequest).toBeDefined();
       expect(JSON.parse(String(createRequest?.[1]?.body))).toMatchObject({
         about: "Ada builds the engineering foundations behind DevX.",
+        aboutParagraph2: "Ada also contributes to open-source computing research.",
         highlights: ["Improves delivery systems", "Leads the platform team"],
         experience: "Ada has led technical teams across product and platform delivery.",
       });

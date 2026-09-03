@@ -12,6 +12,7 @@ function member(overrides: Partial<PublicTeamMember> = {}): PublicTeamMember {
     department: "Engineering",
     bio: "Ada leads the engineering team and maintains the developer platform.",
     about: "Ada builds thoughtful developer experiences.\nShe partners closely with product teams.",
+    aboutParagraph2: null,
     highlights: ["Platform strategy", "Developer advocacy"],
     experience: "Ada has led distributed engineering teams for more than a decade.",
     image: "/images/team/ada.jpg",
@@ -43,7 +44,7 @@ describe("TeamMemberProfile", () => {
     expect(screen.getByText(/Ada builds thoughtful developer experiences/)).toBeTruthy();
     expect(screen.getByText("Platform strategy")).toBeTruthy();
     expect(screen.getByText("Developer advocacy")).toBeTruthy();
-    expect(screen.getByRole("heading", { level: 2, name: "Ada Lovelace’s Experience" })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 3, name: "Ada Lovelace’s Experience" })).toBeTruthy();
     expect(screen.getByText(/distributed engineering teams/)).toBeTruthy();
     const profileCard = screen.getByTestId("team-member-profile-card");
     expect(profileCard.className).toContain("border-[#414b62]");
@@ -59,13 +60,25 @@ describe("TeamMemberProfile", () => {
     expect(screen.queryByLabelText("Ada Lovelace's Facebook")).toBeNull();
   });
 
+  it("renders the second about paragraph directly below the first paragraph when content exists", () => {
+    const profile = member({
+      about: "First about paragraph.",
+      aboutParagraph2: "Second about paragraph.",
+    });
+
+    render(<TeamMemberProfile member={profile} />);
+
+    expect(screen.getByText("First about paragraph.")).toBeTruthy();
+    expect(screen.getByText("Second about paragraph.")).toBeTruthy();
+  });
+
   it("falls back to the directory biography and hides empty optional sections", () => {
-    const profile = member({ about: null, highlights: [], experience: null });
+    const profile = member({ about: null, aboutParagraph2: null, highlights: [], experience: null });
 
     render(<TeamMemberProfile member={profile} />);
 
     expect(screen.getByText(profile.bio)).toBeTruthy();
     expect(screen.queryByRole("heading", { level: 2, name: "Highlights" })).toBeNull();
-    expect(screen.queryByRole("heading", { level: 2, name: "Ada Lovelace’s Experience" })).toBeNull();
+    expect(screen.queryByRole("heading", { level: 3, name: "Ada Lovelace’s Experience" })).toBeNull();
   });
 });

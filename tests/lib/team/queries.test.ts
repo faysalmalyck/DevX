@@ -29,6 +29,7 @@ function databaseMember(overrides: Record<string, unknown> = {}) {
     department: "ENGINEERING",
     bio: "Ada leads the engineering team and maintains the developer platform.",
     about: "Ada builds thoughtful developer experiences.",
+    aboutParagraph2: null,
     highlights: ["Platform strategy", "Developer advocacy"],
     experience: "Ada has led distributed engineering teams for more than a decade.",
     image: "/images/team/ada.jpg",

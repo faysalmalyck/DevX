@@ -25,6 +25,7 @@ function member(overrides: Partial<PublicTeamMember> = {}): PublicTeamMember {
     department: "Engineering",
     bio: "Ada leads the engineering team and maintains the developer platform.",
     about: null,
+    aboutParagraph2: null,
     highlights: [],
     experience: null,
     image: "/images/team/ada.jpg",

@@ -92,6 +92,7 @@ function DecorativeCurve() {
 
 export default function TeamMemberProfile({ member }: { member: PublicTeamMember }) {
   const about = profileText(member.about) ?? member.bio;
+  const aboutParagraph2 = profileText(member.aboutParagraph2);
   const highlights = member.highlights
     .map((highlight) => highlight.trim())
     .filter(Boolean);
@@ -158,40 +159,47 @@ export default function TeamMemberProfile({ member }: { member: PublicTeamMember
               ) : null}
             </header>
 
-            <div className="mt-2 space-y-2 sm:mt-1">
-              <section aria-labelledby="team-member-about">
-                <h2 id="team-member-about" className="text-xl font-bold tracking-tight text-white sm:text-2xl">
-                  About {member.name}
-                </h2>
-                <p className="mt-4 whitespace-pre-line text-base leading-7 text-white sm:mt-8 sm:text-xl sm:leading-9">
+            {/* Combined Single Section */}
+            <section aria-labelledby="team-member-details" className="mt-8 space-y-6 sm:mt-10">
+              <h2 id="team-member-details" className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+                About {member.name}
+              </h2>
+
+              {/* About Paragraph 1 */}
+              {about ? (
+                <p className="text-base leading-7 text-slate-200 sm:text-xl sm:leading-9">
                   {about}
                 </p>
-              </section>
-
-              {highlights.length > 0 ? (
-                <section aria-labelledby="team-member-highlights">
-                  <h2 id="team-member-highlights" className="mt-6 text-xl font-semibold tracking-tight text-white sm:mt-8 sm:text-3xl">
-                    Highlights
-                  </h2>
-                  <ul className="mt-4 list-disc space-y-3 pl-6 text-base leading-8 text-[#c9d0e1] marker:text-brand sm:text-lg sm:leading-9">
-                    {highlights.map((highlight, index) => (
-                      <li key={`${highlight}-${index}`}>{highlight}</li>
-                    ))}
-                  </ul>
-                </section>
               ) : null}
 
+              {/* About Paragraph 2 */}
+              {aboutParagraph2 ? (
+                <p className="text-base leading-7 text-slate-200 sm:text-xl sm:leading-9">
+                  {aboutParagraph2}
+                </p>
+              ) : null}
+
+              {/* Highlights List with white dots shifted further right */}
+              {highlights.length > 0 ? (
+                <ul className="list-disc space-y-3 pl-10 text-base leading-4 text-slate-200 marker:text-white sm:text-lg sm:leading-9">
+                  {highlights.map((highlight, index) => (
+                    <li key={`${highlight}-${index}`}>{highlight}</li>
+                  ))}
+                </ul>
+              ) : null}
+
+              {/* Experience Subheading + Paragraph */}
               {experience ? (
-                <section aria-labelledby="team-member-experience">
-                  <h2 id="team-member-experience" className="mt-6 text-xl font-semibold tracking-tight text-white sm:mt-8 sm:text-3xl">
+                <div className="pt-6">
+                  <h3 className="text-lg font-extrabold tracking-tight text-white sm:text-xl">
                     {member.name}&rsquo;s Experience
-                  </h2>
-                  <p className="mt-4 whitespace-pre-line text-base leading-8 text-[#c9d0e1] sm:text-lg sm:leading-9">
+                  </h3>
+                  <p className="mt-8 whitespace-pre-line text-base leading-7 text-slate-200 sm:text-xl sm:leading-9">
                     {experience}
                   </p>
-                </section>
+                </div>
               ) : null}
-            </div>
+            </section>
           </article>
         </div>
       </div>

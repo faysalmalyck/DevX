@@ -11,7 +11,7 @@ import {
  */
 export type SalesTeamMemberRecord = Omit<
   TeamMemberRecord,
-  "about" | "highlights" | "experience"
+  "about" | "aboutParagraph2" | "highlights" | "experience"
 >;
 
 export function serializeSalesTeamMember(
@@ -19,6 +19,7 @@ export function serializeSalesTeamMember(
 ): SalesTeamMemberRecord {
   const {
     about: _about,
+    aboutParagraph2: _aboutParagraph2,
     highlights: _highlights,
     experience: _experience,
     ...salesMember

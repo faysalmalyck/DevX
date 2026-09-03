@@ -41,11 +41,13 @@ describe("team profile content validation", () => {
     const parsed = teamMemberSchema.parse({
       ...directoryProfile,
       about: "  Avery leads thoughtful technical strategy across the organization.  ",
+      aboutParagraph2: "  Avery also oversees architecture across platform services.  ",
       highlights: ["  Platform strategy  ", "Developer experience"],
       experience: "  Avery has led product and platform teams for more than a decade.  ",
     });
 
     expect(parsed.about).toBe("Avery leads thoughtful technical strategy across the organization.");
+    expect(parsed.aboutParagraph2).toBe("Avery also oversees architecture across platform services.");
     expect(parsed.highlights).toEqual(["Platform strategy", "Developer experience"]);
     expect(parsed.experience).toBe("Avery has led product and platform teams for more than a decade.");
     expect(deriveTeamMemberProfileStatus(parsed)).toBe("COMPLETE");
@@ -55,6 +57,7 @@ describe("team profile content validation", () => {
     const parsed = teamMemberSchema.parse(directoryProfile);
 
     expect(parsed.about).toBeNull();
+    expect(parsed.aboutParagraph2).toBeNull();
     expect(parsed.highlights).toEqual([]);
     expect(parsed.experience).toBeNull();
     expect(deriveTeamMemberProfileStatus(parsed)).toBe("COMPLETE");
@@ -79,6 +82,7 @@ describe("team profile content validation", () => {
   it("rejects long-form profile writes from the Sales editor", () => {
     for (const [field, value] of Object.entries({
       about: "Sales users cannot edit this.",
+      aboutParagraph2: "Sales users cannot edit this.",
       highlights: ["Sales users cannot edit this."],
       experience: "Sales users cannot edit this.",
     })) {
@@ -102,6 +106,7 @@ describe("team profile content validation", () => {
     if (!parsed.success) return;
     expect(parsed.data).not.toHaveProperty("admin");
     expect(parsed.data.about).toBeUndefined();
+    expect(parsed.data.aboutParagraph2).toBeUndefined();
     expect(parsed.data.highlights).toBeUndefined();
     expect(parsed.data.experience).toBeUndefined();
   });
@@ -116,6 +121,7 @@ describe("team profile content validation", () => {
       legacyDepartment: null,
       bio: "Avery builds trusted relationships and creates useful commercial opportunities.",
       about: "A Team administrator authored this long-form profile.",
+      aboutParagraph2: "Second paragraph content from administrator.",
       highlights: ["Strategic accounts", "Trusted discovery"],
       experience: "Avery has extensive commercial experience.",
       image: null,
@@ -144,6 +150,7 @@ describe("team profile content validation", () => {
       bio: source.bio,
     });
     expect(serialized).not.toHaveProperty("about");
+    expect(serialized).not.toHaveProperty("aboutParagraph2");
     expect(serialized).not.toHaveProperty("highlights");
     expect(serialized).not.toHaveProperty("experience");
   });

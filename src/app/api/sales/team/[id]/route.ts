@@ -38,6 +38,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
       const {
         accessRole,
         about: _about,
+        aboutParagraph2: _aboutParagraph2,
         highlights: _highlights,
         experience: _experience,
         ...profile

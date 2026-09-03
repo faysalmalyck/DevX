@@ -16,6 +16,7 @@ export type TeamMemberRecord = {
   legacyDepartment: string | null;
   bio: string | null;
   about: string | null;
+  aboutParagraph2: string | null;
   highlights: string[];
   experience: string | null;
   image: string | null;
@@ -49,6 +50,7 @@ export const publicTeamMemberSelect = {
   department: true,
   bio: true,
   about: true,
+  aboutParagraph2: true,
   highlights: true,
   experience: true,
   image: true,
@@ -66,7 +68,7 @@ type PublicTeamMemberSource = Prisma.TeamMemberGetPayload<{
 
 export type PublicTeamMember = Omit<
   PublicTeamMemberSource,
-  "name" | "slug" | "role" | "department" | "bio" | "about" | "highlights" | "experience"
+  "name" | "slug" | "role" | "department" | "bio" | "about" | "aboutParagraph2" | "highlights" | "experience"
 > & {
   name: string;
   slug: string;
@@ -74,6 +76,7 @@ export type PublicTeamMember = Omit<
   department: string;
   bio: string;
   about: string | null;
+  aboutParagraph2: string | null;
   highlights: string[];
   experience: string | null;
 };
@@ -103,6 +106,7 @@ export function serializePublicTeamMember(member: PublicTeamMemberSource): Publi
   if (!department) return null;
 
   const about = member.about?.trim() || null;
+  const aboutParagraph2 = member.aboutParagraph2?.trim() || null;
   const highlights = Array.isArray(member.highlights)
     ? member.highlights.map((highlight) => highlight.trim()).filter(Boolean)
     : [];
@@ -116,6 +120,7 @@ export function serializePublicTeamMember(member: PublicTeamMemberSource): Publi
     department,
     bio: member.bio,
     about,
+    aboutParagraph2,
     highlights,
     experience,
   };
@@ -130,6 +135,7 @@ export function serializeTeamMember(member: {
   legacyDepartment: string | null;
   bio: string | null;
   about: string | null;
+  aboutParagraph2: string | null;
   highlights: string[];
   experience: string | null;
   image: string | null;

@@ -198,6 +198,7 @@ const teamMemberDraftShape = {
   department: optionalDraftDepartment,
   bio: optionalDraftText("Biography", 10, 5_000),
   about: optionalText(5_000),
+  aboutParagraph2: optionalText(5_000),
   highlights: optionalHighlights,
   experience: optionalText(5_000),
   image: optionalImage,
@@ -267,6 +268,7 @@ export const teamMemberSalesSchema = z
   .object({
     ...teamMemberDraftShape,
     about: salesRestrictedProfileField,
+    aboutParagraph2: salesRestrictedProfileField,
     highlights: salesRestrictedProfileField,
     experience: salesRestrictedProfileField,
   })

@@ -66,6 +66,7 @@ export async function POST(request: NextRequest) {
       const {
         accessRole,
         about: _about,
+        aboutParagraph2: _aboutParagraph2,
         highlights: _highlights,
         experience: _experience,
         ...profile
