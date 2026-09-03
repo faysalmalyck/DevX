@@ -114,7 +114,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
       });
       await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_UPDATED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug, salesRole: member.salesRole ?? null } } });
       return { member, salesAccess };
-    });
+    }, { maxWait: 5000, timeout: 15000 });
     revalidateTeamPaths(existing.slug, member.slug);
     return NextResponse.json({
       data: serializeTeamMember(member),
@@ -123,6 +123,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
         : { status: salesAccess.action },
     });
   } catch (error) {
+    console.error(`PATCH /api/admin/team/[id] error:`, error);
     if (error instanceof TeamSalesSyncError) {
       return NextResponse.json({ error: error.message, code: "SALES_SYNC_FAILED" }, { status: error.status });
     }
@@ -158,10 +159,11 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
       });
       await tx.teamMember.update({ where: { id }, data: { deletedAt: new Date() } });
       await tx.auditLog.create({ data: { actorId: authorized.session.id, action: "TEAM_MEMBER_DELETED", entity: "TeamMember", entityId: id, metadata: { slug: member.slug } } });
-    });
+    }, { maxWait: 5000, timeout: 15000 });
     revalidateTeamPaths(member.slug);
     return NextResponse.json({ data: { id, deleted: true } });
   } catch (error) {
+    console.error(`DELETE /api/admin/team/[id] error:`, error);
     if (error instanceof TeamSalesSyncError) {
       return NextResponse.json({ error: error.message, code: "SALES_SYNC_FAILED" }, { status: error.status });
     }
