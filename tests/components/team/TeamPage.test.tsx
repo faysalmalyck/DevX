@@ -56,6 +56,28 @@ describe("TeamSection", () => {
     ).toBe("/team/ada-lovelace");
     expect(screen.queryByText("Our team profiles will be available soon.")).toBeNull();
     expect(screen.queryByRole("status")).toBeNull();
+    const card = screen.getByRole("article");
+    for (const token of [
+      "group",
+      "transition-all",
+      "duration-300",
+      "ease-out",
+      "hover:scale-[0.99]",
+      "hover:opacity-80",
+      "hover:border-transparent",
+      "focus-visible:outline-2",
+      "focus-visible:outline-offset-4",
+      "focus-visible:outline-brand",
+      "dark:border-slate-700",
+      "dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)]",
+      "dark:shadow-2xl",
+      "dark:hover:border-transparent",
+    ]) {
+      expect(card.className).toContain(token);
+    }
+    const imageWrapper = screen.getByRole("img", { name: "Ada Lovelace" }).parentElement?.parentElement;
+    expect(imageWrapper?.className).toContain("group-hover:border-blue-600");
+    expect(screen.getByRole("link", { name: "Ada Lovelace" }).className).toContain("group-hover:text-blue-600");
     const glow = document.getElementById("teamDiagonalGlowGradient")?.closest("svg");
     expect(glow?.getAttribute("aria-hidden")).toBe("true");
     expect(glow?.className.baseVal).toContain("pointer-events-none");

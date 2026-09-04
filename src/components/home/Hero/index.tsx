@@ -12,8 +12,6 @@ import LeadCaptureDialog, {
   type LeadRequest,
 } from "@/components/home/final-cta/LeadCaptureDialog";
 
-import AmbientFlare from "@/components/shared/AmbientFlare";
-
 export default function HeroSection() {
   const [leadRequest, setLeadRequest] = useState<LeadRequest>(null);
 
@@ -43,7 +41,6 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-white pb-12 pt-28 transition-colors duration-300 dark:bg-[#181d2b] sm:pb-20 sm:pt-36 lg:pb-32 lg:pt-44">
-        <AmbientFlare variant="hero" className="pointer-events-none absolute -top-[10%] lg:-right-[6%]" />
         {/* Background Graphic Element */}
         <div
           aria-hidden="true"
@@ -101,7 +98,7 @@ export default function HeroSection() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-start">
             <div className="w-full lg:w-[677px] text-center lg:text-left pt-2 sm:pt-6 lg:pt-24">
-              <div className="max-w-[550px] mx-auto lg:mx-0">
+              <div className="max-w-[650px] mx-auto lg:mx-0">
                 {/* Main Heading */}
                 <ScrollReveal preset="hero">
                   <h1 className="text-balance text-4xl leading-[1.15] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
@@ -192,4 +189,3 @@ export default function HeroSection() {
     </>
   );
 }
-

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { HoverCard, ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 import type { PublicTeamMember, PublicTeamMembersResult } from "@/lib/team/types";
 import { getImgPath } from "@/utils/image";
 
@@ -55,8 +55,8 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
 
   return (
     <StaggerItem className="w-full max-w-[596px]" preset="card">
-      <HoverCard className="h-full">
-        <article className="relative flex h-full w-full flex-col justify-between rounded-lg border border-gray-300 bg-gray-50/50 p-10 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336] sm:p-12 lg:p-16">
+      <div className="h-full">
+        <article className="group relative flex h-full w-full flex-col justify-between overflow-hidden rounded-lg border border-slate-200 bg-slate-50 p-10 shadow-xl transition-all duration-300 ease-out hover:scale-[0.99] hover:opacity-80 hover:border-transparent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:border-slate-700 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl dark:hover:border-transparent sm:p-12 lg:p-16">
           {member.featured ? (
             <span className="absolute right-5 top-5 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-brand dark:bg-brand/15 dark:text-brand">
               Featured
@@ -65,7 +65,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
 
           <div className="flex items-start justify-between gap-3 sm:gap-4">
             <div className="flex min-w-0 items-center space-x-3 sm:space-x-4">
-              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16">
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-transparent transition-colors duration-300 group-hover:border-blue-600 sm:h-16 sm:w-16">
                 <ScrollReveal className="h-full w-full" preset="image">
                   <img
                     src={teamImageSource(member.image)}
@@ -79,7 +79,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
                 <h2 className="font-semibold tracking-tight text-gray-900 dark:text-white" style={{ fontSize: "clamp(0.875rem, 2.5vw, 1.25rem)", lineHeight: "1.2" }}>
                   <Link
                     href={`/team/${member.slug}`}
-                    className="no-underline transition-colors duration-200 hover:text-brand dark:hover:text-brand"
+                    className="no-underline transition-colors duration-300 hover:text-blue-600 group-hover:text-blue-600 dark:group-hover:text-blue-600"
                   >
                     {member.name}
                   </Link>
@@ -112,7 +112,7 @@ function TeamMemberCard({ member }: { member: PublicTeamMember }) {
             {member.bio}
           </p>
         </article>
-      </HoverCard>
+      </div>
     </StaggerItem>
   );
 }

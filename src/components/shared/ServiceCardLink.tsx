@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { HoverCard, ScrollReveal } from "@/components/motion";
+import { ScrollReveal } from "@/components/motion";
 
 type ServiceCardLinkProps = Readonly<{
   id: string;
@@ -27,12 +27,26 @@ export default function ServiceCardLink({
   testId,
 }: ServiceCardLinkProps) {
   return (
-    <HoverCard className="h-full">
+    <div className="h-full">
       <Link
         href={href}
         data-service-card-link={id}
         data-testid={testId}
-        className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_12px_30px_#1c2b47] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand dark:border-slate-700/80 dark:bg-[#1d2436]"
+        className="
+  group relative flex h-full flex-col overflow-hidden rounded-lg
+  border border-slate-200 bg-slate-50 shadow-xl
+  transition-all duration-300 ease-out
+  hover:scale-[0.99]
+  hover:opacity-80
+  hover:border-transparent
+  focus-visible:outline-2
+  focus-visible:outline-offset-4
+  focus-visible:outline-brand
+  dark:border-slate-700
+  dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)]
+  dark:shadow-2xl
+  dark:hover:border-transparent
+"
       >
         <div className="relative flex h-52 w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 dark:bg-transparent sm:h-56 md:h-64">
           <div
@@ -44,7 +58,7 @@ export default function ServiceCardLink({
             }}
           />
 
-          <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-100 dark:from-brand/5" />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent opacity-60 dark:from-brand/5" />
 
           <ScrollReveal className="absolute inset-0" preset="image">
             <div className="relative h-full w-full">
@@ -60,22 +74,24 @@ export default function ServiceCardLink({
           </ScrollReveal>
         </div>
 
-        <div className="mb-4 h-px bg-slate-200 transition-colors duration-300 group-hover:bg-brand/40 dark:bg-slate-700/80 sm:mb-6" />
+        <div
+          className="mb-6 h-[2px] w-full sm:mb-6"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #1e2539 0%, #191f31 100%)",
+          }}
+        />
 
-        <div className="flex flex-1 flex-col px-5 pb-6 sm:px-6 md:px-8">
-          <h3 className="text-lg font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-brand dark:text-white dark:group-hover:text-brand sm:text-xl">
+        <div className="flex flex-1 flex-col px-5 pt-3 pb-12 sm:px-6 md:px-8">
+          <h3 className="text-[1.3rem] font-extrabold leading-tight tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-600">
             {title}
           </h3>
 
-          <p className="mt-2 text-base leading-6 text-slate-600 dark:text-white sm:leading-7">
+          <p className="mt-2 text-lg font-medium leading-6 text-slate-600 dark:text-white sm:leading-7">
             {description}
           </p>
-
-          <div className="mt-4 inline-flex items-center text-sm font-semibold text-brand transition-colors duration-200 group-hover:text-brand-dark dark:group-hover:text-white">
-            <span>Explore Service</span>
-          </div>
         </div>
       </Link>
-    </HoverCard>
+    </div>
   );
 }

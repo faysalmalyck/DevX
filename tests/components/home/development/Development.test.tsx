@@ -118,6 +118,19 @@ describe("Development service cards", () => {
     expect(
       Array.from(serviceLinks).map((link) => link.getAttribute("href")),
     ).toEqual(servicesData.map((service) => service.href));
+    for (const link of serviceLinks) {
+      for (const token of [
+        "rounded-lg",
+        "border-slate-200",
+        "bg-slate-50",
+        "shadow-xl",
+        "dark:border-slate-600/80",
+        "dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)]",
+        "dark:shadow-2xl",
+      ]) {
+        expect(link.className).toContain(token);
+      }
+    }
     expect(screen.getAllByRole("link")).toHaveLength(10);
     expect(
       screen.getByRole("heading", {

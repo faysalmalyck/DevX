@@ -126,8 +126,11 @@ describe("SolutionDetail", () => {
         [
           "rounded-lg",
           "border-slate-200",
-          "shadow-sm",
-          "dark:border-slate-700/80",
+          "bg-slate-50",
+          "shadow-xl",
+          "dark:border-slate-600/80",
+          "dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)]",
+          "dark:shadow-2xl",
         ].every((token) => link.className.includes(token)),
       ),
     ).toBe(true);

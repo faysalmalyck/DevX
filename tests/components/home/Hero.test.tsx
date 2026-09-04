@@ -27,7 +27,7 @@ vi.mock("next/image", () => ({
 }));
 
 describe("Homepage hero", () => {
-  it("clips one broad flare behind the visual and content", () => {
+  it("keeps the visual free of an external glow and widens the heading", () => {
     render(<HeroSection />);
 
     const heading = screen.getByRole("heading", {
@@ -35,13 +35,13 @@ describe("Homepage hero", () => {
       name: /We Build the Technology Behind Growing Businesses/i,
     });
     const section = heading.closest("section");
-    const flare = section?.querySelector("[data-ambient-flare]");
 
     expect(section?.className).toContain("isolate");
     expect(section?.className).toContain("overflow-hidden");
-    expect(section?.querySelectorAll("[data-ambient-flare]")).toHaveLength(1);
-    expect(flare?.getAttribute("data-variant")).toBe("hero");
-    expect(flare?.className).toContain("lg:-right-[6%]");
+    expect(section?.querySelectorAll("[data-ambient-flare]")).toHaveLength(0);
+    expect(heading.parentElement?.parentElement?.className).toContain(
+      "max-w-[650px]",
+    );
     expect(heading.closest(".z-10")).toBeTruthy();
   });
 });
