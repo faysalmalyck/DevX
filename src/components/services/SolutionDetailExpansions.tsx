@@ -147,7 +147,7 @@ export function TechnologyOptionsSection({ solution }: SolutionDetailExpansionsP
                         data-testid="solution-technology-card"
                         className={`flex h-full gap-4 p-5 sm:p-6 ${addToCartCardSkin}`}
                       >
-                        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-brand/20 bg-brand/[0.06] text-brand dark:border-cyan-300/20 dark:bg-cyan-300/[0.08] dark:text-cyan-200 sm:h-14 sm:w-14">
+                        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-transparent text-brand dark:text-cyan-200 sm:h-14 sm:w-14">
                           <TechnologyIcon icon={technology.icon} />
                         </span>
                         <div className="min-w-0">
@@ -205,7 +205,7 @@ export function ImplementationOptionsSection({ solution }: SolutionDetailExpansi
                       return (
                         <li
                           key={technology.id}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-white/[0.06] dark:text-slate-200"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-white/[0.06] dark:text-slate-200"
                         >
                           <TechnologyIcon icon={technology.icon} className="h-3.5 w-3.5" />
                           {technology.name}

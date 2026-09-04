@@ -39,4 +39,11 @@ export const techStack: TechItem[] = [
   { name: 'Supabase', src: 'https://img.icons8.com/?size=100&id=grZaE9tjqDyr&format=png&color=000000' },
   { name: 'Firebase', src: 'https://img.icons8.com/?size=100&id=ROMfFZ1tMhpk&format=png&color=000000' },
   { name: 'Stripe', src: 'https://img.icons8.com/?size=100&id=7IT9Vpb5ZZUC&format=png&color=000000' },
+  { name: 'TypeScript', src: 'https://img.icons8.com/?size=100&id=nCj4PvnCO0tZ&format=png&color=000000' },
+  { name: 'Langchain', src: 'https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/langchain-ipuhh4qo1jz5ssl4x0g2a.png/langchain-dp1uxj2zn3752pntqnpfu2.png?_a=DATAiZAAZAA0' },
+  { name: 'n8n', src: 'https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/n8n-color.png' },
+  { name: 'Redis', src: 'https://img.icons8.com/?size=100&id=RMtSR4z10z2l&format=png&color=000000' },
+  { name: 'Figma', src: 'https://img.icons8.com/?size=100&id=zfHRZ6i1Wg0U&format=png&color=000000' },
+  { name: 'Make', src: 'https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/make-color.png' },
+  { name: 'Hubspot', src: 'https://img.icons8.com/?size=100&id=Xq3RA1kWzz3X&format=png&color=000000' },
 ]
