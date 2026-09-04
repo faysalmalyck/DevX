@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { DurationOption, defaultAddToCartData } from "@/data/pricingdata";
 import { useCart, type PricingPlan, type PurchaseDetails } from "@/contexts/CartContext";
+import { addToCartCardSkin } from "@/components/shared/addToCartCardStyles";
 
 export interface AddToCartCardProps {
   cardTitle?: string;
@@ -62,7 +63,7 @@ export default function AddToCartCard({
   };
 
   return (
-    <div className="w-full max-w-2xl lg:max-w-none min-h-[500px] sm:min-h-[620px] rounded-lg border border-slate-200 dark:border-slate-600/80 bg-slate-50 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] p-6 sm:p-8 lg:p-10 shadow-xl dark:shadow-2xl flex flex-col justify-between transition-colors duration-300">
+    <div className={`flex min-h-[500px] w-full max-w-2xl flex-col justify-between p-6 sm:min-h-[620px] sm:p-8 lg:max-w-none lg:p-10 ${addToCartCardSkin}`}>
       <div>
         <div className="mb-6 mt-4 sm:mt-8 px-2 sm:px-4 space-y-2">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">

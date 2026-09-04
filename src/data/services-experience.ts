@@ -80,6 +80,8 @@ export const businessProblems: readonly SelectableServiceItem[] = [
   },
 ] as const;
 
+export type BusinessProblemId = (typeof businessProblems)[number]["id"];
+
 export const modernizationCapabilities: readonly SelectableServiceItem[] = [
   {
     id: "software-optimization",

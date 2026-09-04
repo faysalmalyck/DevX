@@ -4,6 +4,8 @@ import {
   serviceSolutions,
   serviceSolutionSlugs,
 } from "@/data/service-solutions";
+import { getServiceTechnologyById } from "@/data/service-technologies";
+import { businessProblems } from "@/data/services-experience";
 
 describe("service solutions data", () => {
   it("defines exactly the ten ordered solution routes", () => {
@@ -35,6 +37,10 @@ describe("service solutions data", () => {
       expect(solution.challenge.title).toBeTruthy();
       expect(solution.challenge.description).toBeTruthy();
       expect(solution.capabilities).toHaveLength(4);
+      expect(solution.technologyOptions.length).toBeGreaterThan(0);
+      expect(solution.implementationOptions).toHaveLength(2);
+      expect(solution.problemSolutions).toHaveLength(3);
+      expect(solution.useCases).toHaveLength(3);
       expect(solution.outcomes).toHaveLength(3);
       expect(solution.delivery).toHaveLength(3);
       expect(solution.related).toHaveLength(3);
@@ -43,6 +49,33 @@ describe("service solutions data", () => {
 
       for (const relatedSlug of solution.related) {
         expect(getServiceSolutionBySlug(relatedSlug)).toBeDefined();
+      }
+
+      for (const option of solution.technologyOptions) {
+        expect(getServiceTechnologyById(option.technologyId)).toBeDefined();
+        expect(option.fit).toBeTruthy();
+      }
+
+      for (const option of solution.implementationOptions) {
+        expect(option.title).toBeTruthy();
+        expect(option.bestFor).toBeTruthy();
+        expect(option.description).toBeTruthy();
+        expect(option.technologyIds.length).toBeGreaterThan(0);
+        for (const technologyId of option.technologyIds) {
+          expect(getServiceTechnologyById(technologyId)).toBeDefined();
+        }
+      }
+
+      for (const problemSolution of solution.problemSolutions) {
+        expect(
+          businessProblems.some((problem) => problem.id === problemSolution.problemId),
+        ).toBe(true);
+        expect(problemSolution.solution).toBeTruthy();
+      }
+
+      for (const useCase of solution.useCases) {
+        expect(useCase.title).toBeTruthy();
+        expect(useCase.description).toBeTruthy();
       }
     }
   });
@@ -58,4 +91,3 @@ describe("service solutions data", () => {
     }
   });
 });
-

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
+import { addToCartCardSkin } from "@/components/shared/addToCartCardStyles";
 
 type ServiceCardLinkProps = Readonly<{
   id: string;
@@ -15,6 +16,7 @@ type ServiceCardLinkProps = Readonly<{
   href: string;
   priority?: boolean;
   testId?: string;
+  skin?: "service" | "add-to-cart";
 }>;
 
 export default function ServiceCardLink({
@@ -25,6 +27,7 @@ export default function ServiceCardLink({
   href,
   priority = false,
   testId,
+  skin = "service",
 }: ServiceCardLinkProps) {
   return (
     <div className="h-full">
@@ -32,7 +35,13 @@ export default function ServiceCardLink({
         href={href}
         data-service-card-link={id}
         data-testid={testId}
-        className="
+        className={skin === "add-to-cart" ? `
+  group relative flex h-full flex-col overflow-hidden
+  ${addToCartCardSkin}
+  focus-visible:outline-2
+  focus-visible:outline-offset-4
+  focus-visible:outline-brand
+` : `
   group relative flex h-full flex-col overflow-hidden rounded-lg
   border border-slate-200 bg-slate-50 shadow-xl
   transition-all duration-300 ease-out
@@ -46,7 +55,7 @@ export default function ServiceCardLink({
   dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)]
   dark:shadow-2xl
   dark:hover:border-transparent
-"
+`}
       >
         <div className="relative flex h-52 w-full items-center justify-center overflow-hidden rounded-t-xl bg-slate-100/50 dark:bg-transparent sm:h-56 md:h-64">
           <div

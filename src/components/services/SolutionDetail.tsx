@@ -15,6 +15,13 @@ import { servicesData } from "@/data/services";
 import ServiceCardLink from "@/components/shared/ServiceCardLink";
 import SolutionIcon from "./SolutionIcon";
 import SolutionLeadCTA from "./SolutionLeadCTA";
+import { addToCartCardSkin } from "@/components/shared/addToCartCardStyles";
+import {
+  ImplementationOptionsSection,
+  ProblemSolutionsSection,
+  ServiceUseCasesSection,
+  TechnologyOptionsSection,
+} from "./SolutionDetailExpansions";
 
 type SolutionDetailProps = Readonly<{
   solution: ServiceSolution;
@@ -156,6 +163,7 @@ function RelatedSolutions({ solution }: SolutionDetailProps) {
                 image={related.icon}
                 href={related.href}
                 testId="related-service-card"
+                skin="add-to-cart"
               />
             </StaggerItem>
           ))}
@@ -166,11 +174,25 @@ function RelatedSolutions({ solution }: SolutionDetailProps) {
 }
 
 export default function SolutionDetail({ solution }: SolutionDetailProps) {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${solution.title} Services`,
+    description: solution.summary,
+    url: `https://DevXinnovation.vercel.app/services/${solution.slug}`,
+  };
+
   return (
     <main
       data-testid="solution-article-shell"
       className="min-h-screen overflow-hidden bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-darkmode dark:text-white"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="relative overflow-hidden px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
         <div className="pointer-events-none absolute -right-52 top-10 h-[34rem] w-[34rem] rounded-full bg-brand/10 blur-3xl dark:bg-brand/15" />
         <div className="relative mx-auto max-w-7xl">
@@ -221,6 +243,8 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
         </div>
       </section>
 
+      <TechnologyOptionsSection solution={solution} />
+
       <section
         id="capabilities"
         className="scroll-mt-28 bg-transparent px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
@@ -228,7 +252,7 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
         <div className="mx-auto max-w-4xl sm:px-6">
           <ScrollReveal className="max-w-3xl" preset="heading">
             <h2 className="text-balance text-2xl font-medium tracking-tight text-slate-900 dark:text-white sm:text-3xl lg:text-4xl">
-              Capabilities shaped around the outcome
+              Solutions we provide
             </h2>
             <p className="mt-5 text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
               {solution.summary}
@@ -241,7 +265,7 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
                 <HoverCard className="h-full">
                   <article
                     data-testid="solution-capability-card"
-                    className="flex h-full gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#1d2436] dark:hover:border-blue-400/50 sm:p-7"
+                    className={`flex h-full gap-5 p-6 sm:p-7 ${addToCartCardSkin}`}
                   >
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand text-sm font-semibold text-white">
                       {String(index + 1).padStart(2, "0")}
@@ -262,6 +286,10 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
         </div>
       </section>
 
+      <ServiceUseCasesSection solution={solution} />
+      <ProblemSolutionsSection solution={solution} />
+      <ImplementationOptionsSection solution={solution} />
+
       <section className="bg-transparent px-4 py-12 text-slate-900 dark:text-white sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-4xl sm:px-6">
           <ScrollReveal className="max-w-3xl" preset="heading">
@@ -276,7 +304,7 @@ export default function SolutionDetail({ solution }: SolutionDetailProps) {
                 <HoverCard className="h-full">
                   <article
                     data-testid="solution-outcome-card"
-                    className="h-full rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:border-brand/40 hover:shadow-[0_12px_30px_rgba(54,88,255,0.16)] dark:border-slate-700/80 dark:bg-[#1d2436] dark:hover:border-blue-400/50 sm:p-8"
+                    className={`h-full p-7 sm:p-8 ${addToCartCardSkin}`}
                   >
                     <span className="grid h-10 w-10 place-items-center rounded-full border border-brand/40 bg-brand/10 text-brand">
                       <Check className="h-5 w-5" strokeWidth={2} />

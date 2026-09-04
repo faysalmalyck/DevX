@@ -28,6 +28,28 @@ export type ServiceSolutionCapability = Readonly<{
   description: string;
 }>;
 
+export type ServiceTechnologyOption = Readonly<{
+  technologyId: TechnologyId;
+  fit: string;
+}>;
+
+export type ServiceImplementationOption = Readonly<{
+  title: string;
+  bestFor: string;
+  description: string;
+  technologyIds: readonly TechnologyId[];
+}>;
+
+export type ServiceProblemSolution = Readonly<{
+  problemId: BusinessProblemId;
+  solution: string;
+}>;
+
+export type ServiceUseCase = Readonly<{
+  title: string;
+  description: string;
+}>;
+
 export type ServiceSolutionOutcome = Readonly<{
   title: string;
   description: string;
@@ -53,6 +75,10 @@ export type ServiceSolution = Readonly<{
     description: string;
   }>;
   capabilities: readonly ServiceSolutionCapability[];
+  technologyOptions: readonly ServiceTechnologyOption[];
+  implementationOptions: readonly ServiceImplementationOption[];
+  problemSolutions: readonly ServiceProblemSolution[];
+  useCases: readonly ServiceUseCase[];
   outcomes: readonly ServiceSolutionOutcome[];
   delivery: readonly [
     ServiceSolutionStep,
@@ -66,7 +92,17 @@ export type ServiceSolution = Readonly<{
   ];
 }>;
 
-export const serviceSolutions = [
+type ServiceSolutionBase = Omit<
+  ServiceSolution,
+  "technologyOptions" | "implementationOptions" | "problemSolutions" | "useCases"
+>;
+
+type ServiceSolutionExpansion = Pick<
+  ServiceSolution,
+  "technologyOptions" | "implementationOptions" | "problemSolutions" | "useCases"
+>;
+
+const serviceSolutionBase = [
   {
     slug: "custom-software",
     title: "Custom Software",
@@ -828,10 +864,276 @@ export const serviceSolutions = [
     ],
     related: ["system-integration", "ai-solutions", "business-automation"],
   },
-] as const satisfies readonly ServiceSolution[];
+] as const satisfies readonly ServiceSolutionBase[];
+
+const serviceSolutionExpansions = {
+  "custom-software": {
+    technologyOptions: [
+      { technologyId: "react", fit: "Interactive portals, dashboards, and operational interfaces." },
+      { technologyId: "nextjs", fit: "High-performance web products that benefit from a production React framework." },
+      { technologyId: "angular", fit: "Structured, feature-rich interfaces for larger application teams." },
+      { technologyId: "vue", fit: "Adaptable frontend delivery for evolving product interfaces." },
+      { technologyId: "typescript", fit: "Maintainable application code across frontend and service boundaries." },
+      { technologyId: "nodejs", fit: "Application APIs, workflow services, and integration layers." },
+      { technologyId: "nestjs", fit: "Structured Node.js APIs with clear modules and conventions." },
+      { technologyId: "dotnet", fit: "Enterprise services with established Microsoft ecosystems." },
+      { technologyId: "cpp", fit: "Specialized high-performance services and systems work." },
+      { technologyId: "postgresql", fit: "Structured operational data, reporting, and transactional workflows." },
+    ],
+    implementationOptions: [
+      { title: "Purpose-built platform", bestFor: "Teams with distinct workflows that off-the-shelf tools cannot support.", description: "Design and engineer a tailored product around roles, approvals, records, reporting, and integrations.", technologyIds: ["react", "nextjs", "nodejs", "postgresql"] },
+      { title: "Extend an existing ecosystem", bestFor: "Businesses that need new capabilities without replacing every trusted system.", description: "Add focused modules, APIs, and connected interfaces around the tools your teams already use.", technologyIds: ["dotnet", "nodejs", "postgresql"] },
+    ],
+    problemSolutions: [
+      { problemId: "manual-processes", solution: "Convert repetitive coordination into guided workflows with clear ownership and audit trails." },
+      { problemId: "spreadsheet-dependency", solution: "Replace fragile files with structured records, permissions, and shared reporting." },
+      { problemId: "scaling-problems", solution: "Create modular foundations that can add users, processes, and integrations as needs grow." },
+    ],
+    useCases: [
+      { title: "Operations hubs", description: "Unify requests, approvals, assignments, documents, and operational reporting." },
+      { title: "Self-service portals", description: "Give customers, partners, or employees secure access to the work that concerns them." },
+      { title: "Internal product tools", description: "Turn specialist team knowledge into reliable, repeatable software workflows." },
+    ],
+  },
+  "web-applications": {
+    technologyOptions: [
+      { technologyId: "wordpress", fit: "Content-led websites with an approachable editorial workflow." },
+      { technologyId: "webflow", fit: "High-polish marketing sites with visual content management." },
+      { technologyId: "shopify", fit: "Hosted commerce stores and operationally simple online selling." },
+      { technologyId: "woocommerce", fit: "Content and commerce experiences built around WordPress." },
+      { technologyId: "react", fit: "Highly interactive application and customer-account experiences." },
+      { technologyId: "nextjs", fit: "Performant web products that combine content, application, and SEO needs." },
+      { technologyId: "angular", fit: "Structured web applications with complex user workflows." },
+      { technologyId: "vue", fit: "Progressive application interfaces and adaptable product frontends." },
+      { technologyId: "javascript", fit: "Dynamic browser behavior and lightweight interactive experiences." },
+      { technologyId: "html5", fit: "Semantic, accessible web page foundations." },
+      { technologyId: "css3", fit: "Responsive layouts and polished visual systems across devices." },
+      { technologyId: "nodejs", fit: "Custom APIs, integrations, and server-side product capabilities." },
+      { technologyId: "nestjs", fit: "Maintainable API architecture for feature-rich web products." },
+      { technologyId: "php", fit: "Server-side web delivery for content and commerce ecosystems." },
+      { technologyId: "laravel", fit: "Structured PHP applications with established business workflows." },
+      { technologyId: "ruby-on-rails", fit: "Convention-driven delivery for focused product workflows." },
+    ],
+    implementationOptions: [
+      { title: "Content or commerce platform", bestFor: "Businesses prioritizing publishing, marketing agility, or a proven commerce foundation.", description: "Configure and tailor a platform around brand, content, product catalog, and customer journeys.", technologyIds: ["wordpress", "webflow", "shopify", "woocommerce"] },
+      { title: "Custom web application", bestFor: "Products with unique workflows, portals, transactions, or connected services.", description: "Engineer a responsive application with the appropriate frontend, backend, data, and integration layers.", technologyIds: ["react", "nextjs", "nodejs", "postgresql"] },
+    ],
+    problemSolutions: [
+      { problemId: "outdated-software", solution: "Modernize slow or difficult web experiences with responsive interfaces and maintainable architecture." },
+      { problemId: "disconnected-systems", solution: "Connect customer journeys to payments, CRM, inventory, and business services through reliable APIs." },
+      { problemId: "poor-reporting", solution: "Surface meaningful account, transaction, and operational data in focused application dashboards." },
+    ],
+    useCases: [
+      { title: "Customer account portals", description: "Secure account management, requests, documents, and service journeys in the browser." },
+      { title: "Commerce experiences", description: "Product discovery, checkout, subscriptions, and post-purchase customer journeys." },
+      { title: "Operational web tools", description: "Browser-based systems for teams managing work, records, and reporting." },
+    ],
+  },
+  "mobile-applications": {
+    technologyOptions: [
+      { technologyId: "flutter", fit: "A shared application foundation for iOS and Android delivery." },
+      { technologyId: "swift", fit: "Native Apple experiences that use platform-specific capabilities." },
+      { technologyId: "kotlin", fit: "Native Android experiences designed around Android conventions." },
+      { technologyId: "nodejs", fit: "Connected APIs, notifications, and mobile application services." },
+      { technologyId: "supabase", fit: "Mobile products that need managed data, authentication, and realtime foundations." },
+    ],
+    implementationOptions: [
+      { title: "Cross-platform mobile product", bestFor: "Organizations that need consistent iOS and Android delivery with a shared foundation.", description: "Build focused mobile journeys while keeping platform-specific behavior where it matters.", technologyIds: ["flutter", "nodejs", "supabase"] },
+      { title: "Native mobile experience", bestFor: "Products that depend heavily on platform performance, device features, or native conventions.", description: "Design and engineer separately optimized iOS and Android experiences around the required capabilities.", technologyIds: ["swift", "kotlin", "nodejs"] },
+    ],
+    problemSolutions: [
+      { problemId: "manual-processes", solution: "Put data collection, approvals, and field workflows into a focused mobile experience." },
+      { problemId: "disconnected-systems", solution: "Connect mobile users to the same trusted data and services used across the business." },
+      { problemId: "scaling-problems", solution: "Create a mobile foundation that can grow from one core journey to a broader product." },
+    ],
+    useCases: [
+      { title: "Field operations", description: "Support technicians, sales teams, and distributed staff with reliable mobile workflows." },
+      { title: "Customer services", description: "Offer booking, account, commerce, communication, and support experiences on the go." },
+      { title: "Connected products", description: "Bring notifications, location, cameras, payments, and APIs together in one experience." },
+    ],
+  },
+  "crm-erp": {
+    technologyOptions: [
+      { technologyId: "hubspot", fit: "Customer, sales, marketing, and service processes in a connected CRM." },
+      { technologyId: "dotnet", fit: "Custom extensions and enterprise integration services." },
+      { technologyId: "nodejs", fit: "API adapters, workflow services, and cross-platform synchronization." },
+      { technologyId: "postgresql", fit: "Structured operational data and reporting foundations." },
+      { technologyId: "zapier", fit: "Focused workflow connections between supported business tools." },
+    ],
+    implementationOptions: [
+      { title: "Configure and connect a business platform", bestFor: "Teams that can standardize core processes around an established CRM or ERP.", description: "Set up workflows, permissions, reports, and integrations around the way departments work together.", technologyIds: ["hubspot", "zapier", "make"] },
+      { title: "Build custom extensions", bestFor: "Organizations with specialized processes that need more than standard platform features.", description: "Add custom modules, dashboards, APIs, and data services without losing the benefits of the core platform.", technologyIds: ["dotnet", "nodejs", "postgresql"] },
+    ],
+    problemSolutions: [
+      { problemId: "disconnected-systems", solution: "Create shared customer and operational records across the systems teams depend on." },
+      { problemId: "poor-reporting", solution: "Establish dependable dashboards and reporting from governed operational data." },
+      { problemId: "manual-processes", solution: "Standardize sales, service, approvals, and handoffs with structured workflows." },
+    ],
+    useCases: [
+      { title: "Sales and service operations", description: "Connect lead management, account history, activities, and customer support." },
+      { title: "Resource and order management", description: "Bring purchasing, inventory, fulfillment, and operational records into clearer workflows." },
+      { title: "Management reporting", description: "Give decision-makers timely views of performance, workload, and business activity." },
+    ],
+  },
+  "business-automation": {
+    technologyOptions: [
+      { technologyId: "zapier", fit: "Fast, focused automations between supported business tools." },
+      { technologyId: "make", fit: "Visual multi-step workflows with transformations and branching." },
+      { technologyId: "nodejs", fit: "Custom workflow logic, validations, and integration services." },
+      { technologyId: "python", fit: "Data-heavy automation and document-processing workflows." },
+      { technologyId: "hubspot", fit: "Customer lifecycle automation inside CRM processes." },
+    ],
+    implementationOptions: [
+      { title: "Connected workflow automation", bestFor: "Repeatable work spanning established SaaS tools with predictable rules.", description: "Automate triggers, routing, notifications, and record updates while retaining clear ownership.", technologyIds: ["zapier", "make", "hubspot"] },
+      { title: "Custom automation service", bestFor: "Workflows with complex validation, data transformation, security, or exception handling.", description: "Build a controlled service that integrates the required systems and exposes operational visibility.", technologyIds: ["nodejs", "python", "postgresql"] },
+    ],
+    problemSolutions: [
+      { problemId: "manual-processes", solution: "Turn repeatable handoffs, approvals, and updates into reliable automated flows." },
+      { problemId: "lack-of-automation", solution: "Prioritize high-volume work where automation can remove delay and avoidable errors." },
+      { problemId: "high-operational-costs", solution: "Reduce recurring administrative effort by removing low-value manual coordination." },
+    ],
+    useCases: [
+      { title: "Approval flows", description: "Route requests to the right people with checks, reminders, and status visibility." },
+      { title: "Customer lifecycle actions", description: "Coordinate onboarding, follow-ups, handovers, and service communications." },
+      { title: "Automated reporting", description: "Collect, transform, and distribute operational information on a dependable schedule." },
+    ],
+  },
+  "ai-solutions": {
+    technologyOptions: [
+      { technologyId: "python", fit: "Data processing, model evaluation, and AI workflow services." },
+      { technologyId: "nodejs", fit: "Product APIs and integrations that place AI in existing workflows." },
+      { technologyId: "postgresql", fit: "Governed application data, feedback, and evaluation records." },
+      { technologyId: "supabase", fit: "Managed data, authentication, and API foundations for AI-enabled products." },
+      { technologyId: "react", fit: "Clear human-in-the-loop interfaces for AI-assisted work." },
+    ],
+    implementationOptions: [
+      { title: "AI-assisted workflow", bestFor: "Teams with a defined knowledge task that benefits from review and clear controls.", description: "Connect approved data, model behavior, business rules, and human oversight in a practical flow.", technologyIds: ["python", "nodejs", "postgresql"] },
+      { title: "AI-enabled product feature", bestFor: "Digital products that need intelligent search, summarization, classification, or assistance.", description: "Embed an evaluated AI capability into the existing user experience and application architecture.", technologyIds: ["react", "nextjs", "supabase"] },
+    ],
+    problemSolutions: [
+      { problemId: "poor-reporting", solution: "Make approved information easier to find, summarize, and interpret for decisions." },
+      { problemId: "manual-processes", solution: "Assist with repetitive research, document handling, and structured knowledge work." },
+      { problemId: "lack-of-automation", solution: "Apply AI only where it can improve a defined workflow with measurable controls." },
+    ],
+    useCases: [
+      { title: "Knowledge assistants", description: "Help teams retrieve approved information and complete defined tasks more quickly." },
+      { title: "Document intelligence", description: "Classify, extract, summarize, and validate information from business documents." },
+      { title: "Product intelligence", description: "Add assisted search, recommendations, analysis, and conversational support." },
+    ],
+  },
+  "system-integration": {
+    technologyOptions: [
+      { technologyId: "nodejs", fit: "Custom API adapters, integration services, and event-driven workflows." },
+      { technologyId: "dotnet", fit: "Enterprise integration services and Microsoft-aligned environments." },
+      { technologyId: "zapier", fit: "Supported SaaS-tool connections with clear, focused automation needs." },
+      { technologyId: "make", fit: "Visual orchestration for multi-step integration workflows." },
+      { technologyId: "postgresql", fit: "Reliable synchronization state, audit records, and operational reporting." },
+    ],
+    implementationOptions: [
+      { title: "Platform-to-platform connection", bestFor: "Teams connecting supported SaaS applications with defined data handoffs.", description: "Configure observable workflows that keep records, notifications, and status changes synchronized.", technologyIds: ["zapier", "make", "hubspot"] },
+      { title: "Custom integration layer", bestFor: "Critical systems requiring tailored validation, transformations, retries, and monitoring.", description: "Engineer APIs and services around ownership, security, failure recovery, and long-term maintainability.", technologyIds: ["nodejs", "dotnet", "postgresql"] },
+    ],
+    problemSolutions: [
+      { problemId: "disconnected-systems", solution: "Define dependable data flows between the systems that make up daily operations." },
+      { problemId: "spreadsheet-dependency", solution: "Replace manual reconciliation with governed synchronization and clear sources of truth." },
+      { problemId: "high-operational-costs", solution: "Reduce repeated data entry, error correction, and cross-team status chasing." },
+    ],
+    useCases: [
+      { title: "CRM and finance connections", description: "Keep customer, invoice, order, and operational data aligned across platforms." },
+      { title: "Payment and subscription events", description: "Connect payment activity to customer records, access, communication, and reporting." },
+      { title: "Integration observability", description: "Make failures, retries, ownership, and data movement visible to the right teams." },
+    ],
+  },
+  "legacy-modernization": {
+    technologyOptions: [
+      { technologyId: "dotnet", fit: "Modernizing and extending Microsoft-aligned enterprise applications." },
+      { technologyId: "react", fit: "Replacing difficult legacy interfaces with responsive user experiences." },
+      { technologyId: "nodejs", fit: "Introducing APIs and integration layers around existing systems." },
+      { technologyId: "postgresql", fit: "Modern relational data design, migration, and performance work." },
+      { technologyId: "docker", fit: "Repeatable application environments during staged modernization." },
+      { technologyId: "kubernetes", fit: "Scalable orchestration where operational requirements justify it." },
+    ],
+    implementationOptions: [
+      { title: "Incremental modernization", bestFor: "Business-critical systems that must remain available throughout change.", description: "Prioritize high-value components, improve interfaces and integrations, and validate each migration stage.", technologyIds: ["react", "nodejs", "docker", "postgresql"] },
+      { title: "Platform and infrastructure renewal", bestFor: "Applications constrained by outdated runtimes, delivery processes, or operational reliability.", description: "Establish maintainable services, repeatable environments, and a roadmap for controlled replacement.", technologyIds: ["dotnet", "docker", "kubernetes", "postgresql"] },
+    ],
+    problemSolutions: [
+      { problemId: "outdated-software", solution: "Assess risk and modernize the parts of the platform that limit delivery, security, or support." },
+      { problemId: "scaling-problems", solution: "Improve architecture, data access, and operational capacity without disrupting critical workflows." },
+      { problemId: "disconnected-systems", solution: "Introduce APIs and integration layers that let trusted legacy systems participate in modern processes." },
+    ],
+    useCases: [
+      { title: "Legacy interface renewal", description: "Replace difficult-to-use screens with accessible, responsive, maintainable experiences." },
+      { title: "Data and infrastructure migration", description: "Move databases, workloads, and dependencies through controlled validation stages." },
+      { title: "Strangler-style replacement", description: "Safely replace high-risk components while essential operations stay available." },
+    ],
+  },
+  saas: {
+    technologyOptions: [
+      { technologyId: "react", fit: "Responsive product interfaces, dashboards, and customer experiences." },
+      { technologyId: "nextjs", fit: "Production web delivery for product, marketing, and performance needs." },
+      { technologyId: "angular", fit: "Structured product frontends with complex workspace workflows." },
+      { technologyId: "vue", fit: "Adaptable SaaS interfaces for evolving product needs." },
+      { technologyId: "typescript", fit: "Safer long-term product development across the codebase." },
+      { technologyId: "nodejs", fit: "Multi-tenant APIs, application services, and integrations." },
+      { technologyId: "nestjs", fit: "Modular backend services for growing product domains." },
+      { technologyId: "dotnet", fit: "Enterprise SaaS services in Microsoft-aligned environments." },
+      { technologyId: "postgresql", fit: "Tenant-aware transactional data and reporting." },
+      { technologyId: "stripe", fit: "Subscriptions, payments, invoicing, and plan management." },
+      { technologyId: "supabase", fit: "Managed product foundations for data, authentication, and storage." },
+    ],
+    implementationOptions: [
+      { title: "Focused SaaS MVP", bestFor: "Founders validating a clearly defined product workflow and market need.", description: "Prioritize the core tenant experience, onboarding, permissions, and feedback loops needed to learn quickly.", technologyIds: ["nextjs", "supabase", "stripe"] },
+      { title: "Scalable multi-tenant platform", bestFor: "Products with growing organizations, feature tiers, integrations, and operational demands.", description: "Engineer tenant boundaries, APIs, billing, observability, and administration for sustainable growth.", technologyIds: ["react", "nodejs", "postgresql", "stripe"] },
+    ],
+    problemSolutions: [
+      { problemId: "scaling-problems", solution: "Design tenant, data, and service boundaries that can grow with product adoption." },
+      { problemId: "manual-processes", solution: "Turn recurring customer or internal work into self-service product workflows." },
+      { problemId: "poor-reporting", solution: "Give product and operations teams clearer usage, account, and performance visibility." },
+    ],
+    useCases: [
+      { title: "Subscription products", description: "Launch plans, trials, payments, and account management around a recurring business model." },
+      { title: "Customer workspaces", description: "Provide organizations with secure members, permissions, records, and workflows." },
+      { title: "Partner ecosystems", description: "Expose APIs, integrations, and administrative controls as the product matures." },
+    ],
+  },
+  "databases-data-science": {
+    technologyOptions: [
+      { technologyId: "postgresql", fit: "Relational data modeling, performance, and reliable analytics foundations." },
+      { technologyId: "mongodb", fit: "Flexible document data for evolving application requirements." },
+      { technologyId: "mysql", fit: "Established web and operational database environments." },
+      { technologyId: "firebase", fit: "Realtime application data, authentication, and managed mobile backends." },
+      { technologyId: "python", fit: "Data processing, analytics pipelines, and predictive workflows." },
+      { technologyId: "docker", fit: "Repeatable environments for data services and pipeline delivery." },
+    ],
+    implementationOptions: [
+      { title: "Operational data foundation", bestFor: "Applications needing reliable schemas, fast queries, migration discipline, and governed records.", description: "Model and optimize the data layer around transactions, access patterns, integrations, and long-term maintainability.", technologyIds: ["postgresql", "mongodb", "mysql", "docker"] },
+      { title: "Analytics and intelligence pipeline", bestFor: "Teams that need data from multiple systems turned into reporting, analysis, or predictive insight.", description: "Build dependable collection, transformation, quality, and delivery steps around the decisions people need to make.", technologyIds: ["python", "postgresql", "nodejs"] },
+    ],
+    problemSolutions: [
+      { problemId: "poor-reporting", solution: "Create trusted data models and pipelines that make operational insight more timely and reliable." },
+      { problemId: "disconnected-systems", solution: "Bring distributed records together through governed data movement and clear ownership." },
+      { problemId: "scaling-problems", solution: "Improve schemas, queries, and data architecture before growing volume becomes a constraint." },
+    ],
+    useCases: [
+      { title: "Database performance work", description: "Improve schemas, indexes, queries, and reliability for responsive applications." },
+      { title: "Data pipelines", description: "Collect and transform information from operational systems into usable data products." },
+      { title: "Decision support", description: "Build dashboards, KPIs, and predictive analysis around important business questions." },
+    ],
+  },
+} as const satisfies Record<ServiceSolutionSlug, ServiceSolutionExpansion>;
+
+export const serviceSolutions: readonly ServiceSolution[] = serviceSolutionBase.map(
+  (solution) => ({
+    ...solution,
+    ...serviceSolutionExpansions[solution.slug],
+  }),
+);
 
 export function getServiceSolutionBySlug(
   slug: string,
 ): ServiceSolution | undefined {
   return serviceSolutions.find((solution) => solution.slug === slug);
 }
+import type { TechnologyId } from "@/data/service-technologies";
+import type { BusinessProblemId } from "@/data/services-experience";
