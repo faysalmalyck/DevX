@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { HeaderItem } from "@/types/menu";
+import type { HeaderItem, SubmenuItem } from "@/types/menu";
 
 type NavigationTarget = {
   hash: string;
@@ -35,6 +35,13 @@ export const isNavigationHrefActive = (
   return pathname === target.pathname && currentHash === "";
 };
 
+export const getNavigationItems = (
+  item: HeaderItem,
+): readonly SubmenuItem[] =>
+  item.megaMenu?.sections.flatMap((section) => section.items) ??
+  item.submenu ??
+  [];
+
 const matchesRouteFamily = (href: string, pathname: string) => {
   const { pathname: targetPathname } = splitNavigationHref(href);
 
@@ -49,9 +56,9 @@ export const isNavigationParentActive = (
   pathname: string,
 ) =>
   matchesRouteFamily(item.href, pathname) ||
-  (item.submenu?.some((subItem) =>
+  getNavigationItems(item).some((subItem) =>
     matchesRouteFamily(subItem.href, pathname),
-  ) ?? false);
+  );
 
 const subscribeToHash = (onStoreChange: () => void) => {
   window.addEventListener("hashchange", onStoreChange);

@@ -25,7 +25,7 @@ const page = async () => {
   description="We turn business ideas into reliable, scalable digital solutions that drive growth, improve operational efficiency, enhance performance, and create a lasting competitive advantage."
 /> 
       
-<div className="mx-auto max-w-8xl pt-32 pb-24 px-2">
+<div id="company-story" className="mx-auto max-w-8xl scroll-mt-28 pt-32 pb-24 px-2">
   <div className="grid grid-cols-1 gap-y-8 gap-x-12 md:grid-cols-2 items-start justify-items-center">
     <ScrollReveal preset="heading" className="w-full max-w-[500px]">
       <h2 className="text-3xl font-rote tracking-tight text-gray-900 sm:text-5xl dark:text-white mb-0 text-center md:text-left leading-snug">
@@ -94,10 +94,14 @@ const page = async () => {
   />
 </svg>
 
-<CounterSection/>
+<div id="company-stats" className="scroll-mt-28">
+  <CounterSection/>
+</div>
 <TeamSection team={team}/>
 <CoreValues/>
-<OfficesSection/>
+<div id="offices" className="scroll-mt-28">
+  <OfficesSection/>
+</div>
 <ReadyToStart/>
 
 </div>

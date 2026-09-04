@@ -10,7 +10,7 @@ import {
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative overflow-hidden py-16 md:py-24">
+    <section className="relative overflow-hidden bg-section py-16 dark:bg-darkmode md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-xl md:max-w-none">
           {/* Header Section */}
@@ -82,7 +82,7 @@ export default function TestimonialsSection() {
                       preset="card"
                     >
                       <HoverCard>
-                        <div className="rounded-lg border border-gray-300 bg-gray-50/50 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
+                        <div className="rounded-lg border border-slate-200 bg-slate-50/80 p-6 transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <ScrollReveal
@@ -99,10 +99,10 @@ export default function TestimonialsSection() {
                                 />
                               </ScrollReveal>
                               <div>
-                                <div className="text-lg font-bold text-white">
+                                <div className="text-lg font-bold text-midnight_text dark:text-white">
                                   {testimonial.name}
                                 </div>
-                                <div className="text-base text-white">
+                                <div className="text-base text-secondary dark:text-white/65">
                                   {testimonial.handle}
                                 </div>
                               </div>
@@ -119,7 +119,7 @@ export default function TestimonialsSection() {
                             </div>
                           </div>
                           <div className="mt-6">
-                            <p className="text-base text-white">{testimonial.text}</p>
+                            <p className="text-base text-secondary dark:text-white/75">{testimonial.text}</p>
                           </div>
                         </div>
                       </HoverCard>

@@ -36,14 +36,14 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="relative w-full pt-6 sm:pt-10 pb-36 sm:pb-48 px-4 md:px-8 dark:bg-[#181d2b] overflow-hidden transition-colors duration-200">
+    <section className="relative w-full overflow-hidden bg-section px-4 pb-36 pt-6 transition-colors duration-200 sm:pb-48 sm:pt-10 md:px-8 dark:bg-darkmode">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <ScrollReveal
           className="max-w-4xl mx-auto text-center pt-0 sm:pt-2 pb-4 sm:pb-6 mb-4 sm:mb-8"
           preset="heading"
         >
-          <h2 className="text-4xl sm:text-4xl md:text-5xl tracking-tight text-gray-900 dark:text-white leading-snug sm:leading-tight">
+          <h2 className="text-4xl leading-snug tracking-tight text-midnight_text dark:text-white sm:text-4xl sm:leading-tight md:text-5xl">
             We deliver through a simple, yet{' '}
             <span className="text-brand dark:text-brand">Powerful</span> and{' '}
             <span className="text-brand dark:text-brand">Effective</span> Process.
@@ -162,7 +162,7 @@ export default function ProcessSection() {
                   }
                 >
                   <HoverCard className="w-full max-w-sm">
-                    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border border-gray-300 bg-gray-50/50 min-h-[380px] sm:min-h-[450px] w-full max-w-sm transition-all duration-400 ease-out dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
+                    <div className="group relative flex h-full min-h-[380px] w-full max-w-sm flex-col justify-between overflow-hidden rounded-lg border border-slate-200 bg-slate-50/80 transition-all duration-400 ease-out sm:min-h-[450px] dark:border-[#2f384f] dark:bg-gradient-to-b dark:from-[#252E41] dark:via-[#242D40] dark:to-[#1D2336]">
 
                       <div className="relative h-[220px] sm:h-[280px] w-full bg-slate-800 overflow-hidden">
                         <ScrollReveal className="absolute inset-0" preset="image">
@@ -192,10 +192,10 @@ export default function ProcessSection() {
                       </div>
 
                       <div className="p-5 sm:p-6 py-4 flex-1 flex flex-col justify-center">
-                        <h3 className="text-lg sm:text-xl px-4 font-bold text-white mb-2 sm:mb-3">
+                        <h3 className="mb-2 px-4 text-lg font-bold text-midnight_text dark:text-white sm:mb-3 sm:text-xl">
                           {step.title}
                         </h3>
-                        <p className="text-white text-base px-4 leading-relaxed">
+                        <p className="px-4 text-base leading-relaxed text-secondary dark:text-white/75">
                           {step.description}{' '}
                           <span className="whitespace-nowrap">{step.highlightText}</span>
                         </p>

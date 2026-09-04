@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HeaderItem } from '../../../../types/menu';
 import {
+  getNavigationItems,
   isNavigationHrefActive,
   isNavigationParentActive,
   splitNavigationHref,
@@ -28,12 +29,15 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
   const submenuId = useId();
   const pathname = usePathname();
   const hash = useLocationHash();
+  const navigationItems = getNavigationItems(item);
+  const hasMegaMenu = Boolean(item.megaMenu);
+  const hasSubmenu = Boolean(item.submenu || item.megaMenu);
 
   const selectedHref = activeHref;
   const isPreviewing = selectedHref !== null && selectedHref !== undefined;
   const isParentActive = isPreviewing
     ? selectedHref === item.href ||
-      (item.submenu?.some((subItem) => selectedHref === subItem.href) ?? false)
+      navigationItems.some((subItem) => selectedHref === subItem.href)
     : isNavigationParentActive(item, pathname);
 
   const baseStyle =
@@ -55,7 +59,7 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
       className="relative my-1 block w-full"
       onMouseEnter={() => onActiveChange?.(item.href)}
     >
-      {item.submenu ? (
+      {hasSubmenu ? (
         <>
           <button
             type="button"
@@ -98,7 +102,83 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
               id={submenuId}
               className="ml-4 mt-2 w-full space-y-1 border-l border-slate-950/10 pl-4 pr-1 animate-reveal-up dark:border-white/10"
             >
-              {item.submenu.map((subItem, index) => {
+              {hasMegaMenu && item.megaMenu ? (
+                <div className="space-y-4 pb-1">
+                  {item.megaMenu.sections.map((section) => (
+                    <section
+                      key={section.id}
+                      aria-labelledby={`${submenuId}-${section.id}`}
+                      className={`rounded-2xl p-2 ${
+                        section.featured ? "bg-brand/[0.07] dark:bg-brand/[0.14]" : ""
+                      }`}
+                    >
+                      <div className="mb-1 flex items-center justify-between gap-3 px-2">
+                        <h3
+                          id={`${submenuId}-${section.id}`}
+                          className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-300"
+                        >
+                          {section.title}
+                        </h3>
+                        {section.href ? (
+                          <Link
+                            href={section.href}
+                            onClick={handleLinkClick}
+                            className="text-xs font-semibold text-brand no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:focus-visible:ring-cyan-300"
+                          >
+                            {section.actionLabel ?? "View all"}
+                          </Link>
+                        ) : null}
+                      </div>
+
+                      <div className="space-y-1">
+                        {section.items.map((subItem) => {
+                          const isSubActive = isPreviewing
+                            ? selectedHref === subItem.href
+                            : isNavigationHrefActive(subItem.href, pathname, hash);
+                          const { hash: subItemHash } = splitNavigationHref(subItem.href);
+
+                          return (
+                            <Link
+                              key={subItem.href}
+                              href={subItem.href}
+                              aria-current={
+                                isSubActive
+                                  ? subItemHash
+                                    ? "location"
+                                    : "page"
+                                  : undefined
+                              }
+                              onMouseEnter={() => onActiveChange?.(subItem.href)}
+                              onClick={() => {
+                                onActiveChange?.(subItem.href);
+                                handleLinkClick();
+                              }}
+                              className={`block w-full rounded-2xl border px-4 py-2.5 text-base no-underline transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:focus-visible:ring-cyan-300 ${
+                                section.featured
+                                  ? "border-brand/25 bg-brand/10 font-semibold text-brand dark:border-blue-400/30 dark:bg-brand/20 dark:text-white"
+                                  : section.layout === "cards"
+                                    ? isSubActive
+                                      ? "border-brand/30 bg-brand/10 font-semibold text-brand shadow-sm dark:border-blue-400/35 dark:bg-brand/20 dark:text-white"
+                                      : "border-slate-200 bg-white font-medium text-slate-700 shadow-sm hover:border-brand/40 dark:border-slate-600 dark:bg-[#1e2538] dark:text-white dark:hover:border-blue-400/50"
+                                  : isSubActive
+                                    ? "border-brand/20 bg-brand/10 font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/20 dark:bg-brand/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                                    : "border-transparent font-medium text-slate-600 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 dark:text-slate-400 dark:hover:border-white/10 dark:hover:bg-white/[0.07] dark:hover:text-white"
+                              }`}
+                            >
+                              <span>{subItem.label}</span>
+                              {subItem.description ? (
+                                <span className="mt-1 block text-xs font-normal leading-5 text-slate-500 dark:text-slate-300">
+                                  {subItem.description}
+                                </span>
+                              ) : null}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  ))}
+                </div>
+              ) : item.submenu?.map((subItem, index) => {
                 const isSubActive = isPreviewing
                   ? selectedHref === subItem.href
                   : isNavigationHrefActive(subItem.href, pathname, hash);

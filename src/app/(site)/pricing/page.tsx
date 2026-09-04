@@ -108,7 +108,7 @@ export default function PricingPage() {
       </div>
 
       {/* FAQ Section Wrapper */}
-      <div className="my-12 sm:my-16 md:my-24">
+      <div id="faq" className="my-12 scroll-mt-28 sm:my-16 md:my-24">
         <FAQ />
       </div>
     </section>
