@@ -41,10 +41,10 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
     : isNavigationParentActive(item, pathname);
 
   const baseStyle =
-    'group flex w-full items-center justify-between rounded-[2rem] border px-4 py-3.5 text-left text-base font-medium transition-all duration-200 outline-none touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950';
+    'group flex w-full items-center justify-between rounded-[2rem] border px-4 py-3.5 text-left text-lg font-semibold transition-all duration-200 outline-none touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950';
 
   const activeStyle = `${baseStyle} border-brand/20 bg-gradient-to-r from-brand/15 via-violet-500/10 to-cyan-400/10 font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/25 dark:from-brand/25 dark:via-violet-500/15 dark:to-cyan-400/10 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]`;
-  const inactiveStyle = `${baseStyle} border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 active:bg-slate-950/[0.08] dark:text-white dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white dark:active:bg-white/[0.12]`;
+  const inactiveStyle = `${baseStyle} border-transparent text-slate-700 hover:border-brand/20 hover:bg-brand/10 hover:text-brand active:bg-slate-950/[0.08] dark:text-white dark:hover:border-blue-400/20 dark:hover:bg-brand/20 dark:hover:text-blue-400 dark:active:bg-white/[0.12]`;
 
   const handleLinkClick = () => {
     if (onNavigate) {
@@ -153,16 +153,16 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
                                 onActiveChange?.(subItem.href);
                                 handleLinkClick();
                               }}
-                              className={`block w-full rounded-2xl border px-4 py-2.5 text-base no-underline transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:focus-visible:ring-cyan-300 ${
+                              className={`block w-full rounded-2xl border px-4 py-2.5 text-lg font-semibold no-underline transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:focus-visible:ring-cyan-300 ${
                                 section.featured
-                                  ? "border-brand/25 bg-brand/10 font-semibold text-brand dark:border-blue-400/30 dark:bg-brand/20 dark:text-white"
+                                  ? "border-brand/25 bg-brand/10 text-brand hover:text-brand dark:border-blue-400/30 dark:bg-brand/20 dark:text-white dark:hover:text-blue-400"
                                   : section.layout === "cards"
                                     ? isSubActive
-                                      ? "border-brand/30 bg-brand/10 font-semibold text-brand shadow-sm dark:border-blue-400/35 dark:bg-brand/20 dark:text-white"
-                                      : "border-slate-200 bg-white font-medium text-slate-700 shadow-sm hover:border-brand/40 dark:border-slate-600 dark:bg-[#1e2538] dark:text-white dark:hover:border-blue-400/50"
+                                      ? "border-brand/30 bg-brand/10 text-brand shadow-sm dark:border-blue-400/35 dark:bg-brand/20 dark:text-white"
+                                      : "border-slate-200 bg-white text-slate-700 shadow-sm hover:border-brand/40 hover:text-brand dark:border-slate-600 dark:bg-[#1e2538] dark:text-white dark:hover:border-blue-400/50 dark:hover:text-blue-400"
                                   : isSubActive
-                                    ? "border-brand/20 bg-brand/10 font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/20 dark:bg-brand/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                                    : "border-transparent font-medium text-slate-600 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 dark:text-slate-400 dark:hover:border-white/10 dark:hover:bg-white/[0.07] dark:hover:text-white"
+                                    ? "border-brand/20 bg-brand/10 text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/20 dark:bg-brand/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                                    : "border-transparent text-slate-600 hover:border-brand/20 hover:bg-brand/10 hover:text-brand dark:text-slate-300 dark:hover:border-blue-400/20 dark:hover:bg-brand/20 dark:hover:text-blue-400"
                               }`}
                             >
                               <span>{subItem.label}</span>
@@ -204,8 +204,8 @@ const MobileHeaderLink: React.FC<MobileHeaderLinkProps> = ({
                     }}
                     className={
                       isSubActive
-                        ? 'block w-full rounded-[2rem] border border-brand/20 bg-brand/10 px-4 py-2.5 text-base font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-blue-400/20 dark:bg-brand/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus-visible:ring-cyan-300'
-                        : 'block w-full rounded-[2rem] border border-transparent px-4 py-2.5 text-base font-medium text-slate-600 transition-all duration-200 touch-manipulation select-none hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:text-slate-400 dark:hover:border-white/10 dark:hover:bg-white/[0.07] dark:hover:text-white dark:focus-visible:ring-cyan-300'
+                        ? 'block w-full rounded-[2rem] border border-brand/20 bg-brand/10 px-4 py-2.5 text-lg font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-200 touch-manipulation select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-blue-400/20 dark:bg-brand/15 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus-visible:ring-cyan-300'
+                        : 'block w-full rounded-[2rem] border border-transparent px-4 py-2.5 text-lg font-semibold text-slate-600 transition-all duration-200 touch-manipulation select-none hover:border-brand/20 hover:bg-brand/10 hover:text-brand dark:text-slate-300 dark:hover:border-blue-400/20 dark:hover:bg-brand/20 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:focus-visible:ring-cyan-300'
                     }
                   >
                     {subItem.label}

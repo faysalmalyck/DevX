@@ -11,22 +11,6 @@ import {
   useLocationHash,
 } from "@/components/layout/Header/Navigation/navigationState";
 
-function ArrowIcon({ className }: { className: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      aria-hidden="true"
-      className={className}
-    >
-      <path d="M5 12h14m-6-6 6 6-6 6" />
-    </svg>
-  );
-}
-
 type MegaMenuLinkProps = {
   item: SubmenuItem;
   section: MegaMenuSection;
@@ -43,16 +27,16 @@ function MegaMenuLink({ item, section, isActive }: MegaMenuLinkProps) {
       <Link
         href={item.href}
         aria-current={isActive ? (itemHash ? "location" : "page") : undefined}
-        className={`group flex w-full items-start justify-between gap-3 rounded-xl border px-3 py-2.5 text-sm font-medium no-underline transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-[#1a2031] ${
+        className={`group flex w-full items-start justify-between gap-3 rounded-xl border px-3 py-2.5 text-base font-medium no-underline transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-[#1a2031] ${
           isPricing
-            ? "border-brand/25 bg-brand/10 text-brand hover:-translate-y-0.5 hover:border-brand/45 hover:bg-brand/15 dark:border-blue-400/30 dark:bg-brand/20 dark:text-white dark:hover:border-blue-400/50 dark:hover:bg-brand/25"
+            ? "border-brand/25 bg-brand/10 text-brand hover:-translate-y-0.5 hover:text-blue-600 dark:border-blue-400/30 dark:bg-brand/20 dark:text-white dark:hover:text-blue-600"
             : isCardLayout
               ? isActive
-                ? "border-brand/30 bg-brand/10 font-semibold text-brand shadow-sm dark:border-blue-400/35 dark:bg-brand/20 dark:text-white"
-                : "h-full border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md dark:border-slate-600 dark:bg-[#1e2538] dark:text-white dark:hover:border-blue-400/50"
+                ? "border-brand/30 bg-brand/10 font-medium text-brand shadow-sm dark:border-blue-400/35 dark:bg-brand/20 dark:text-white"
+                : "h-full border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:text-blue-600 hover:shadow-md dark:border-slate-600 dark:bg-[#1e2538] dark:text-white dark:hover:text-blue-600"
             : isActive
-              ? "border-brand/25 bg-brand/10 font-semibold text-brand dark:border-blue-400/30 dark:bg-brand/20 dark:text-white"
-              : "border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-brand dark:text-slate-200 dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white"
+              ? "border-brand/25 bg-brand/10 font-medium text-brand dark:border-blue-400/30 dark:bg-brand/20 dark:text-white"
+              : "border-transparent text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-600"
         }`}
       >
         <span className="min-w-0">
@@ -63,13 +47,6 @@ function MegaMenuLink({ item, section, isActive }: MegaMenuLinkProps) {
             </span>
           ) : null}
         </span>
-        <ArrowIcon
-          className={`mt-0.5 h-4 w-4 shrink-0 transition-transform duration-200 ${
-            isPricing || isActive || isCardLayout
-              ? "text-current"
-              : "-translate-x-1 text-slate-400 opacity-0 group-hover:translate-x-0 group-hover:text-brand group-hover:opacity-100 dark:text-slate-500 dark:group-hover:text-cyan-200"
-          }`}
-        />
       </Link>
     </li>
   );
@@ -85,6 +62,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const hasMegaMenu = Boolean(item.megaMenu);
   const hasSubmenu = Boolean(item.submenu || item.megaMenu);
   const isActive = isNavigationParentActive(item, path);
+  const isBusinessProblem = item.href === "/business-problem";
 
   useEffect(
     () => () => {
@@ -141,10 +119,14 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
     }
   };
 
-  const triggerClassName = `group flex items-center gap-1 whitespace-nowrap rounded-lg py-2 text-lg font-semibold no-underline transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
+  const triggerClassName = `group flex items-center gap-1 whitespace-nowrap rounded-lg text-base font-medium no-underline transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
+    isBusinessProblem
+      ? "border border-brand/25 bg-brand/10 text-brand dark:border-blue-400/30 dark:bg-brand/20 dark:text-white px-3 py-1.5 hover:text-blue-600 dark:hover:text-blue-600"
+      : "py-2"
+  } ${
     isActive
       ? "text-brand dark:text-brand"
-      : "text-current hover:text-brand dark:hover:text-brand"
+      : "text-current hover:text-blue-600 dark:hover:text-blue-600"
   }`;
 
   return (
@@ -273,14 +255,14 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
                   <div className="mb-3 flex items-center justify-between gap-3">
                     <h2
                       id={`${submenuId}-${section.id}`}
-                      className="text-sm font-bold tracking-tight text-slate-950 dark:text-white"
+                      className="text-base font-bold tracking-tight text-slate-950 dark:text-white"
                     >
                       {section.title}
                     </h2>
                     {section.href ? (
                       <Link
                         href={section.href}
-                        className="shrink-0 text-xs font-semibold text-brand no-underline transition-colors hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:hover:text-cyan-300 dark:focus-visible:ring-cyan-300"
+                        className="shrink-0 text-base font-semibold text-brand no-underline transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:hover:text-blue-600 dark:focus-visible:ring-cyan-300"
                       >
                         {section.actionLabel ?? "View all"}
                       </Link>
@@ -343,18 +325,11 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
                     aria-current={isSubActive ? (subItemHash ? "location" : "page") : undefined}
                     className={`group flex items-center justify-between rounded-lg border px-4 py-3 text-base font-medium no-underline transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 ${
                       isSubActive
-                        ? "border-brand/20 bg-gradient-to-r from-brand/15 via-violet-500/10 to-cyan-400/10 font-semibold text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/25 dark:from-brand/25 dark:via-violet-500/15 dark:to-cyan-400/10 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                        : "border-transparent text-slate-700 hover:border-slate-950/10 hover:bg-slate-950/[0.05] hover:text-slate-950 dark:text-white dark:hover:border-white/10 dark:hover:bg-white/[0.08] dark:hover:text-white"
+                        ? "border-brand/20 bg-gradient-to-r from-brand/15 via-violet-500/10 to-cyan-400/10 font-medium text-brand shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:border-blue-400/25 dark:from-brand/25 dark:via-violet-500/15 dark:to-cyan-400/10 dark:text-white dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                        : "border-transparent text-slate-700 hover:border-brand/20 hover:bg-brand/10 hover:text-blue-600 dark:text-white dark:hover:border-blue-400/20 dark:hover:bg-brand/20 dark:hover:text-blue-600"
                     }`}
                   >
                     <span>{subItem.label}</span>
-                    <ArrowIcon
-                      className={`h-4 w-4 transition-all duration-200 ${
-                        isSubActive
-                          ? "translate-x-0 text-cyan-700 dark:text-cyan-200"
-                          : "-translate-x-1 text-slate-500 opacity-0 group-hover:translate-x-0 group-hover:text-cyan-700 group-hover:opacity-100 dark:text-slate-500 dark:group-hover:text-cyan-200"
-                      }`}
-                    />
                   </Link>
                 );
               })}
