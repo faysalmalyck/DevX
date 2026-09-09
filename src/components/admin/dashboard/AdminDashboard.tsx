@@ -114,7 +114,7 @@ export default function AdminDashboard() {
   if (error || !stats) {
     return (
       <div className="flex min-h-[420px] items-center justify-center pb-8">
-        <div className="max-w-md rounded-3xl border border-rose-100 bg-white p-8 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:border-rose-500/20 dark:bg-[#111827]">
+        <div className="cart-skin-box max-w-md rounded-3xl p-8 text-center">
           <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300"><AlertCircle className="h-6 w-6" /></span>
           <h2 className="mt-5 text-xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard unavailable</h2>
           <p className="mt-2 text-base leading-6 text-slate-500 dark:text-slate-400">{error || "We could not load the workspace snapshot."}</p>
@@ -142,7 +142,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6 pb-8">
-      <section className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white px-6 py-7 shadow-[0_20px_60px_rgba(15,23,42,0.07)] dark:border-white/[0.08] dark:bg-[#111827] sm:px-8 sm:py-8">
+      <section className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-7 shadow-xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl sm:px-8 sm:py-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(54,88,255,0.18),transparent_32%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.15),transparent_28%)]" />
         <div className="relative flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div className="max-w-2xl">
@@ -165,7 +165,7 @@ export default function AdminDashboard() {
 
       <section className="grid gap-4 py-0 sm:grid-cols-2 xl:grid-cols-4" aria-label="Workspace metrics">
         {metricCards.map(({ label, value, detail, icon: Icon, tone, surface }) => (
-          <article key={label} className="group relative overflow-hidden rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.08] dark:bg-[#111827]">
+          <article key={label} className="group relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-xl transition-colors duration-300 hover:-translate-y-0.5 hover:shadow-2xl dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl">
             <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${tone}`} />
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -180,8 +180,8 @@ export default function AdminDashboard() {
       </section>
 
       <section className="grid gap-6 py-0 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
-        <article className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
-          <div className="flex flex-col gap-3 border-b border-slate-100 px-6 py-5 dark:border-white/[0.06] sm:flex-row sm:items-center sm:justify-between">
+        <article className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl">
+          <div className="flex flex-col gap-3 border-b border-slate-200/80 px-6 py-5 dark:border-slate-600/60 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex items-center gap-2">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300"><Clock3 className="h-4 w-4" /></span>
@@ -224,7 +224,7 @@ export default function AdminDashboard() {
           </div>
         </article>
 
-        <aside className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/[0.08] dark:bg-[#111827] sm:p-6">
+        <aside className="rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl sm:p-6">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ClipboardList className="h-4 w-4" /></span>
             <div>
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
           </div>
           <div className="mt-5 space-y-2">
             {quickActions.map(({ label, description, href, icon: Icon, tone }) => (
-              <Link key={href} href={href} className="group flex items-center gap-3 rounded-lg border border-slate-100 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-brand/[0.06]">
+              <Link key={href} href={href} className="group flex items-center gap-3 rounded-lg border border-slate-200/60 p-3 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/[0.06] dark:hover:border-blue-400/20 dark:hover:bg-brand/[0.06]">
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-50 dark:bg-white/[0.06] ${tone}`}><Icon className="h-4.5 w-4.5" /></span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-base font-bold text-slate-800 dark:text-slate-100">{label}</span>
@@ -248,7 +248,7 @@ export default function AdminDashboard() {
       </section>
 
       <section className="grid gap-4 py-0 md:grid-cols-2">
-        <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
+        <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl">
           <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-brand/10 blur-3xl" />
           <div className="relative flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-brand dark:bg-brand/10 dark:text-brand"><ShieldCheck className="h-5 w-5" /></span>
@@ -259,7 +259,7 @@ export default function AdminDashboard() {
             </div>
           </div>
         </article>
-        <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
+        <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl">
           <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-amber-500/10 blur-3xl" />
           <div className="relative flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300"><ClipboardList className="h-5 w-5" /></span>

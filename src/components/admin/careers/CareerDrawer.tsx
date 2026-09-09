@@ -77,7 +77,7 @@ export default function CareerDrawer({
         role="dialog"
         aria-modal="true"
         aria-labelledby="career-drawer-title"
-        className="absolute right-0 top-0 flex h-dvh w-full max-w-3xl flex-col bg-white shadow-2xl dark:bg-slate-900"
+        className="absolute right-0 top-0 flex h-dvh w-full max-w-3xl flex-col border-l border-slate-200 bg-slate-50 shadow-2xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl"
       >
         <header className="flex items-center justify-between border-b border-slate-200 px-6 py-5 dark:border-slate-800">
           <div>
