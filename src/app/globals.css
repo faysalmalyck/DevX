@@ -119,28 +119,36 @@ body {
 */
 @layer components {
   .workspace-shell {
-    --workspace-canvas: #f6f8fc;
-    --workspace-surface: rgba(255, 255, 255, 0.92);
-    --workspace-surface-muted: rgba(248, 250, 252, 0.92);
+    --workspace-canvas: #ffffff;
+    --workspace-surface: #f8fafc;
+    --workspace-surface-muted: #f1f5f9;
     --workspace-surface-command: linear-gradient(135deg, rgba(54, 88, 255, 0.1), rgba(139, 92, 246, 0.1));
-    --workspace-border: rgba(148, 163, 184, 0.3);
+    --workspace-border: #e2e8f0;
     --workspace-text: #0f172a;
     --workspace-muted: #64748b;
-    --workspace-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    --workspace-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 
     color: var(--workspace-text);
     background: var(--workspace-canvas);
+    background-image:
+      radial-gradient(circle at top, rgba(139, 92, 246, 0.1), transparent 34rem),
+      linear-gradient(135deg, rgba(34, 211, 238, 0.06), transparent 26rem);
   }
 
   .dark .workspace-shell {
-    --workspace-canvas: #090e19;
-    --workspace-surface: rgba(17, 26, 45, 0.92);
-    --workspace-surface-muted: rgba(15, 23, 42, 0.88);
+    --workspace-canvas: #181d2b;
+    --workspace-surface: linear-gradient(to bottom, #262d43, #1a2031);
+    --workspace-surface-muted: linear-gradient(to bottom, #1e2538, #161c2b);
     --workspace-surface-command: linear-gradient(135deg, rgba(54, 88, 255, 0.2), rgba(139, 92, 246, 0.16));
-    --workspace-border: rgba(148, 163, 184, 0.16);
+    --workspace-border: rgba(71, 85, 105, 0.8);
     --workspace-text: #f8fafc;
     --workspace-muted: #94a3b8;
-    --workspace-shadow: 0 24px 65px rgba(0, 0, 0, 0.3);
+    --workspace-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55);
+
+    background-image:
+      radial-gradient(circle at top, rgba(139, 92, 246, 0.22), transparent 35%),
+      radial-gradient(circle at 88% 8%, rgba(34, 211, 238, 0.14), transparent 24rem),
+      linear-gradient(180deg, #181d2b 0%, #181d2b 100%);
   }
 
   .workspace-shell section {
@@ -163,11 +171,36 @@ body {
     @apply mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400 sm:text-base;
   }
 
+  .cart-skin-box {
+    @apply border border-slate-200 bg-slate-50 shadow-xl transition-colors duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:shadow-2xl;
+  }
+
+  .consultation-input {
+    @apply w-full rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300 sm:px-5 sm:py-3 sm:text-base;
+  }
+
+  .consultation-select {
+    @apply w-full rounded-full bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300 sm:px-5 sm:py-3 sm:text-base;
+  }
+
+  .consultation-textarea {
+    @apply w-full resize-y rounded-3xl bg-white dark:bg-[#232B3E] border border-slate-200 dark:border-[#2E3850] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand dark:focus:border-slate-500 focus:ring-1 focus:ring-brand/40 dark:focus:ring-slate-500/40 hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-500/30 transition-all ease-in-out duration-300 sm:px-5 sm:text-base;
+  }
+
+  .consultation-primary-btn {
+    @apply inline-flex items-center justify-center rounded-full bg-brand text-center text-base sm:text-lg font-semibold text-white shadow-[0_8px_20px_rgba(54,88,255,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand hover:shadow-[0_0_20px_rgba(54,88,255,0.4)] active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
+  .consultation-secondary-btn {
+    @apply inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-[#414b62] bg-white dark:bg-[#1e2538] text-base sm:text-lg font-semibold text-slate-700 dark:text-[#c9d0e1] transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-100 dark:hover:bg-white/[0.09] hover:text-slate-900 dark:hover:text-white active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
   .workspace-surface {
     border: 1px solid var(--workspace-border);
     background: var(--workspace-surface);
     box-shadow: var(--workspace-shadow);
     border-radius: 1.25rem;
+    transition: background-color 300ms, border-color 300ms, box-shadow 300ms;
   }
 
   .workspace-surface-muted {

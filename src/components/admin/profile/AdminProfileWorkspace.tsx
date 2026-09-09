@@ -106,14 +106,10 @@ export default function AdminProfileWorkspace() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Profile Card Summary */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md text-center">
+          <div className="cart-skin-box rounded-2xl p-6 shadow-xl text-center">
             <div className="relative mx-auto w-24 h-24 mb-4">
               <div className="h-full w-full rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center font-bold text-3xl text-primary overflow-hidden">
-                {avatar ? (
-                  <img src={avatar} alt="avatar" className="h-full w-full object-cover" />
-                ) : (
-                  firstName ? firstName[0] : "O"
-                )}
+                <img src={avatar || "/images/hero/faysal.png"} alt="avatar" className="h-full w-full object-cover" />
               </div>
               <label className="absolute bottom-0 right-0 p-1.5 rounded-full bg-primary border border-white/10 text-white cursor-pointer hover:brightness-110 transition shadow-lg">
                 <Camera className="h-4 w-4" />
@@ -153,12 +149,12 @@ export default function AdminProfileWorkspace() {
 
         {/* Profile Settings Form */}
         <div className="lg:col-span-8">
-          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
+          <div className="cart-skin-box rounded-2xl p-6 shadow-xl">
             <form onSubmit={handleSave} className="space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 {/* First Name */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     First Name
                   </label>
                   <div className="relative">
@@ -167,15 +163,15 @@ export default function AdminProfileWorkspace() {
                       required
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Last Name */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Last Name
                   </label>
                   <div className="relative">
@@ -184,15 +180,15 @@ export default function AdminProfileWorkspace() {
                       required
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Email Address
                   </label>
                   <div className="relative">
@@ -201,15 +197,15 @@ export default function AdminProfileWorkspace() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Username */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Username
                   </label>
                   <div className="relative">
@@ -218,15 +214,15 @@ export default function AdminProfileWorkspace() {
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Phone Number
                   </label>
                   <div className="relative">
@@ -235,15 +231,15 @@ export default function AdminProfileWorkspace() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+1 (555) 000-0000"
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Job Title */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Designation
                   </label>
                   <div className="relative">
@@ -252,15 +248,15 @@ export default function AdminProfileWorkspace() {
                       value={designation}
                       onChange={(e) => setDesignation(e.target.value)}
                       placeholder="Operator"
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <Award className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <Award className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Department */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Department
                   </label>
                   <div className="relative">
@@ -269,42 +265,42 @@ export default function AdminProfileWorkspace() {
                       value={department}
                       onChange={(e) => setDepartment(e.target.value)}
                       placeholder="Infrastructure"
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-input pl-11"
                     />
-                    <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Language */}
                 <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Language
                   </label>
                   <div className="relative">
                     <select
                       value={language}
                       onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-[#0c1222] pl-11 pr-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+                      className="consultation-select pl-11 text-sm sm:text-base py-3"
                     >
                       <option value="en">English (US)</option>
                       <option value="es">Español</option>
                       <option value="fr">Français</option>
                       <option value="de">Deutsch</option>
                     </select>
-                    <Globe className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <Globe className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Timezone */}
                 <div className="sm:col-span-2">
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Timezone
                   </label>
                   <div className="relative">
                     <select
                       value={timezone}
                       onChange={(e) => setTimezone(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-[#0c1222] pl-11 pr-4 py-3 text-zinc-300 outline-none focus:border-primary/50"
+                      className="consultation-select pl-11 text-sm sm:text-base py-3"
                     >
                       <option value="UTC">UTC (Coordinated Universal Time)</option>
                       <option value="EST">EST (Eastern Standard Time)</option>
@@ -313,13 +309,13 @@ export default function AdminProfileWorkspace() {
                       <option value="GMT">GMT (Greenwich Mean Time)</option>
                       <option value="PKT">PKT (Pakistan Standard Time)</option>
                     </select>
-                    <Clock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-600" />
+                    <Clock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
 
                 {/* Bio */}
                 <div className="sm:col-span-2">
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#c9d0e1]">
                     Biography
                   </label>
                   <div className="relative">
@@ -328,9 +324,9 @@ export default function AdminProfileWorkspace() {
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
                       placeholder="Brief personal summary..."
-                      className="w-full rounded-lg border border-white/10 bg-black/20 pl-11 pr-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-primary/50"
+                      className="consultation-textarea pl-11"
                     />
-                    <FileText className="absolute left-4 top-4 h-5 w-5 text-zinc-600" />
+                    <FileText className="absolute left-4 top-4 h-5 w-5 text-slate-400" />
                   </div>
                 </div>
               </div>
@@ -349,11 +345,11 @@ export default function AdminProfileWorkspace() {
                 </div>
               )}
 
-              <div className="flex justify-end pt-4 border-t border-white/5">
+              <div className="flex justify-end pt-4 border-t border-slate-200 dark:border-white/5">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="rounded-lg bg-primary px-6 py-3 font-semibold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+                  className="consultation-primary-btn px-8 py-3 text-base font-semibold"
                 >
                   {loading ? "Saving settings..." : "Save Settings"}
                 </button>

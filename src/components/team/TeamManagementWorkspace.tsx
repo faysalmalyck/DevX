@@ -34,7 +34,7 @@ export default function TeamManagementWorkspace({
         <p className="mt-2 max-w-3xl text-base text-slate-500 dark:text-zinc-400">Manage team profiles and the secure login access linked to each member.</p>
       </div>
 
-      <div role="tablist" aria-label="Team management sections" className="inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-slate-200 bg-white p-1 shadow-sm dark:border-white/[0.08] dark:bg-[#111827]">
+      <div role="tablist" aria-label="Team management sections" className="cart-skin-box inline-flex max-w-full gap-1 overflow-x-auto rounded-xl p-1">
         {tabs.map(({ id, label, description, icon: Icon }) => {
           const isActive = activeTab === id;
           return (

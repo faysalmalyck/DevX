@@ -96,12 +96,8 @@ export function AdminSidebarAccount({ active, collapsed = false, onNavigate }: O
           active === "profile" ? "bg-white/[0.09]" : "hover:bg-white/[0.06]"
         } ${collapsed ? "justify-center p-2" : "gap-3 p-2"}`}
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-violet-500 text-xs font-black text-white shadow-lg shadow-blue-950/30">
-          {user.avatar ? (
-            <img src={user.avatar} alt="" className="h-full w-full object-cover" />
-          ) : (
-            operatorInitials(user.firstName, user.lastName)
-          )}
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-violet-500 text-xs font-black text-white shadow-lg shadow-blue-950/30">
+          <img src={user.avatar || "/images/hero/faysal.png"} alt={user.firstName} className="h-full w-full object-cover" />
         </div>
         {collapsed ? null : (
           <div className="min-w-0 flex-1">
@@ -157,7 +153,7 @@ export default function AdminSidebar({ active }: { active: AdminArea }) {
 
   return (
     <aside
-      className={`relative z-40 hidden h-screen shrink-0 flex-col border-r border-white/[0.08] bg-[#0B1120] text-white transition-[width] duration-300 lg:flex ${
+      className={`relative z-40 hidden h-screen shrink-0 flex-col border-r border-slate-200 bg-slate-50 text-slate-900 transition-[width] duration-300 dark:border-slate-600/80 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] dark:text-white lg:flex ${
         collapsed ? "w-[84px]" : "w-[280px]"
       }`}
     >

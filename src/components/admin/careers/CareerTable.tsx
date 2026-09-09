@@ -111,7 +111,7 @@ export default function CareerTable({
 }: CareerTableProps) {
   if (careers.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-slate-300 bg-white p-12 text-center dark:border-slate-700 dark:bg-slate-900">
+      <div className="cart-skin-box rounded-xl p-12 text-center">
         <h3 className="text-xl font-semibold text-slate-900 dark:text-white">No jobs found</h3>
         <p className="mt-2 text-slate-500 dark:text-slate-400">Adjust your filters or add a new job.</p>
       </div>
@@ -119,10 +119,10 @@ export default function CareerTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <div className="cart-skin-box overflow-hidden rounded-xl">
       <div className="overflow-x-auto">
         <table className="min-w-full">
-          <thead className="bg-slate-50 dark:bg-slate-800">
+          <thead className="bg-slate-100/80 dark:bg-[#181d2b]/80">
             <tr>
               <th className="px-6 py-4 text-left text-base font-semibold">Position</th>
               <th className="px-6 py-4 text-left text-base font-semibold">Category</th>
@@ -138,7 +138,7 @@ export default function CareerTable({
             {careers.map((career) => {
               const busy = busyId === career.id;
               return (
-                <tr key={career.id} className="border-t border-slate-200 transition hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50">
+                <tr key={career.id} className="border-t border-slate-200 transition hover:bg-slate-100/50 dark:border-slate-700/60 dark:hover:bg-slate-800/40">
                   <td className="px-6 py-4">
                     <p className="font-semibold text-slate-900 dark:text-white">{career.title}</p>
                   </td>
@@ -162,7 +162,7 @@ export default function CareerTable({
                           event.target.value = String(career.displayOrder);
                         }
                       }}
-                      className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-center text-base outline-none focus:border-brand disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                      className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-center text-base outline-none focus:border-brand disabled:opacity-50 dark:border-slate-600 dark:bg-[#181d2b] dark:text-white"
                     />
                   </td>
                   <td className="px-6 py-4">
