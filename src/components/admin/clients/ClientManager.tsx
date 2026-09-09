@@ -163,10 +163,10 @@ export default function ClientManager() {
         ].map(([label, value]) => (
           <div
             key={String(label)}
-            className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-5 shadow-xl backdrop-blur-md"
+            className="cart-skin-box rounded-xl p-5"
           >
-            <p className="text-3xl font-black text-white">{value}</p>
-            <p className="mt-1 text-base font-semibold text-zinc-400">{label}</p>
+            <p className="text-3xl font-black text-slate-900 dark:text-white">{value}</p>
+            <p className="mt-1 text-base font-semibold text-slate-500 dark:text-slate-400">{label}</p>
           </div>
         ))}
       </div>

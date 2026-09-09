@@ -25,12 +25,12 @@ export default async function SalesPasswordChangePage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#090E19] px-4 py-12 text-white sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-white px-4 py-12 text-slate-900 dark:bg-[#181d2b] dark:text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <section className="mb-8 rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-cyan-200">Sales account setup</p>
+        <section className="mb-8 cart-skin-box rounded-2xl p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand">Sales account setup</p>
           <h1 className="mt-1 text-2xl font-black tracking-tight">Set a private password to continue</h1>
-          <p className="mt-2 text-sm leading-6 text-cyan-50/80">Your account was created with an initial credential. Change it now before accessing Sales leads and follow-ups.</p>
+          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Your account was created with an initial credential. Change it now before accessing Sales leads and follow-ups.</p>
         </section>
         <AdminSecurityWorkspace />
       </div>
