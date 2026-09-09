@@ -47,7 +47,7 @@ export default function DeleteDialog({
         role="alertdialog"
         aria-modal="true"
         aria-labelledby="delete-career-title"
-        className="relative z-10 w-full max-w-md rounded-lg border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+        className="cart-skin-box relative z-10 w-full max-w-md rounded-2xl p-6"
       >
         <button
           type="button"

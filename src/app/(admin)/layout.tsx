@@ -80,7 +80,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F6F8FC] px-6 dark:bg-[#090E19]">
+      <div className="flex min-h-screen items-center justify-center bg-white px-6 dark:bg-[#181d2b]">
         <div className="text-center">
           <div className="mx-auto flex h-14 items-center justify-center">
             <AdminBrandLogo surface="light" className="h-10 w-auto dark:hidden" />
@@ -101,7 +101,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const activeKey = currentRoute.key;
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#F6F8FC] text-slate-900 dark:bg-[#090E19] dark:text-white">
+    <div className="workspace-shell flex h-screen w-full overflow-hidden bg-white text-slate-900 dark:bg-[#181d2b] dark:text-white">
       <AdminSidebar active={activeKey} />
 
       {mobileMenuOpen ? (
@@ -114,9 +114,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             aria-label="Admin navigation"
             tabIndex={-1}
             onMouseDown={(event) => event.stopPropagation()}
-            className="flex h-full w-[min(22rem,88vw)] flex-col overflow-hidden border-r border-white/[0.08] bg-[#0B1120] text-white shadow-2xl outline-none"
+            className="flex h-full w-[min(22rem,88vw)] flex-col overflow-hidden border-r border-slate-200 dark:border-slate-600/80 bg-slate-50 dark:bg-[linear-gradient(to_bottom,#262d43,#1a2031)] text-white shadow-2xl outline-none"
           >
-            <div className="flex min-h-[72px] items-center justify-between border-b border-white/[0.08] px-5">
+            <div className="flex min-h-[72px] items-center justify-between border-b border-slate-200/80 dark:border-white/[0.08] px-5">
               <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3" aria-label="DevX operations home">
                 <AdminBrandLogo surface="dark" alt="" className="h-8 w-auto shrink-0" />
                 <span>
@@ -142,7 +142,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       ) : null}
 
       <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden">
-        <header className="z-30 flex h-[72px] shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/80 px-4 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0C1220]/80 sm:px-6 lg:px-8">
+        <header className="z-30 flex h-[72px] shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/80 px-4 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#181d2b]/80 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <button
               type="button"
@@ -185,15 +185,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               aria-label="Open my profile"
               className="group flex items-center gap-2 rounded-lg py-1 pl-1 pr-2 transition hover:bg-slate-100 dark:hover:bg-white/[0.06] sm:pr-3"
             >
-              <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-violet-500 text-[10px] font-black text-white shadow-sm">
-                {user.avatar ? <img src={user.avatar} alt="" className="h-full w-full object-cover" /> : operatorInitials(user.firstName, user.lastName)}
+              <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-violet-500 text-[10px] font-black text-white shadow-sm">
+                <img src={user.avatar || "/images/hero/faysal.png"} alt={user.firstName} className="h-full w-full object-cover" />
               </span>
               <span className="hidden max-w-28 truncate text-base font-bold text-slate-700 dark:text-white sm:block">{user.firstName}</span>
             </Link>
           </div>
         </header>
 
-        <main className="relative flex-1 overflow-x-hidden overflow-y-auto bg-[#F6F8FC] dark:bg-[#090E19]">
+        <main className="relative flex-1 overflow-x-hidden overflow-y-auto bg-white dark:bg-[#181d2b]">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_25%_-15%,rgba(54,88,255,0.1),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.08),transparent_30%)] dark:bg-[radial-gradient(circle_at_25%_-15%,rgba(54,88,255,0.13),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(139,92,246,0.1),transparent_30%)]" />
           <div className="relative mx-auto w-full max-w-[1440px] p-4 sm:p-6 lg:p-8">{children}</div>
         </main>

@@ -203,15 +203,15 @@ export default function AdminSecurityWorkspace() {
         {/* Left Side: Change Password & Multi Factor */}
         <div className="lg:col-span-5 space-y-8">
           {/* Change Password Card */}
-          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
-            <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+          <div className="cart-skin-box rounded-2xl p-6 shadow-xl">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2 mb-6">
               <KeyRound className="h-5 w-5 text-primary" />
               Credentials Update
             </h3>
             
             <form onSubmit={handlePasswordChange} className="space-y-4">
               <div>
-                <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-[#c9d0e1]">
                   Current Password
                 </label>
                 <div className="relative">
@@ -220,13 +220,13 @@ export default function AdminSecurityWorkspace() {
                     required
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
+                    className="consultation-input"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-[#c9d0e1]">
                   New Password
                 </label>
                 <div className="relative">
@@ -235,12 +235,12 @@ export default function AdminSecurityWorkspace() {
                     required
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-black/20 pl-4 pr-11 py-3 text-white outline-none focus:border-primary/50"
+                    className="consultation-input pr-11"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 dark:hover:text-white"
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
@@ -248,7 +248,7 @@ export default function AdminSecurityWorkspace() {
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-[#c9d0e1]">
                   Confirm New Password
                 </label>
                 <input
@@ -256,7 +256,7 @@ export default function AdminSecurityWorkspace() {
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-primary/50"
+                  className="consultation-input"
                 />
               </div>
 
@@ -277,7 +277,7 @@ export default function AdminSecurityWorkspace() {
               <button
                 type="submit"
                 disabled={passwordLoading}
-                className="w-full rounded-lg bg-primary py-3 font-semibold text-white hover:brightness-110 active:scale-[0.98] transition shadow-lg shadow-primary/20 disabled:opacity-50 cursor-pointer"
+                className="consultation-primary-btn w-full py-3 text-base font-semibold"
               >
                 {passwordLoading ? "Updating credentials..." : "Change Password"}
               </button>
@@ -285,14 +285,14 @@ export default function AdminSecurityWorkspace() {
           </div>
 
           {/* MFA Panel */}
-          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
+          <div className="cart-skin-box rounded-2xl p-6 shadow-xl">
             <div className="flex justify-between items-start gap-4">
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                   <Shield className="h-5 w-5 text-emerald-400" />
                   Operator Security Factor
                 </h3>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-slate-500 dark:text-zinc-500">
                   Enforce two-factor verification on credentials authentications.
                 </p>
               </div>
@@ -315,7 +315,7 @@ export default function AdminSecurityWorkspace() {
 
         {/* Right Side: Active Sessions Auditor */}
         <div className="lg:col-span-7">
-          <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md space-y-6">
+          <div className="cart-skin-box rounded-2xl p-6 shadow-xl space-y-6">
             <div className="flex items-center justify-between border-b border-white/5 pb-4">
               <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
                 <Monitor className="h-5 w-5 text-primary" />

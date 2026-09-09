@@ -287,7 +287,7 @@ export default function ApplicationDetailsDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby="application-details-title"
-        className="relative flex max-h-[94vh] w-full max-w-5xl flex-col overflow-hidden rounded-t-3xl border border-slate-200 bg-white shadow-2xl dark:border-white/10 dark:bg-[#111827] sm:max-h-[90vh] sm:rounded-3xl"
+        className="cart-skin-box relative flex max-h-[94vh] w-full max-w-5xl flex-col overflow-hidden rounded-t-3xl sm:max-h-[90vh] sm:rounded-3xl"
       >
         <header className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-5 dark:border-white/10 sm:px-7">
           <div className="min-w-0">
@@ -429,13 +429,13 @@ export default function ApplicationDetailsDialog({
                 <h3 className="font-bold text-slate-900 dark:text-white">
                   Application review
                 </h3>
-                <label className="mt-5 block text-base font-semibold text-slate-700 dark:text-zinc-300">
+                <label className="mt-5 block text-sm font-semibold text-slate-700 dark:text-[#c9d0e1]">
                   Application status
                   <select
                     value={status}
                     onChange={handleStatusChange}
                     disabled={saving}
-                    className="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-base font-medium text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200"
+                    className="mt-1.5 consultation-select"
                   >
                     {APPLICATION_STATUS_VALUES.map((statusValue) => (
                       <option key={statusValue} value={statusValue}>
@@ -445,7 +445,7 @@ export default function ApplicationDetailsDialog({
                   </select>
                 </label>
 
-                <label className="mt-5 block text-base font-semibold text-slate-700 dark:text-zinc-300">
+                <label className="mt-5 block text-sm font-semibold text-slate-700 dark:text-[#c9d0e1]">
                   Internal notes
                   <textarea
                     value={internalNotes}
@@ -454,9 +454,9 @@ export default function ApplicationDetailsDialog({
                     maxLength={10000}
                     rows={8}
                     placeholder="Visible only to administrators..."
-                    className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-base leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/10 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-200 dark:placeholder:text-zinc-600"
+                    className="mt-1.5 consultation-textarea"
                   />
-                  <span className="mt-1 block text-right text-xs font-medium text-slate-400 dark:text-zinc-600">
+                  <span className="mt-1 block text-right text-xs font-medium text-slate-400 dark:text-zinc-500">
                     {internalNotes.length}/10,000
                   </span>
                 </label>
