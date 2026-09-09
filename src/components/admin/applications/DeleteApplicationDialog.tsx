@@ -58,7 +58,7 @@ export default function DeleteApplicationDialog({
         aria-modal="true"
         aria-labelledby="delete-application-title"
         aria-describedby="delete-application-description"
-        className="relative w-full max-w-md rounded-t-3xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-[#111827] sm:rounded-3xl"
+        className="cart-skin-box relative w-full max-w-md rounded-t-3xl p-6 sm:rounded-3xl"
       >
         <button
           type="button"

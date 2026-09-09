@@ -146,7 +146,7 @@ function RepeatableList({
         </button>
       </div>
       {values.length === 0 ? (
-        <p className="rounded-lg bg-slate-50 px-3 py-2 text-base text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+        <p className="rounded-lg bg-slate-50 px-3 py-2 text-base text-slate-500 dark:bg-slate-900/80 dark:text-slate-400">
           No items yet.
         </p>
       ) : null}
@@ -163,7 +163,7 @@ function RepeatableList({
               onChange(next);
             }}
             aria-label={`${label} item ${index + 1}`}
-            className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+            className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 outline-none transition focus:border-brand dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-white"
           />
           <button
             type="button"
@@ -366,8 +366,9 @@ export default function CareerForm({
     }
   };
 
-  const inputClass =
-    "mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-brand dark:border-slate-700 dark:bg-slate-800 dark:text-white";
+  const inputClass = "mt-1.5 consultation-input";
+  const selectClass = "mt-1.5 consultation-select";
+  const textareaClass = "mt-1.5 consultation-textarea";
 
   return (
     <form onSubmit={handleSubmit(submit)} className="space-y-6" noValidate>
@@ -389,7 +390,7 @@ export default function CareerForm({
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Category
-          <select {...register("category")} className={inputClass}>
+          <select {...register("category")} className={selectClass}>
             <option value="" disabled>
               Select a category
             </option>
@@ -406,7 +407,7 @@ export default function CareerForm({
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Department
-          <select {...register("department")} className={inputClass}>
+          <select {...register("department")} className={selectClass}>
             <option value="" disabled>
               Select a department
             </option>
@@ -428,7 +429,7 @@ export default function CareerForm({
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Employment type
-          <select {...register("employmentType")} className={inputClass}>
+          <select {...register("employmentType")} className={selectClass}>
             {!hasOption(careerEmploymentTypes, employmentType) && employmentType ? (
               <option value={employmentType}>Current: {employmentType}</option>
             ) : null}
@@ -442,7 +443,7 @@ export default function CareerForm({
         </label>
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Work mode
-          <select {...register("workMode")} className={inputClass}>
+          <select {...register("workMode")} className={selectClass}>
             <option value="" disabled>
               Select a work mode
             </option>
@@ -466,7 +467,7 @@ export default function CareerForm({
                 aria-label="Experience years"
                 value={experienceYears}
                 onChange={(event) => updateExperience(event.target.value, experienceMonths)}
-                className={inputClass}
+                className={selectClass}
               >
                 <option value="" disabled>
                   Select years
@@ -484,7 +485,7 @@ export default function CareerForm({
                 aria-label="Experience months"
                 value={experienceMonths}
                 onChange={(event) => updateExperience(experienceYears, event.target.value)}
-                className={inputClass}
+                className={selectClass}
               >
                 {careerExperienceMonths.map((month) => (
                   <option key={month} value={month}>
@@ -516,14 +517,14 @@ export default function CareerForm({
 
       <label className="block text-base font-semibold text-slate-700 dark:text-white">
         Card description
-        <textarea {...register("shortDescription")} rows={3} className={inputClass} />
+        <textarea {...register("shortDescription")} rows={3} className={textareaClass} />
         {fieldError(errors.shortDescription) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.shortDescription)}</span> : null}
       </label>
 
       <fieldset className="grid gap-5 rounded-lg border border-slate-200 p-4 md:grid-cols-[1fr_auto] md:items-end dark:border-slate-700">
         <label className="text-base font-semibold text-slate-700 dark:text-white">
           Status
-          <select {...register("status")} className={inputClass}>
+          <select {...register("status")} className={selectClass}>
             {statuses.map((status) => (
               <option key={status} value={status}>
                 {careerStatusLabels[status]}
@@ -531,22 +532,22 @@ export default function CareerForm({
             ))}
           </select>
         </label>
-        <label className="flex min-h-[50px] items-center gap-3 rounded-lg bg-slate-50 px-4 py-3 text-base font-semibold text-slate-700 dark:bg-slate-800 dark:text-white">
+        <label className="flex min-h-[50px] items-center gap-3 rounded-lg bg-slate-50 px-4 py-3 text-base font-semibold text-slate-700 dark:bg-slate-900/80 dark:text-white">
           <input type="checkbox" {...register("featured")} className="h-4 w-4 rounded border-slate-300 text-brand focus:ring-brand" />
           Feature this job
         </label>
       </fieldset>
 
-      <section className="space-y-4 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+      <section className="cart-skin-box space-y-4 rounded-xl p-4">
         <h3 className="text-base font-bold text-slate-900 dark:text-white">Job description</h3>
         <label className="block text-base font-semibold text-slate-700 dark:text-white">
           Description paragraph
-          <textarea {...register("overview")} rows={5} className={inputClass} />
+          <textarea {...register("overview")} rows={5} className={textareaClass} />
           {fieldError(errors.overview) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.overview)}</span> : null}
         </label>
         <label className="block text-base font-semibold text-slate-700 dark:text-white">
           Supporting paragraph
-          <textarea {...register("responsibilitiesDescription")} rows={3} className={inputClass} />
+          <textarea {...register("responsibilitiesDescription")} rows={3} className={textareaClass} />
           {fieldError(errors.responsibilitiesDescription) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.responsibilitiesDescription)}</span> : null}
         </label>
         <RepeatableList
@@ -558,11 +559,11 @@ export default function CareerForm({
         />
       </section>
 
-      <section className="space-y-4 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+      <section className="cart-skin-box space-y-4 rounded-xl p-4">
         <h3 className="text-base font-bold text-slate-900 dark:text-white">Job requirements</h3>
         <label className="block text-base font-semibold text-slate-700 dark:text-white">
           Requirements paragraph
-          <textarea {...register("requirementsDescription")} rows={3} className={inputClass} />
+          <textarea {...register("requirementsDescription")} rows={3} className={textareaClass} />
           {fieldError(errors.requirementsDescription) ? <span className="mt-1 block text-xs text-rose-600 dark:text-rose-300">{fieldError(errors.requirementsDescription)}</span> : null}
         </label>
         <RepeatableList
@@ -581,7 +582,7 @@ export default function CareerForm({
         />
       </section>
 
-      <fieldset className="space-y-4 rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+      <fieldset className="cart-skin-box space-y-4 rounded-xl p-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <legend className="text-base font-bold text-slate-900 dark:text-white">Our hiring process</legend>
@@ -597,10 +598,10 @@ export default function CareerForm({
           </button>
         </div>
         {hiringProcess.fields.length === 0 ? (
-          <p className="rounded-lg bg-slate-50 px-3 py-2 text-base text-slate-500 dark:bg-slate-800 dark:text-slate-400">No hiring process steps yet.</p>
+          <p className="rounded-lg bg-slate-50 px-3 py-2 text-base text-slate-500 dark:bg-slate-900/80 dark:text-slate-400">No hiring process steps yet.</p>
         ) : null}
         {hiringProcess.fields.map((field, index) => (
-          <div key={field.id} className="rounded-lg border border-slate-200 p-3 dark:border-slate-700">
+          <div key={field.id} className="rounded-lg border border-slate-200 p-3 dark:border-slate-700/60 dark:bg-slate-900/40">
             <div className="mb-3 flex items-center justify-between gap-3">
               <p className="text-base font-semibold text-slate-700 dark:text-white">Step {index + 1}</p>
               <div className="flex items-center gap-1">
@@ -611,7 +612,7 @@ export default function CareerForm({
             </div>
             <div className="grid gap-3 md:grid-cols-2">
               <label className="text-base font-semibold text-slate-700 dark:text-white">Title<input {...register(`hiringProcess.${index}.title`)} className={inputClass} /></label>
-              <label className="text-base font-semibold text-slate-700 dark:text-white">Description<textarea {...register(`hiringProcess.${index}.description`)} rows={3} className={inputClass} /></label>
+              <label className="text-base font-semibold text-slate-700 dark:text-white">Description<textarea {...register(`hiringProcess.${index}.description`)} rows={3} className={textareaClass} /></label>
             </div>
           </div>
         ))}
@@ -621,8 +622,8 @@ export default function CareerForm({
       {saveError ? <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-base text-rose-700 dark:border-rose-500/20 dark:bg-rose-500/10 dark:text-rose-300">{saveError}</p> : null}
 
       <div className="flex justify-end gap-3 border-t border-slate-200 pt-5 dark:border-slate-800">
-        <button type="button" onClick={onClose} disabled={loading} className="rounded-lg border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-white dark:hover:bg-slate-800">Cancel</button>
-        <button type="submit" disabled={loading} className="rounded-lg bg-brand px-6 py-3 text-base font-semibold text-white transition hover:bg-brand disabled:cursor-wait disabled:opacity-50">{loading ? "Saving…" : mode === "create" ? "Create job" : "Save changes"}</button>
+        <button type="button" onClick={onClose} disabled={loading} className="consultation-secondary-btn px-6 py-2.5 text-sm">Cancel</button>
+        <button type="submit" disabled={loading} className="consultation-primary-btn px-7 py-2.5 text-sm">{loading ? "Saving…" : mode === "create" ? "Create job" : "Save changes"}</button>
       </div>
     </form>
   );

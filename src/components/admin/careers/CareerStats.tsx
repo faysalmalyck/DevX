@@ -35,7 +35,7 @@ export default function CareerStats({
       {cards.map((card) => (
         <div
           key={card.title}
-          className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+          className="cart-skin-box rounded-xl p-6"
         >
           <p className="text-base text-slate-500">
             {card.title}
