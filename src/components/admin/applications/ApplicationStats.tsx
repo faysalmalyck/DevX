@@ -72,7 +72,7 @@ export default function ApplicationStats({ stats }: ApplicationStatsProps) {
       {statDefinitions.map(({ key, label, icon: Icon, iconClass }) => (
         <div
           key={key}
-          className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-white/10 dark:bg-[#111827]"
+          className="cart-skin-box rounded-xl p-4"
         >
           <div className="flex items-start justify-between gap-3">
             <p className="text-xs font-semibold text-slate-500 dark:text-zinc-400">
