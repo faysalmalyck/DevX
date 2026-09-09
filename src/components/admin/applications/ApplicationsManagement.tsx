@@ -255,7 +255,7 @@ export default function ApplicationsManagement({
           type="button"
           onClick={() => void loadApplications()}
           disabled={loading}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-base font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-[#111827] dark:text-zinc-300 dark:hover:bg-white/5"
+          className="cart-skin-box inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-base font-bold text-slate-700 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 dark:text-zinc-200 dark:hover:bg-slate-800/60"
         >
           <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
           Refresh

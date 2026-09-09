@@ -65,8 +65,8 @@ export default function AccountDropdown() {
         aria-haspopup="menu"
         className="flex items-center gap-2 rounded-full border border-white/70 bg-transparent py-1.5 pl-1.5 pr-3 text-base font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/[0.12] dark:text-white dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950"
       >
-        <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-sky-400 text-xs text-white">
-          FM
+        <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary to-sky-400">
+          <img src="/images/hero/faysal.png" alt="Faysal Mushtaq" className="h-full w-full object-cover" />
         </span>
         <span>Account</span>
         <ChevronDown className="h-4 w-4" />
@@ -79,8 +79,8 @@ export default function AccountDropdown() {
         >
           <div className="p-3">
             <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-primary to-sky-400 font-bold text-white">
-                FM
+              <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary to-sky-400">
+                <img src="/images/hero/faysal.png" alt="Faysal Mushtaq" className="h-full w-full object-cover" />
               </span>
               <div>
                 <p className="font-bold">Faysal Mushtaq</p>

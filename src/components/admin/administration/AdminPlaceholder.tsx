@@ -20,12 +20,12 @@ export default function AdminPlaceholder({
         <p className="text-base font-bold uppercase tracking-[.18em] text-primary">
           Administration
         </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
           {title}
         </h2>
-        <p className="mt-2 text-zinc-400">{description}</p>
+        <p className="mt-2 text-slate-500 dark:text-zinc-400">{description}</p>
       </div>
-      <div className="rounded-lg border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] p-6 shadow-xl backdrop-blur-md">
+      <div className="cart-skin-box rounded-xl p-6">
         {children}
       </div>
     </div>
